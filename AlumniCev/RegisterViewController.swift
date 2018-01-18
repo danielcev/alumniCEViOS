@@ -9,6 +9,7 @@
  import UIKit
  import Alamofire
  import CPAlertViewController
+ import SwiftSpinner
  
  class RegisterViewController: UIViewController {
     
@@ -16,11 +17,10 @@
     @IBOutlet weak var emailTextLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextLabel: UILabel!
+    @IBOutlet weak var repeatPasswordTextLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var repeatPasswordTextField: UITextField!
     @IBOutlet weak var btnRegister: UIButton!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,9 @@
         repeatPasswordTextField.placeholder = "repeatpassword".localized()
         btnRegister.setTitle("btnregister".localized(), for: .normal)
         
+        passwordTextLabel.text = "password".localized()
+        repeatPasswordTextLabel.text = "repeatpassword".localized()
+        
         btnRegister.layer.borderColor = UIColor.white.cgColor
         btnRegister.layer.borderWidth = 2
         btnRegister.layer.cornerRadius = btnRegister.layer.frame.height / 2
@@ -47,9 +50,15 @@
         passwordTextField.layer.borderWidth = 3
         passwordTextField.layer.cornerRadius = passwordTextField.layer.frame.height / 2
         
+        //Set color placeholder blanco
+        passwordTextField.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0), forKeyPath: "_placeholderLabel.textColor")
+        
         repeatPasswordTextField.layer.borderColor = UIColor.white.cgColor
         repeatPasswordTextField.layer.borderWidth = 2
         repeatPasswordTextField.layer.cornerRadius = repeatPasswordTextField.layer.frame.height / 2
+        
+        //Set color placeholder blanco
+        repeatPasswordTextField.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0), forKeyPath: "_placeholderLabel.textColor")
         
     }
     @IBAction func backBtn(_ sender: Any) {
@@ -94,6 +103,8 @@
         
         let parameters : Parameters = ["email":email,"password":password]
         
+        SwiftSpinner.show("...")
+        
         Alamofire.request(url!, method: .post, parameters: parameters).responseJSON{response in
             
             var arrayResult = response.result.value as! Dictionary<String, Any>
@@ -103,6 +114,8 @@
             case .success:
                 switch arrayResult["code"] as! Int{
                     case 200:
+                        
+                        SwiftSpinner.hide()
                 
 //                        var arrayData = arrayResult["data"] as! Dictionary<String, Any>
 //                        var arrayUser = arrayData["user"] as! Dictionary<String, Any>
@@ -110,9 +123,12 @@
                         self.dismiss(animated: true)
                     })
                     default:
+                        
+                        SwiftSpinner.hide()
                         alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
                 }
             case .failure:
+                SwiftSpinner.hide()
                 print("Error :: \(String(describing: response.error))")
             }
             

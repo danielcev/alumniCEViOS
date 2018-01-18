@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import CPAlertViewController
+import SwiftSpinner
 
 class RecoverViewController: UIViewController {
 
@@ -60,6 +61,8 @@ class RecoverViewController: UIViewController {
             
             let parameters: Parameters = ["password":password, "id": id!]
             
+            SwiftSpinner.show("...")
+            
             Alamofire.request(url!, method: .post, parameters: parameters).responseJSON{response in
                 
                 var arrayResult = response.result.value as! Dictionary<String, Any>
@@ -70,15 +73,20 @@ class RecoverViewController: UIViewController {
                     switch arrayResult["code"] as! Int{
                     case 200:
                         
+                        SwiftSpinner.hide()
+                        
                         alert.showSuccess(title: (arrayResult["message"] as! String),  buttonTitle: "OK", action: { (nil) in
-                            self.dismiss(animated: true, completion: {
-                                self.dismiss(animated: true)
-                            })
+                            //self.dismiss(animated: true)
+                            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
                         })
                     default:
+                        
+                        SwiftSpinner.hide()
                         alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
                     }
                 case .failure:
+                    
+                    SwiftSpinner.hide()
                     print("Error :: \(String(describing: response.error))")
                     //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
                 }

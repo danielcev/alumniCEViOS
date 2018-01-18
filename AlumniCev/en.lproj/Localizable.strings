@@ -59,6 +59,8 @@
 
 "send"="SEND";
 "back"="BACK";
-"acept"="ACEPT";
+"acept"="ACCEPT";
+
+"recoverpassword"="Recover Password";
 
 

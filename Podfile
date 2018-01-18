@@ -5,6 +5,7 @@ target 'AlumniCev' do
 
   pod 'Alamofire'
   pod 'CPAlertViewController', '~> 3.0'
+  pod 'SwiftSpinner', '~> 1.5'
 
   target 'AlumniCevTests' do
     inherit! :search_paths

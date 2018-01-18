@@ -9,9 +9,13 @@
 import UIKit
 import CPAlertViewController
 import Alamofire
+import SwiftSpinner
 
 class ForgotViewController: UIViewController {
 
+    
+    @IBOutlet weak var resetPasswordLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var sendButton: UIButton!
@@ -24,8 +28,10 @@ class ForgotViewController: UIViewController {
     
     func updateTexts()
     {
-
         
+        resetPasswordLabel.text = "recoverpassword".localized()
+        emailLabel.text = "email".localized()
+
         sendButton.layer.borderColor = UIColor.white.cgColor
         sendButton.layer.borderWidth = 2
         sendButton.layer.cornerRadius = sendButton.layer.frame.height / 2
@@ -57,6 +63,8 @@ class ForgotViewController: UIViewController {
             
             let parameters : Parameters = ["email":emailTextField.text!]
             
+            SwiftSpinner.show("...")
+            
             Alamofire.request(url!, method: .get, parameters: parameters).responseJSON{response in
                 
                 var arrayResult = response.result.value as! Dictionary<String, Any>
@@ -66,17 +74,22 @@ class ForgotViewController: UIViewController {
                 case .success:
                     switch arrayResult["code"] as! Int{
                     case 200:
+                        
+                        SwiftSpinner.hide()
+                        
                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecoverViewController") as! RecoverViewController
                         vc.modalTransitionStyle = .flipHorizontal
                         var arrayData = arrayResult["data"] as! Dictionary<String,Any>
-                        print(arrayData["id"])
                         vc.id =  Int( arrayData["id"] as! String)
                         self.present(vc, animated: true)
                         
                     default:
+                        SwiftSpinner.hide()
+                        
                         alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
                     }
                 case .failure:
+                    SwiftSpinner.hide()
                     print("Error :: \(String(describing: response.error))")
                 }
                 

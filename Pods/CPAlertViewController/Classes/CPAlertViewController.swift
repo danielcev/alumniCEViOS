@@ -52,10 +52,10 @@ open class CPAlertViewController: UIViewController {
     open static var buttonTitleColor = UIColor.white
     
     /// The normal background color of button
-    open static var buttonBGNormalColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+    open static var buttonBGNormalColor = UIColor(red: 0.0, green: 141.0/255.0, blue: 157.0/255.0, alpha: 1.0)
     
     /// The highlighted background color of button
-    open static var buttonBGHighlightedColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 0.7)
+    open static var buttonBGHighlightedColor = UIColor(red: 0.0, green: 141.0/255.0, blue: 157.0/255.0, alpha: 0.7)
     
     //MARK: - Const
     fileprivate let kBGTransparency: CGFloat = 0.5

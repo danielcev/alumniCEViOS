@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import CoreLocation
 import CPAlertViewController
+import SwiftSpinner
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
@@ -23,8 +24,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var enterButtomlogin: UIButton!
     
     let manager = CLLocationManager()
-    
-    
     
     var lon:Float = 0.0
     var lat:Float = 0.0
@@ -90,6 +89,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func createLoginRequest(email:String, password:String){
         
+        SwiftSpinner.show("...")
+        
         let url = URL(string: URL_GENERAL + "users/login.json")
         
         let parameters: Parameters = ["email":email,"password":password, "lon": self.lon , "lat": self.lat]
@@ -105,6 +106,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 case 200:
                     var arrayData = arrayResult["data"] as! Dictionary<String,Any>
                     var arrayUser = arrayData["user"] as! Dictionary<String,Any>
+                    
+                    SwiftSpinner.hide()
 
                     alert.showSuccess(title: (arrayResult["message"] as! String),  buttonTitle: "OK", action: { (nil) in
                         saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")
@@ -115,13 +118,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         self.goToMain()
                     })
                 default:
+                    SwiftSpinner.hide()
                     alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
                 }
             case .failure:
+                SwiftSpinner.hide()
                 print("Error :: \(String(describing: response.error))")
                 //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
             }
-            
+            SwiftSpinner.hide()
         }
     }
     
@@ -130,8 +135,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager.requestAlwaysAuthorization()
         manager.requestLocation()
     }
-
-
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {

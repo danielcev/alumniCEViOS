@@ -232,6 +232,9 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6qI-5h-zHX">
@@ -333,6 +336,7 @@
                         <outlet property="passwordTextField" destination="hU3-zo-vVE" id="tBA-At-EW7"/>
                         <outlet property="passwordTextLabel" destination="zWO-aP-VtP" id="kgz-63-pwi"/>
                         <outlet property="repeatPasswordTextField" destination="h2s-kW-ox9" id="zc7-h4-wc9"/>
+                        <outlet property="repeatPasswordTextLabel" destination="Qx5-4X-2vf" id="JIK-Sm-UJ0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GET-1T-0Tx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -350,8 +354,8 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rT-Cw-C0l">
                                 <rect key="frame" x="16" y="55" width="343" height="327"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -474,7 +478,9 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="Unv-bw-yJa" id="kSn-2J-UyZ"/>
+                        <outlet property="emailLabel" destination="gDt-hB-ncG" id="KxP-LL-zy4"/>
                         <outlet property="emailTextField" destination="uTe-oS-0MC" id="dSV-89-pSD"/>
+                        <outlet property="resetPasswordLabel" destination="5Ws-71-nqB" id="RFY-H3-m9k"/>
                         <outlet property="sendButton" destination="wqX-bo-vnA" id="DyB-Nz-LTX"/>
                     </connections>
                 </viewController>
@@ -498,11 +504,11 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jax-kM-HKz">
-                                <rect key="frame" x="16" y="499" width="343" height="60"/>
+                                <rect key="frame" x="60" y="499" width="256" height="47"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="0Px-lG-XuG"/>
-                                    <constraint firstAttribute="height" constant="60" id="giO-zb-fag"/>
+                                    <constraint firstAttribute="width" constant="256" id="0Px-lG-XuG"/>
+                                    <constraint firstAttribute="height" constant="47" id="giO-zb-fag"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <state key="normal" title="Cambiar">

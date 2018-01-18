@@ -14,10 +14,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let name = getDataInUserDefaults(key: "name")
-        let token = getDataInUserDefaults(key: "token")
         let email = getDataInUserDefaults(key: "email")
         let password = getDataInUserDefaults(key: "password")
-        dataLabel.text = "Bienvenido: " + name! + "\n" + "email: " + email! + "\n" + "password: " + password! + "\n" + "token: " + token! 
+        dataLabel.text = "Bienvenido: " + name! + "\n" + "email: " + email! + "\n" + "password: " + password!
         // Do any additional setup after loading the view.
     }
 
