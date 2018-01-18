@@ -89,7 +89,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func createLoginRequest(email:String, password:String){
         
-        SwiftSpinner.show("...")
+        
         
         let url = URL(string: URL_GENERAL + "users/login.json")
         
@@ -134,6 +134,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         manager.requestAlwaysAuthorization()
         manager.requestLocation()
+        
+        SwiftSpinner.show("...")
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -167,6 +169,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //función para ocultar el teclado cuando pulsas fuera de él
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
 }
