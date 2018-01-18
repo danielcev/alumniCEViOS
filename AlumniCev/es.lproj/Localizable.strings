@@ -1,0 +1,60 @@
+/* 
+  Localizable.strings
+  loginTest
+
+  Created by alumnos on 9/10/17.
+  Copyright © 2017 Profe. All rights reserved.
+*/
+
+//LANGUAGES
+
+"en"="English";
+"es"="Español";
+"base"="Base";
+
+"helloWorld"="Hola mundo";
+"username"="Username";
+"password"="Contraseña";
+"login"="Login";
+"remember"="¿Has olvidado tu contraseña?";
+"register"="Regístrate";
+"insertUser"="Inserta tu username";
+"insertPassword"="Inserta tu contraseña";
+//REGISTER
+"email"="Correo del usuario";
+"birhtday"="Cumpleaños";
+"password"="Contraseña";
+"repeatpassword"="Repetir Contraseña";
+"btnregister"="Registrar";
+//LOGIN
+"passwordLogin"="Contraseña";
+"areyouregister"="¿Estas Registrado?";
+"forgetPass"="¿Olvidastes tu contraseña?";
+"enterBtn"="ENTRAR";
+
+//ALERTS
+"emptyPassword"="Contraseña vacía";
+"wrongMail"="Email Incorrecto";
+"wrongRepeatPassword"="Contraseña Repetida Erronea";
+"emptyTlf"="Telefono Vacio";
+"wrongEmail"="Email Incorrecto";
+
+
+//MENU
+
+"menu"="Menu";
+
+// SETINGS
+
+"shareProfile"="Compartir perfil";
+"shareFriends"="Compartir mis amigos";
+"shareLists"="Compartir mis listas";
+"shareLocalization"="Compartir mi localización";
+"allowNotifications"="Permitir notificaciones";
+"editProfile"="Editar mi perfil";
+
+// Recover password
+
+"send"="ENVIAR";
+"back"="VOLVER";
+"acept"="ACEPTAR";
