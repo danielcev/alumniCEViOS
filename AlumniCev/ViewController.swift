@@ -69,27 +69,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func enterLoginButtom(_ sender: UIButton) {
     
         let alert = CPAlertViewController()
-        if isValidEmail(YourEMailAddress: emailLoginTextField.text!) {
-            if passwordLoginTextField.text! != "" {
+        
+        if passwordLoginTextField.text != "" && emailLoginTextField.text != ""{
+            
+            if isValidEmail(YourEMailAddress: emailLoginTextField.text!) {
                 
                 self.getLocation()
-                
-            }
-            else{
-                
-                alert.showError(title: "emptyPassword".localized(), buttonTitle: "OK")
-                //createAlert(message: "emptyPassword".localized())
 
+            }else{
+                alert.showError(title: "wrongEmail".localized(), buttonTitle: "OK")
             }
+            
         }else{
-            alert.showError(title: "wrongMail".localized(), buttonTitle: "OK")
-            //createAlert(message: "wrongMail".localized())
+            alert.showError(title: "allFieldsRequired".localized(), buttonTitle: "OK")
         }
     }
     
     func createLoginRequest(email:String, password:String){
-        
-        
         
         let url = URL(string: URL_GENERAL + "users/login.json")
         

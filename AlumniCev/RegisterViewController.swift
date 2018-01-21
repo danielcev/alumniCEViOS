@@ -75,26 +75,33 @@
     @IBAction func registerAction(_ sender: Any) {
         
         let alert = CPAlertViewController()
-        if isValidEmail(YourEMailAddress: emailTextField.text!) {
+        
+        if emailTextField.text != "" && passwordTextField.text != "" && repeatPasswordTextField.text != ""{
+        
+            if isValidEmail(YourEMailAddress: emailTextField.text!) {
 
-                if passwordTextField.text! != "" {
-                    if repeatPasswordTextField.text! == passwordTextField.text!{
-                        
-                        self.createRegisterRequest(email: emailTextField.text!, password: passwordTextField.text!)
+                if repeatPasswordTextField.text! == passwordTextField.text!{
                     
+                    let password:String = passwordTextField.text!
+                    
+                    if password.count > 4 && password.count < 13{
+                        self.createRegisterRequest(email: emailTextField.text!, password: passwordTextField.text!)
+                    }else{
+                        alert.showError(title: "lengthPassword".localized(), buttonTitle: "OK")
                     }
-                    else{
-                        alert.showError(title: "wrongRepeatPassword".localized(), buttonTitle: "OK")
-                    }
+                    
                 }
                 else{
-                    alert.showError(title: "emptyPassword".localized(), buttonTitle: "OK")
+                    alert.showError(title: "wrongRepeatPassword".localized(), buttonTitle: "OK")
                 }
+                
+            }else {
+                alert.showError(title: "wrongEmail".localized(), buttonTitle: "OK")
+            }
             
-        }else {
-            alert.showError(title: "wrongEmail".localized(), buttonTitle: "OK")
+        }else{
+            alert.showError(title: "allFieldsRequired".localized(), buttonTitle: "OK")
         }
-        
     }
     
     func createRegisterRequest(email:String, password:String){

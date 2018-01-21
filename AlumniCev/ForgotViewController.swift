@@ -58,44 +58,50 @@ class ForgotViewController: UIViewController {
         
         let alert = CPAlertViewController()
         
-        if isValidEmail(YourEMailAddress: emailTextField.text!){
-            let url = URL(string: URL_GENERAL + "users/validateEmail.json")
-            
-            let parameters : Parameters = ["email":emailTextField.text!]
-            
-            SwiftSpinner.show("...")
-            
-            Alamofire.request(url!, method: .get, parameters: parameters).responseJSON{response in
+        if emailTextField.text != ""{
+        
+            if isValidEmail(YourEMailAddress: emailTextField.text!){
+                let url = URL(string: URL_GENERAL + "users/validateEmail.json")
                 
-                var arrayResult = response.result.value as! Dictionary<String, Any>
-                let alert = CPAlertViewController()
+                let parameters : Parameters = ["email":emailTextField.text!]
                 
-                switch response.result {
-                case .success:
-                    switch arrayResult["code"] as! Int{
-                    case 200:
-                        
+                SwiftSpinner.show("...")
+                
+                Alamofire.request(url!, method: .get, parameters: parameters).responseJSON{response in
+                    
+                    var arrayResult = response.result.value as! Dictionary<String, Any>
+                    let alert = CPAlertViewController()
+                    
+                    switch response.result {
+                    case .success:
+                        switch arrayResult["code"] as! Int{
+                        case 200:
+                            
+                            SwiftSpinner.hide()
+                            
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecoverViewController") as! RecoverViewController
+                            vc.modalTransitionStyle = .flipHorizontal
+                            var arrayData = arrayResult["data"] as! Dictionary<String,Any>
+                            vc.id =  Int( arrayData["id"] as! String)
+                            self.present(vc, animated: true)
+                            
+                        default:
+                            SwiftSpinner.hide()
+                            
+                            alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
+                        }
+                    case .failure:
                         SwiftSpinner.hide()
-                        
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecoverViewController") as! RecoverViewController
-                        vc.modalTransitionStyle = .flipHorizontal
-                        var arrayData = arrayResult["data"] as! Dictionary<String,Any>
-                        vc.id =  Int( arrayData["id"] as! String)
-                        self.present(vc, animated: true)
-                        
-                    default:
-                        SwiftSpinner.hide()
-                        
-                        alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
+                        print("Error :: \(String(describing: response.error))")
                     }
-                case .failure:
-                    SwiftSpinner.hide()
-                    print("Error :: \(String(describing: response.error))")
+                    
                 }
-                
+            }else{
+                alert.showError(title: "wrongEmail".localized(), buttonTitle: "OK")
             }
+            
         }else{
-            alert.showError(title: "wrongEmail".localized(), buttonTitle: "OK")
+            alert.showError(title: "allFieldsRequired".localized(), buttonTitle: "OK")
         }
     }
     @IBAction func dismissFunction(_ sender: Any) {

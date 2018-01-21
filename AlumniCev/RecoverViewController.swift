@@ -54,47 +54,62 @@ class RecoverViewController: UIViewController {
     }
     @IBAction func RecoverAction(_ sender: Any) {
         
-        if passwordTextField.text! == repeatPasswordTextField.text && passwordTextField.text! != "" {
-            
-            let password = passwordTextField.text!
-            let url = URL(string: URL_GENERAL + "users/recoverPassword.json")
-            
-            let parameters: Parameters = ["password":password, "id": id!]
-            
-            SwiftSpinner.show("...")
-            
-            Alamofire.request(url!, method: .post, parameters: parameters).responseJSON{response in
+        if passwordTextField.text != "" && repeatPasswordTextField.text != ""{
+        
+            if passwordTextField.text == repeatPasswordTextField.text{
                 
-                var arrayResult = response.result.value as! Dictionary<String, Any>
-                let alert = CPAlertViewController()
+                let password:String = passwordTextField.text!
                 
-                switch response.result {
-                case .success:
-                    switch arrayResult["code"] as! Int{
-                    case 200:
-                        
-                        SwiftSpinner.hide()
-                        
-                        alert.showSuccess(title: (arrayResult["message"] as! String),  buttonTitle: "OK", action: { (nil) in
-                            //self.dismiss(animated: true)
-                            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
-                        })
-                    default:
-                        
-                        SwiftSpinner.hide()
-                        alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
-                    }
-                case .failure:
+                if password.count > 4 && password.count < 13{
+                    let password = passwordTextField.text!
+                    let url = URL(string: URL_GENERAL + "users/recoverPassword.json")
                     
-                    SwiftSpinner.hide()
-                    print("Error :: \(String(describing: response.error))")
-                    //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+                    let parameters: Parameters = ["password":password, "id": id!]
+                    
+                    SwiftSpinner.show("...")
+                    
+                    Alamofire.request(url!, method: .post, parameters: parameters).responseJSON{response in
+                        
+                        var arrayResult = response.result.value as! Dictionary<String, Any>
+                        let alert = CPAlertViewController()
+                        
+                        switch response.result {
+                        case .success:
+                            switch arrayResult["code"] as! Int{
+                            case 200:
+                                
+                                SwiftSpinner.hide()
+                                
+                                alert.showSuccess(title: (arrayResult["message"] as! String),  buttonTitle: "OK", action: { (nil) in
+                                    //self.dismiss(animated: true)
+                                    self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+                                })
+                            default:
+                                
+                                SwiftSpinner.hide()
+                                alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
+                            }
+                        case .failure:
+                            
+                            SwiftSpinner.hide()
+                            print("Error :: \(String(describing: response.error))")
+                            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+                        }
+                        
+                    }
+                }else{
+                    let alert = CPAlertViewController()
+                    alert.showError(title: "lengthPassword".localized(), buttonTitle: "OK")
                 }
                 
+                
+            }else{
+                let alert = CPAlertViewController()
+                alert.showError(title: ("wrongRepeatPassword".localized()), buttonTitle: "OK")
             }
         }else{
             let alert = CPAlertViewController()
-            alert.showError(title: ("wrongRepeatPassword".localized()), buttonTitle: "OK")
+            alert.showError(title: ("allFieldsRequired".localized()), buttonTitle: "OK")
         }
     }
     

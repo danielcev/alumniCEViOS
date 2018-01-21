@@ -36,11 +36,11 @@
 
 //ALERTS
 "emptyPassword"="Empty password";
-"wrongMail"="Wrong Mail";
-"wrongRepeatPassword"="Wrong Repeat Password";
+"wrongRepeatPassword"="Passwords don't match";
 "emptyTlf"="Empty Telephone";
 "wrongEmail"="Wrong Mail";
-
+"allFieldsRequired" = "All fields are required";
+"lengthPassword" = "The password must be between 5 and 12 characters long";
 
 //MENU
 

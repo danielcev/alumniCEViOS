@@ -34,11 +34,11 @@
 
 //ALERTS
 "emptyPassword"="Contraseña vacía";
-"wrongMail"="Email Incorrecto";
-"wrongRepeatPassword"="Contraseña Repetida Erronea";
+"wrongRepeatPassword"="Las contraseñas no coinciden";
 "emptyTlf"="Telefono Vacio";
-"wrongEmail"="Email Incorrecto";
-
+"wrongEmail"="Email incorrecto";
+"allFieldsRequired" = "Todos los campos son necesarios";
+"lengthPassword" = "La contraseña debe estar comprendida entre 5 y 12 caracteres";
 
 //MENU
 
