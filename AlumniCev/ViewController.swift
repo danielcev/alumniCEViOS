@@ -157,9 +157,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     
     func goToMain(){
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+        /*let vc = self.storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as! EventsViewController
         vc.modalTransitionStyle = .flipHorizontal
         self.present(vc, animated: true)
+        */
+        let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+        /*let vcs = tabbarVC.viewControllers
+        let vc = vcs?.first as? EventsViewController
+        
+        self.present(vc!, animated: false, completion: nil)*/
+        self.present(tabbarVC, animated: true, completion: nil)
+        
+
     }
     
     override func didReceiveMemoryWarning() {

@@ -368,7 +368,127 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSr-vi-bTT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-79.200000000000003" y="841.52923538230891"/>
+            <point key="canvasLocation" x="-922" y="842"/>
+        </scene>
+        <!--Localization-->
+        <scene sceneID="GgX-DY-Uti">
+            <objects>
+                <viewController storyboardIdentifier="LocalizationViewController" id="2sV-tj-o3N" customClass="LocalizationViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NFF-xM-UPV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Localization!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQY-w2-UGf">
+                                <rect key="frame" x="137" y="138" width="101" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="7jL-GP-Qmk"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Localization" id="cK3-9r-sk5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qal-XT-PXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="329" y="1820"/>
+        </scene>
+        <!--Users-->
+        <scene sceneID="ple-Hc-ljS">
+            <objects>
+                <viewController storyboardIdentifier="UsersViewController" id="Xrd-2c-ihi" customClass="UsersViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IxQ-PO-uII">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgY-Yg-Fws">
+                                <rect key="frame" x="165" y="120" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="LVG-Sp-qEa"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Users" id="XGz-PC-GHs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K1N-Wz-PKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1356" y="1833.7331334332835"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="eBR-oh-pce">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="Eat-sj-get" customClass="ProfileViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HBq-6M-Lad">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Id8-zv-6aW">
+                                <rect key="frame" x="163" y="118" width="49" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="3f9-VZ-qTW"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" id="dYC-z6-0bw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="74p-HA-pBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2351.1999999999998" y="1827.4362818590705"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="uzX-Hs-UaG">
+            <objects>
+                <tabBarController storyboardIdentifier="UITabBarController" id="VM2-sL-4Kd" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xfm-ug-Lhf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="zwc-ap-lIf" kind="relationship" relationship="viewControllers" id="TTu-9n-iNT"/>
+                        <segue destination="2sV-tj-o3N" kind="relationship" relationship="viewControllers" id="kSZ-Gg-lEU"/>
+                        <segue destination="Xrd-2c-ihi" kind="relationship" relationship="viewControllers" id="6M1-58-9U7"/>
+                        <segue destination="Eat-sj-get" kind="relationship" relationship="viewControllers" id="BFp-f0-o8f"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BYk-7g-AxB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="665" y="906"/>
+        </scene>
+        <!--Events-->
+        <scene sceneID="oL5-to-zj2">
+            <objects>
+                <viewController storyboardIdentifier="EventsViewController" id="zwc-ap-lIf" customClass="EventsViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FH4-xa-W3y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Events!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrz-gB-TRu">
+                                <rect key="frame" x="156" y="133" width="62" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8K8-Ih-fu4"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Events" id="xE3-Du-xB6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xj3-xv-OZo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-727" y="1821"/>
         </scene>
         <!--Forgot View Controller-->
         <scene sceneID="i12-AA-Dqi">

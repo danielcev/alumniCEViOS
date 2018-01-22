@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		13AF8A636B16AAC33290B3B0 /* Pods_AlumniCevUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63FADC7960F9E6D0AF2A93E /* Pods_AlumniCevUITests.framework */; };
 		2E34A0048B2200957824E3E9 /* Pods_AlumniCev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BAC41C412736550E1C2B0A /* Pods_AlumniCev.framework */; };
+		65BADD5C2016408000C6D03F /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD5B2016408000C6D03F /* EventsViewController.swift */; };
+		65BADD5E201648F000C6D03F /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD5D201648F000C6D03F /* UsersViewController.swift */; };
+		65BADD60201648FD00C6D03F /* LocalizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */; };
+		65BADD622016498400C6D03F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD612016498400C6D03F /* ProfileViewController.swift */; };
 		7F1D33652004D38900D57F75 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33642004D38900D57F75 /* RegisterViewController.swift */; };
 		7F1D33672004D54600D57F75 /* myAppTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33662004D54600D57F75 /* myAppTools.swift */; };
 		7F711B8A2008D73200BFF37D /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F711B892008D73200BFF37D /* Localize.swift */; };
@@ -49,6 +53,10 @@
 		1C3C0AC1FAB10D02A1360387 /* Pods-AlumniCevTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCevTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCevTests/Pods-AlumniCevTests.release.xcconfig"; sourceTree = "<group>"; };
 		29953CED086CE0BE2CE45997 /* Pods_AlumniCevTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlumniCevTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BAC41C412736550E1C2B0A /* Pods_AlumniCev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlumniCev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65BADD5B2016408000C6D03F /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		65BADD5D201648F000C6D03F /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewController.swift; sourceTree = "<group>"; };
+		65BADD612016498400C6D03F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7F1D33642004D38900D57F75 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7F1D33662004D54600D57F75 /* myAppTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAppTools.swift; sourceTree = "<group>"; };
 		7F711B892008D73200BFF37D /* Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
@@ -160,6 +168,10 @@
 				7FAE1B27200F804E00F17E11 /* ForgotViewController.swift */,
 				7FAE1B29200F827100F17E11 /* RecoverViewController.swift */,
 				7FAE1B25200F4AED00F17E11 /* MainViewController.swift */,
+				65BADD5B2016408000C6D03F /* EventsViewController.swift */,
+				65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */,
+				65BADD5D201648F000C6D03F /* UsersViewController.swift */,
+				65BADD612016498400C6D03F /* ProfileViewController.swift */,
 				7F711B892008D73200BFF37D /* Localize.swift */,
 				A67EFA752003A7990051853B /* Main.storyboard */,
 				A67EFA782003A7990051853B /* Assets.xcassets */,
@@ -505,8 +517,12 @@
 				7FAE1B2A200F827100F17E11 /* RecoverViewController.swift in Sources */,
 				7FAE1B28200F804E00F17E11 /* ForgotViewController.swift in Sources */,
 				7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */,
+				65BADD622016498400C6D03F /* ProfileViewController.swift in Sources */,
 				A67EFA722003A7990051853B /* AppDelegate.swift in Sources */,
+				65BADD5E201648F000C6D03F /* UsersViewController.swift in Sources */,
+				65BADD60201648FD00C6D03F /* LocalizationViewController.swift in Sources */,
 				7F1D33672004D54600D57F75 /* myAppTools.swift in Sources */,
+				65BADD5C2016408000C6D03F /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
