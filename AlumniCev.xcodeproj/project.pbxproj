@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13AF8A636B16AAC33290B3B0 /* Pods_AlumniCevUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63FADC7960F9E6D0AF2A93E /* Pods_AlumniCevUITests.framework */; };
 		2E34A0048B2200957824E3E9 /* Pods_AlumniCev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BAC41C412736550E1C2B0A /* Pods_AlumniCev.framework */; };
+		3AEB190B279A28D0E791DA22 /* libPods-AlumniCevUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CA810BBEB389844D7C605A /* libPods-AlumniCevUITests.a */; };
+		652642272017B254004ACA83 /* EventLocalizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652642262017B254004ACA83 /* EventLocalizationViewController.swift */; };
 		65BADD5C2016408000C6D03F /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD5B2016408000C6D03F /* EventsViewController.swift */; };
 		65BADD5E201648F000C6D03F /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD5D201648F000C6D03F /* UsersViewController.swift */; };
 		65BADD60201648FD00C6D03F /* LocalizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */; };
@@ -30,7 +31,7 @@
 		A67EFA7C2003A7990051853B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A67EFA7A2003A7990051853B /* LaunchScreen.storyboard */; };
 		A67EFA872003A7990051853B /* AlumniCevTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA862003A7990051853B /* AlumniCevTests.swift */; };
 		A67EFA922003A7990051853B /* AlumniCevUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA912003A7990051853B /* AlumniCevUITests.swift */; };
-		A6C57B9D3DD961E433310985 /* Pods_AlumniCevTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29953CED086CE0BE2CE45997 /* Pods_AlumniCevTests.framework */; };
+		C75819B27734180340DD2F8C /* libPods-AlumniCevTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D41F6472158DB16013BF8CBC /* libPods-AlumniCevTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,12 +54,13 @@
 /* Begin PBXFileReference section */
 		194C7BDC141C47F3964A1A82 /* Pods-AlumniCevTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCevTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCevTests/Pods-AlumniCevTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1C3C0AC1FAB10D02A1360387 /* Pods-AlumniCevTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCevTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCevTests/Pods-AlumniCevTests.release.xcconfig"; sourceTree = "<group>"; };
-		29953CED086CE0BE2CE45997 /* Pods_AlumniCevTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlumniCevTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38BAC41C412736550E1C2B0A /* Pods_AlumniCev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlumniCev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		652642262017B254004ACA83 /* EventLocalizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLocalizationViewController.swift; sourceTree = "<group>"; };
 		65BADD5B2016408000C6D03F /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		65BADD5D201648F000C6D03F /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewController.swift; sourceTree = "<group>"; };
 		65BADD612016498400C6D03F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		77CA810BBEB389844D7C605A /* libPods-AlumniCevUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AlumniCevUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F1D33642004D38900D57F75 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7F1D33662004D54600D57F75 /* myAppTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAppTools.swift; sourceTree = "<group>"; };
 		7F68D2282017322E005148D8 /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +89,7 @@
 		AF6E0D36C62217C813FDBF3B /* Pods-AlumniCev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCev.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCev/Pods-AlumniCev.release.xcconfig"; sourceTree = "<group>"; };
 		B7AE9FFBB5889DC3F0CAAE43 /* Pods-AlumniCevUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCevUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCevUITests/Pods-AlumniCevUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B8D9FCC095A0ADD3940F8D83 /* Pods-AlumniCev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCev/Pods-AlumniCev.debug.xcconfig"; sourceTree = "<group>"; };
-		C63FADC7960F9E6D0AF2A93E /* Pods_AlumniCevUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlumniCevUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D41F6472158DB16013BF8CBC /* libPods-AlumniCevTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AlumniCevTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E60F600E2F06F78C291311A3 /* Pods-AlumniCevUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCevUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCevUITests/Pods-AlumniCevUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6C57B9D3DD961E433310985 /* Pods_AlumniCevTests.framework in Frameworks */,
+				C75819B27734180340DD2F8C /* libPods-AlumniCevTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13AF8A636B16AAC33290B3B0 /* Pods_AlumniCevUITests.framework in Frameworks */,
+				3AEB190B279A28D0E791DA22 /* libPods-AlumniCevUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +177,7 @@
 				65BADD5B2016408000C6D03F /* EventsViewController.swift */,
 				7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */,
 				7F68D2282017322E005148D8 /* DetailEventViewController.swift */,
+				652642262017B254004ACA83 /* EventLocalizationViewController.swift */,
 				65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */,
 				65BADD5D201648F000C6D03F /* UsersViewController.swift */,
 				65BADD612016498400C6D03F /* ProfileViewController.swift */,
@@ -212,8 +215,8 @@
 			children = (
 				7FC72B74200E2DAF00A73C3B /* CoreLocation.framework */,
 				38BAC41C412736550E1C2B0A /* Pods_AlumniCev.framework */,
-				29953CED086CE0BE2CE45997 /* Pods_AlumniCevTests.framework */,
-				C63FADC7960F9E6D0AF2A93E /* Pods_AlumniCevUITests.framework */,
+				D41F6472158DB16013BF8CBC /* libPods-AlumniCevTests.a */,
+				77CA810BBEB389844D7C605A /* libPods-AlumniCevUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -435,9 +438,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AlumniCev/Pods-AlumniCev-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -530,6 +537,7 @@
 				65BADD5E201648F000C6D03F /* UsersViewController.swift in Sources */,
 				65BADD60201648FD00C6D03F /* LocalizationViewController.swift in Sources */,
 				7F1D33672004D54600D57F75 /* myAppTools.swift in Sources */,
+				652642272017B254004ACA83 /* EventLocalizationViewController.swift in Sources */,
 				65BADD5C2016408000C6D03F /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

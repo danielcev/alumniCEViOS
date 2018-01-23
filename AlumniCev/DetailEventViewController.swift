@@ -12,12 +12,38 @@ class DetailEventViewController: UIViewController {
     
     var idReceived: Int = 0
 
+    @IBOutlet weak var titleLbl: UILabel!
+    
+    @IBOutlet weak var descriptionLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setEvent()
+        
+    
         // Do any additional setup after loading the view.
     }
-
+    
+    func setEvent(){
+        titleLbl.text = events[idReceived]["title"] as! String
+        descriptionLbl.text = events[idReceived]["description"] as! String
+    }
+    
+    
+    @IBAction func goToLocalization(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EventLocalizationViewController") as! EventLocalizationViewController
+        
+        
+        self.present(vc, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func backAction(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

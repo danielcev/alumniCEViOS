@@ -22,13 +22,15 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return events.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 170
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! EventTableViewCell
         
-        
-        
-        cell.titleLbl.text = events[indexPath.row]["title"]
-        cell.descriptionLbl.text = events[indexPath.row]["description"]
+        cell.titleLbl.text = events[indexPath.row]["title"] as! String
+        cell.descriptionLbl.text = events[indexPath.row]["description"] as! String
         
         return cell
     }

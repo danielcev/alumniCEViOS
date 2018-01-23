@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.5.1)
+  - Alamofire (4.6.0)
   - CPAlertViewController (3.0.0)
   - SwiftSpinner (1.5.0)
 
@@ -9,10 +9,10 @@ DEPENDENCIES:
   - SwiftSpinner (~> 1.5)
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   CPAlertViewController: dfbc2d8eeb8fb2650ab3ac1159f1d8fc3861a10d
   SwiftSpinner: 4c058c7a1d6b444dd2e1d70988ead40783097133
 
-PODFILE CHECKSUM: 0c75bea344c10f60ce409902487db913d6fc2af0
+PODFILE CHECKSUM: 934fdfabdb336cb20d91988149d642f2c080466f
 
 COCOAPODS: 1.3.1

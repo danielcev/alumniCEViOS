@@ -11,13 +11,17 @@ import Foundation
 var userRegistered:[String:String] = [:]
 let defaults = UserDefaults.standard
 
-let events:[[String:String]] = [
+let events:[[String:Any]] = [
     
     ["title":"Evento 1",
-     "description":"Este es el evento 1"],
+     "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dictum nulla turpis. Morbi dignissim arcu orci, in imperdiet dolor faucibus a. Ut quis arcu quis eros vulputate dapibus nec bibendum dolor. Sed fermentum vehicula purus et iaculis. Curabitur vitae nunc lacinia, fringilla justo congue, mattis neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec ante elit, iaculis sagittis mollis id, fringilla eget felis.",
+     "lat":40.425366,
+     "lon":-3.656443],
     
     ["title":"Evento 2",
-     "description":"Este es el evento 2"],
+     "description":"Este es el evento 2",
+     "lat":51.5287352,
+     "lon":-0.3817844],
     
     ["title":"Evento 3",
      "description":"Este es el evento 3"],
@@ -26,7 +30,16 @@ let events:[[String:String]] = [
      "description":"Este es el evento 4"],
     
     ["title":"Evento 5",
-     "description":"Este es el evento 5"]
+     "description":"Este es el evento 5"],
+    
+    ["title":"Evento 6",
+     "description":"Este es el evento 6"],
+    
+    ["title":"Evento 7",
+     "description":"Este es el evento 7"],
+    
+    ["title":"Evento 8",
+     "description":"Este es el evento 8"]
 
 ]
 
