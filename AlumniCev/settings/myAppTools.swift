@@ -11,6 +11,25 @@ import Foundation
 var userRegistered:[String:String] = [:]
 let defaults = UserDefaults.standard
 
+let events:[[String:String]] = [
+    
+    ["title":"Evento 1",
+     "description":"Este es el evento 1"],
+    
+    ["title":"Evento 2",
+     "description":"Este es el evento 2"],
+    
+    ["title":"Evento 3",
+     "description":"Este es el evento 3"],
+    
+    ["title":"Evento 4",
+     "description":"Este es el evento 4"],
+    
+    ["title":"Evento 5",
+     "description":"Este es el evento 5"]
+
+]
+
 func saveDataInUserDefaults(value:String, key:String){
     
     if defaults.object(forKey: "userRegistered") == nil {

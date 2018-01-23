@@ -15,12 +15,14 @@
 		65BADD622016498400C6D03F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD612016498400C6D03F /* ProfileViewController.swift */; };
 		7F1D33652004D38900D57F75 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33642004D38900D57F75 /* RegisterViewController.swift */; };
 		7F1D33672004D54600D57F75 /* myAppTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33662004D54600D57F75 /* myAppTools.swift */; };
+		7F68D2292017322E005148D8 /* DetailEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68D2282017322E005148D8 /* DetailEventViewController.swift */; };
 		7F711B8A2008D73200BFF37D /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F711B892008D73200BFF37D /* Localize.swift */; };
 		7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAE1B25200F4AED00F17E11 /* MainViewController.swift */; };
 		7FAE1B28200F804E00F17E11 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAE1B27200F804E00F17E11 /* ForgotViewController.swift */; };
 		7FAE1B2A200F827100F17E11 /* RecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAE1B29200F827100F17E11 /* RecoverViewController.swift */; };
 		7FC72B75200E2DB000A73C3B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FC72B74200E2DAF00A73C3B /* CoreLocation.framework */; };
 		7FD078982008CA570014FB8E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0789A2008CA570014FB8E /* Localizable.strings */; };
+		7FD2256C2017701E00B64D00 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */; };
 		A67EFA722003A7990051853B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA712003A7990051853B /* AppDelegate.swift */; };
 		A67EFA742003A7990051853B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA732003A7990051853B /* ViewController.swift */; };
 		A67EFA772003A7990051853B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A67EFA752003A7990051853B /* Main.storyboard */; };
@@ -59,6 +61,7 @@
 		65BADD612016498400C6D03F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7F1D33642004D38900D57F75 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7F1D33662004D54600D57F75 /* myAppTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAppTools.swift; sourceTree = "<group>"; };
+		7F68D2282017322E005148D8 /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
 		7F711B892008D73200BFF37D /* Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
 		7FAE1B25200F4AED00F17E11 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7FAE1B27200F804E00F17E11 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 		7FD078992008CA570014FB8E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7FD0789C2008CA870014FB8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7FD0789F2008D6480014FB8E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		A67EFA6E2003A7990051853B /* AlumniCev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlumniCev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A67EFA712003A7990051853B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A67EFA732003A7990051853B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				7FAE1B29200F827100F17E11 /* RecoverViewController.swift */,
 				7FAE1B25200F4AED00F17E11 /* MainViewController.swift */,
 				65BADD5B2016408000C6D03F /* EventsViewController.swift */,
+				7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */,
+				7F68D2282017322E005148D8 /* DetailEventViewController.swift */,
 				65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */,
 				65BADD5D201648F000C6D03F /* UsersViewController.swift */,
 				65BADD612016498400C6D03F /* ProfileViewController.swift */,
@@ -512,8 +518,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F1D33652004D38900D57F75 /* RegisterViewController.swift in Sources */,
+				7F68D2292017322E005148D8 /* DetailEventViewController.swift in Sources */,
 				A67EFA742003A7990051853B /* ViewController.swift in Sources */,
 				7F711B8A2008D73200BFF37D /* Localize.swift in Sources */,
+				7FD2256C2017701E00B64D00 /* EventTableViewCell.swift in Sources */,
 				7FAE1B2A200F827100F17E11 /* RecoverViewController.swift in Sources */,
 				7FAE1B28200F804E00F17E11 /* ForgotViewController.swift in Sources */,
 				7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */,
