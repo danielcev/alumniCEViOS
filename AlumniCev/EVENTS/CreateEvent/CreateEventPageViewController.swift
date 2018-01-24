@@ -24,6 +24,14 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
     }
     
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return pages.count
+    }
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = pages.index(of: viewController) else { return nil }
         
@@ -55,6 +63,10 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
         super.viewDidLoad()
         self.dataSource = self
         self.delegate   = self
+        
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor.white
+        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.red
+        UIPageControl.appearance().backgroundColor = cevColor
         
         if let firstVC = pages.first
         {

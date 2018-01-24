@@ -145,6 +145,41 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6507FBA82019098500FB799A /* CreateEvent */ = {
+			isa = PBXGroup;
+			children = (
+				7FB1335520188590007B39E2 /* CreateEventPageViewController.swift */,
+				7FB1335720188888007B39E2 /* TipeEventViewController.swift */,
+				7FB13359201889E0007B39E2 /* TitleEventViewController.swift */,
+				7F89B1A82018C094007BA234 /* ImageEventViewController.swift */,
+				7F89B1AA2018C0B6007BA234 /* LocalizationCreateEventViewController.swift */,
+			);
+			path = CreateEvent;
+			sourceTree = "<group>";
+		};
+		6507FBA9201909CC00FB799A /* LOGIN */ = {
+			isa = PBXGroup;
+			children = (
+				A67EFA732003A7990051853B /* ViewController.swift */,
+				7F1D33642004D38900D57F75 /* RegisterViewController.swift */,
+				7FAE1B27200F804E00F17E11 /* ForgotViewController.swift */,
+				7FAE1B29200F827100F17E11 /* RecoverViewController.swift */,
+			);
+			path = LOGIN;
+			sourceTree = "<group>";
+		};
+		6507FBAA201909E900FB799A /* EVENTS */ = {
+			isa = PBXGroup;
+			children = (
+				65BADD5B2016408000C6D03F /* EventsViewController.swift */,
+				7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */,
+				7F68D2282017322E005148D8 /* DetailEventViewController.swift */,
+				652642262017B254004ACA83 /* EventLocalizationViewController.swift */,
+				6507FBA82019098500FB799A /* CreateEvent */,
+			);
+			path = EVENTS;
+			sourceTree = "<group>";
+		};
 		7F1D33682004D54E00D57F75 /* settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,26 +213,15 @@
 		A67EFA702003A7990051853B /* AlumniCev */ = {
 			isa = PBXGroup;
 			children = (
+				6507FBA9201909CC00FB799A /* LOGIN */,
+				6507FBAA201909E900FB799A /* EVENTS */,
 				A67EFA712003A7990051853B /* AppDelegate.swift */,
-				A67EFA732003A7990051853B /* ViewController.swift */,
-				7F1D33642004D38900D57F75 /* RegisterViewController.swift */,
-				7FAE1B27200F804E00F17E11 /* ForgotViewController.swift */,
-				7FAE1B29200F827100F17E11 /* RecoverViewController.swift */,
 				7FAE1B25200F4AED00F17E11 /* MainViewController.swift */,
-				65BADD5B2016408000C6D03F /* EventsViewController.swift */,
-				7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */,
-				7F68D2282017322E005148D8 /* DetailEventViewController.swift */,
-				652642262017B254004ACA83 /* EventLocalizationViewController.swift */,
 				65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */,
 				65BADD5D201648F000C6D03F /* UsersViewController.swift */,
 				65BADD612016498400C6D03F /* ProfileViewController.swift */,
 				7F711B892008D73200BFF37D /* Localize.swift */,
 				A67EFA752003A7990051853B /* Main.storyboard */,
-				7F89B1AA2018C0B6007BA234 /* LocalizationCreateEventViewController.swift */,
-				7F89B1A82018C094007BA234 /* ImageEventViewController.swift */,
-				7FB13359201889E0007B39E2 /* TitleEventViewController.swift */,
-				7FB1335720188888007B39E2 /* TipeEventViewController.swift */,
-				7FB1335520188590007B39E2 /* CreateEventPageViewController.swift */,
 				A67EFA782003A7990051853B /* Assets.xcassets */,
 				A67EFA7A2003A7990051853B /* LaunchScreen.storyboard */,
 				7FD0789A2008CA570014FB8E /* Localizable.strings */,

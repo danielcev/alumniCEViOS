@@ -639,7 +639,7 @@
         <!--Create Event Page View Controller-->
         <scene sceneID="xhx-fC-ANM">
             <objects>
-                <pageViewController restorationIdentifier="CreateEventPageViewController" storyboardIdentifier="CreateEventPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="2IW-zm-rhq" customClass="CreateEventPageViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController restorationIdentifier="CreateEventPageViewController" storyboardIdentifier="CreateEventPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="min" id="2IW-zm-rhq" customClass="CreateEventPageViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17w-zU-S24" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="329" y="2583"/>
@@ -683,7 +683,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.53523927930000004" green="0.71776926519999995" blue="0.74777841570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="0cF-iO-gIf"/>
                     </view>
                     <connections>
@@ -732,7 +732,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.53333333333333333" green="0.71764705882352942" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="r7d-oZ-ewV"/>
                     </view>
                 </viewController>
@@ -766,7 +766,7 @@
                                 <state key="normal" title="Omitir"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.53523927930000004" green="0.71776926519999995" blue="0.74777841570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Qaw-qf-UWn"/>
                     </view>
                 </viewController>
@@ -797,7 +797,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.53523927930000004" green="0.71776926519999995" blue="0.74777841570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Ers-c6-9MM"/>
                     </view>
                 </viewController>
