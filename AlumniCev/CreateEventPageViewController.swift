@@ -13,7 +13,9 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
     fileprivate lazy var pages: [UIViewController] = {
         return [
             self.getViewController(withIdentifier: "TipeEventViewController"),
-            self.getViewController(withIdentifier: "TitleEventViewController")
+            self.getViewController(withIdentifier: "TitleEventViewController"),
+            self.getViewController(withIdentifier: "ImageEventViewController"),
+            self.getViewController(withIdentifier: "LocalizationCreateEventViewController")
         ]
     }()
     
@@ -27,7 +29,7 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
         
         let previousIndex = viewControllerIndex - 1
         
-        guard previousIndex >= 0          else { return pages.last }
+        guard previousIndex >= 0          else { return nil /*pages.last*/ }
         
         guard pages.count > previousIndex else { return nil        }
         
@@ -39,7 +41,7 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
         
         let nextIndex = viewControllerIndex + 1
         
-        guard nextIndex < pages.count else { return pages.first }
+        guard nextIndex < pages.count else { return nil /*pages.first*/ }
         
         guard pages.count > nextIndex else { return nil         }
         
