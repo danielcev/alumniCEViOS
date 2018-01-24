@@ -13,6 +13,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableEvents: UITableView!
     
     
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -44,9 +46,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.present(vc, animated: true, completion: nil)
     }
     
+    @IBAction func goToCreate(_ sender: Any) {
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateEventPageViewController") as! CreateEventPageViewController
+        
+        self.present(vc, animated: true, completion: nil)
+    }
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
