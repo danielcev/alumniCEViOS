@@ -9,6 +9,9 @@
 import UIKit
 
 class ImageEventViewController: UIViewController {
+    
+    @IBOutlet weak var addImageLbl: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

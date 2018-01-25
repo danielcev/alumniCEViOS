@@ -14,7 +14,11 @@ let defaults = UserDefaults.standard
 
 let cevColor:UIColor = hexStringToUIColor(hex:"88B7BF")
 
-let events:[[String:Any]] = [
+var groups:[String] = ["Apps", "Videojuegos", "Sonido", "Realización"]
+
+var types:[String] = ["Evento", "Oferta de trabajo", "Notificación", "Noticia"]
+
+var events:[[String:Any]] = [
     
     ["title":"Evento 1",
      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dictum nulla turpis. Morbi dignissim arcu orci, in imperdiet dolor faucibus a. Ut quis arcu quis eros vulputate dapibus nec bibendum dolor. Sed fermentum vehicula purus et iaculis. Curabitur vitae nunc lacinia, fringilla justo congue, mattis neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec ante elit, iaculis sagittis mollis id, fringilla eget felis.",

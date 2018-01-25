@@ -13,8 +13,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableEvents: UITableView!
     
     
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -58,6 +56,10 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableEvents.rowHeight = UITableViewAutomaticDimension
         tableEvents.estimatedRowHeight = 209
+        
+        requestEvents(type: 1)
+        
+        tableEvents.reloadData()
 
         // Do any additional setup after loading the view.
     }

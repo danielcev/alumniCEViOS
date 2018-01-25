@@ -10,12 +10,19 @@ import UIKit
 
 class CreateEventPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
+    var titleEvent: String?
+    var descriptionEvent: String?
+    var imageEvent:String?
+    var idTypeEvent:Int = 0
+    var idsGroups:[Int] = [Int]()
+    
     fileprivate lazy var pages: [UIViewController] = {
         return [
             self.getViewController(withIdentifier: "TipeEventViewController"),
+            self.getViewController(withIdentifier: "GroupEventViewController"),
             self.getViewController(withIdentifier: "TitleEventViewController"),
             self.getViewController(withIdentifier: "ImageEventViewController"),
-            self.getViewController(withIdentifier: "LocalizationCreateEventViewController")
+            self.getViewController(withIdentifier: "LocalizationCreateEventViewController"),
         ]
     }()
     
@@ -79,6 +86,14 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func goToPage(id:Int){
+        
+        setViewControllers([pages[id]], direction: .forward, animated: true, completion: nil)
+        
+        
+        
     }
     
 

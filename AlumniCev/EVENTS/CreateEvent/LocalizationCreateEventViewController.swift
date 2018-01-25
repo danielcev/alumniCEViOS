@@ -10,7 +10,12 @@ import UIKit
 
 class LocalizationCreateEventViewController: UIViewController {
 
+    @IBOutlet weak var addLocalizationLbl: UILabel!
+    
+    @IBOutlet weak var localizationTxF: UITextField!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.

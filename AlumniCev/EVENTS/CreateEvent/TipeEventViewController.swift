@@ -8,45 +8,46 @@
 
 import UIKit
 
-class TipeEventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
-    @IBOutlet weak var typePicker: UIPickerView!
+class TipeEventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var types:[String] = ["Evento", "Oferta trabajo", "Avisos"]
+    @IBOutlet weak var typeLbl: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+    @IBOutlet weak var typesTable: UITableView!
     
-    //MARK: - PICKER ELEMENTS
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return types.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return types[row]
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 78
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("He seleccionado \(types[row])")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "typesCell", for: indexPath) as! TypesTableViewCell
+        
+        cell.btnType.setTitle(types[indexPath.row], for: .normal)
+        
+        return cell
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(_ animated: Bool) {
+        print("desaparecer")
     }
-    */
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+
+        // Do any additional setup after loading the view.
+    }
+   
+
 
 }

@@ -18,6 +18,10 @@
 		7F1D33672004D54600D57F75 /* myAppTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33662004D54600D57F75 /* myAppTools.swift */; };
 		7F68D2292017322E005148D8 /* DetailEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68D2282017322E005148D8 /* DetailEventViewController.swift */; };
 		7F711B8A2008D73200BFF37D /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F711B892008D73200BFF37D /* Localize.swift */; };
+		7F7ADBAE2019F44C00489C95 /* EventsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7ADBAD2019F44C00489C95 /* EventsRequests.swift */; };
+		7F7ADBB02019FDA700489C95 /* GroupEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7ADBAF2019FDA700489C95 /* GroupEventViewController.swift */; };
+		7F7ADBB22019FE6A00489C95 /* GroupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7ADBB12019FE6A00489C95 /* GroupsTableViewCell.swift */; };
+		7F7ADBB4201A0CF300489C95 /* TypesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7ADBB3201A0CF300489C95 /* TypesTableViewCell.swift */; };
 		7F89B1A92018C094007BA234 /* ImageEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F89B1A82018C094007BA234 /* ImageEventViewController.swift */; };
 		7F89B1AB2018C0B6007BA234 /* LocalizationCreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F89B1AA2018C0B6007BA234 /* LocalizationCreateEventViewController.swift */; };
 		7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAE1B25200F4AED00F17E11 /* MainViewController.swift */; };
@@ -70,6 +74,10 @@
 		7F1D33662004D54600D57F75 /* myAppTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAppTools.swift; sourceTree = "<group>"; };
 		7F68D2282017322E005148D8 /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
 		7F711B892008D73200BFF37D /* Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
+		7F7ADBAD2019F44C00489C95 /* EventsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRequests.swift; sourceTree = "<group>"; };
+		7F7ADBAF2019FDA700489C95 /* GroupEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEventViewController.swift; sourceTree = "<group>"; };
+		7F7ADBB12019FE6A00489C95 /* GroupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewCell.swift; sourceTree = "<group>"; };
+		7F7ADBB3201A0CF300489C95 /* TypesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesTableViewCell.swift; sourceTree = "<group>"; };
 		7F89B1A82018C094007BA234 /* ImageEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEventViewController.swift; sourceTree = "<group>"; };
 		7F89B1AA2018C0B6007BA234 /* LocalizationCreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationCreateEventViewController.swift; sourceTree = "<group>"; };
 		7FAE1B25200F4AED00F17E11 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -150,9 +158,12 @@
 			children = (
 				7FB1335520188590007B39E2 /* CreateEventPageViewController.swift */,
 				7FB1335720188888007B39E2 /* TipeEventViewController.swift */,
+				7F7ADBB3201A0CF300489C95 /* TypesTableViewCell.swift */,
 				7FB13359201889E0007B39E2 /* TitleEventViewController.swift */,
 				7F89B1A82018C094007BA234 /* ImageEventViewController.swift */,
 				7F89B1AA2018C0B6007BA234 /* LocalizationCreateEventViewController.swift */,
+				7F7ADBAF2019FDA700489C95 /* GroupEventViewController.swift */,
+				7F7ADBB12019FE6A00489C95 /* GroupsTableViewCell.swift */,
 			);
 			path = CreateEvent;
 			sourceTree = "<group>";
@@ -184,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				7F1D33662004D54600D57F75 /* myAppTools.swift */,
+				7F7ADBAD2019F44C00489C95 /* EventsRequests.swift */,
 			);
 			path = settings;
 			sourceTree = "<group>";
@@ -443,12 +455,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-AlumniCev/Pods-AlumniCev-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CPAlertViewController/CPAlertViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CPAlertViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,15 +580,19 @@
 				7FB1335620188590007B39E2 /* CreateEventPageViewController.swift in Sources */,
 				7F1D33652004D38900D57F75 /* RegisterViewController.swift in Sources */,
 				7F68D2292017322E005148D8 /* DetailEventViewController.swift in Sources */,
+				7F7ADBB4201A0CF300489C95 /* TypesTableViewCell.swift in Sources */,
+				7F7ADBB02019FDA700489C95 /* GroupEventViewController.swift in Sources */,
 				A67EFA742003A7990051853B /* ViewController.swift in Sources */,
 				7F711B8A2008D73200BFF37D /* Localize.swift in Sources */,
 				7FD2256C2017701E00B64D00 /* EventTableViewCell.swift in Sources */,
 				7FB1335A201889E0007B39E2 /* TitleEventViewController.swift in Sources */,
 				7FAE1B2A200F827100F17E11 /* RecoverViewController.swift in Sources */,
+				7F7ADBAE2019F44C00489C95 /* EventsRequests.swift in Sources */,
 				7FAE1B28200F804E00F17E11 /* ForgotViewController.swift in Sources */,
 				7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */,
 				65BADD622016498400C6D03F /* ProfileViewController.swift in Sources */,
 				7FB1335820188888007B39E2 /* TipeEventViewController.swift in Sources */,
+				7F7ADBB22019FE6A00489C95 /* GroupsTableViewCell.swift in Sources */,
 				7F89B1AB2018C0B6007BA234 /* LocalizationCreateEventViewController.swift in Sources */,
 				7F89B1A92018C094007BA234 /* ImageEventViewController.swift in Sources */,
 				A67EFA722003A7990051853B /* AppDelegate.swift in Sources */,
