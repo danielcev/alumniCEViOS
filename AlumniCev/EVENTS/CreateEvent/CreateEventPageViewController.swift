@@ -13,7 +13,7 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
     var titleEvent: String?
     var descriptionEvent: String?
     var imageEvent:String?
-    var idTypeEvent:Int = 0
+    var idTypeEvent:Int?
     var idsGroups:[Int] = [Int]()
     
     fileprivate lazy var pages: [UIViewController] = {
@@ -66,8 +66,9 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        eventCreated = Event()
 
-        super.viewDidLoad()
         self.dataSource = self
         self.delegate   = self
         

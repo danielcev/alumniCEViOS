@@ -14,8 +14,6 @@ class TipeEventViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var typesTable: UITableView!
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return types.count
     }
@@ -32,19 +30,30 @@ class TipeEventViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "typesCell", for: indexPath) as! TypesTableViewCell
         
-        cell.btnType.setTitle(types[indexPath.row], for: .normal)
-        
+        cell.nameTypeLbl.text = types[indexPath.row]["name"]
+        cell.idType = Int(types[indexPath.row]["id"]!)
+   
         return cell
     }
+
     
-    override func viewWillDisappear(_ animated: Bool) {
-        print("desaparecer")
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) as? TypesTableViewCell {
+            eventCreated?.idTypeEvent = cell.idType
+        }
+        
+    }
+    
+    func rechargeTable(){
+        typesTable.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        requestTypes(controller:self)
     
-
         // Do any additional setup after loading the view.
     }
    

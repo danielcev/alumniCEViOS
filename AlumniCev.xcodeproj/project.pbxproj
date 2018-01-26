@@ -22,6 +22,8 @@
 		7F7ADBB02019FDA700489C95 /* GroupEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7ADBAF2019FDA700489C95 /* GroupEventViewController.swift */; };
 		7F7ADBB22019FE6A00489C95 /* GroupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7ADBB12019FE6A00489C95 /* GroupsTableViewCell.swift */; };
 		7F7ADBB4201A0CF300489C95 /* TypesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7ADBB3201A0CF300489C95 /* TypesTableViewCell.swift */; };
+		7F82C088201B36F300259E06 /* GroupsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F82C087201B36F300259E06 /* GroupsRequests.swift */; };
+		7F82C08A201B537000259E06 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F82C089201B537000259E06 /* Event.swift */; };
 		7F89B1A92018C094007BA234 /* ImageEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F89B1A82018C094007BA234 /* ImageEventViewController.swift */; };
 		7F89B1AB2018C0B6007BA234 /* LocalizationCreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F89B1AA2018C0B6007BA234 /* LocalizationCreateEventViewController.swift */; };
 		7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAE1B25200F4AED00F17E11 /* MainViewController.swift */; };
@@ -78,6 +80,8 @@
 		7F7ADBAF2019FDA700489C95 /* GroupEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEventViewController.swift; sourceTree = "<group>"; };
 		7F7ADBB12019FE6A00489C95 /* GroupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewCell.swift; sourceTree = "<group>"; };
 		7F7ADBB3201A0CF300489C95 /* TypesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesTableViewCell.swift; sourceTree = "<group>"; };
+		7F82C087201B36F300259E06 /* GroupsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsRequests.swift; sourceTree = "<group>"; };
+		7F82C089201B537000259E06 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		7F89B1A82018C094007BA234 /* ImageEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEventViewController.swift; sourceTree = "<group>"; };
 		7F89B1AA2018C0B6007BA234 /* LocalizationCreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationCreateEventViewController.swift; sourceTree = "<group>"; };
 		7FAE1B25200F4AED00F17E11 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -195,7 +199,9 @@
 			isa = PBXGroup;
 			children = (
 				7F1D33662004D54600D57F75 /* myAppTools.swift */,
+				7F82C089201B537000259E06 /* Event.swift */,
 				7F7ADBAD2019F44C00489C95 /* EventsRequests.swift */,
+				7F82C087201B36F300259E06 /* GroupsRequests.swift */,
 			);
 			path = settings;
 			sourceTree = "<group>";
@@ -589,12 +595,14 @@
 				7FAE1B2A200F827100F17E11 /* RecoverViewController.swift in Sources */,
 				7F7ADBAE2019F44C00489C95 /* EventsRequests.swift in Sources */,
 				7FAE1B28200F804E00F17E11 /* ForgotViewController.swift in Sources */,
+				7F82C08A201B537000259E06 /* Event.swift in Sources */,
 				7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */,
 				65BADD622016498400C6D03F /* ProfileViewController.swift in Sources */,
 				7FB1335820188888007B39E2 /* TipeEventViewController.swift in Sources */,
 				7F7ADBB22019FE6A00489C95 /* GroupsTableViewCell.swift in Sources */,
 				7F89B1AB2018C0B6007BA234 /* LocalizationCreateEventViewController.swift in Sources */,
 				7F89B1A92018C094007BA234 /* ImageEventViewController.swift in Sources */,
+				7F82C088201B36F300259E06 /* GroupsRequests.swift in Sources */,
 				A67EFA722003A7990051853B /* AppDelegate.swift in Sources */,
 				65BADD5E201648F000C6D03F /* UsersViewController.swift in Sources */,
 				65BADD60201648FD00C6D03F /* LocalizationViewController.swift in Sources */,

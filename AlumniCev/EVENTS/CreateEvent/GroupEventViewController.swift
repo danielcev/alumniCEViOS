@@ -30,15 +30,22 @@ class GroupEventViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventsCell", for: indexPath) as! GroupsTableViewCell
         
-        cell.groupLbl.text = groups[indexPath.row]
-
+        cell.groupLbl.text = groups[indexPath.row]["name"]
+        cell.idGroup = Int(groups[indexPath.row]["id"]!)
+        
         return cell
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        requestGroups(controller: self)
 
         // Do any additional setup after loading the view.
+    }
+    
+    func rechargeTable(){
+        groupsTable.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

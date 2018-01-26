@@ -23,7 +23,9 @@ class TitleEventViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("desaparecer")
+        
+        eventCreated?.titleEvent = titleTxF.text
+        eventCreated?.descriptionEvent = descriptionTxF.text
     }
     
 

@@ -1,19 +1,17 @@
 //
-//  GetEventsRequest.swift
+//  GroupsRequests.swift
 //  AlumniCev
 //
-//  Created by alumnos on 25/1/18.
+//  Created by alumnos on 26/1/18.
 //  Copyright © 2018 Victor Serrano. All rights reserved.
 //
 
 import Foundation
 import Alamofire
 
-func createEventRequest(title:String, description:String, idType:Int, idGroup:[Int], controller:UIViewController){
-    let url = URL(string: URL_GENERAL + "events/create")
-    
-    let parameters: Parameters = ["title": title, "description": description, "id_type":idType, "id_group":idGroup]
-    
+func requestTypes(controller:UIViewController){
+    let url = URL(string: URL_GENERAL + "events/types.json")
+
     let token = getDataInUserDefaults(key:"token")
     
     let headers: HTTPHeaders = [
@@ -21,19 +19,17 @@ func createEventRequest(title:String, description:String, idType:Int, idGroup:[I
         "Accept": "application/json"
     ]
     
-    Alamofire.request(url!, method: .post, parameters: parameters, headers: headers).responseJSON{response in
+    Alamofire.request(url!, method: .get, headers: headers).responseJSON{response in
         
         var arrayResult = response.result.value as! Dictionary<String, Any>
-        
-        print(response)
         
         switch response.result {
         case .success:
             switch arrayResult["code"] as! Int{
             case 200:
-                events = arrayResult["data"] as! [[String:Any]]
+                types = arrayResult["data"] as! [Dictionary<String,String>]
                 
-                (controller as! LocalizationCreateEventViewController).createAlert()
+                (controller as! TipeEventViewController).rechargeTable()
                 
             default:
                 
@@ -47,10 +43,8 @@ func createEventRequest(title:String, description:String, idType:Int, idGroup:[I
     }
 }
 
-func requestEvents(type:Int){
-    let url = URL(string: URL_GENERAL + "events/events.json")
-    
-    let parameters: Parameters = ["type":type]
+func requestGroups(controller:UIViewController){
+    let url = URL(string: URL_GENERAL + "groups/groups.json")
     
     let token = getDataInUserDefaults(key:"token")
     
@@ -59,20 +53,20 @@ func requestEvents(type:Int){
         "Accept": "application/json"
     ]
     
-    Alamofire.request(url!, method: .get, parameters: parameters, headers: headers).responseJSON{response in
+    Alamofire.request(url!, method: .get, headers: headers).responseJSON{response in
         
         var arrayResult = response.result.value as! Dictionary<String, Any>
-        
-        print(response)
         
         switch response.result {
         case .success:
             switch arrayResult["code"] as! Int{
             case 200:
-                events = arrayResult["data"] as! [[String:Any]]
-
+                groups = arrayResult["data"] as! [Dictionary<String,String>]
+                
+                (controller as! GroupEventViewController).rechargeTable()
+                
             default:
-         
+                
                 print(arrayResult["message"] as! String)
             }
         case .failure:

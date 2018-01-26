@@ -15,12 +15,12 @@ class GroupsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var groupLbl: UILabel!
     
+    var idGroup:Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,5 +28,14 @@ class GroupsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    
+    @IBAction func checkAction(_ sender: M13Checkbox) {
+        
+        if sender.checkState == M13Checkbox.CheckState.checked{
+            eventCreated?.idsGroups.append(self.idGroup!)
+        }
+        
+    }
+    
 }

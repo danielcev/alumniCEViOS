@@ -10,7 +10,9 @@ import UIKit
 
 class TypesTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var btnType: UIButton!
+    @IBOutlet weak var nameTypeLbl: UILabel!
+    
+    var idType:Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,7 +21,7 @@ class TypesTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 

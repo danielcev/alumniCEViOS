@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CPAlertViewController
 
 class LocalizationCreateEventViewController: UIViewController {
 
@@ -26,15 +27,20 @@ class LocalizationCreateEventViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func createEventAction(_ sender: Any) {
+        print(eventCreated!.descriptionEvent!)
+        print(eventCreated!.titleEvent!)
+        print(eventCreated!.idsGroups)
+        print(eventCreated!.idTypeEvent!)
+        
+        createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self)
+        
     }
-    */
-
+    
+    func createAlert(){
+        let alert = CPAlertViewController()
+        alert.showSuccess(title: "Evento creado!!", message: "El evento \(eventCreated!.titleEvent!) ha sido creado" , buttonTitle: "OK") { (nil) in
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }

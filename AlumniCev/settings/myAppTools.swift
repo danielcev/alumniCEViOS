@@ -12,11 +12,13 @@ import UIKit
 var userRegistered:[String:String] = [:]
 let defaults = UserDefaults.standard
 
+var eventCreated:Event?
+
 let cevColor:UIColor = hexStringToUIColor(hex:"88B7BF")
 
-var groups:[String] = ["Apps", "Videojuegos", "Sonido", "Realización"]
+var groups:[Dictionary<String,String>] = []
 
-var types:[String] = ["Evento", "Oferta de trabajo", "Notificación", "Noticia"]
+var types:[Dictionary<String,String>] = []
 
 var events:[[String:Any]] = [
     
