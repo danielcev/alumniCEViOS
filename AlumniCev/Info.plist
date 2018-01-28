@@ -45,5 +45,11 @@
 	<string>&quot;Para un correcto funcionamiento de la app es necesario el acceso a la localización&quot;</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>&quot;Para un correcto funcionamiento de la app es necesario el acceso a la localización&quot;</string>
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>googlechromes</string>
+        <string>comgooglemaps</string>
+    </array>
 </dict>
 </plist>

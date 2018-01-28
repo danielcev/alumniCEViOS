@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class DetailEventViewController: UIViewController {
     
@@ -16,28 +17,50 @@ class DetailEventViewController: UIViewController {
     
     @IBOutlet weak var descriptionLbl: UILabel!
     
+    @IBOutlet weak var map: GMSMapView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setEvent()
         
+        
+        
+
     
         // Do any additional setup after loading the view.
     }
     
     func setEvent(){
-        titleLbl.text = events[idReceived]["title"] as! String
-        descriptionLbl.text = events[idReceived]["description"] as! String
+        titleLbl.text = events[idReceived]["title"] as? String
+        descriptionLbl.text = events[idReceived]["description"] as? String
+        
+        if let lt = events[idReceived]["lat"] as? String{
+            if let ln = events[idReceived]["lon"] as? String{
+                
+                let lat = Float(lt)
+                let lon = Float(ln)
+            
+                let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(lat!), longitude: CLLocationDegrees(lon!), zoom: 15)
+                map.camera = camera
+                
+                let marker = GMSMarker()
+                marker.position = camera.target
+                marker.title = events[idReceived]["title"] as? String
+                marker.snippet = events[idReceived]["description"] as? String
+                marker.map = map
+            }else{
+                map.isHidden = true
+            }
+            
+        }else{
+            map.isHidden = true
+        }
+        
+        
     }
     
-    
-    @IBAction func goToLocalization(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EventLocalizationViewController") as! EventLocalizationViewController
-        
-        
-        self.present(vc, animated: true, completion: nil)
-        
-    }
     
     @IBAction func backAction(_ sender: Any) {
         
@@ -49,15 +72,6 @@ class DetailEventViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+

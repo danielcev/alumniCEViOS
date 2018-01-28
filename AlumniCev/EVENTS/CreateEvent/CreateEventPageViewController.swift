@@ -93,8 +93,6 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
         
         setViewControllers([pages[id]], direction: .forward, animated: true, completion: nil)
         
-        
-        
     }
     
 

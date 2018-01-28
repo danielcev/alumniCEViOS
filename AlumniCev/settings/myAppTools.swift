@@ -20,6 +20,8 @@ var groups:[Dictionary<String,String>] = []
 
 var types:[Dictionary<String,String>] = []
 
+var addressResponse:Dictionary<String,Any>?
+
 var events:[[String:Any]] = [
     
     ["title":"Evento 1",

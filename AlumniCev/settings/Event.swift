@@ -14,5 +14,7 @@ class Event{
     var imageEvent:String?
     var idTypeEvent:Int?
     var idsGroups:[Int] = [Int]()
+    var lat:Float?
+    var lon:Float?
 
 }

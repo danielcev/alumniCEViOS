@@ -51,17 +51,29 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.present(vc, animated: true, completion: nil)
     }
     
+    func reloadTable(){
+        tableEvents.reloadData()
+    }
+    @IBAction func changeTextAction(_ sender: Any) {
+        print("Texto cambiado")
+        requestFindEvents(search: (sender as! UITextField).text!, controller: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableEvents.rowHeight = UITableViewAutomaticDimension
         tableEvents.estimatedRowHeight = 209
         
-        requestEvents(type: 1)
-        
-        tableEvents.reloadData()
+        requestEvents(type: 2, controller: self)
 
         // Do any additional setup after loading the view.
+    }
+
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        requestEvents(type: 2, controller: self)
     }
 
     override func didReceiveMemoryWarning() {
