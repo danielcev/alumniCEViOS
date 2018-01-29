@@ -7,15 +7,46 @@
 //
 
 import UIKit
+import MapKit
 
 
-class EventLocalizationViewController: UIViewController {
+class EventLocalizationViewController: UIViewController, MKMapViewDelegate {
+    
+    @IBOutlet weak var map: MKMapView!
+    
+    var lat:Float = 0.0
+    var lon:Float = 0.0
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let latitude:CLLocationDegrees = CLLocationDegrees(lat)
+        let longitude:CLLocationDegrees = CLLocationDegrees(lon)
+        
+        let latDelta:CLLocationDegrees = 0.01
+        let longDelta:CLLocationDegrees = 0.01
 
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        
+        map.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "Prueba"
+        annotation.subtitle = "Esto es una prueba"
+        
+        map.addAnnotation(annotation)
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func backAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

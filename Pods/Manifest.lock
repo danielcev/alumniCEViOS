@@ -1,32 +1,21 @@
 PODS:
   - Alamofire (4.6.0)
   - CPAlertViewController (3.0.0)
-  - GoogleMaps (2.5.0):
-    - GoogleMaps/Maps (= 2.5.0)
-  - GoogleMaps/Base (2.5.0)
-  - GoogleMaps/Maps (2.5.0):
-    - GoogleMaps/Base
-  - GooglePlaces (2.5.0):
-    - GoogleMaps/Base (= 2.5.0)
   - M13Checkbox (3.2.2)
   - SwiftSpinner (1.5.0)
 
 DEPENDENCIES:
   - Alamofire
   - CPAlertViewController (~> 3.0)
-  - GoogleMaps
-  - GooglePlaces
   - M13Checkbox (~> 3.2)
   - SwiftSpinner (~> 1.5)
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   CPAlertViewController: dfbc2d8eeb8fb2650ab3ac1159f1d8fc3861a10d
-  GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
-  GooglePlaces: dd70d9d71ea1c7944846afe67de3712c99b30a77
   M13Checkbox: a8c2491cfbbca10797925fd0b9154a782bf40d89
   SwiftSpinner: 4c058c7a1d6b444dd2e1d70988ead40783097133
 
-PODFILE CHECKSUM: 3261c18299721441d8870da6721c2114372c2a61
+PODFILE CHECKSUM: edb8db42ff6b529d8f47711da56978d19f073db0
 
 COCOAPODS: 1.3.1

@@ -32,10 +32,7 @@ class LocalizationCreateEventViewController: UIViewController {
     }
     
     @IBAction func createEventAction(_ sender: Any) {
-        
-        print(eventCreated)
 
-        
         createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self, lat: eventCreated!.lat!, lon: (eventCreated?.lon)!)
         
     }

@@ -49,14 +49,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## GoogleMaps
-
-Copyright 2017 Google
-
-## GooglePlaces
-
-Copyright 2017 Google
-
 ## M13Checkbox
 
 Copyright (c) 2016 Brandon McQuilkin

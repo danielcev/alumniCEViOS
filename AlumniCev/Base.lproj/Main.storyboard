@@ -583,24 +583,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGZ-MR-AGE">
-                                <rect key="frame" x="24" y="121" width="326" height="322"/>
+                                <rect key="frame" x="24" y="121" width="326" height="275"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9dI-jn-dLQ" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xL-zH-s4U">
+                                <rect key="frame" x="24" y="439" width="326" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Localización">
+                                    <color key="titleColor" red="0.53523927930000004" green="0.71776926519999995" blue="0.74777841570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToLocalization:" destination="O7c-xv-iXr" eventType="touchUpInside" id="45v-FW-Qor"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="zkX-HR-4Mo"/>
                     </view>
                     <connections>
                         <outlet property="descriptionLbl" destination="PGZ-MR-AGE" id="EkU-dX-Rvf"/>
-                        <outlet property="map" destination="9dI-jn-dLQ" id="Nrc-nN-dc5"/>
+                        <outlet property="localizationbtn" destination="2xL-zH-s4U" id="azc-AL-6Qo"/>
                         <outlet property="titleLbl" destination="YKu-tO-xVJ" id="bmH-Ec-y3E"/>
                     </connections>
                 </viewController>
@@ -623,13 +629,34 @@
                     <view key="view" contentMode="scaleToFill" id="zQM-mp-WWa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LnW-0o-BWI">
+                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="y7Z-qK-g1z" id="B0t-09-RIy"/>
+                                </connections>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRQ-NB-bMd">
+                                <rect key="frame" x="22" y="34" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backAction:" destination="y7Z-qK-g1z" eventType="touchUpInside" id="RBm-k5-SoR"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="PgI-Iw-euy"/>
                     </view>
+                    <connections>
+                        <outlet property="map" destination="LnW-0o-BWI" id="Sxx-ei-W7a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="niZ-Pt-gUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-727" y="3489"/>
+            <point key="canvasLocation" x="-727.20000000000005" y="3339.5802098950526"/>
         </scene>
         <!--Tipe Event View Controller-->
         <scene sceneID="8f9-hU-T0d">

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GoogleMaps
 
 class DetailEventViewController: UIViewController {
     
@@ -16,49 +15,42 @@ class DetailEventViewController: UIViewController {
     @IBOutlet weak var titleLbl: UILabel!
     
     @IBOutlet weak var descriptionLbl: UILabel!
+
+    @IBOutlet weak var localizationbtn: UIButton!
     
-    @IBOutlet weak var map: GMSMapView!
+    var lat:Float?
+    var lon:Float?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setEvent()
+        print(events[idReceived])
         
+        lat = Float(events[idReceived]["lat"] as! String)
+        lon = Float(events[idReceived]["lon"] as! String)
         
-        
+        addressFromPosition(lat: lat!, lon: lon!, controller: self)
 
-    
         // Do any additional setup after loading the view.
     }
     
-    func setEvent(){
+    func setEvent(address:Address){
         titleLbl.text = events[idReceived]["title"] as? String
         descriptionLbl.text = events[idReceived]["description"] as? String
         
-        if let lt = events[idReceived]["lat"] as? String{
-            if let ln = events[idReceived]["lon"] as? String{
-                
-                let lat = Float(lt)
-                let lon = Float(ln)
-            
-                let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(lat!), longitude: CLLocationDegrees(lon!), zoom: 15)
-                map.camera = camera
-                
-                let marker = GMSMarker()
-                marker.position = camera.target
-                marker.title = events[idReceived]["title"] as? String
-                marker.snippet = events[idReceived]["description"] as? String
-                marker.map = map
-            }else{
-                map.isHidden = true
-            }
-            
-        }else{
-            map.isHidden = true
-        }
+        localizationbtn.setTitle(address.formatted_address, for: .normal)
         
+    }
+    
+    
+    @IBAction func goToLocalization(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EventLocalizationViewController") as! EventLocalizationViewController
         
+        vc.lat = self.lat!
+        vc.lon = self.lon!
+        
+        self.present(vc, animated: true, completion: nil)
     }
     
     
