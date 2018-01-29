@@ -8,8 +8,9 @@
 
 import UIKit
 import CPAlertViewController
+import MapKit
 
-class LocalizationCreateEventViewController: UIViewController {
+class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var addLocalizationLbl: UILabel!
     
@@ -17,11 +18,17 @@ class LocalizationCreateEventViewController: UIViewController {
     
     @IBOutlet weak var addressLbl: UILabel!
     
+    @IBOutlet weak var map: MKMapView!
     
+    @IBOutlet weak var deleteBtn: UIButton!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        addressLbl.isHidden = true
+        map.isHidden = true
+        deleteBtn.isHidden = true
 
         // Do any additional setup after loading the view.
     }
@@ -32,9 +39,15 @@ class LocalizationCreateEventViewController: UIViewController {
     }
     
     @IBAction func createEventAction(_ sender: Any) {
-
-        createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self, lat: eventCreated!.lat!, lon: (eventCreated?.lon)!)
         
+        if(eventCreated?.lat == nil && eventCreated?.lon == nil){
+            
+            createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self)
+            
+        }else{
+            createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self, lat: eventCreated!.lat!, lon: (eventCreated?.lon)!)
+        }
+
     }
     
     func receiveAddress(addressReceived:Address){
@@ -43,6 +56,30 @@ class LocalizationCreateEventViewController: UIViewController {
         eventCreated?.lon = addressReceived.lon
         
         addressLbl.text = addressReceived.formatted_address
+        
+        let latitude:CLLocationDegrees = CLLocationDegrees((eventCreated?.lat)!)
+        let longitude:CLLocationDegrees = CLLocationDegrees((eventCreated?.lon)!)
+        
+        let latDelta:CLLocationDegrees = 0.01
+        let longDelta:CLLocationDegrees = 0.01
+        
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        
+        map.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "Prueba"
+        annotation.subtitle = "Esto es una prueba"
+        
+        map.addAnnotation(annotation)
+        
+        addressLbl.isHidden = false
+        map.isHidden = false
+        deleteBtn.isHidden = false
         
     }
     
@@ -57,10 +94,26 @@ class LocalizationCreateEventViewController: UIViewController {
  
     }
     
+    
+    @IBAction func deleteAction(_ sender: Any) {
+        eventCreated?.lat = nil
+        eventCreated?.lon = nil
+        
+        addressLbl.isHidden = true
+        deleteBtn.isHidden = true
+        map.isHidden = true
+        localizationTxF.text = ""
+    }
+    
     func createAlert(){
         let alert = CPAlertViewController()
         alert.showSuccess(title: "Evento creado!!", message: "El evento \(eventCreated!.titleEvent!) ha sido creado" , buttonTitle: "OK") { (nil) in
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    //función para ocultar el teclado cuando pulsas fuera de él
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
