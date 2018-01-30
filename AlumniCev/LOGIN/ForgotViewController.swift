@@ -15,6 +15,8 @@ class ForgotViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var changePasswordLbl: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +31,9 @@ class ForgotViewController: UIViewController {
         sendButton.layer.borderWidth = 2
         sendButton.layer.cornerRadius = sendButton.layer.frame.height / 2
        
-        sendButton.setTitle("send".localized(), for: .normal)
-
+        sendButton.setTitle("ok".localized(), for: .normal)
+        emailTextField.placeholder = "email".localized()
+        changePasswordLbl.text = "changePassword".localized()
     }
     
     func styleTxF(textfield:UITextField){

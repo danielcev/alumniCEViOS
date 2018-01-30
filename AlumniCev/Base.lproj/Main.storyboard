@@ -143,6 +143,7 @@
                         <outlet property="emailLoginTextField" destination="Az1-nX-6Yi" id="bSa-Ny-vCF"/>
                         <outlet property="enterButtomlogin" destination="YwX-5E-ADU" id="yxY-Wv-fMq"/>
                         <outlet property="forgetPasswordLogin" destination="F5m-Cy-psy" id="tts-1P-yzR"/>
+                        <outlet property="notAccountLbl" destination="ofD-m9-lms" id="oaZ-vs-JSz"/>
                         <outlet property="passwordLoginTextField" destination="Vc5-ba-kby" id="Zaz-V4-Psa"/>
                         <outlet property="registerBtn" destination="f19-dA-gSe" id="GqO-mm-7Ls"/>
                     </connections>
@@ -495,7 +496,7 @@
                                 <rect key="frame" x="0.0" y="151" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.40126228209999998" green="0.40621613750000002" blue="0.40621613750000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g7C-wd-HD5">
@@ -1021,6 +1022,7 @@
                         <viewLayoutGuide key="safeArea" id="LEe-R5-2Fr"/>
                     </view>
                     <connections>
+                        <outlet property="changePasswordLbl" destination="y3Q-jk-biv" id="ne6-Iw-lsk"/>
                         <outlet property="emailTextField" destination="uTe-oS-0MC" id="dSV-89-pSD"/>
                         <outlet property="sendButton" destination="wqX-bo-vnA" id="DyB-Nz-LTX"/>
                     </connections>

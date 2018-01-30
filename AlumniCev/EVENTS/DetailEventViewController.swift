@@ -59,6 +59,7 @@ class DetailEventViewController: UIViewController {
         
         vc.lat = self.lat!
         vc.lon = self.lon!
+        vc.titleEvent = (events[idReceived]["title"] as? String)!
         
         self.present(vc, animated: true, completion: nil)
     }

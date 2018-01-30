@@ -21,6 +21,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var enterButtomlogin: UIButton!
     @IBOutlet weak var registerBtn: UIButton!
     
+    @IBOutlet weak var notAccountLbl: UILabel!
     let manager = CLLocationManager()
     
     var lon:Float = 0.0
@@ -30,7 +31,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         manager.delegate = self
-        updateTexts()
+        updateElements()
         
     }
     
@@ -53,10 +54,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         styleTxF(textfield:emailLoginTextField)
         styleTxF(textfield:passwordLoginTextField)
     }
-    func updateTexts(){
+    func updateElements(){
         
-        forgetPasswordLogin.setTitle("forgetPass".localized(), for: .normal)
-        enterButtomlogin.setTitle("enterBtn".localized(), for: .normal)
         enterButtomlogin.layer.borderColor = UIColor.white.cgColor
         enterButtomlogin.layer.borderWidth = 2
         enterButtomlogin.layer.cornerRadius = enterButtomlogin.layer.frame.height / 2
@@ -65,6 +64,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         registerBtn.layer.borderWidth = 2
         registerBtn.layer.cornerRadius = registerBtn.layer.frame.height / 2
         
+        //SET TEXTS
+        emailLoginTextField.placeholder = "email".localized()
+        passwordLoginTextField.placeholder = "password".localized()
+        notAccountLbl.text = "notAccount".localized()
+        forgetPasswordLogin.setTitle("forgetPass".localized(), for: .normal)
+        enterButtomlogin.setTitle("enter".localized(), for: .normal)
     }
     @IBAction func changeScreen(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
@@ -166,25 +171,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.createLoginRequest(email: emailLoginTextField.text!, password: passwordLoginTextField.text!)
     }
 
-    
     func goToMain(){
-        /*let vc = self.storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as! EventsViewController
-        vc.modalTransitionStyle = .flipHorizontal
-        self.present(vc, animated: true)
-        */
+
         let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-        /*let vcs = tabbarVC.viewControllers
-        let vc = vcs?.first as? EventsViewController
-        
-        self.present(vc!, animated: false, completion: nil)*/
+
         self.present(tabbarVC, animated: true, completion: nil)
         
 
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //función para ocultar el teclado cuando pulsas fuera de él

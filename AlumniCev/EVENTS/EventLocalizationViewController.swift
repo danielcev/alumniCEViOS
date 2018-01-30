@@ -17,6 +17,8 @@ class EventLocalizationViewController: UIViewController, MKMapViewDelegate {
     var lat:Float = 0.0
     var lon:Float = 0.0
     
+    var titleEvent:String = ""
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +38,8 @@ class EventLocalizationViewController: UIViewController, MKMapViewDelegate {
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = "Prueba"
-        annotation.subtitle = "Esto es una prueba"
+        annotation.title = titleEvent
+//        annotation.subtitle = "Esto es una prueba"
         
         map.addAnnotation(annotation)
         // Do any additional setup after loading the view.

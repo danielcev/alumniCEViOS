@@ -28,8 +28,11 @@
     
     func updateTexts(){
 
-        repeatPasswordTextField.placeholder = "repeatpassword".localized()
-        btnRegister.setTitle("btnregister".localized(), for: .normal)
+        emailTextField.placeholder = "email".localized()
+        passwordTextField.placeholder = "password".localized()
+        repeatPasswordTextField.placeholder = "repeatPassword".localized()
+        btnRegister.setTitle("register".localized(), for: .normal)
+        
         
         btnRegister.layer.borderColor = UIColor.white.cgColor
         btnRegister.layer.borderWidth = 2
@@ -147,15 +150,5 @@
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
  }

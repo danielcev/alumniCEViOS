@@ -12,55 +12,53 @@
 "es"="Español";
 "base"="Base";
 
-"helloWorld"="HELLO WORLD!";
-"username"="Username";
-"password"="Password";
-"login"="Login";
-"remember"="Forgot Password?";
-"register"="Register now";
-"insertUser"="Insert your username";
-"insertPassword"="Insert your password";
-
-//REGISTER
-"email"="Email";
-"birhtday"="Birhtday";
-"password"="Password";
-"repeatpassword"="Repeat password";
-"btnregister"="REGISTER";
-
 //LOGIN
-"passwordLogin"="Password";
+"email"="E-mail";
+"password"="Password";
 "areyouregister"="Are you registered?";
 "forgetPass"="Forgot your password?";
-"enterBtn"="ENTER";
+"enter"="ENTER";
+"notAccount"="Don't you have an account?";
+"register"="REGISTER";
+
+//REGISTER
+"repeatPassword"="Repeat password";
+"back"="Back";
+
+//RECOVER PASSWORD
+"ok"="OK";
+"changePassword"="Change password";
+"passwordChanged"="Password changed";
 
 //ALERTS
 "emptyPassword"="Empty password";
-"wrongRepeatPassword"="Passwords don't match";
-"emptyTlf"="Empty Telephone";
-"wrongEmail"="Wrong Mail";
-"allFieldsRequired" = "All fields are required";
-"lengthPassword" = "The password must be between 5 and 12 characters long";
+"wrongRepeatPassword"="The passwords don't match";
+"emptyTlf"="Empty phone";
+"wrongEmail"="Incorrect e-mail";
+"allFieldsRequired"="All fields are required";
+"lengthPassword"="The password must be between 5 and 12 characters long.";
+"correctLogin"="Correct login";
+
+//EVENTS
+
+"events"="Events";
+"event"="Event";
+"joboffers"="Job offers";
+"joboffer"="Job offer";
+"notifications"="Notifications";
+"notification"="Notification";
+"news"="News";
+"notice"="Notice";
+"search"="Search";
+"typeEvent"="What kind of event are you going to create?";
+"whatGroups"="For which groups?";
+"addTitle"="Add the title";
+"addDescription"="Add the description";
+"wantImage"="Want to add an image?";
+"tooLocalization"="You can also add a location";
+"createEvent"="Create event";
+"delete"="Delete";
 
 //MENU
 
 "menu"="Menu";
-
-// SETINGS
-
-"shareProfile"="Share profile";
-"shareFriends"="Share my friends";
-"shareLists"="Share my Lists";
-"shareLocalization"="Share my localization";
-"allowNotifications"="Allow notifications";
-"editProfile"="Edit my profile";
-
-// Recover password
-
-"send"="SEND";
-"back"="BACK";
-"acept"="ACCEPT";
-
-"recoverpassword"="Recover Password";
-
-

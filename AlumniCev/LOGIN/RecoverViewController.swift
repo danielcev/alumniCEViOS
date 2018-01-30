@@ -27,7 +27,9 @@ class RecoverViewController: UIViewController {
     
     func updateTexts(){
         
-        aceptBtn.setTitle("acept".localized(), for: .normal)
+        aceptBtn.setTitle("ok".localized(), for: .normal)
+        passwordTextField.placeholder = "password".localized()
+        repeatPasswordTextField.placeholder = "repeatPassword".localized()
         
         aceptBtn.layer.borderColor = UIColor.white.cgColor
         aceptBtn.layer.borderWidth = 2
@@ -88,8 +90,7 @@ class RecoverViewController: UIViewController {
                                 
                                 SwiftSpinner.hide()
                                 
-                                alert.showSuccess(title: (arrayResult["message"] as! String),  buttonTitle: "OK", action: { (nil) in
-                                    //self.dismiss(animated: true)
+                                alert.showSuccess(title: "passwordChanged".localized(),  buttonTitle: "OK", action: { (nil) in
                                     self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
                                 })
                             default:
@@ -101,7 +102,7 @@ class RecoverViewController: UIViewController {
                             
                             SwiftSpinner.hide()
                             print("Error :: \(String(describing: response.error))")
-                            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+
                         }
                         
                     }
@@ -125,16 +126,6 @@ class RecoverViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

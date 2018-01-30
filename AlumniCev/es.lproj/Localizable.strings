@@ -12,33 +12,52 @@
 "es"="Español";
 "base"="Base";
 
-"helloWorld"="Hola mundo";
-"username"="Username";
-"password"="Contraseña";
-"login"="Login";
-"remember"="¿Has olvidado tu contraseña?";
-"register"="Regístrate";
-"insertUser"="Inserta tu username";
-"insertPassword"="Inserta tu contraseña";
-//REGISTER
-"email"="Correo del usuario";
-"birhtday"="Cumpleaños";
-"password"="Contraseña";
-"repeatpassword"="Repetir Contraseña";
-"btnregister"="Registrar";
 //LOGIN
-"passwordLogin"="Contraseña";
+"email"="E-mail";
+"password"="Contraseña";
 "areyouregister"="¿Estas Registrado?";
-"forgetPass"="¿Olvidastes tu contraseña?";
-"enterBtn"="ENTRAR";
+"forgetPass"="¿Has olvidado tu contraseña?";
+"enter"="ENTRAR";
+"notAccount"="¿No tienes cuenta?";
+"register"="REGÍSTRATE";
+
+//REGISTER
+"repeatPassword"="Repetir contraseña";
+"back"="Volver";
+
+//RECOVER PASSWORD
+"ok"="Aceptar";
+"changePassword"="Cambiar contraseña";
+"passwordChanged"="Contraseña cambiada";
 
 //ALERTS
 "emptyPassword"="Contraseña vacía";
 "wrongRepeatPassword"="Las contraseñas no coinciden";
 "emptyTlf"="Telefono Vacio";
 "wrongEmail"="Email incorrecto";
-"allFieldsRequired" = "Todos los campos son necesarios";
-"lengthPassword" = "La contraseña debe estar comprendida entre 5 y 12 caracteres";
+"allFieldsRequired"="Todos los campos son necesarios";
+"lengthPassword"="La contraseña debe estar comprendida entre 5 y 12 caracteres";
+"correctLogin"="Login correcto";
+
+//EVENTS
+
+"events"="Eventos";
+"event"="Evento";
+"joboffers"="Ofertas de trabajo";
+"joboffer"="Oferta de trabajo";
+"notifications"="Notificaciones";
+"notification"="Notificación";
+"news"="Noticias";
+"notice"="Noticia";
+"search"="Buscar";
+"typeEvent"="¿Qué tipo de evento vas a crear?";
+"whatGroups"="¿Para qué grupos?";
+"addTitle"="Añade el título";
+"addDescription"="Añade la descripción";
+"wantImage"="¿Quieres añadir una imagen?";
+"tooLocalization"="También puedes agregar una ubicación";
+"createEvent"="Crear evento";
+"delete"="Eliminar";
 
 //MENU
 
@@ -53,10 +72,4 @@
 "allowNotifications"="Permitir notificaciones";
 "editProfile"="Editar mi perfil";
 
-// Recover password
 
-"send"="ENVIAR";
-"back"="VOLVER";
-"acept"="ACEPTAR";
-
-"recoverpassword"="Recuperar contraseña";
