@@ -15,8 +15,6 @@ class RecoverViewController: UIViewController {
 
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var repeatPasswordTextField: UITextField!
-    @IBOutlet weak var passLabel: UILabel!
-    @IBOutlet weak var repeatPassLabel: UILabel!
     @IBOutlet weak var aceptBtn: UIButton!
     
     var id:Int?
@@ -29,24 +27,34 @@ class RecoverViewController: UIViewController {
     
     func updateTexts(){
         
-        passLabel.text = "password".localized()
-        repeatPassLabel.text = "repeatpassword".localized()
         aceptBtn.setTitle("acept".localized(), for: .normal)
         
         aceptBtn.layer.borderColor = UIColor.white.cgColor
         aceptBtn.layer.borderWidth = 2
         aceptBtn.layer.cornerRadius = aceptBtn.layer.frame.height / 2
         
-        passwordTextField.layer.borderColor = UIColor.white.cgColor
-        passwordTextField.layer.borderWidth = 2
-        passwordTextField.layer.cornerRadius = passwordTextField.layer.frame.height / 2
+    }
+    
+    func styleTxF(textfield:UITextField){
         
-        repeatPasswordTextField.layer.borderColor = UIColor.white.cgColor
-        repeatPasswordTextField.layer.borderWidth = 2
-        repeatPasswordTextField.layer.cornerRadius = repeatPasswordTextField.layer.frame.height / 2
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.white.cgColor
+        border.frame = CGRect(x: 0, y: textfield.frame.size.height - width, width:  textfield.frame.size.width, height: textfield.frame.size.height)
         
+        border.borderWidth = width
+        textfield.layer.addSublayer(border)
+        textfield.layer.masksToBounds = true
+        
+        textfield.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
         
     }
+    
+    override func viewDidLayoutSubviews(){
+        styleTxF(textfield:passwordTextField)
+        styleTxF(textfield:repeatPasswordTextField)
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

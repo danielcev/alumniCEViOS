@@ -12,6 +12,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableEvents: UITableView!
     
+    @IBOutlet weak var segmentedTypes: UISegmentedControl!
+    
+    @IBOutlet weak var withoutResults: UILabel!
+    
+    var idType:Int = 1
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -29,8 +34,26 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! EventTableViewCell
         
-        cell.titleLbl.text = events[indexPath.row]["title"] as! String
-        cell.descriptionLbl.text = events[indexPath.row]["description"] as! String
+        cell.titleLbl.text = events[indexPath.row]["title"] as? String
+        cell.descriptionLbl.text = events[indexPath.row]["description"] as? String
+        
+        var typeEvent = ""
+        
+        switch(events[indexPath.row]["id_type"] as? String){
+            
+        case "1"?:
+            typeEvent = "Evento"
+        case "2"?:
+            typeEvent = "Oferta de trabajo"
+        case "3"?:
+            typeEvent = "Notificación"
+        case "4"?:
+            typeEvent = "Noticia"
+        default:
+            typeEvent = ""
+        }
+        
+        cell.typeLbl.text = typeEvent
         
         return cell
     }
@@ -44,6 +67,24 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.present(vc, animated: true, completion: nil)
     }
     
+    @IBAction func changedSegmented(_ sender: Any) {
+        
+        switch((sender as! UISegmentedControl).selectedSegmentIndex){
+        case 0:
+            idType = 1
+        case 1:
+            idType = 2
+        case 2:
+            idType = 3
+        case 3:
+            idType = 4
+        default:
+            idType = 1
+        }
+        requestEvents(type: idType, controller: self)
+    }
+    
+    
     @IBAction func goToCreate(_ sender: Any) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateEventPageViewController") as! CreateEventPageViewController
@@ -53,43 +94,40 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func reloadTable(){
         tableEvents.reloadData()
+        tableEvents.isHidden = false
+        withoutResults.isHidden = true
     }
+    
     @IBAction func changeTextAction(_ sender: Any) {
-        print("Texto cambiado")
+
         requestFindEvents(search: (sender as! UITextField).text!, controller: self)
+    }
+    
+    func notResults(){
+        withoutResults.isHidden = false
+        tableEvents.isHidden = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        withoutResults.isHidden = true
+        
         tableEvents.rowHeight = UITableViewAutomaticDimension
         tableEvents.estimatedRowHeight = 209
         
-        requestEvents(type: 2, controller: self)
+        requestEvents(type: idType, controller: self)
 
         // Do any additional setup after loading the view.
     }
 
-    
-    
     override func viewWillAppear(_ animated: Bool) {
-        requestEvents(type: 2, controller: self)
+        requestEvents(type: idType, controller: self)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

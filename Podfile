@@ -6,6 +6,7 @@ target 'AlumniCev' do
   pod 'CPAlertViewController', '~> 3.0'
   pod 'SwiftSpinner', '~> 1.5'
   pod 'M13Checkbox', '~> 3.2'
+  pod 'TextFieldEffects', '~> 1.4'
   end
 
  

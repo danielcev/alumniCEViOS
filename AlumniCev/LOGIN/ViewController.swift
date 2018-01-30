@@ -17,11 +17,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var passwordLoginTextField: UITextField!
     @IBOutlet weak var emailLoginTextField: UITextField!
-    @IBOutlet weak var emailLabelLogin: UILabel!
-    @IBOutlet weak var passwordLabelLogin: UILabel!
-    @IBOutlet weak var areyouregisterButtomLogin: UIButton!
     @IBOutlet weak var forgetPasswordLogin: UIButton!
     @IBOutlet weak var enterButtomlogin: UIButton!
+    @IBOutlet weak var registerBtn: UIButton!
     
     let manager = CLLocationManager()
     
@@ -33,24 +31,39 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         manager.delegate = self
         updateTexts()
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "recurso_fo.png")!)
         
     }
+    
+    func styleTxF(textfield:UITextField){
+        
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.white.cgColor
+        border.frame = CGRect(x: 0, y: textfield.frame.size.height - width, width:  textfield.frame.size.width, height: textfield.frame.size.height)
+        
+        border.borderWidth = width
+        textfield.layer.addSublayer(border)
+        textfield.layer.masksToBounds = true
+        
+        textfield.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
+        
+    }
+    
+    override func viewDidLayoutSubviews(){
+        styleTxF(textfield:emailLoginTextField)
+        styleTxF(textfield:passwordLoginTextField)
+    }
     func updateTexts(){
-        emailLabelLogin.text = "email".localized()
-        passwordLabelLogin.text = "passwordLogin".localized()
-        areyouregisterButtomLogin.setTitle("areyouregister".localized(), for: .normal)
+        
         forgetPasswordLogin.setTitle("forgetPass".localized(), for: .normal)
         enterButtomlogin.setTitle("enterBtn".localized(), for: .normal)
         enterButtomlogin.layer.borderColor = UIColor.white.cgColor
         enterButtomlogin.layer.borderWidth = 2
         enterButtomlogin.layer.cornerRadius = enterButtomlogin.layer.frame.height / 2
-        emailLoginTextField.layer.borderColor =  UIColor.white.cgColor
-        passwordLoginTextField.layer.borderColor =  UIColor.white.cgColor
-        emailLoginTextField.layer.borderWidth = 3
-        passwordLoginTextField.layer.borderWidth = 3
-        emailLoginTextField.layer.cornerRadius = emailLoginTextField.layer.frame.height / 2
-        passwordLoginTextField.layer.cornerRadius = passwordLoginTextField.layer.frame.height / 2
+        
+        registerBtn.layer.borderColor = UIColor.white.cgColor
+        registerBtn.layer.borderWidth = 2
+        registerBtn.layer.cornerRadius = registerBtn.layer.frame.height / 2
         
     }
     @IBAction func changeScreen(_ sender: Any) {
@@ -152,8 +165,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.manager.stopUpdatingLocation()
         self.createLoginRequest(email: emailLoginTextField.text!, password: passwordLoginTextField.text!)
     }
-
-    
 
     
     func goToMain(){

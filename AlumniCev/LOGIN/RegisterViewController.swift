@@ -13,11 +13,8 @@
  
  class RegisterViewController: UIViewController {
     
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var emailTextLabel: UILabel!
+
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextLabel: UILabel!
-    @IBOutlet weak var repeatPasswordTextLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var repeatPasswordTextField: UITextField!
     @IBOutlet weak var btnRegister: UIButton!
@@ -30,35 +27,19 @@
     }
     
     func updateTexts(){
-        emailTextLabel.text = "email".localized()
-        passwordTextField.placeholder = "password".localized()
+
         repeatPasswordTextField.placeholder = "repeatpassword".localized()
         btnRegister.setTitle("btnregister".localized(), for: .normal)
-        
-        passwordTextLabel.text = "password".localized()
-        repeatPasswordTextLabel.text = "repeatpassword".localized()
         
         btnRegister.layer.borderColor = UIColor.white.cgColor
         btnRegister.layer.borderWidth = 2
         btnRegister.layer.cornerRadius = btnRegister.layer.frame.height / 2
-        
-        emailTextField.layer.borderColor = UIColor.white.cgColor
-        emailTextField.layer.borderWidth = 3
-        emailTextField.layer.cornerRadius = emailTextField.layer.frame.height / 2
-        
-        passwordTextField.layer.borderColor = UIColor.white.cgColor
-        passwordTextField.layer.borderWidth = 3
-        passwordTextField.layer.cornerRadius = passwordTextField.layer.frame.height / 2
+
         
         //Set color placeholder blanco
-        passwordTextField.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0), forKeyPath: "_placeholderLabel.textColor")
-        
-        repeatPasswordTextField.layer.borderColor = UIColor.white.cgColor
-        repeatPasswordTextField.layer.borderWidth = 2
-        repeatPasswordTextField.layer.cornerRadius = repeatPasswordTextField.layer.frame.height / 2
-        
-        //Set color placeholder blanco
-        repeatPasswordTextField.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0), forKeyPath: "_placeholderLabel.textColor")
+        passwordTextField.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
+        repeatPasswordTextField.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
+        emailTextField.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
         
     }
     @IBAction func backBtn(_ sender: Any) {
@@ -66,7 +47,27 @@
         self.dismiss(animated: true, completion: nil)
     }
     
-  
+    func styleTxF(textfield:UITextField){
+        
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.white.cgColor
+        border.frame = CGRect(x: 0, y: textfield.frame.size.height - width, width:  textfield.frame.size.width, height: textfield.frame.size.height)
+        
+        border.borderWidth = width
+        textfield.layer.addSublayer(border)
+        textfield.layer.masksToBounds = true
+        
+        textfield.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
+        
+    }
+    
+    override func viewDidLayoutSubviews(){
+        styleTxF(textfield:passwordTextField)
+        styleTxF(textfield:repeatPasswordTextField)
+        styleTxF(textfield:emailTextField)
+
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

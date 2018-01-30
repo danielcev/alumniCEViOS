@@ -77,7 +77,7 @@ func requestEvents(type:Int, controller:UIViewController){
                 (controller as! EventsViewController).reloadTable()
 
             default:
-         
+         (controller as! EventsViewController).notResults()
                 print(arrayResult["message"] as! String)
             }
         case .failure:
@@ -108,12 +108,12 @@ func requestFindEvents(search:String, controller:UIViewController){
         case .success:
             switch arrayResult["code"] as! Int{
             case 200:
-                events = Array((arrayResult["data"] as! Dictionary<String,Any>).values) as! [[String : Any]]
+                events = arrayResult["data"] as! [[String : Any]]
                 
                 (controller as! EventsViewController).reloadTable()
                 
             default:
-                
+                (controller as! EventsViewController).notResults()
                 print(arrayResult["message"] as! String)
             }
         case .failure:

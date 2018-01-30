@@ -72,9 +72,9 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
         self.dataSource = self
         self.delegate   = self
         
-        UIPageControl.appearance().pageIndicatorTintColor = UIColor.white
-        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.red
-        UIPageControl.appearance().backgroundColor = cevColor
+        UIPageControl.appearance().pageIndicatorTintColor = cevColor
+        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.darkGray
+        UIPageControl.appearance().backgroundColor = UIColor.white
         
         if let firstVC = pages.first
         {

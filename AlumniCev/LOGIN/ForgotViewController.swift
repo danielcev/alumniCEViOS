@@ -13,11 +13,7 @@ import SwiftSpinner
 
 class ForgotViewController: UIViewController {
 
-    
-    @IBOutlet weak var resetPasswordLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var sendButton: UIButton!
     
     override func viewDidLoad() {
@@ -28,31 +24,35 @@ class ForgotViewController: UIViewController {
     
     func updateTexts()
     {
-        
-        resetPasswordLabel.text = "recoverpassword".localized()
-        emailLabel.text = "email".localized()
 
         sendButton.layer.borderColor = UIColor.white.cgColor
         sendButton.layer.borderWidth = 2
         sendButton.layer.cornerRadius = sendButton.layer.frame.height / 2
-        
-        backButton.layer.borderColor = UIColor.white.cgColor
-        backButton.layer.borderWidth = 2
-        backButton.layer.cornerRadius = backButton.layer.frame.height / 2
-        
-        emailTextField.layer.borderColor = UIColor.white.cgColor
-        emailTextField.layer.borderWidth = 3
-        emailTextField.layer.cornerRadius = emailTextField.layer.frame.height / 2
-        
+       
         sendButton.setTitle("send".localized(), for: .normal)
-        backButton.setTitle("back".localized(), for: .normal)
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func styleTxF(textfield:UITextField){
+        
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.white.cgColor
+        border.frame = CGRect(x: 0, y: textfield.frame.size.height - width, width:  textfield.frame.size.width, height: textfield.frame.size.height)
+        
+        border.borderWidth = width
+        textfield.layer.addSublayer(border)
+        textfield.layer.masksToBounds = true
+        
+        textfield.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
+        
     }
+    
+    override func viewDidLayoutSubviews(){
+        styleTxF(textfield:emailTextField)
+        
+    }
+
     
     @IBAction func ActionCheckEmail(_ sender: Any) {
         
@@ -107,6 +107,11 @@ class ForgotViewController: UIViewController {
     @IBAction func dismissFunction(_ sender: Any) {
         self.dismiss(animated: true)
     }
+    
+    @IBAction func backAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     //función para ocultar el teclado cuando pulsas fuera de él
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

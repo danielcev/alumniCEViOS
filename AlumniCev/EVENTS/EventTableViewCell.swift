@@ -12,6 +12,7 @@ class EventTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var descriptionLbl: UILabel!
+    @IBOutlet weak var typeLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
