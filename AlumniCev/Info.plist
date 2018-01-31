@@ -45,11 +45,14 @@
 	<string>&quot;Para un correcto funcionamiento de la app es necesario el acceso a la localización&quot;</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>&quot;Para un correcto funcionamiento de la app es necesario el acceso a la localización&quot;</string>
-
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>googlechromes</string>
-        <string>comgooglemaps</string>
-    </array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>&quot;Es necesario permitir el acceso a Fotos para poder subir una imagen&quot;</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>&quot;Es necesario permitir el acceso a Fotos para poder subir una imagen&quot;</string>
 </dict>
 </plist>

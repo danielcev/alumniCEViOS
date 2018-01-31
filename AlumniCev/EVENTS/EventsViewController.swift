@@ -94,7 +94,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func changeTextAction(_ sender: Any) {
 
-        requestFindEvents(search: (sender as! UITextField).text!, controller: self)
+        requestFindEvents(search: (sender as! UITextField).text!,type: idType, controller: self)
     }
     
     func notResults(){

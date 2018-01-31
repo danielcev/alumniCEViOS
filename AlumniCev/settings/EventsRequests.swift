@@ -9,14 +9,18 @@
 import Foundation
 import Alamofire
 
-func createEventRequest(title:String, description:String, idType:Int, idGroup:[Int], controller:UIViewController, lat:Float = 0.0, lon:Float = 0.0){
+func createEventRequest(title:String, description:String, idType:Int, idGroup:[Int], controller:UIViewController, lat:Float?, lon:Float?, image:Data?){
     let url = URL(string: URL_GENERAL + "events/create")
     
     var parameters: Parameters = ["title": title, "description": description, "id_type":idType, "id_group":idGroup]
     
-    if lat != 0.0 && lon != 0.0{
+    if lat != nil && lon != nil{
         parameters["lat"] = lat
         parameters["lon"] = lon
+    }
+    
+    if image != nil{
+        parameters["image"] = image
     }
     
     let token = getDataInUserDefaults(key:"token")
@@ -88,10 +92,10 @@ func requestEvents(type:Int, controller:UIViewController){
     }
 }
 
-func requestFindEvents(search:String, controller:UIViewController){
+func requestFindEvents(search:String, type:Int, controller:UIViewController){
     let url = URL(string: URL_GENERAL + "events/find.json")
     
-    let parameters: Parameters = ["search":search]
+    let parameters: Parameters = ["search":search, "type":type]
     
     let token = getDataInUserDefaults(key:"token")
     
