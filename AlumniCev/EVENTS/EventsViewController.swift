@@ -18,7 +18,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var withoutResults: UILabel!
     
     @IBOutlet weak var ocultView: UIView!
+    @IBOutlet weak var cancelBtn: UIButton!
     
+    var selectedtypebtn:UIButton?
+    
+    @IBOutlet weak var allTypesBtn: UIButton!
+    
+    @IBOutlet weak var typeEventLbl: UILabel!
     var idType:Int = 0
     
     @IBOutlet weak var menuView: UIView!
@@ -99,8 +105,19 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        selectedtypebtn = allTypesBtn
+        
+        allTypesBtn.backgroundColor = cevColor
+        allTypesBtn.setTitleColor(UIColor.white, for: .normal)
+        typeEventLbl.text = "Todos"
+        
         menuView.isHidden = true
         ocultView.isHidden = true
+        
+        menuView.layer.cornerRadius = 15.0
+        menuView.layer.masksToBounds = true
+        cancelBtn.layer.cornerRadius = 15.0
+        cancelBtn.layer.masksToBounds = true
         
         withoutResults.isHidden = true
         
@@ -108,6 +125,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableEvents.estimatedRowHeight = 209
         
         requestEvents(type: idType, controller: self)
+        
+        tableEvents.separatorStyle = .none
 
         // Do any additional setup after loading the view.
     }
@@ -126,12 +145,41 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func changeType(_ sender: UIButton) {
         
+        if selectedtypebtn != nil{
+            selectedtypebtn!.tintColor = cevColor
+            selectedtypebtn!.backgroundColor = UIColor.white
+            selectedtypebtn!.setTitleColor(cevColor, for: .normal)
+        }
+        
+        selectedtypebtn = sender
+        
         idType = sender.tag
+        sender.backgroundColor = cevColor
+        sender.setTitleColor(UIColor.white, for: .normal)
         requestEvents(type: idType, controller: self)
+        
+        var textTypeEvent = ""
+        
+        switch(idType){
+        case 0:
+            textTypeEvent = "Todos"
+        case 1:
+            textTypeEvent = "Eventos"
+        case 2:
+            textTypeEvent = "Ofertas de trabajo"
+        case 3:
+            textTypeEvent = "Notificaciones"
+        case 4:
+            textTypeEvent = "Noticias"
+        default:
+            textTypeEvent = ""
+        }
+        
+        typeEventLbl.text = textTypeEvent
+        
         closeMenu(sender)
         
     }
-    
     
     @IBAction func closeMenu(_ sender: Any) {
         menuView.bounceOut(to: .top)
