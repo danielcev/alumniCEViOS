@@ -29,10 +29,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view, typically from a nib.
         manager.delegate = self
         updateElements()
-        
+    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if(getDataInUserDefaults(key: "isLoged")! == "true"){
+            self.goToMain()
+        }
     }
     
     func styleTxF(textfield:UITextField){
@@ -175,7 +182,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
         let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
 
-        self.present(tabbarVC, animated: true, completion: nil)
+        self.present(tabbarVC, animated: false, completion: nil)
         
 
     }

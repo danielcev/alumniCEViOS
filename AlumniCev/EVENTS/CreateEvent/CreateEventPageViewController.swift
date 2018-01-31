@@ -68,6 +68,7 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
         super.viewDidLoad()
         
         eventCreated = Event()
+        eventCreated?.idTypeEvent = 1
 
         self.dataSource = self
         self.delegate   = self

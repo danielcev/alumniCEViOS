@@ -18,8 +18,21 @@ class TitleEventViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setStyle()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func setStyle(){
+        titleTxF.layer.borderColor = cevColor.cgColor
+        descriptionTxF.layer.borderColor = cevColor.cgColor
+        
+        titleTxF.layer.borderWidth = 1.0
+        descriptionTxF.layer.borderWidth = 1.0
+        
+        titleTxF.layer.cornerRadius = 15.0
+        descriptionTxF.layer.cornerRadius = 15.0
     }
     
     override func viewWillDisappear(_ animated: Bool) {

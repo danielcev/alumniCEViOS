@@ -14,7 +14,7 @@ let defaults = UserDefaults.standard
 
 var eventCreated:Event?
 
-let cevColor:UIColor = hexStringToUIColor(hex:"88B7BF")
+let cevColor:UIColor = hexStringToUIColor(hex:"008D9D")
 
 var groups:[Dictionary<String,String>] = []
 
@@ -32,25 +32,7 @@ var events:[[String:Any]] = [
     ["title":"Evento 2",
      "description":"Este es el evento 2",
      "lat":51.5287352,
-     "lon":-0.3817844],
-    
-    ["title":"Evento 3",
-     "description":"Este es el evento 3"],
-    
-    ["title":"Evento 4",
-     "description":"Este es el evento 4"],
-    
-    ["title":"Evento 5",
-     "description":"Este es el evento 5"],
-    
-    ["title":"Evento 6",
-     "description":"Este es el evento 6"],
-    
-    ["title":"Evento 7",
-     "description":"Este es el evento 7"],
-    
-    ["title":"Evento 8",
-     "description":"Este es el evento 8"]
+     "lon":-0.3817844]
 
 ]
 

@@ -22,6 +22,11 @@ class ProfileViewController: UIViewController {
     }
     
 
+    @IBAction func logoutAction(_ sender: UIButton) {
+        saveDataInUserDefaults(value: "false", key: "isLoged")
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        
+    }
     /*
     // MARK: - Navigation
 

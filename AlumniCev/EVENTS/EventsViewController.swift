@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SimpleAnimation
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -16,7 +17,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var withoutResults: UILabel!
     
-    var idType:Int = 1
+    @IBOutlet weak var ocultView: UIView!
+    
+    var idType:Int = 0
+    
+    @IBOutlet weak var menuView: UIView!
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -67,24 +73,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func changedSegmented(_ sender: Any) {
-        
-        switch((sender as! UISegmentedControl).selectedSegmentIndex){
-        case 0:
-            idType = 1
-        case 1:
-            idType = 2
-        case 2:
-            idType = 3
-        case 3:
-            idType = 4
-        default:
-            idType = 1
-        }
-        requestEvents(type: idType, controller: self)
-    }
-    
-    
     @IBAction func goToCreate(_ sender: Any) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateEventPageViewController") as! CreateEventPageViewController
@@ -111,6 +99,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        menuView.isHidden = true
+        ocultView.isHidden = true
+        
         withoutResults.isHidden = true
         
         tableEvents.rowHeight = UITableViewAutomaticDimension
@@ -121,10 +112,33 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Do any additional setup after loading the view.
     }
 
+    
     override func viewWillAppear(_ animated: Bool) {
         requestEvents(type: idType, controller: self)
     }
-
+    @IBAction func filterAction(_ sender: Any) {
+        menuView.isHidden = false
+        menuView.bounceIn(from: .top)
+        
+        ocultView.isHidden = false
+        
+    }
+    
+    @IBAction func changeType(_ sender: UIButton) {
+        
+        idType = sender.tag
+        requestEvents(type: idType, controller: self)
+        closeMenu(sender)
+        
+    }
+    
+    
+    @IBAction func closeMenu(_ sender: Any) {
+        menuView.bounceOut(to: .top)
+        //menuView.isHidden = true
+        ocultView.isHidden = true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

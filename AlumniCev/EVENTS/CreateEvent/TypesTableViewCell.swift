@@ -12,17 +12,33 @@ class TypesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameTypeLbl: UILabel!
     
+    @IBOutlet weak var typeImage: UIImageView!
+    
     var idType:Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func setWhite(){
+        nameTypeLbl.textColor = UIColor.white
+    }
+    
+    func setGreen(){
+        nameTypeLbl.textColor = cevColor
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+        if selected{
+            nameTypeLbl.textColor = cevColor
+        }else{
+            nameTypeLbl.textColor = UIColor.white
+        }
+        
     }
+    
 
 }

@@ -7,6 +7,7 @@ target 'AlumniCev' do
   pod 'SwiftSpinner', '~> 1.5'
   pod 'M13Checkbox', '~> 3.2'
   pod 'TextFieldEffects', '~> 1.4'
+  pod 'SimpleAnimation', '~> 0.4'
   end
 
  
