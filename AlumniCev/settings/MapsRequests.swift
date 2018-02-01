@@ -26,8 +26,6 @@ func requestAddress(address:String, controller:UIViewController){
         
         var arrayResult = response.result.value as! Dictionary<String, Any>
         
-        print(arrayResult)
-        
         switch response.result {
         case .success:
             switch arrayResult["status"] as! String{

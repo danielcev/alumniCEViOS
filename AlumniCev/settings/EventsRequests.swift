@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-func createEventRequest(title:String, description:String, idType:Int, idGroup:[Int], controller:UIViewController, lat:Float?, lon:Float?, image:Data?, url:String?){
+func createEventRequest(title:String, description:String, idType:Int, idGroup:[Int], controller:UIViewController, lat:Float?, lon:Float?, image:Data?, urlEvent:String?){
     let url = URL(string: URL_GENERAL + "events/create.json")
     
     var parameters: Parameters = ["title": title, "description": description, "id_type":idType]
@@ -20,7 +20,7 @@ func createEventRequest(title:String, description:String, idType:Int, idGroup:[I
     }
     
     if url != nil{
-        parameters["url"] = url
+        parameters["url"] = urlEvent
     }
 
     let token = getDataInUserDefaults(key:"token")
@@ -71,7 +71,7 @@ func createEventRequest(title:String, description:String, idType:Int, idGroup:[I
                                     case 200:
                                         events = arrayResult["data"] as! [[String:Any]]
                                         
-                                        (controller as! LocalizationCreateEventViewController).createAlert()
+                                        (controller as! LocalizationCreateEventViewController).createAlert(type:"success", title:"Evento creado", message: "el evento ha sido creado con éxito")
                                     case 400:
                                         print(arrayResult)
                                         
@@ -127,6 +127,44 @@ func requestEvents(type:Int, controller:UIViewController){
     }
 }
 
+func requestEvent(id:Int, controller:UIViewController){
+    let url = URL(string: URL_GENERAL + "events/event.json")
+    
+    let parameters: Parameters = ["id":id]
+    
+    let token = getDataInUserDefaults(key:"token")
+    
+    let headers: HTTPHeaders = [
+        "Authorization": token!,
+        "Accept": "application/json"
+    ]
+    
+    Alamofire.request(url!, method: .get, parameters: parameters, headers: headers).responseJSON{response in
+        
+        var arrayResult = response.result.value as! Dictionary<String, Any>
+        
+        print(response)
+        
+        switch response.result {
+        case .success:
+            switch arrayResult["code"] as! Int{
+            case 200:
+                comments = (arrayResult["data"] as! Dictionary<String, Any>)["comments"] as? Dictionary<String, Any>
+                
+                (controller as! DetailEventViewController).reloadTable()
+                
+            default:
+                //(controller as! EventsViewController).notResults()
+                print(arrayResult["message"] as! String)
+            }
+        case .failure:
+            
+            print("Error :: \(String(describing: response.error))")
+            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+        }
+    }
+}
+
 func requestFindEvents(search:String, type:Int, controller:UIViewController){
     let url = URL(string: URL_GENERAL + "events/find.json")
     
@@ -161,4 +199,6 @@ func requestFindEvents(search:String, type:Int, controller:UIViewController){
             //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
         }
     }
+    
+    
 }

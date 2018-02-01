@@ -16,7 +16,7 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
     var idTypeEvent:Int?
     var idsGroups:[Int] = [Int]()
     
-    fileprivate lazy var pages: [UIViewController] = {
+    lazy var pages: [UIViewController] = {
         return [
             self.getViewController(withIdentifier: "TipeEventViewController"),
             self.getViewController(withIdentifier: "GroupEventViewController"),
@@ -69,8 +69,7 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
         super.viewDidLoad()
         
         eventCreated = Event()
-        eventCreated?.idTypeEvent = 1
-
+        
         self.dataSource = self
         self.delegate   = self
         
@@ -85,11 +84,6 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
         
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func goToPage(id:Int){
         
@@ -98,14 +92,5 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+

@@ -8,20 +8,46 @@
 
 import UIKit
 
-class TitleEventViewController: UIViewController {
+class TitleEventViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var addTitleLbl: UILabel!
     @IBOutlet weak var addDescriptionLbl: UILabel!
     @IBOutlet weak var titleTxF: UITextField!
     @IBOutlet weak var descriptionTxF: UITextView!
     
-
+    @IBOutlet weak var countTitleLbl: UILabel!
+    @IBOutlet weak var countDescriptionLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        descriptionTxF.delegate = self
+        
         setStyle()
 
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    @IBAction func titleChanged(_ sender: UITextField) {
+        countTitleLbl.text = String(describing: sender.text!.count) + "/100"
+        
+        if sender.text!.count > 100{
+            countTitleLbl.textColor = UIColor.red
+        }else{
+            countTitleLbl.textColor = cevColor
+        }
+
+    }
+    
+    func textViewDidChange(_ textView: UITextView){
+        countDescriptionLbl.text = String(describing: textView.text!.count) + "/1000"
+        
+        if textView.text!.count > 1000{
+            countDescriptionLbl.textColor = UIColor.red
+        }else{
+            countDescriptionLbl.textColor = cevColor
+        }
+        
     }
     
     func setStyle(){
@@ -37,8 +63,14 @@ class TitleEventViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        eventCreated?.titleEvent = titleTxF.text
-        eventCreated?.descriptionEvent = descriptionTxF.text
+        if titleTxF.text != ""{
+            eventCreated?.titleEvent = titleTxF.text
+        }
+        
+        if descriptionTxF.text != ""{
+            eventCreated?.descriptionEvent = descriptionTxF.text
+        }
+
     }
     
     //función para ocultar el teclado cuando pulsas fuera de él

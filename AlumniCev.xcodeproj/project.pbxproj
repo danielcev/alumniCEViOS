@@ -10,6 +10,7 @@
 		2E34A0048B2200957824E3E9 /* Pods_AlumniCev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BAC41C412736550E1C2B0A /* Pods_AlumniCev.framework */; };
 		3AEB190B279A28D0E791DA22 /* libPods-AlumniCevUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CA810BBEB389844D7C605A /* libPods-AlumniCevUITests.a */; };
 		652642272017B254004ACA83 /* EventLocalizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652642262017B254004ACA83 /* EventLocalizationViewController.swift */; };
+		65832A0C2023AD9800C2B8AF /* DetailCommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65832A0B2023AD9800C2B8AF /* DetailCommentsTableViewCell.swift */; };
 		65BADD5C2016408000C6D03F /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD5B2016408000C6D03F /* EventsViewController.swift */; };
 		65BADD5E201648F000C6D03F /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD5D201648F000C6D03F /* UsersViewController.swift */; };
 		65BADD60201648FD00C6D03F /* LocalizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */; };
@@ -70,6 +71,7 @@
 		1C3C0AC1FAB10D02A1360387 /* Pods-AlumniCevTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCevTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCevTests/Pods-AlumniCevTests.release.xcconfig"; sourceTree = "<group>"; };
 		38BAC41C412736550E1C2B0A /* Pods_AlumniCev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlumniCev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		652642262017B254004ACA83 /* EventLocalizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLocalizationViewController.swift; sourceTree = "<group>"; };
+		65832A0B2023AD9800C2B8AF /* DetailCommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommentsTableViewCell.swift; sourceTree = "<group>"; };
 		65BADD5B2016408000C6D03F /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		65BADD5D201648F000C6D03F /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				65BADD5B2016408000C6D03F /* EventsViewController.swift */,
 				7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */,
 				7F68D2282017322E005148D8 /* DetailEventViewController.swift */,
+				65832A0B2023AD9800C2B8AF /* DetailCommentsTableViewCell.swift */,
 				652642262017B254004ACA83 /* EventLocalizationViewController.swift */,
 				6507FBA82019098500FB799A /* CreateEvent */,
 			);
@@ -604,6 +607,7 @@
 				7FDEB18220233FD700431293 /* WebUrlViewController.swift in Sources */,
 				7F7ADBB02019FDA700489C95 /* GroupEventViewController.swift in Sources */,
 				65EDBBC3201E22100017515A /* Address.swift in Sources */,
+				65832A0C2023AD9800C2B8AF /* DetailCommentsTableViewCell.swift in Sources */,
 				A67EFA742003A7990051853B /* ViewController.swift in Sources */,
 				7F711B8A2008D73200BFF37D /* Localize.swift in Sources */,
 				7FD2256C2017701E00B64D00 /* EventTableViewCell.swift in Sources */,

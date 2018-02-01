@@ -41,13 +41,13 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
             self.openGallary()
         case .notDetermined:
             print("Access is not determined")
-            needAcceptPermission()
+            
         case .restricted:
             print("Access is restricted")
-            needAcceptPermission()
+            
         case .denied:
             print("Access is denied")
-            needAcceptPermission()
+          
         }
     }
     
@@ -61,6 +61,8 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
                 
                 print("success")
                 
+            }else{
+                self.needAcceptPermission()
             }
         })
     }
@@ -69,11 +71,6 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         super.didReceiveMemoryWarning()
         
     }
-    
-//    // Take Photo button click
-//    @IBAction func TakePhoto(sender: AnyObject) {
-//        openCamera()
-//    }
     
     @IBAction func OpenGallery(_ sender: Any) {
         
@@ -86,22 +83,6 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         picker!.allowsEditing = false
         picker!.sourceType = UIImagePickerControllerSourceType.photoLibrary
         present(picker!, animated: true, completion: nil)
-    }
-    
-    
-    func openCamera()
-    {
-        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)){
-            picker!.allowsEditing = false
-            picker!.sourceType = UIImagePickerControllerSourceType.camera
-            picker!.cameraCaptureMode = .photo
-            present(picker!, animated: true, completion: nil)
-        }else{
-            let alert = UIAlertController(title: "Camera Not Found", message: "This device has no Camera", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style:.default, handler: nil)
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
-        }
     }
     
     func needAcceptPermission(){
@@ -120,7 +101,7 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         imageView.contentMode = .scaleAspectFit
         imageView.image = chosenImage
         
-        eventCreated?.imageEvent = UIImageJPEGRepresentation(chosenImage, 1)
+        eventCreated?.imageEvent = UIImageJPEGRepresentation(chosenImage, 0.1)
 
         dismiss(animated: true, completion: nil)
         

@@ -8,6 +8,7 @@
 
 import UIKit
 import SimpleAnimation
+import Alamofire
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,11 +16,14 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var segmentedTypes: UISegmentedControl!
     
+    @IBOutlet weak var searchTxF: UITextField!
+    
     @IBOutlet weak var withoutResults: UILabel!
     
     @IBOutlet weak var ocultView: UIView!
     @IBOutlet weak var cancelBtn: UIButton!
     
+    @IBOutlet weak var filterBtn: UIButton!
     var selectedtypebtn:UIButton?
     
     @IBOutlet weak var allTypesBtn: UIButton!
@@ -49,29 +53,54 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.titleLbl.text = events[indexPath.row]["title"] as? String
         cell.descriptionLbl.text = events[indexPath.row]["description"] as? String
         
+        
+        
         var typeEvent = ""
+        var color:UIColor?
         
         switch(events[indexPath.row]["id_type"] as? String){
             
         case "1"?:
             typeEvent = "Evento"
             cell.imageEventView.image = UIImage(named: "eventimage")
+            color = UIColor.red.withAlphaComponent(0.4)
         case "2"?:
             typeEvent = "Oferta de trabajo"
             cell.imageEventView.image = UIImage(named: "jobofferimage")
+            color = UIColor.purple.withAlphaComponent(0.4)
         case "3"?:
             typeEvent = "Notificación"
             cell.imageEventView.image = UIImage(named: "notificationimage")
+            color = UIColor.blue.withAlphaComponent(0.4)
         case "4"?:
             typeEvent = "Noticia"
             cell.imageEventView.image = UIImage(named: "newsimage")
+            color = UIColor.yellow.withAlphaComponent(0.4)
         default:
             typeEvent = ""
             cell.imageEventView.image = UIImage(named: "eventimage")
+            color = UIColor.red.withAlphaComponent(0.4)
+        }
+        
+        if events[indexPath.row]["image"] as? String != nil{
+            //Añadir imagen
+            let remoteImageURL = URL(string: (events[indexPath.row]["image"] as? String)!)!
+            
+            Alamofire.request(remoteImageURL).responseData { (response) in
+                if response.error == nil {
+                    print(response.result)
+                    
+                    if let data = response.data {
+                        cell.imageEventView.image = UIImage(data: data)
+                    }
+                }
+            }
         }
         
         cell.typeLbl.text = typeEvent
-        
+        cell.typeLbl.backgroundColor = color
+        cell.typeLbl.layer.cornerRadius = 15.0
+        cell.typeLbl.layer.masksToBounds = true
         return cell
     }
     
@@ -98,8 +127,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func changeTextAction(_ sender: Any) {
-
-        requestFindEvents(search: (sender as! UITextField).text!,type: idType, controller: self)
+        
+        if (sender as! UITextField).text! == ""{
+            requestEvents(type: idType, controller: self)
+        }else{
+            requestFindEvents(search: (sender as! UITextField).text!,type: idType, controller: self)
+        }
+        
     }
     
     func notResults(){
@@ -123,6 +157,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         menuView.layer.masksToBounds = true
         cancelBtn.layer.cornerRadius = 15.0
         cancelBtn.layer.masksToBounds = true
+        filterBtn.layer.cornerRadius = 15.0
+        filterBtn.layer.masksToBounds = true
         
         withoutResults.isHidden = true
         
@@ -161,8 +197,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         idType = sender.tag
         sender.backgroundColor = cevColor
         sender.setTitleColor(UIColor.white, for: .normal)
-        requestEvents(type: idType, controller: self)
         
+        if searchTxF.text == ""{
+            requestEvents(type: idType, controller: self)
+        }else{
+            requestFindEvents(search: searchTxF.text!, type: idType, controller: self)
+        }
+
         var textTypeEvent = ""
         
         switch(idType){
@@ -191,10 +232,10 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //menuView.isHidden = true
         ocultView.isHidden = true
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    //función para ocultar el teclado cuando pulsas fuera de él
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
 }

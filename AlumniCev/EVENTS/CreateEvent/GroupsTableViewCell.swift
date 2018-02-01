@@ -34,8 +34,14 @@ class GroupsTableViewCell: UITableViewCell {
         
         if sender.checkState == M13Checkbox.CheckState.checked{
             eventCreated?.idsGroups.append(self.idGroup!)
+        }else{
+            
+            if let firstIndex = eventCreated?.idsGroups.index(of: self.idGroup!) {
+                
+                eventCreated?.idsGroups.remove(at: firstIndex)
+            }
+            
         }
-        
     }
     
 }

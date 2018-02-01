@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Alamofire
 
-class DetailEventViewController: UIViewController {
+class DetailEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var idReceived: Int = 0
 
@@ -26,9 +27,15 @@ class DetailEventViewController: UIViewController {
     var lat:Float?
     var lon:Float?
     
+    @IBOutlet weak var tableComments: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        requestEvent(id:Int(events[idReceived]["id"] as! String)!, controller:self)
+        
+        imageViewEvent.clipsToBounds = true
+        imageViewEvent.contentMode = .scaleAspectFit
         
         //Solo se muestra la información de localización si el evento la tiene
         if((events[idReceived]["lat"] as? String) != nil && (events[idReceived]["lon"] as? String) != nil){
@@ -60,6 +67,8 @@ class DetailEventViewController: UIViewController {
             default:
                 imageViewEvent.image = UIImage(named: "eventimage")
             }
+        }else{
+            requestImage(url: (events[idReceived]["image"] as? String)!)
         }
         
         switch events[idReceived]["id_type"] as! String {
@@ -111,6 +120,59 @@ class DetailEventViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func requestImage(url:String){
+        let remoteImageURL = URL(string: url)!
+        
+        // Use Alamofire to download the image
+        Alamofire.request(remoteImageURL).responseData { (response) in
+            if response.error == nil {
+                print(response.result)
+                
+                if let data = response.data {
+                    self.imageViewEvent.image = UIImage(data: data)
+                }
+            }
+        }
+    }
+    
+    //TABLE COMMENTS
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if comments != nil{
+            return comments!.count
+        }else{
+            return 0
+        }
+ 
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 169
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! DetailCommentsTableViewCell
+        
+        var comment:Dictionary<String,Any> = (comments![String(describing: indexPath.row + 1)]! as! Dictionary<String,Any>)
+        
+        if(comments != nil){
+            cell.titleComment.text = comment["title"] as? String
+            
+            cell.descriptionComment.text = comment["description"] as? String
+        }
+        
+        return cell
+    }
+    
+    func reloadTable(){
+        tableComments.reloadData()
     }
     
 }

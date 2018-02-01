@@ -9,6 +9,7 @@
 import UIKit
 import CPAlertViewController
 import MapKit
+import SwiftSpinner
 
 class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate {
 
@@ -20,7 +21,12 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
     
     @IBOutlet weak var map: MKMapView!
     
+    var lat:Float?
+    var lon:Float?
+    
     @IBOutlet weak var deleteBtn: UIButton!
+    
+    @IBOutlet weak var addBtn: UIButton!
     
     override func viewDidLoad() {
         
@@ -29,6 +35,7 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
         addressLbl.isHidden = true
         map.isHidden = true
         deleteBtn.isHidden = true
+        addBtn.isHidden = true
 
         // Do any additional setup after loading the view.
     }
@@ -39,6 +46,37 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
     }
     
     @IBAction func createEventAction(_ sender: Any) {
+        
+        if eventCreated!.idTypeEvent == nil{
+            createAlert(type: "error", title: "Faltan datos", message: "Falta selecciona el tipo de evento")
+            return
+        }
+        
+        if eventCreated!.idsGroups.count == 0{
+            createAlert(type: "error", title: "Faltan datos", message: "Falta seleccionar los grupos")
+            return
+        }
+        
+        if eventCreated?.titleEvent == nil{
+            createAlert(type: "error", title: "Faltan datos", message: "Es necesario el título del evento")
+            return
+        }
+        
+        if (eventCreated?.titleEvent?.count)! > 100{
+            createAlert(type: "error", title: "Exceso caracteres", message: "El título es demasiado largo")
+            return
+        }
+        
+        if (eventCreated?.descriptionEvent?.count)! > 1000{
+            createAlert(type: "error", title: "Exceso caracteres", message: "La descripción es demasiado larga")
+            return
+        }
+        
+        if eventCreated?.descriptionEvent == nil{
+            createAlert(type: "error", title: "Faltan datos", message: "Es necesario la descripción del evento")
+            return
+        }
+        
         
         var image:Data?
         var url:String?
@@ -56,24 +94,28 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
         }
 
         if(eventCreated?.lat == nil && eventCreated?.lon == nil){
+            SwiftSpinner.show("...")
             
-            createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self,lat: nil, lon: nil, image: image, url: url)
+            createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self,lat: nil, lon: nil, image: image, urlEvent: url)
+            
             
         }else{
-            createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self, lat: eventCreated!.lat!, lon: (eventCreated?.lon)!, image: image, url: url)
+            SwiftSpinner.show("...")
+            
+            createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self, lat: eventCreated!.lat!, lon: (eventCreated?.lon)!, image: image, urlEvent: url)
         }
 
     }
     
     func receiveAddress(addressReceived:Address){
         
-        eventCreated?.lat = addressReceived.lat
-        eventCreated?.lon = addressReceived.lon
+        self.lat = addressReceived.lat
+        self.lon = addressReceived.lon
         
         addressLbl.text = addressReceived.formatted_address
         
-        let latitude:CLLocationDegrees = CLLocationDegrees((eventCreated?.lat)!)
-        let longitude:CLLocationDegrees = CLLocationDegrees((eventCreated?.lon)!)
+        let latitude:CLLocationDegrees = CLLocationDegrees((addressReceived.lat)!)
+        let longitude:CLLocationDegrees = CLLocationDegrees((addressReceived.lon)!)
         
         let latDelta:CLLocationDegrees = 0.01
         let longDelta:CLLocationDegrees = 0.01
@@ -87,15 +129,14 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = "Prueba"
-        annotation.subtitle = "Esto es una prueba"
+        annotation.title = addressReceived.formatted_address
         
         map.addAnnotation(annotation)
         
         addressLbl.isHidden = false
         map.isHidden = false
         deleteBtn.isHidden = false
-        
+        addBtn.isHidden = false
     }
     
     @IBAction func searchAction(_ sender: Any) {
@@ -109,22 +150,43 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
  
     }
     
+    @IBAction func addUbication(_ sender: Any) {
+        eventCreated?.lat = self.lat
+        eventCreated?.lon = self.lon
+        
+        var alert = CPAlertViewController()
+        
+        alert.showSuccess(title: "Ubicación agregada", message: "Localización añadida al evento" , buttonTitle: "OK")
+    }
     
     @IBAction func deleteAction(_ sender: Any) {
         eventCreated?.lat = nil
         eventCreated?.lon = nil
         
+        self.lat = nil
+        self.lon = nil
+        
         addressLbl.isHidden = true
         deleteBtn.isHidden = true
+        addBtn.isHidden = true
         map.isHidden = true
         localizationTxF.text = ""
     }
     
-    func createAlert(){
+    func createAlert(type:String, title:String, message:String){
         let alert = CPAlertViewController()
-        alert.showSuccess(title: "Evento creado!!", message: "El evento \(eventCreated!.titleEvent!) ha sido creado" , buttonTitle: "OK") { (nil) in
-            self.dismiss(animated: true, completion: nil)
+        
+        SwiftSpinner.hide()
+        
+        if type == "success"{
+            alert.showSuccess(title: title, message: message , buttonTitle: "OK") { (nil) in
+                self.dismiss(animated: true, completion: nil)
+            }
+        }else{
+            alert.showError(title: title, message: message , buttonTitle: "OK")
+            
         }
+        
     }
     
     //función para ocultar el teclado cuando pulsas fuera de él

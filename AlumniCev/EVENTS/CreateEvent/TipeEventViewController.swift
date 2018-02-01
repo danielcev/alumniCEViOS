@@ -60,6 +60,11 @@ class TipeEventViewController: UIViewController, UITableViewDataSource, UITableV
             cell.setGreen()
         }
         
+//        // get parent view controller
+//        let parentVC = self.parent as! CreateEventPageViewController
+//       
+//        // change page of PageViewController
+//        parentVC.setViewControllers([parentVC.pages[1]], direction: .forward, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
