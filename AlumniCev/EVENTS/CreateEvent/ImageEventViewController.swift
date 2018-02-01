@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import CPAlertViewController
 
 class ImageEventViewController: UIViewController, UIImagePickerControllerDelegate,UIPopoverControllerDelegate,UINavigationControllerDelegate {
     
@@ -26,25 +27,33 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func checkPermission() {
+        
+        requestAuth()
+        
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         
+        print(photoAuthorizationStatus)
+        
         switch photoAuthorizationStatus {
-            
+        
         case .authorized:
             print("Access is granted by user")
             self.openGallary()
         case .notDetermined:
-            requestAuth()
+            print("Access is not determined")
+            needAcceptPermission()
         case .restricted:
-            requestAuth()
+            print("Access is restricted")
+            needAcceptPermission()
         case .denied:
-            requestAuth()
+            print("Access is denied")
+            needAcceptPermission()
         }
     }
     
     func requestAuth(){
         PHPhotoLibrary.requestAuthorization({
-            (newStatus) in print("status is \(newStatus)")
+            (newStatus) in print("new status is \(newStatus)")
             
             if newStatus == PHAuthorizationStatus.authorized {
                 
@@ -95,19 +104,24 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
+    func needAcceptPermission(){
+        let alert = CPAlertViewController()
+        alert.showError(title: "Es necesario aceptar los permisos desde ajustes", buttonTitle: "OK")
+    }
+    
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         imageView.contentMode = .scaleAspectFit
         imageView.image = chosenImage
         
         eventCreated?.imageEvent = UIImageJPEGRepresentation(chosenImage, 1)
 
-        
         dismiss(animated: true, completion: nil)
         
         

@@ -9,20 +9,20 @@
 import Foundation
 import Alamofire
 
-func createEventRequest(title:String, description:String, idType:Int, idGroup:[Int], controller:UIViewController, lat:Float?, lon:Float?, image:Data?){
-    let url = URL(string: URL_GENERAL + "events/create")
+func createEventRequest(title:String, description:String, idType:Int, idGroup:[Int], controller:UIViewController, lat:Float?, lon:Float?, image:Data?, url:String?){
+    let url = URL(string: URL_GENERAL + "events/create.json")
     
-    var parameters: Parameters = ["title": title, "description": description, "id_type":idType, "id_group":idGroup]
+    var parameters: Parameters = ["title": title, "description": description, "id_type":idType]
     
     if lat != nil && lon != nil{
         parameters["lat"] = lat
         parameters["lon"] = lon
     }
     
-    if image != nil{
-        parameters["image"] = image
+    if url != nil{
+        parameters["url"] = url
     }
-    
+
     let token = getDataInUserDefaults(key:"token")
     
     let headers: HTTPHeaders = [
@@ -30,30 +30,65 @@ func createEventRequest(title:String, description:String, idType:Int, idGroup:[I
         "Accept": "application/json"
     ]
     
-    Alamofire.request(url!, method: .post, parameters: parameters, headers: headers).responseJSON{response in
-        
-        var arrayResult = response.result.value as! Dictionary<String, Any>
-        
-        print(response)
-        
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                events = arrayResult["data"] as! [[String:Any]]
-                
-                (controller as! LocalizationCreateEventViewController).createAlert()
-                
-            default:
-                
-                print(arrayResult["message"] as! String)
-            }
-        case .failure:
+    Alamofire.upload(multipartFormData: { multipartFormData in
+
+        for (key, value) in parameters {
+            multipartFormData.append(String(describing: value).data(using: .utf8)!, withName: key)
             
-            print("Error :: \(String(describing: response.error))")
-            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
         }
-    }
+        for value in idGroup{
+            let clave = "id_group[" + String(value) + "]"
+            print(clave)
+            let valor = String(value)
+            multipartFormData.append(String(describing: valor).data(using: .utf8)!, withName: clave)
+        }
+        
+        if image != nil{
+            multipartFormData.append(image!, withName: "image", fileName: "photo.jpeg", mimeType: "image/jpeg")
+        }
+
+    },
+                     
+                     to: url!,
+                     headers:headers,
+                     
+                     encodingCompletion: { encodingResult in
+                        
+                        switch encodingResult {
+                            
+                        case .success(let upload, _, _):
+                            upload.responseJSON { response in
+
+                                var arrayResult = response.result.value as! Dictionary<String, Any>
+                                
+                                if let result = response.result.value {
+                                    
+                                    print(result)
+                                    
+                                    let code = arrayResult["code"] as! Int
+                                    
+                                    switch code{
+                                    case 200:
+                                        events = arrayResult["data"] as! [[String:Any]]
+                                        
+                                        (controller as! LocalizationCreateEventViewController).createAlert()
+                                    case 400:
+                                        print(arrayResult)
+                                        
+                                    default:
+                                        print(arrayResult)
+                                        
+                                    }
+
+                                }
+                            
+                            }
+                        case .failure(let encodingError):
+                            print(encodingError)
+                            // your implementation
+                        }
+    })
+
 }
 
 func requestEvents(type:Int, controller:UIViewController){

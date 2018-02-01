@@ -16,5 +16,6 @@ class Event{
     var idsGroups:[Int] = [Int]()
     var lat:Float?
     var lon:Float?
+    var url:String?
 
 }

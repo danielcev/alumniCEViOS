@@ -37,9 +37,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if(getDataInUserDefaults(key: "isLoged")! == "true"){
-            self.goToMain()
+        if getDataInUserDefaults(key: "isLoged") != nil{
+            if(getDataInUserDefaults(key: "isLoged")! == "true" && getDataInUserDefaults(key: "isLoged") != nil){
+                self.goToMain()
+            }
         }
+        
     }
     
     func styleTxF(textfield:UITextField){

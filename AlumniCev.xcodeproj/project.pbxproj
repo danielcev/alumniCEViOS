@@ -37,6 +37,7 @@
 		7FC72B75200E2DB000A73C3B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FC72B74200E2DAF00A73C3B /* CoreLocation.framework */; };
 		7FD078982008CA570014FB8E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0789A2008CA570014FB8E /* Localizable.strings */; };
 		7FD2256C2017701E00B64D00 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */; };
+		7FDEB18220233FD700431293 /* WebUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDEB18120233FD700431293 /* WebUrlViewController.swift */; };
 		A67EFA722003A7990051853B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA712003A7990051853B /* AppDelegate.swift */; };
 		A67EFA742003A7990051853B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA732003A7990051853B /* ViewController.swift */; };
 		A67EFA772003A7990051853B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A67EFA752003A7990051853B /* Main.storyboard */; };
@@ -99,6 +100,7 @@
 		7FD0789C2008CA870014FB8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7FD0789F2008D6480014FB8E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		7FDEB18120233FD700431293 /* WebUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUrlViewController.swift; sourceTree = "<group>"; };
 		A67EFA6E2003A7990051853B /* AlumniCev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlumniCev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A67EFA712003A7990051853B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A67EFA732003A7990051853B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				7F7ADBB3201A0CF300489C95 /* TypesTableViewCell.swift */,
 				7FB13359201889E0007B39E2 /* TitleEventViewController.swift */,
 				7F89B1A82018C094007BA234 /* ImageEventViewController.swift */,
+				7FDEB18120233FD700431293 /* WebUrlViewController.swift */,
 				7F89B1AA2018C0B6007BA234 /* LocalizationCreateEventViewController.swift */,
 				7F7ADBAF2019FDA700489C95 /* GroupEventViewController.swift */,
 				7F7ADBB12019FE6A00489C95 /* GroupsTableViewCell.swift */,
@@ -598,6 +601,7 @@
 				7F68D2292017322E005148D8 /* DetailEventViewController.swift in Sources */,
 				7F7ADBB4201A0CF300489C95 /* TypesTableViewCell.swift in Sources */,
 				65EDBBC1201E1E620017515A /* MapsRequests.swift in Sources */,
+				7FDEB18220233FD700431293 /* WebUrlViewController.swift in Sources */,
 				7F7ADBB02019FDA700489C95 /* GroupEventViewController.swift in Sources */,
 				65EDBBC3201E22100017515A /* Address.swift in Sources */,
 				A67EFA742003A7990051853B /* ViewController.swift in Sources */,

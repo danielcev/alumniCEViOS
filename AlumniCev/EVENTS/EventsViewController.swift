@@ -55,14 +55,19 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         case "1"?:
             typeEvent = "Evento"
+            cell.imageEventView.image = UIImage(named: "eventimage")
         case "2"?:
             typeEvent = "Oferta de trabajo"
+            cell.imageEventView.image = UIImage(named: "jobofferimage")
         case "3"?:
             typeEvent = "Notificación"
+            cell.imageEventView.image = UIImage(named: "notificationimage")
         case "4"?:
             typeEvent = "Noticia"
+            cell.imageEventView.image = UIImage(named: "newsimage")
         default:
             typeEvent = ""
+            cell.imageEventView.image = UIImage(named: "eventimage")
         }
         
         cell.typeLbl.text = typeEvent

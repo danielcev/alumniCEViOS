@@ -41,19 +41,26 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
     @IBAction func createEventAction(_ sender: Any) {
         
         var image:Data?
+        var url:String?
         
         if eventCreated!.imageEvent != nil{
             image = eventCreated?.imageEvent
         }else{
             image = nil
         }
+        
+        if eventCreated!.url != nil{
+            url = eventCreated!.url
+        }else{
+            url = nil
+        }
 
         if(eventCreated?.lat == nil && eventCreated?.lon == nil){
             
-            createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self,lat: nil, lon: nil, image: image)
+            createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self,lat: nil, lon: nil, image: image, url: url)
             
         }else{
-            createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self, lat: eventCreated!.lat!, lon: (eventCreated?.lon)!, image: image)
+            createEventRequest(title: eventCreated!.titleEvent!, description: eventCreated!.descriptionEvent!, idType: eventCreated!.idTypeEvent!, idGroup: eventCreated!.idsGroups, controller: self, lat: eventCreated!.lat!, lon: (eventCreated?.lon)!, image: image, url: url)
         }
 
     }

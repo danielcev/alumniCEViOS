@@ -51,9 +51,17 @@ func saveDataInUserDefaults(value:String, key:String){
 
 func getDataInUserDefaults(key:String) -> String?{
     
-    userRegistered = defaults.object(forKey: "userRegistered") as! [String:String]
+    if defaults.object(forKey: "userRegistered") != nil{
+        userRegistered = defaults.object(forKey: "userRegistered") as! [String:String]
+        
+        return userRegistered[key]
+    }else{
+        return nil
+    }
     
-    return userRegistered[key]
+    
+    
+    
 }
 
 
@@ -62,6 +70,12 @@ func isValidEmail(YourEMailAddress: String) -> Bool {
     REGEX = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
     return NSPredicate(format: "SELF MATCHES %@", REGEX).evaluate(with: YourEMailAddress)
 }
+
+func validateUrl (urlString: String?) -> Bool {
+    let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
+    return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: urlString)
+}
+
 func isValidPhone(phone: String) -> Bool {
     
     return NSPredicate(format: "SELF MATCHES %@", "\\d{9}").evaluate(with: phone)

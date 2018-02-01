@@ -22,6 +22,7 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
             self.getViewController(withIdentifier: "GroupEventViewController"),
             self.getViewController(withIdentifier: "TitleEventViewController"),
             self.getViewController(withIdentifier: "ImageEventViewController"),
+            self.getViewController(withIdentifier: "WebUrlViewController"),
             self.getViewController(withIdentifier: "LocalizationCreateEventViewController"),
         ]
     }()
