@@ -59,6 +59,11 @@
 "createEvent"="Create event";
 "delete"="Delete";
 
+"add"="Add";
+"uploadImage"="Upload image";
+
+"eventCreated"="Event created";
+"eventCreatedSuccess"="The event has been successfully created";
 //MENU
 
 "menu"="Menu";

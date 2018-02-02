@@ -24,13 +24,24 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
     var lat:Float?
     var lon:Float?
     
+    @IBOutlet weak var searchBtn: UIButton!
+    
     @IBOutlet weak var deleteBtn: UIButton!
     
     @IBOutlet weak var addBtn: UIButton!
     
+    @IBOutlet weak var createEventBtn: UIButton!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        addLocalizationLbl.text = "tooLocalization".localized()
+        
+        addBtn.setTitle("add".localized(), for: .normal)
+        deleteBtn.setTitle("delete".localized(), for: .normal)
+        searchBtn.setTitle("search".localized(), for: .normal)
+        createEventBtn.setTitle("createEvent".localized(), for: .normal)
         
         addressLbl.isHidden = true
         map.isHidden = true
@@ -67,7 +78,7 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
             return
         }
         
-        if (eventCreated?.descriptionEvent?.count)! > 1000{
+        if (eventCreated?.descriptionEvent?.count)! > 2500{
             createAlert(type: "error", title: "Exceso caracteres", message: "La descripción es demasiado larga")
             return
         }
@@ -76,7 +87,6 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
             createAlert(type: "error", title: "Faltan datos", message: "Es necesario la descripción del evento")
             return
         }
-        
         
         var image:Data?
         var url:String?

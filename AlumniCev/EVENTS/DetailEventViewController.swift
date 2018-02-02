@@ -24,6 +24,10 @@ class DetailEventViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var urlBtn: UIButton!
     
+    @IBOutlet weak var localizationImage: UIImageView!
+    @IBOutlet weak var webImage: UIImageView!
+    
+    
     var lat:Float?
     var lon:Float?
     
@@ -44,14 +48,18 @@ class DetailEventViewController: UIViewController, UITableViewDelegate, UITableV
             lon = Float(events[idReceived]["lon"] as! String)
             
             addressFromPosition(lat: lat!, lon: lon!, controller: self)
+            
+            localizationImage.isHidden = false
         }else{
             localizationbtn.isHidden = true
             
-            setInfoEvent()
         }
         
         if events[idReceived]["url"] as? String == nil{
             urlBtn.isHidden = true
+            
+        }else{
+            webImage.isHidden = false
         }
         
         if events[idReceived]["image"] as? String == nil{
@@ -83,6 +91,8 @@ class DetailEventViewController: UIViewController, UITableViewDelegate, UITableV
         default:
             titleLbl.text = "Event"
         }
+        
+        setInfoEvent()
 
         // Do any additional setup after loading the view.
     }

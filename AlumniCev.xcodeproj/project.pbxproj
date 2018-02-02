@@ -171,12 +171,12 @@
 				7FB1335520188590007B39E2 /* CreateEventPageViewController.swift */,
 				7FB1335720188888007B39E2 /* TipeEventViewController.swift */,
 				7F7ADBB3201A0CF300489C95 /* TypesTableViewCell.swift */,
+				7F7ADBAF2019FDA700489C95 /* GroupEventViewController.swift */,
+				7F7ADBB12019FE6A00489C95 /* GroupsTableViewCell.swift */,
 				7FB13359201889E0007B39E2 /* TitleEventViewController.swift */,
 				7F89B1A82018C094007BA234 /* ImageEventViewController.swift */,
 				7FDEB18120233FD700431293 /* WebUrlViewController.swift */,
 				7F89B1AA2018C0B6007BA234 /* LocalizationCreateEventViewController.swift */,
-				7F7ADBAF2019FDA700489C95 /* GroupEventViewController.swift */,
-				7F7ADBB12019FE6A00489C95 /* GroupsTableViewCell.swift */,
 			);
 			path = CreateEvent;
 			sourceTree = "<group>";

@@ -14,9 +14,17 @@ class WebUrlViewController: UIViewController {
     @IBOutlet weak var webTxF: UITextField!
     @IBOutlet weak var webLbl: UILabel!
     
+    @IBOutlet weak var addWebLbl: UILabel!
+    
+    @IBOutlet weak var addWebBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addWebLbl.text = "tooLocalization".localized()
 
+        addWebBtn.setTitle("add".localized(), for: .normal)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -28,7 +36,9 @@ class WebUrlViewController: UIViewController {
     @IBAction func addWeb(_ sender: Any) {
         if validateUrl(urlString: webTxF.text){
             eventCreated?.url = webTxF.text
-            print("URL añadida")
+            
+            webLbl.text = webTxF.text
+            
         }else{
             let alert = CPAlertViewController()
             alert.showError(title: "La URL no tiene un formato válido", buttonTitle: "OK")

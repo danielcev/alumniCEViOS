@@ -12,7 +12,9 @@ class TitleEventViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var addTitleLbl: UILabel!
     @IBOutlet weak var addDescriptionLbl: UILabel!
-    @IBOutlet weak var titleTxF: UITextField!
+
+    @IBOutlet weak var titleTxtView: UITextView!
+    
     @IBOutlet weak var descriptionTxF: UITextView!
     
     @IBOutlet weak var countTitleLbl: UILabel!
@@ -22,49 +24,50 @@ class TitleEventViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         descriptionTxF.delegate = self
+        titleTxtView.delegate = self
+        
+        addTitleLbl.text = "addTitle".localized()
+        addDescriptionLbl.text = "addDescription".localized()
         
         setStyle()
 
         
     }
     
-    @IBAction func titleChanged(_ sender: UITextField) {
-        countTitleLbl.text = String(describing: sender.text!.count) + "/100"
-        
-        if sender.text!.count > 100{
-            countTitleLbl.textColor = UIColor.red
-        }else{
-            countTitleLbl.textColor = cevColor
-        }
-
-    }
-    
     func textViewDidChange(_ textView: UITextView){
-        countDescriptionLbl.text = String(describing: textView.text!.count) + "/1000"
+        countDescriptionLbl.text = String(describing: descriptionTxF.text!.count) + "/2500"
         
-        if textView.text!.count > 1000{
+        if descriptionTxF.text!.count > 2500{
             countDescriptionLbl.textColor = UIColor.red
         }else{
             countDescriptionLbl.textColor = cevColor
         }
         
+        countTitleLbl.text = String(describing: titleTxtView.text!.count) + "/100"
+        
+        if titleTxtView.text!.count > 100{
+            countTitleLbl.textColor = UIColor.red
+        }else{
+            countTitleLbl.textColor = cevColor
+        }
+        
     }
     
     func setStyle(){
-        titleTxF.layer.borderColor = cevColor.cgColor
+        titleTxtView.layer.borderColor = cevColor.cgColor
         descriptionTxF.layer.borderColor = cevColor.cgColor
         
-        titleTxF.layer.borderWidth = 1.0
+        titleTxtView.layer.borderWidth = 1.0
         descriptionTxF.layer.borderWidth = 1.0
         
-        titleTxF.layer.cornerRadius = 15.0
+        titleTxtView.layer.cornerRadius = 15.0
         descriptionTxF.layer.cornerRadius = 15.0
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        if titleTxF.text != ""{
-            eventCreated?.titleEvent = titleTxF.text
+        if titleTxtView.text != ""{
+            eventCreated?.titleEvent = titleTxtView.text
         }
         
         if descriptionTxF.text != ""{

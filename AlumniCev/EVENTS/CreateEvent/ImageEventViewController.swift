@@ -18,11 +18,16 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
 
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var addImageBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         picker = UIImagePickerController()
         picker?.delegate = self
+        
+        addImageLbl.text = "wantImage".localized()
+        addImageBtn.setTitle("uploadImage".localized(), for: .normal)
         
     }
     

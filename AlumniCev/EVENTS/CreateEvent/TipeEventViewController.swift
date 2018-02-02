@@ -14,7 +14,6 @@ class TipeEventViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var typesTable: UITableView!
 
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return types.count
     }
@@ -22,7 +21,6 @@ class TipeEventViewController: UIViewController, UITableViewDataSource, UITableV
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 127
@@ -52,19 +50,13 @@ class TipeEventViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
 
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let cell = tableView.cellForRow(at: indexPath) as? TypesTableViewCell {
             eventCreated?.idTypeEvent = cell.idType
             cell.setGreen()
         }
-        
-//        // get parent view controller
-//        let parentVC = self.parent as! CreateEventPageViewController
-//       
-//        // change page of PageViewController
-//        parentVC.setViewControllers([parentVC.pages[1]], direction: .forward, animated: true, completion: nil)
+
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -85,9 +77,9 @@ class TipeEventViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
 
         requestTypes(controller:self)
+        
+        typeLbl.text = "typeEvent".localized()
        
     }
    
-
-
 }

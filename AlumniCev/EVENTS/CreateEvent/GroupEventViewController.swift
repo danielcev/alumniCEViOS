@@ -40,6 +40,8 @@ class GroupEventViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         requestGroups(controller: self)
+        
+        groupsLbl.text = "whatGroups".localized()
 
         // Do any additional setup after loading the view.
     }

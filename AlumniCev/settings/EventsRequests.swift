@@ -71,7 +71,7 @@ func createEventRequest(title:String, description:String, idType:Int, idGroup:[I
                                     case 200:
                                         events = arrayResult["data"] as! [[String:Any]]
                                         
-                                        (controller as! LocalizationCreateEventViewController).createAlert(type:"success", title:"Evento creado", message: "el evento ha sido creado con éxito")
+                                        (controller as! LocalizationCreateEventViewController).createAlert(type:"success", title:"eventCreated".localized(), message: "eventCreatedSuccess".localized())
                                     case 400:
                                         print(arrayResult)
                                         
