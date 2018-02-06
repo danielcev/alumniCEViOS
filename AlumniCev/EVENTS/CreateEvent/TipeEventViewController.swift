@@ -56,6 +56,8 @@ class TipeEventViewController: UIViewController, UITableViewDataSource, UITableV
             eventCreated?.idTypeEvent = cell.idType
             cell.setGreen()
         }
+        
+        (parent as! CreateEventPageViewController).goNextPage(fowardTo: 1)
 
     }
     

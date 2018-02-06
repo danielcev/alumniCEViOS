@@ -39,6 +39,7 @@
 		7FD078982008CA570014FB8E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0789A2008CA570014FB8E /* Localizable.strings */; };
 		7FD2256C2017701E00B64D00 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */; };
 		7FDEB18220233FD700431293 /* WebUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDEB18120233FD700431293 /* WebUrlViewController.swift */; };
+		7FE084A02029D664007E5EEC /* UsersRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE0849F2029D664007E5EEC /* UsersRequests.swift */; };
 		A67EFA722003A7990051853B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA712003A7990051853B /* AppDelegate.swift */; };
 		A67EFA742003A7990051853B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA732003A7990051853B /* ViewController.swift */; };
 		A67EFA772003A7990051853B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A67EFA752003A7990051853B /* Main.storyboard */; };
@@ -104,6 +105,7 @@
 		7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		7FD56EB3202882F300919E0C /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7FDEB18120233FD700431293 /* WebUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUrlViewController.swift; sourceTree = "<group>"; };
+		7FE0849F2029D664007E5EEC /* UsersRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRequests.swift; sourceTree = "<group>"; };
 		A67EFA6E2003A7990051853B /* AlumniCev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlumniCev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A67EFA712003A7990051853B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A67EFA732003A7990051853B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				7F82C087201B36F300259E06 /* GroupsRequests.swift */,
 				65EDBBC0201E1E620017515A /* MapsRequests.swift */,
 				65EDBBC2201E22100017515A /* Address.swift */,
+				7FE0849F2029D664007E5EEC /* UsersRequests.swift */,
 			);
 			path = settings;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				A67EFA722003A7990051853B /* AppDelegate.swift in Sources */,
 				65BADD5E201648F000C6D03F /* UsersViewController.swift in Sources */,
 				65BADD60201648FD00C6D03F /* LocalizationViewController.swift in Sources */,
+				7FE084A02029D664007E5EEC /* UsersRequests.swift in Sources */,
 				7F1D33672004D54600D57F75 /* myAppTools.swift in Sources */,
 				652642272017B254004ACA83 /* EventLocalizationViewController.swift in Sources */,
 				65BADD5C2016408000C6D03F /* EventsViewController.swift in Sources */,

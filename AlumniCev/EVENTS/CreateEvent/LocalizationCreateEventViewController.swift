@@ -62,33 +62,52 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
     
     @IBAction func createEventAction(_ sender: Any) {
         
+        var alert = CPAlertViewController()
+        
         if eventCreated!.idTypeEvent == nil{
-            createAlert(type: "error", title: "Faltan datos", message: "Falta selecciona el tipo de evento")
+            
+            alert.showError(title: "Faltan datos", message: "Falta selecciona el tipo de evento" , buttonTitle: "OK", action: {(nil) in
+                (self.parent as! CreateEventPageViewController).goNextPage(fowardTo: 0)
+            })
+            
             return
         }
         
         if eventCreated!.idsGroups.count == 0{
-            createAlert(type: "error", title: "Faltan datos", message: "Falta seleccionar los grupos")
+            
+            alert.showError(title: "Faltan datos", message: "Falta seleccionar los grupos" , buttonTitle: "OK", action: {(nil) in
+                (self.parent as! CreateEventPageViewController).goNextPage(fowardTo: 1)
+            })
             return
         }
         
         if eventCreated?.titleEvent == nil{
-            createAlert(type: "error", title: "Faltan datos", message: "Es necesario el título del evento")
+            
+            alert.showError(title: "Faltan datos", message: "Es necesario el título del evento" , buttonTitle: "OK", action: {(nil) in
+                (self.parent as! CreateEventPageViewController).goNextPage(fowardTo: 2)
+            })
             return
         }
         
         if (eventCreated?.titleEvent?.count)! > 100{
-            createAlert(type: "error", title: "Exceso caracteres", message: "El título es demasiado largo")
+            
+            alert.showError(title: "Exceso caracteres", message: "El título es demasiado largo" , buttonTitle: "OK", action: {(nil) in
+                (self.parent as! CreateEventPageViewController).goNextPage(fowardTo: 3)
+            })
             return
         }
         
         if (eventCreated?.descriptionEvent?.count)! > 2500{
-            createAlert(type: "error", title: "Exceso caracteres", message: "La descripción es demasiado larga")
+            alert.showError(title: "Exceso caracteres", message: "La descripción es demasiado larga" , buttonTitle: "OK", action: {(nil) in
+                (self.parent as! CreateEventPageViewController).goNextPage(fowardTo: 3)
+            })
             return
         }
         
         if eventCreated?.descriptionEvent == nil{
-            createAlert(type: "error", title: "Faltan datos", message: "Es necesario la descripción del evento")
+            alert.showError(title: "Faltan datos", message: "Es necesaria la descripción del evento" , buttonTitle: "OK", action: {(nil) in
+                (self.parent as! CreateEventPageViewController).goNextPage(fowardTo: 3)
+            })
             return
         }
         

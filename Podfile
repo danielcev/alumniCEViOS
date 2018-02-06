@@ -1,4 +1,3 @@
-
 target 'AlumniCev' do
    use_frameworks!
 
@@ -20,4 +19,3 @@ target 'AlumniCev' do
   target 'AlumniCevUITests' do
     inherit! :search_paths
      end
-

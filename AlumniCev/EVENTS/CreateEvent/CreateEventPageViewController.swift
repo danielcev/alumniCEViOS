@@ -37,7 +37,12 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        return 0
+        guard let firstViewController = viewControllers?.first,
+            let firstViewControllerIndex = pages.index(of: firstViewController) else {
+                return 0
+        }
+        
+        return firstViewControllerIndex
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -85,12 +90,11 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
         // Do any additional setup after loading the view.
     }
     
-    func goToPage(id:Int){
-        
-        setViewControllers([pages[id]], direction: .forward, animated: true, completion: nil)
-        
+    func goNextPage(fowardTo position: Int) {
+        let viewController = self.pages[position]
+        setViewControllers([viewController], direction:
+            UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
     }
-    
 
 }
 
