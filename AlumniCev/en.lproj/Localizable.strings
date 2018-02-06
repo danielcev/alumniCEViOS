@@ -11,6 +11,7 @@
 "en"="English";
 "es"="Español";
 "base"="Base";
+"ca"="Catalan";
 
 //LOGIN
 "email"="E-mail";
@@ -51,7 +52,7 @@
 "notice"="Notice";
 "search"="Search";
 "typeEvent"="What kind of event are you going to create?";
-"whatGroups"="For which groups?";
+"whatGroups"="Indicate the groups that should receive your event";
 "addTitle"="Add the title";
 "addDescription"="Add the description";
 "wantImage"="Want to add an image?";
@@ -64,7 +65,11 @@
 
 "eventCreated"="Event created";
 "eventCreatedSuccess"="The event has been successfully created";
-
+"infoTitle" = "Tell us the title and description of your event.";
+"cancel" = "cancel";
+"optional" = "*Optional";
 //MENU
 
 "menu"="Menu";
+
+

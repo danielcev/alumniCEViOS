@@ -97,6 +97,13 @@ class DetailEventViewController: UIViewController, UITableViewDelegate, UITableV
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func opendURL(_ sender: Any) {
+        
+        if let url = URL(string: urlBtn.title(for: .normal)!) {
+            UIApplication.shared.open(url, options: [:])
+        }
+        
+    }
     func setEvent(address:Address){
     
         localizationbtn.setTitle(address.formatted_address, for: .normal)

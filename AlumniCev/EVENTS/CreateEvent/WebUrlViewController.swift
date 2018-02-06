@@ -13,7 +13,9 @@ class WebUrlViewController: UIViewController {
 
     @IBOutlet weak var webTxF: UITextField!
     @IBOutlet weak var webLbl: UILabel!
+    @IBOutlet weak var optionalLb: UILabel!
     
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addWebLbl: UILabel!
     
     @IBOutlet weak var addWebBtn: UIButton!
@@ -22,12 +24,17 @@ class WebUrlViewController: UIViewController {
         super.viewDidLoad()
         
         addWebLbl.text = "tooLocalization".localized()
+        cancelButton.setTitle("cancel".localized(), for: .normal)
 
         addWebBtn.setTitle("add".localized(), for: .normal)
+        optionalLb.text = "optional".localized()
         
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func cancelAction(_ sender: Any) {
+          self.dismiss(animated: true, completion: nil)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

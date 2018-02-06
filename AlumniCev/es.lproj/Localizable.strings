@@ -11,6 +11,7 @@
 "en"="English";
 "es"="Español";
 "base"="Base";
+"ca"="Catalan";
 
 //LOGIN
 "email"="E-mail";
@@ -51,7 +52,7 @@
 "notice"="Noticia";
 "search"="Buscar";
 "typeEvent"="¿Qué tipo de evento vas a crear?";
-"whatGroups"="¿Para qué grupos?";
+"whatGroups"="Indica los grupos que deben recibir tu evento";
 "addTitle"="Añade el título";
 "addDescription"="Añade la descripción";
 "wantImage"="¿Quieres añadir una imagen?";
@@ -64,7 +65,9 @@
 
 "add"="Añadir";
 "uploadImage"="Subir imagen";
-
+"infoTitle" = "Indicanos el titulo y descripción de tu evento.";
+"cancel" = "cancelar";
+"optional" = "*Opcional";
 //MENU
 
 "menu"="Menu";

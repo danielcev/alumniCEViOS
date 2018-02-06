@@ -13,6 +13,8 @@ class GroupEventViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var groupsLbl: UILabel!
     
+    @IBOutlet weak var cancelButton: UIButton!
+    
     @IBOutlet weak var groupsTable: UITableView!
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -42,14 +44,19 @@ class GroupEventViewController: UIViewController, UITableViewDelegate, UITableVi
         requestGroups(controller: self)
         
         groupsLbl.text = "whatGroups".localized()
-
+        cancelButton.setTitle("cancel".localized(), for: .normal)
         // Do any additional setup after loading the view.
     }
     
     func rechargeTable(){
         groupsTable.reloadData()
     }
-
+    
+    @IBAction func cancelAction(_ sender: Any) {
+         self.dismiss(animated: true, completion: nil)
+    }
+    
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

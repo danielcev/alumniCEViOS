@@ -1,0 +1,77 @@
+/*
+ Localizable.strings
+ loginTest
+ 
+ Created by alumnos on 9/10/17.
+ Copyright © 2017 Profe. All rights reserved.
+ */
+
+//LANGUAGES
+
+"en"="English";
+"es"="Español";
+"base"="Base";
+"ca"="Catalan";
+
+//LOGIN
+"email"="Email";
+"password"="contrasenya";
+"areyouregister"="Estàs registrat?";
+"forgetPass"="Has oblidat la teva contrasenya?";
+"enter"="ENTRAR";
+"notAccount"="No tens un compte?";
+"register"="Registre";
+
+//REGISTER
+"repeatPassword"="Repeteix la contrassenya";
+"back"="esquena";
+
+//RECOVER PASSWORD
+"ok"="OK";
+"changePassword"="Canvia la contrasenya";
+"passwordChanged"="S'ha canviat la contrasenya";
+
+//ALERTS
+"emptyPassword"="Contrasenya buida";
+"wrongRepeatPassword"="Les contrasenyes no coincideixen";
+"emptyTlf"="Telèfon buit";
+"wrongEmail"="Correu electrònic incorrecte";
+"allFieldsRequired"="Tots els camps són obligatoris";
+"lengthPassword"="La contrasenya ha de tenir entre 5 i 12 caràcters.";
+"correctLogin"="Corregeix l'inici de sessió";
+
+//EVENTS
+
+"events"="Esdeveniments";
+"event"="Esdeveniment";
+"joboffers"="Oferta de treball";
+"joboffer"="Ofertes de treball";
+"notifications"="Notifications";
+"notification"="Notificació";
+"news"="Notícies";
+"notice"="Avís";
+"search"="Cerca";
+"typeEvent"="Quin tipus d'esdeveniment va a crear?";
+"whatGroups"="Indiqueu els grups que haurien de rebre el vostre esdeveniment";
+"addTitle"="Afegiu el títol";
+"addDescription"="Afegiu la descripció";
+"wantImage"="Voleu afegir una imatge?";
+"tooLocalization"="També podeu afegir una ubicació";
+"createEvent"="Crea un esdeveniment";
+"delete"="Suprimeix";
+"descriptionInfo"="Doneu-nos més informació del teu esdeveniment, tria un títol i una descripció del teu esdeveniment";
+"add"="Afegeix";
+"uploadImage"="Penja la imatge";
+
+"eventCreated"="Esdeveniment creat";
+"eventCreatedSuccess"="L'esdeveniment s'ha creat correctament";
+"infoTitle" = "Indica'ns el títol i descripció del teu esdeveniment.";
+"cancel" = "cancel · lar";
+"optional" = "*Opcional";
+//MENU
+
+"menu"="Menú";
+
+
+
+

@@ -14,8 +14,10 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
     
     var picker:UIImagePickerController?
 
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addImageLbl: UILabel!
-
+    @IBOutlet weak var optionalLabel: UILabel!
+    
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var addImageBtn: UIButton!
@@ -28,6 +30,8 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         
         addImageLbl.text = "wantImage".localized()
         addImageBtn.setTitle("uploadImage".localized(), for: .normal)
+        cancelButton.setTitle("cancel".localized(), for: .normal)
+        optionalLabel.text = "optional".localized()
         
     }
     
@@ -95,6 +99,9 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         alert.showError(title: "Es necesario aceptar los permisos desde ajustes", buttonTitle: "OK")
     }
     
+    @IBAction func cancelAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)

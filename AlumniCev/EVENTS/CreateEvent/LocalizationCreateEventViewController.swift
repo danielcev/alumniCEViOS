@@ -14,7 +14,9 @@ import SwiftSpinner
 class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var addLocalizationLbl: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
     
+    @IBOutlet weak var optionalLB: UILabel!
     @IBOutlet weak var localizationTxF: UITextField!
     
     @IBOutlet weak var addressLbl: UILabel!
@@ -42,6 +44,8 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
         deleteBtn.setTitle("delete".localized(), for: .normal)
         searchBtn.setTitle("search".localized(), for: .normal)
         createEventBtn.setTitle("createEvent".localized(), for: .normal)
+        cancelButton.setTitle("cancel".localized(), for: .normal)
+        optionalLB.text = "optional".localized()
         
         addressLbl.isHidden = true
         map.isHidden = true
@@ -170,17 +174,24 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
     }
     
     @IBAction func deleteAction(_ sender: Any) {
-        eventCreated?.lat = nil
-        eventCreated?.lon = nil
-        
-        self.lat = nil
-        self.lon = nil
-        
-        addressLbl.isHidden = true
-        deleteBtn.isHidden = true
-        addBtn.isHidden = true
-        map.isHidden = true
-        localizationTxF.text = ""
+
+        let alert = CPAlertViewController()
+        alert.showError(title: "Delet Localicaton", message: "Se va a eliminar la localización, ¿estas seguro?" , buttonTitle: "OK",action: { (nil) in
+            eventCreated?.lat = nil
+            eventCreated?.lon = nil
+            
+            self.lat = nil
+            self.lon = nil
+            
+            self.addressLbl.isHidden = true
+            self.deleteBtn.isHidden = true
+            self.addBtn.isHidden = true
+            self.map.isHidden = true
+            self.localizationTxF.text = ""
+        })
+    }
+    @IBAction func cancelAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func createAlert(type:String, title:String, message:String){

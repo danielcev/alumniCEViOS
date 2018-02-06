@@ -18,8 +18,28 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>"Para un correcto funcionamiento de la app es necesario el acceso a la localización"</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>"Para un correcto funcionamiento de la app es necesario el acceso a la localización"</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>"Para un correcto funcionamiento de la app es necesario el acceso a la localización"</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>"Es necesario permitir el acceso a Fotos para poder subir una imagen"</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>"Es necesario permitir el acceso a Fotos para poder subir una imagen"</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -34,25 +54,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;Para un correcto funcionamiento de la app es necesario el acceso a la localización&quot;</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>&quot;Para un correcto funcionamiento de la app es necesario el acceso a la localización&quot;</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&quot;Para un correcto funcionamiento de la app es necesario el acceso a la localización&quot;</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>googlechromes</string>
-		<string>comgooglemaps</string>
-	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;Es necesario permitir el acceso a Fotos para poder subir una imagen&quot;</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>&quot;Es necesario permitir el acceso a Fotos para poder subir una imagen&quot;</string>
 </dict>
 </plist>
