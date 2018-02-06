@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import MapKit
 
 class LocalizationViewController: UIViewController {
-
+    
+    @IBOutlet weak var titleLocalizationLbl: UILabel!
+    
+    @IBOutlet weak var mapRoute: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,8 +25,11 @@ class LocalizationViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
+    @IBAction func backAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

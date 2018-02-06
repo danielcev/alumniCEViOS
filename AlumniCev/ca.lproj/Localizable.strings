@@ -34,8 +34,9 @@
 //ALERTS
 "emptyPassword"="Contrasenya buida";
 "wrongRepeatPassword"="Les contrasenyes no coincideixen";
+"wrongFormat"="Format de correu electrònic no vàlid";
 "emptyTlf"="Telèfon buit";
-"wrongEmail"="Correu electrònic incorrecte";
+"wrongEmail"="Correu electrònic incorrecte. No pre-registrat";
 "allFieldsRequired"="Tots els camps són obligatoris";
 "lengthPassword"="La contrasenya ha de tenir entre 5 i 12 caràcters.";
 "correctLogin"="Corregeix l'inici de sessió";
@@ -72,6 +73,7 @@
 
 "menu"="Menú";
 
-
+//LOCALIZACIÓN
+"localizationTitle" = "Ubicació"
 
 

@@ -34,8 +34,9 @@
 //ALERTS
 "emptyPassword"="Contraseña vacía";
 "wrongRepeatPassword"="Las contraseñas no coinciden";
+"wrongFormat"="Formato de e-mail no válido";
 "emptyTlf"="Telefono Vacio";
-"wrongEmail"="Email incorrecto";
+"wrongEmail"="Email incorrecto, no se encuentra pre-registrado";
 "allFieldsRequired"="Todos los campos son necesarios";
 "lengthPassword"="La contraseña debe estar comprendida entre 5 y 12 caracteres";
 "correctLogin"="Login correcto";
@@ -72,13 +73,8 @@
 
 "menu"="Menu";
 
-// SETINGS
+//LOCALIZACIÓN
+"localizationTitle" = "Localización"
 
-"shareProfile"="Compartir perfil";
-"shareFriends"="Compartir mis amigos";
-"shareLists"="Compartir mis listas";
-"shareLocalization"="Compartir mi localización";
-"allowNotifications"="Permitir notificaciones";
-"editProfile"="Editar mi perfil";
 
 

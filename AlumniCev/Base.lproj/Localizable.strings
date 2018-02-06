@@ -34,8 +34,9 @@
 //ALERTS
 "emptyPassword"="Empty password";
 "wrongRepeatPassword"="The passwords don't match";
+"wrongFormat"="Invalid e-mail format";
 "emptyTlf"="Empty phone";
-"wrongEmail"="Incorrect e-mail";
+"wrongEmail"="Incorrect e-mail. Not pre-registered";
 "allFieldsRequired"="All fields are required";
 "lengthPassword"="The password must be between 5 and 12 characters long.";
 "correctLogin"="Correct login";
@@ -72,6 +73,9 @@
 
 "menu"="Menu";
 
+
+//LOCALIZACIÓN
+"localizationTitle" = "Location"
 
 
 
