@@ -24,6 +24,8 @@ var addressResponse:Dictionary<String,Any>?
 
 var comments:Dictionary<String,Any>?
 
+var users:[Dictionary<String,Any>]?
+
 var events:[[String:Any]] = [
     
     ["title":"Evento 1",

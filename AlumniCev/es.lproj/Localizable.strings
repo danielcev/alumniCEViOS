@@ -58,6 +58,7 @@
 "addDescription"="Añade la descripción";
 "wantImage"="¿Quieres añadir una imagen?";
 "tooLocalization"="También puedes agregar una ubicación";
+"addWeb"="¿Quieres añadir una web?";
 "createEvent"="Crear evento";
 "delete"="Eliminar";
 

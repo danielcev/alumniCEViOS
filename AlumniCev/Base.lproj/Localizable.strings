@@ -57,6 +57,7 @@
 "addTitle"="Add the title";
 "addDescription"="Add the description";
 "wantImage"="Want to add an image?";
+"addWeb"="Want to add a website?";
 "tooLocalization"="You can also add a location";
 "createEvent"="Create event";
 "delete"="Delete";

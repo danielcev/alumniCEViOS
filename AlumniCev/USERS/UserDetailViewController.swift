@@ -1,21 +1,28 @@
 //
-//  UsersViewController.swift
+//  UserDetailViewController.swift
 //  AlumniCev
 //
-//  Created by Daniel Plata on 22/1/18.
+//  Created by Daniel Plata on 7/2/18.
 //  Copyright © 2018 Victor Serrano. All rights reserved.
 //
 
 import UIKit
 
-class UsersViewController: UIViewController {
+class UserDetailViewController: UIViewController {
+    
+    @IBOutlet weak var usernameLbl: UILabel!
+    
+    var username:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        usernameLbl.text = username!
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func backAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

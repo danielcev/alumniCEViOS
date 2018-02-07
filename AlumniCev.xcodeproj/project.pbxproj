@@ -15,6 +15,8 @@
 		65BADD5E201648F000C6D03F /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD5D201648F000C6D03F /* UsersViewController.swift */; };
 		65BADD60201648FD00C6D03F /* LocalizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */; };
 		65BADD622016498400C6D03F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BADD612016498400C6D03F /* ProfileViewController.swift */; };
+		65C2AC73202B61EA00BF9755 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C2AC72202B61EA00BF9755 /* UsersTableViewCell.swift */; };
+		65C2AC76202B6C4C00BF9755 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C2AC75202B6C4C00BF9755 /* UserDetailViewController.swift */; };
 		65EDBBC1201E1E620017515A /* MapsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EDBBC0201E1E620017515A /* MapsRequests.swift */; };
 		65EDBBC3201E22100017515A /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EDBBC2201E22100017515A /* Address.swift */; };
 		7F1D33652004D38900D57F75 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33642004D38900D57F75 /* RegisterViewController.swift */; };
@@ -76,6 +78,8 @@
 		65BADD5D201648F000C6D03F /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewController.swift; sourceTree = "<group>"; };
 		65BADD612016498400C6D03F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		65C2AC72202B61EA00BF9755 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
+		65C2AC75202B6C4C00BF9755 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		65EDBBC0201E1E620017515A /* MapsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsRequests.swift; sourceTree = "<group>"; };
 		65EDBBC2201E22100017515A /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		77CA810BBEB389844D7C605A /* libPods-AlumniCevUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AlumniCevUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,8 +173,8 @@
 		6507FBA82019098500FB799A /* CreateEvent */ = {
 			isa = PBXGroup;
 			children = (
-				7F5A6FF5202B03300080E41A /* TipeEventViewController.swift */,
 				7FB1335520188590007B39E2 /* CreateEventPageViewController.swift */,
+				7F5A6FF5202B03300080E41A /* TipeEventViewController.swift */,
 				7F7ADBAF2019FDA700489C95 /* GroupEventViewController.swift */,
 				7F7ADBB12019FE6A00489C95 /* GroupsTableViewCell.swift */,
 				7FB13359201889E0007B39E2 /* TitleEventViewController.swift */,
@@ -203,6 +207,16 @@
 				6507FBA82019098500FB799A /* CreateEvent */,
 			);
 			path = EVENTS;
+			sourceTree = "<group>";
+		};
+		65C2AC74202B61F300BF9755 /* USERS */ = {
+			isa = PBXGroup;
+			children = (
+				65BADD5D201648F000C6D03F /* UsersViewController.swift */,
+				65C2AC72202B61EA00BF9755 /* UsersTableViewCell.swift */,
+				65C2AC75202B6C4C00BF9755 /* UserDetailViewController.swift */,
+			);
+			path = USERS;
 			sourceTree = "<group>";
 		};
 		7F1D33682004D54E00D57F75 /* settings */ = {
@@ -246,10 +260,10 @@
 			children = (
 				6507FBA9201909CC00FB799A /* LOGIN */,
 				6507FBAA201909E900FB799A /* EVENTS */,
+				65C2AC74202B61F300BF9755 /* USERS */,
 				A67EFA712003A7990051853B /* AppDelegate.swift */,
 				7FAE1B25200F4AED00F17E11 /* MainViewController.swift */,
 				65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */,
-				65BADD5D201648F000C6D03F /* UsersViewController.swift */,
 				65BADD612016498400C6D03F /* ProfileViewController.swift */,
 				7F711B892008D73200BFF37D /* Localize.swift */,
 				A67EFA752003A7990051853B /* Main.storyboard */,
@@ -611,12 +625,14 @@
 				65832A0C2023AD9800C2B8AF /* DetailCommentsTableViewCell.swift in Sources */,
 				A67EFA742003A7990051853B /* ViewController.swift in Sources */,
 				7F711B8A2008D73200BFF37D /* Localize.swift in Sources */,
+				65C2AC76202B6C4C00BF9755 /* UserDetailViewController.swift in Sources */,
 				7FD2256C2017701E00B64D00 /* EventTableViewCell.swift in Sources */,
 				7FB1335A201889E0007B39E2 /* TitleEventViewController.swift in Sources */,
 				7FAE1B2A200F827100F17E11 /* RecoverViewController.swift in Sources */,
 				7F5A6FF6202B03310080E41A /* TipeEventViewController.swift in Sources */,
 				7F7ADBAE2019F44C00489C95 /* EventsRequests.swift in Sources */,
 				7FAE1B28200F804E00F17E11 /* ForgotViewController.swift in Sources */,
+				65C2AC73202B61EA00BF9755 /* UsersTableViewCell.swift in Sources */,
 				7F82C08A201B537000259E06 /* Event.swift in Sources */,
 				7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */,
 				65BADD622016498400C6D03F /* ProfileViewController.swift in Sources */,
@@ -811,7 +827,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = D7ERVUZL2M;
 				INFOPLIST_FILE = AlumniCev/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = alumnigroup.alumnicev.cev;
@@ -827,7 +843,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = D7ERVUZL2M;
 				INFOPLIST_FILE = AlumniCev/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = alumnigroup.alumnicev.cev;

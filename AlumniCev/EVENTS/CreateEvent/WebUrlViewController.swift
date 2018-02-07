@@ -21,7 +21,7 @@ class WebUrlViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addWebLbl.text = "tooLocalization".localized()
+        addWebLbl.text = "addWeb".localized()
 
         addWebBtn.setTitle("add".localized(), for: .normal)
         optionalLb.text = "optional".localized()

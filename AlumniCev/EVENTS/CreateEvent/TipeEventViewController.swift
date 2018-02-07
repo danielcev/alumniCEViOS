@@ -20,15 +20,19 @@ class TipeEventViewController: UIViewController{
         super.viewDidLoad()
 
         typeLbl.text = "typeEvent".localized()
-        
        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        eventCreated?.idTypeEvent = nil
     }
     
     @IBAction func selecTypeAction(_ sender: Any) {
         
+        eventCreated?.idTypeEvent = (sender as! UIButton).tag
+        
         (parent as! CreateEventPageViewController).goNextPage(fowardTo: 1)
         
     }
-    
-   
+
 }

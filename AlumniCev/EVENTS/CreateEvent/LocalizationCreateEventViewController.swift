@@ -60,7 +60,7 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
     
     @IBAction func createEventAction(_ sender: Any) {
         
-        var alert = CPAlertViewController()
+        let alert = CPAlertViewController()
         
         if eventCreated!.idTypeEvent == nil{
             

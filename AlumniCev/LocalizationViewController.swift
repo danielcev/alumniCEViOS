@@ -29,27 +29,43 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
         
         mapRoute.delegate = self
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined, .restricted, .denied:
-                mapRoute.isHidden = true
                 
-                UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, completionHandler: {(Bool) in
-                    
-                })
-
+                let alert = UIAlertController(title: "Localización necesaria", message: "Es necesario acceder a la localización", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK, ir a ajustes", style: .default, handler: { (alert) in
+                    UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, completionHandler: nil
+                    )
+                }))
+                
+                alert.addAction(UIAlertAction(title: "No quiero permitir localización", style: .cancel, handler: {(alert) in
+                    self.mapRoute.removeOverlays(self.mapRoute.overlays)
+                    self.setMark()
+                    self.segmentedTransport.isHidden = true
+                }))
+                
+                self.present(alert, animated: true)
+                
             case .authorizedAlways, .authorizedWhenInUse:
-                
-                print("aceptado")
+                self.segmentedTransport.isHidden = false
                 setRoute()
             }
         } else {
             print("Location services are not enabled")
         }
-        
     }
     
     func setRoute(){
+        
+        requestRoute()
+    }
+    
+    func setMark(){
         
         let latitude:CLLocationDegrees = CLLocationDegrees(40.437628)
         let longitude:CLLocationDegrees = CLLocationDegrees(-3.715484)
@@ -62,7 +78,24 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
         
         let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "CEV"
+        annotation.subtitle = "Calle Gaztambide 65, 28015 Madrid"
+        
+        mapRoute.addAnnotation(annotation)
+
         mapRoute.setRegion(region, animated: true)
+    }
+    
+    func onlySetMark(){
+        let latitude:CLLocationDegrees = CLLocationDegrees(40.437628)
+        let longitude:CLLocationDegrees = CLLocationDegrees(-3.715484)
+        
+        let latDelta:CLLocationDegrees = 0.01
+        let longDelta:CLLocationDegrees = 0.01
+        
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
@@ -70,10 +103,6 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
         annotation.subtitle = "Calle Gaztambide 65, 28015 Madrid"
         
         mapRoute.addAnnotation(annotation)
-        
-        //////
-        
-        requestRoute()
     }
     
     func requestRoute(){
@@ -94,10 +123,9 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
                 print(error.localizedDescription)
             } else {
             self.mapRoute.add((respuesta?.routes[0].polyline)!)
-                
+                self.onlySetMark()
                 self.zoomToPolyLine(map: self.mapRoute, polyLine: (respuesta?.routes[0].polyline)!, animated: true)
                 
-                print(respuesta?.routes[0].expectedTravelTime)
             }
         }
     }

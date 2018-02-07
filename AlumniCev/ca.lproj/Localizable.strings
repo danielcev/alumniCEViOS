@@ -58,6 +58,7 @@
 "addDescription"="Afegiu la descripció";
 "wantImage"="Voleu afegir una imatge?";
 "tooLocalization"="També podeu afegir una ubicació";
+"addWeb"="Vols afegir un web?";
 "createEvent"="Crea un esdeveniment";
 "delete"="Suprimeix";
 "descriptionInfo"="Doneu-nos més informació del teu esdeveniment, tria un títol i una descripció del teu esdeveniment";
