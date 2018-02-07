@@ -13,8 +13,6 @@ class GroupEventViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var groupsLbl: UILabel!
     
-    @IBOutlet weak var cancelButton: UIButton!
-    
     @IBOutlet weak var groupsTable: UITableView!
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,7 +42,6 @@ class GroupEventViewController: UIViewController, UITableViewDelegate, UITableVi
         requestGroups(controller: self)
         
         groupsLbl.text = "whatGroups".localized()
-        cancelButton.setTitle("cancel".localized(), for: .normal)
         // Do any additional setup after loading the view.
     }
     

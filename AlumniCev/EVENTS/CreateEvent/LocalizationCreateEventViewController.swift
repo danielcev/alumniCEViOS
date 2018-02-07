@@ -14,7 +14,6 @@ import SwiftSpinner
 class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var addLocalizationLbl: UILabel!
-    @IBOutlet weak var cancelButton: UIButton!
     
     @IBOutlet weak var optionalLB: UILabel!
     @IBOutlet weak var localizationTxF: UITextField!
@@ -44,7 +43,6 @@ class LocalizationCreateEventViewController: UIViewController, MKMapViewDelegate
         deleteBtn.setTitle("delete".localized(), for: .normal)
         searchBtn.setTitle("search".localized(), for: .normal)
         createEventBtn.setTitle("createEvent".localized(), for: .normal)
-        cancelButton.setTitle("cancel".localized(), for: .normal)
         optionalLB.text = "optional".localized()
         
         addressLbl.isHidden = true

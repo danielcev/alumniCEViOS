@@ -74,7 +74,9 @@
 "menu"="Menu";
 
 //LOCALIZACIÓN
-"localizationTitle" = "Localización"
+"localizationTitle" = "Localización";
+
+"howToGo" = "Cómo llegar al CEV";
 
 
 

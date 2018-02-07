@@ -14,8 +14,6 @@ class WebUrlViewController: UIViewController {
     @IBOutlet weak var webTxF: UITextField!
     @IBOutlet weak var webLbl: UILabel!
     @IBOutlet weak var optionalLb: UILabel!
-    
-    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addWebLbl: UILabel!
     
     @IBOutlet weak var addWebBtn: UIButton!
@@ -24,7 +22,6 @@ class WebUrlViewController: UIViewController {
         super.viewDidLoad()
         
         addWebLbl.text = "tooLocalization".localized()
-        cancelButton.setTitle("cancel".localized(), for: .normal)
 
         addWebBtn.setTitle("add".localized(), for: .normal)
         optionalLb.text = "optional".localized()

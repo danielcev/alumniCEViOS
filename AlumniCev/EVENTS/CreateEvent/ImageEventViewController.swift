@@ -14,7 +14,6 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
     
     var picker:UIImagePickerController?
 
-    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addImageLbl: UILabel!
     @IBOutlet weak var optionalLabel: UILabel!
     
@@ -30,7 +29,6 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         
         addImageLbl.text = "wantImage".localized()
         addImageBtn.setTitle("uploadImage".localized(), for: .normal)
-        cancelButton.setTitle("cancel".localized(), for: .normal)
         optionalLabel.text = "optional".localized()
         
     }

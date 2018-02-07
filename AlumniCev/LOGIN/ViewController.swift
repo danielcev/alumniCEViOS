@@ -134,6 +134,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     SwiftSpinner.hide()
 
                     alert.showSuccess(title: (arrayResult["message"] as! String),  buttonTitle: "OK", action: { (nil) in
+                        saveDataInUserDefaults(value: arrayUser["id"] as! String, key: "id")
                         saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")
                         saveDataInUserDefaults(value: arrayUser["password"] as! String, key: "password")
                         saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")

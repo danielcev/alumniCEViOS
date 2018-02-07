@@ -75,7 +75,8 @@
 
 
 //LOCALIZACIÓN
-"localizationTitle" = "Location"
+"localizationTitle" = "Location";
+"howToGo" = "How to go to CEV";
 
 
 

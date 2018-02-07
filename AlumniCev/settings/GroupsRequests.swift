@@ -29,8 +29,6 @@ func requestTypes(controller:UIViewController){
             case 200:
                 types = arrayResult["data"] as! [Dictionary<String,String>]
                 
-                (controller as! TipeEventViewController).rechargeTable()
-                
             default:
                 
                 print(arrayResult["message"] as! String)

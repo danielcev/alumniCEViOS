@@ -12,13 +12,9 @@ class TitleEventViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var addTitleLbl: UILabel!
     @IBOutlet weak var addDescriptionLbl: UILabel!
-
-    @IBOutlet weak var infotitleLb: UILabel!
     @IBOutlet weak var titleTxtView: UITextView!
     
     @IBOutlet weak var descriptionTxF: UITextView!
-    
-    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var countTitleLbl: UILabel!
     @IBOutlet weak var countDescriptionLbl: UILabel!
     
@@ -30,8 +26,6 @@ class TitleEventViewController: UIViewController, UITextViewDelegate {
         
         addTitleLbl.text = "addTitle".localized()
         addDescriptionLbl.text = "addDescription".localized()
-        infotitleLb.text = "infoTitle".localized()
-        cancelButton.setTitle("cancel".localized(), for: .normal)
         
         setStyle()
 
