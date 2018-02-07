@@ -16,6 +16,8 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapRoute: MKMapView!
     
+    @IBOutlet weak var segmentedTransport: UISegmentedControl!
+    
     var transportType: MKDirectionsTransportType?
     
     override func viewDidLoad() {
@@ -36,7 +38,6 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
                     
                 })
 
-                
             case .authorizedAlways, .authorizedWhenInUse:
                 
                 print("aceptado")
@@ -137,7 +138,7 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay:
         MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = UIColor.red
+        renderer.strokeColor = cevColor
         renderer.lineWidth = 3
         return renderer
     }
