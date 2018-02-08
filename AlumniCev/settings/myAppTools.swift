@@ -22,7 +22,7 @@ var types:[Dictionary<String,String>] = []
 
 var addressResponse:Dictionary<String,Any>?
 
-var comments:Dictionary<String,Any>?
+var comments:[Dictionary<String,Any>]?
 
 var users:[Dictionary<String,Any>]?
 

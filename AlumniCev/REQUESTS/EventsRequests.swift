@@ -127,7 +127,7 @@ func requestEvents(type:Int, controller:UIViewController){
     }
 }
 
-func requestEvent(id:Int, controller:UIViewController){
+func requestEvent(id:Int, action: @escaping () -> ()){
     let url = URL(string: URL_GENERAL + "events/event.json")
     
     let parameters: Parameters = ["id":id]
@@ -149,8 +149,8 @@ func requestEvent(id:Int, controller:UIViewController){
         case .success:
             switch arrayResult["code"] as! Int{
             case 200:
-                comments = (arrayResult["data"] as! Dictionary<String, Any>)["comments"] as? Dictionary<String, Any>
-                
+                comments = (arrayResult["data"] as! Dictionary<String, Any>)["comments"] as? [Dictionary<String, Any>]
+                action()
             default:
                 //(controller as! EventsViewController).notResults()
                 print(arrayResult["message"] as! String)

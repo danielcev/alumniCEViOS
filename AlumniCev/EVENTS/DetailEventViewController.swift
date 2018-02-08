@@ -8,11 +8,14 @@
 
 import UIKit
 import Alamofire
+import CPAlertViewController
 
 class DetailEventViewController: UIViewController{
     
     var idReceived: Int = 0
 
+    @IBOutlet weak var commentView: UIView!
+    
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var secondTitleLbl: UILabel!
     
@@ -37,9 +40,25 @@ class DetailEventViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.dateComment.isHidden = true
+        
         styleTxF(textfield: commentTxF)
         
-        requestEvent(id:Int(events[idReceived]["id"] as! String)!, controller:self)
+        if(getDataInUserDefaults(key: "photo") != nil){
+            let photo:Data = Data(base64Encoded: getDataInUserDefaults(key: "photo")!)!
+            photoUser.image = UIImage(data: photo)
+            
+        }
+        
+        photoUser.layer.cornerRadius = photoUser.frame.size.width/2
+        photoUser.layer.masksToBounds = true
+
+        requestEvent(id: Int(events[idReceived]["id"] as! String)!) {
+            if(comments!.count > 0){
+                self.setComment()
+            }
+
+        }
         
         imageViewEvent.clipsToBounds = true
         imageViewEvent.contentMode = .scaleAspectFit
@@ -151,10 +170,68 @@ class DetailEventViewController: UIViewController{
         }
     }
     
-    @IBAction func sendCommentAction(_ sender: Any) {
+    func requestImageComment(url:String, image:UIImageView){
+        let remoteImageURL = URL(string: url)!
+        
+        // Use Alamofire to download the image
+        Alamofire.request(remoteImageURL).responseData { (response) in
+            if response.error == nil {
+                print(response.result)
+                
+                if let data = response.data {
+                    image.image = UIImage(data: data)
+                }
+            }
+        }
+    }
+    
+    func setComment(){
+        
+        commentView.isHidden = false
+        
+        var lastComment = comments![(comments?.count)! - 1]
+        
+        self.usernameLbl.text = lastComment["username"] as? String
+        self.descriptionTxF.text = lastComment["description"] as! String
+        
+        if lastComment["date"] as? String != nil{
+            self.dateComment.isHidden = false
+            self.dateComment.text = lastComment["date"] as? String
+        }
+        
+        if lastComment["photo"] as? String != nil{
+            requestImageComment(url: (lastComment["photo"] as? String)!, image: photoUserComment)
+        }else{
+            photoUserComment.image = UIImage(named: "userdefaulticon")
+        }
+        
+        photoUserComment.layer.cornerRadius = photoUserComment.frame.size.width/2
+        photoUserComment.layer.masksToBounds = true
         
     }
     
+    @IBAction func sendCommentAction(_ sender: Any) {
+        
+        requestCreateComment(title: "ComentarioTest", description: commentTxF.text!, id_event: Int((events[idReceived]["id"] as? String)!)!){
+            
+            let alert = CPAlertViewController()
+            
+            alert.showSuccess(title: "Éxito", message: "Comentario creado!", buttonTitle: "OK", action: { (nil) in
+                requestEvent(id: Int(events[self.idReceived]["id"] as! String)!) {
+                    self.setComment()
+                }
+            })
+            
+            
+        }
+    
+    }
+    
+    @IBAction func goToCommentsAction(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
+        
+        self.present(vc, animated: false, completion: nil)
+    }
     
     func styleTxF(textfield:UITextField){
         

@@ -113,7 +113,9 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate,U
         newProfileImage.contentMode = .scaleAspectFit
         newProfileImage.image = chosenImage
         
-        var photo:Data = UIImageJPEGRepresentation(chosenImage, 0.1)!
+        let photo:Data = UIImageJPEGRepresentation(chosenImage, 0.1)!
+        
+        saveDataInUserDefaults(value: photo.base64EncodedString(), key: "photo")
         
         let id = Int(getDataInUserDefaults(key: "id")!)
         
@@ -149,15 +151,4 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate,U
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
