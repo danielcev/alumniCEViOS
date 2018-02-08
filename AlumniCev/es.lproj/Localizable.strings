@@ -79,5 +79,13 @@
 
 "howToGo" = "Cómo llegar al CEV";
 
+//WELCOME
+"Congratulations" = "¡Enhorabuena, te has registrado!";
+"nowYouAreAlumni" = "Ahora formas parte de Alumni";
+"changePhoto" = "Cambia tu foto de perfil";
+"alwaysChange" = "Siempre podras cambiarla desde tu perfil";
+"changeButton" = "Cambiar foto";
+"notchangeBtn" = "Omitir este paso";
+"welcome" = "Bienvenido";
 
 

@@ -78,3 +78,12 @@
 "localizationTitle" = "Ubicació";
 "howToGo" = "Com arribar al CEV";
 
+//WELCOME
+"Congratulations" = "Enhorabona, t'has registrat!";
+"nowYouAreAlumni" = "Ara ets part dels alumnes";
+"changePhoto" = "Canvieu la vostra foto de perfil";
+"alwaysChange" = "Sempre podeu canviar-lo des de la configuració del vostre perfil";
+"changeButton" = "Canvia la foto";
+"notchangeBtn" = "Ometi aquest pas";
+"welcome" = "Benvinguda";
+

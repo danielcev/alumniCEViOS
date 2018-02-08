@@ -31,6 +31,7 @@
 		7F82C08A201B537000259E06 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F82C089201B537000259E06 /* Event.swift */; };
 		7F89B1A92018C094007BA234 /* ImageEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F89B1A82018C094007BA234 /* ImageEventViewController.swift */; };
 		7F89B1AB2018C0B6007BA234 /* LocalizationCreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F89B1AA2018C0B6007BA234 /* LocalizationCreateEventViewController.swift */; };
+		7FA0CE54202C40A1002326A9 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA0CE53202C40A1002326A9 /* WelcomeViewController.swift */; };
 		7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAE1B25200F4AED00F17E11 /* MainViewController.swift */; };
 		7FAE1B28200F804E00F17E11 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAE1B27200F804E00F17E11 /* ForgotViewController.swift */; };
 		7FAE1B2A200F827100F17E11 /* RecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAE1B29200F827100F17E11 /* RecoverViewController.swift */; };
@@ -95,6 +96,7 @@
 		7F82C089201B537000259E06 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		7F89B1A82018C094007BA234 /* ImageEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEventViewController.swift; sourceTree = "<group>"; };
 		7F89B1AA2018C0B6007BA234 /* LocalizationCreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationCreateEventViewController.swift; sourceTree = "<group>"; };
+		7FA0CE53202C40A1002326A9 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7FAE1B25200F4AED00F17E11 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7FAE1B27200F804E00F17E11 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
 		7FAE1B29200F827100F17E11 /* RecoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				7F1D33642004D38900D57F75 /* RegisterViewController.swift */,
 				7FAE1B27200F804E00F17E11 /* ForgotViewController.swift */,
 				7FAE1B29200F827100F17E11 /* RecoverViewController.swift */,
+				7FA0CE53202C40A1002326A9 /* WelcomeViewController.swift */,
 			);
 			path = LOGIN;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				7F7ADBB22019FE6A00489C95 /* GroupsTableViewCell.swift in Sources */,
 				7F89B1AB2018C0B6007BA234 /* LocalizationCreateEventViewController.swift in Sources */,
 				7F89B1A92018C094007BA234 /* ImageEventViewController.swift in Sources */,
+				7FA0CE54202C40A1002326A9 /* WelcomeViewController.swift in Sources */,
 				7F82C088201B36F300259E06 /* GroupsRequests.swift in Sources */,
 				A67EFA722003A7990051853B /* AppDelegate.swift in Sources */,
 				65BADD5E201648F000C6D03F /* UsersViewController.swift in Sources */,

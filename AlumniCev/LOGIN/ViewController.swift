@@ -184,7 +184,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     func goToMain(){
 
-        let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+//        let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+        let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+        
 
         self.present(tabbarVC, animated: false, completion: nil)
         

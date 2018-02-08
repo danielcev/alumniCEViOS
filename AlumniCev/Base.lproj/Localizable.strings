@@ -75,9 +75,18 @@
 "menu"="Menu";
 
 
-//LOCALIZACIÓN
+//LOCATION
 "localizationTitle" = "Location";
 "howToGo" = "How to go to CEV";
+
+//WELCOME
+"Congratulations" = "Congratulations, you've registered!";
+"nowYouAreAlumni" = "Now you are part of Alumni";
+"changePhoto" = "Change your profile photo";
+"alwaysChange" = "You can always change it from settings in your profile";
+"changeButton" = "Change photo";
+"notchangeBtn" = "Skip this step";
+"welcome" = "Welcome";
 
 
 
