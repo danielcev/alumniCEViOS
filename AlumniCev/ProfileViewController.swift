@@ -23,7 +23,7 @@ class ProfileViewController: UIViewController {
     
 
     @IBAction func logoutAction(_ sender: UIButton) {
-        saveDataInUserDefaults(value: "false", key: "isLoged")
+        clearUserDefaults()
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         
     }

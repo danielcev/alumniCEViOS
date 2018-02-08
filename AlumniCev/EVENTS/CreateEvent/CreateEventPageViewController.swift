@@ -93,7 +93,7 @@ class CreateEventPageViewController: UIPageViewController, UIPageViewControllerD
     func goNextPage(fowardTo position: Int) {
         let viewController = self.pages[position]
         setViewControllers([viewController], direction:
-            UIPageViewControllerNavigationDirection.reverse, animated: true, completion: nil)
+            UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
     }
 
 }

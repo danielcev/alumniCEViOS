@@ -117,7 +117,6 @@ class DetailEventViewController: UIViewController, UITableViewDelegate, UITableV
         descriptionText.text = events[idReceived]["description"] as? String
     }
     
-    
     @IBAction func goToLocalization(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "EventLocalizationViewController") as! EventLocalizationViewController
         
@@ -127,7 +126,6 @@ class DetailEventViewController: UIViewController, UITableViewDelegate, UITableV
         
         self.present(vc, animated: true, completion: nil)
     }
-    
     
     @IBAction func backAction(_ sender: Any) {
         

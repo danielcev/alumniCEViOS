@@ -10,17 +10,26 @@
  import Alamofire
  import CPAlertViewController
  import SwiftSpinner
- 
- class RegisterViewController: UIViewController {
-    
+ import JHTAlertController
 
+ import CoreLocation
+ 
+ class RegisterViewController: UIViewController, CLLocationManagerDelegate {
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var repeatPasswordTextField: UITextField!
     @IBOutlet weak var btnRegister: UIButton!
     
+    var lon:Float = 0.0
+    var lat:Float = 0.0
+    
+    let manager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        manager.delegate = self
         
         // Do any additional setup after loading the view.
         updateTexts()
@@ -125,12 +134,9 @@
             case .success:
                 switch arrayResult["code"] as! Int{
                     case 200:
-                        
-                        SwiftSpinner.hide()
-            
-                    alert.showSuccess(title: (arrayResult["message"] as! String),  buttonTitle: "OK", action: { (nil) in
-                        self.dismiss(animated: true)
-                    })
+
+                        self.getLocation()
+                    
                     default:
                         
                         SwiftSpinner.hide()
@@ -142,6 +148,100 @@
             }
             
         }
+    }
+    
+    func createLoginRequest(email:String, password:String){
+        
+        let url = URL(string: URL_GENERAL + "users/login.json")
+        
+        let parameters: Parameters = ["email":email,"password":password, "lon": self.lon , "lat": self.lat]
+        
+        Alamofire.request(url!, method: .post, parameters: parameters).responseJSON{response in
+            
+            var arrayResult = response.result.value as! Dictionary<String, Any>
+            let alert = CPAlertViewController()
+            
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    var arrayData = arrayResult["data"] as! Dictionary<String,Any>
+                    var arrayUser = arrayData["user"] as! Dictionary<String,Any>
+                    
+                    SwiftSpinner.hide()
+                    
+                    // Setting up an alert with a title and message
+                    let alertController = JHTAlertController(title: "", message: "Congratulations".localized(), preferredStyle: .alert)
+                    
+                    // Create an action with a completionl handler.
+                    let okAction = JHTAlertAction(title: "OK", style: .default, bgColor: cevColor) { _ in
+                        saveDataInUserDefaults(value: arrayUser["id"] as! String, key: "id")
+                        saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")
+                        saveDataInUserDefaults(value: arrayUser["password"] as! String, key: "password")
+                        saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")
+                        saveDataInUserDefaults(value: arrayData["token"] as! String, key: "token")
+                        saveDataInUserDefaults(value: "true", key: "isLoged")
+                        self.goToMain()
+                    }
+                    
+                    alertController.addAction(okAction)
+                    alertController.titleImage = UIImage(named: "Certificate")
+                    alertController.titleViewBackgroundColor = UIColor.white
+                    alertController.messageTextColor = cevColor
+                    alertController.alertBackgroundColor = UIColor.white
+                    
+                    // Show the action
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                default:
+                    SwiftSpinner.hide()
+                    alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
+                }
+            case .failure:
+                SwiftSpinner.hide()
+                print("Error :: \(String(describing: response.error))")
+                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            }
+            SwiftSpinner.hide()
+        }
+    }
+    
+    func getLocation(){
+        
+        manager.requestAlwaysAuthorization()
+        manager.requestLocation()
+        
+        SwiftSpinner.show("...")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print("Found user's location: \(location)")
+            
+            self.manager.stopUpdatingLocation()
+            
+            self.lon = Float(location.coordinate.longitude)
+            self.lat = Float(location.coordinate.latitude)
+            
+            self.createLoginRequest(email: emailTextField.text!, password: passwordTextField.text!)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
+        self.manager.stopUpdatingLocation()
+        self.createLoginRequest(email: emailTextField.text!, password: passwordTextField.text!)
+    }
+    
+    func goToMain(){
+        
+        //        let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+        let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+        
+        
+        self.present(tabbarVC, animated: false, completion: nil)
+        
+        
     }
     
     //función para ocultar el teclado cuando pulsas fuera de él

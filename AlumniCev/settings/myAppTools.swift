@@ -65,6 +65,10 @@ func getDataInUserDefaults(key:String) -> String?{
     
 }
 
+func clearUserDefaults(){
+    defaults.set(nil, forKey: "userRegistered")
+}
+
 
 func isValidEmail(YourEMailAddress: String) -> Bool {
     let REGEX: String

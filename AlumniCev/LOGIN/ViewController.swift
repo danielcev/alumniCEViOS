@@ -11,7 +11,7 @@ import Alamofire
 import CoreLocation
 import CPAlertViewController
 import SwiftSpinner
-
+import JHTAlertController
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -38,7 +38,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         if getDataInUserDefaults(key: "isLoged") != nil{
-            if(getDataInUserDefaults(key: "isLoged")! == "true" && getDataInUserDefaults(key: "isLoged") != nil){
+            if(getDataInUserDefaults(key: "isLoged")! == "true"){
+                
                 self.goToMain()
             }
         }
@@ -132,16 +133,43 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     var arrayUser = arrayData["user"] as! Dictionary<String,Any>
                     
                     SwiftSpinner.hide()
-
-                    alert.showInfo(title: (arrayResult["message"] as! String),  buttonTitle: "OK", action: { (nil) in
+                    
+                    let alert = CPAlertViewController()
+                    
+                    alert.showSuccess(title: "Login correcto", message: "Te has logueado correctamente", buttonTitle: "OK", action: { (nil) in
                         saveDataInUserDefaults(value: arrayUser["id"] as! String, key: "id")
                         saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")
                         saveDataInUserDefaults(value: arrayUser["password"] as! String, key: "password")
                         saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")
                         saveDataInUserDefaults(value: arrayData["token"] as! String, key: "token")
                         saveDataInUserDefaults(value: "true", key: "isLoged")
+                        
                         self.goToMain()
                     })
+                    
+//                    // Setting up an alert with a title and message
+//                    let alertController = JHTAlertController(title: "", message: "Congratulations".localized(), preferredStyle: .alert)
+//
+//                    // Create an action with a completionl handler.
+//                    let okAction = JHTAlertAction(title: "OK", style: .default, bgColor: cevColor) { _ in
+//                        saveDataInUserDefaults(value: arrayUser["id"] as! String, key: "id")
+//                        saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")
+//                        saveDataInUserDefaults(value: arrayUser["password"] as! String, key: "password")
+//                        saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")
+//                        saveDataInUserDefaults(value: arrayData["token"] as! String, key: "token")
+//                        saveDataInUserDefaults(value: "true", key: "isLoged")
+//                        self.goToMain()
+//                    }
+//
+//                    alertController.addAction(okAction)
+//                    alertController.titleImage = UIImage(named: "Certificate")
+//                    alertController.titleViewBackgroundColor = UIColor.white
+//                    alertController.messageTextColor = cevColor
+//                    alertController.alertBackgroundColor = UIColor.white
+                    
+                    // Show the action
+//                    self.present(alertController, animated: true, completion: nil)
+                    
                 default:
                     SwiftSpinner.hide()
                     alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
@@ -149,7 +177,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             case .failure:
                 SwiftSpinner.hide()
                 print("Error :: \(String(describing: response.error))")
-                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
             }
             SwiftSpinner.hide()
         }
@@ -184,13 +211,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     func goToMain(){
 
-//        let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-        let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
-        
+        let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
 
         self.present(tabbarVC, animated: false, completion: nil)
-        
-
     }
     
     //función para ocultar el teclado cuando pulsas fuera de él

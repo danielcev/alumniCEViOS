@@ -10,11 +10,10 @@ import UIKit
 import Photos
 import CPAlertViewController
 
+
 class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate,UIPopoverControllerDelegate,UINavigationControllerDelegate  {
 
     @IBOutlet weak var titleWelcolmeLB: UILabel!
-    @IBOutlet weak var youAreRegistedLb: UILabel!
-    @IBOutlet weak var nowYouAreAlumniLB: UILabel!
     @IBOutlet weak var alwaysChangeLb: UILabel!    
     @IBOutlet weak var changeProfileLb: UILabel!
     @IBOutlet weak var newProfileImage: UIImageView!
@@ -32,12 +31,18 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate,U
         picker?.delegate = self
         
         titleWelcolmeLB.text = "welcome".localized()
-        youAreRegistedLb.text = "Congratulations".localized()
-        nowYouAreAlumniLB.text = "nowYouAreAlumni".localized()
         alwaysChangeLb.text = "alwaysChange".localized()
         changeProfileLb.text = "changePhoto".localized()
         changePhotoBtn.setTitle("changeButton".localized(), for: .normal)
         notChangeBtn.setTitle("notchangeBtn".localized(), for: .normal)
+        
+        changePhotoBtn.layer.cornerRadius = changePhotoBtn.frame.size.width / 8
+        changePhotoBtn.layer.masksToBounds = true
+        
+        notChangeBtn.layer.cornerRadius = notChangeBtn.frame.size.width / 8
+        notChangeBtn.layer.masksToBounds = true
+        notChangeBtn.layer.borderColor = cevColor.cgColor
+        notChangeBtn.layer.borderWidth = 2
         
         
         // Do any additional setup after loading the view.

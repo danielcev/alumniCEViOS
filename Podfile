@@ -7,6 +7,8 @@ target 'AlumniCev' do
   pod 'M13Checkbox', '~> 3.2'
   pod 'TextFieldEffects', '~> 1.4'
   pod 'SimpleAnimation', '~> 0.4'
+  pod 'JHTAlertController', '~> 0.2'
+  pod 'IQKeyboardManagerSwift'
   end
 
  
