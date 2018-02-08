@@ -62,23 +62,18 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         case "1"?:
             typeEvent = "Evento"
-            cell.imageEventView.image = UIImage(named: "eventimage")
             color = UIColor.red.withAlphaComponent(0.4)
         case "2"?:
             typeEvent = "Oferta de trabajo"
-            cell.imageEventView.image = UIImage(named: "jobofferimage")
             color = UIColor.purple.withAlphaComponent(0.4)
         case "3"?:
             typeEvent = "Notificación"
-            cell.imageEventView.image = UIImage(named: "notificationimage")
             color = UIColor.blue.withAlphaComponent(0.4)
         case "4"?:
             typeEvent = "Noticia"
-            cell.imageEventView.image = UIImage(named: "newsimage")
             color = UIColor.yellow.withAlphaComponent(0.4)
         default:
             typeEvent = ""
-            cell.imageEventView.image = UIImage(named: "eventimage")
             color = UIColor.red.withAlphaComponent(0.4)
         }
         
@@ -94,6 +89,20 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         cell.imageEventView.image = UIImage(data: data)
                     }
                 }
+            }
+        }else{
+            switch(events[indexPath.row]["id_type"] as? String){
+                
+            case "1"?:
+                cell.imageEventView.image = UIImage(named: "eventimage")
+            case "2"?:
+                cell.imageEventView.image = UIImage(named: "jobofferimage")
+            case "3"?:
+                cell.imageEventView.image = UIImage(named: "notificationimage")
+            case "4"?:
+                cell.imageEventView.image = UIImage(named: "newsimage")
+            default:
+                cell.imageEventView.image = UIImage(named: "eventimage")
             }
         }
         

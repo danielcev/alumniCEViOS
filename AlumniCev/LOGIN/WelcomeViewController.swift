@@ -108,20 +108,21 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate,U
         newProfileImage.contentMode = .scaleAspectFit
         newProfileImage.image = chosenImage
         
-        eventCreated?.imageEvent = UIImageJPEGRepresentation(chosenImage, 0.1)
+        var photo:Data = UIImageJPEGRepresentation(chosenImage, 0.1)!
+        
+        let id = Int(getDataInUserDefaults(key: "id")!)
+        
+        requestEditUser(id: id!, email: nil, phone: nil, birthday: nil, description: nil, photo: photo) {
+            self.goToMain()
+        }
         
         dismiss(animated: true, completion: nil)
-        
         
     }
 
     @IBAction func changeMyPhoto(_ sender: Any) {
         
         checkPermission()
-        
-//        if changePhoto == true {
-//            <#code#>
-//        }
         
     }
     
@@ -130,6 +131,12 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate,U
         vc.modalTransitionStyle = .flipHorizontal
         self.present(vc, animated: true)
         
+    }
+    
+    func goToMain(){
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+        vc.modalTransitionStyle = .flipHorizontal
+        self.present(vc, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

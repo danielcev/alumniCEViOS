@@ -127,9 +127,7 @@
                     case 200:
                         
                         SwiftSpinner.hide()
-                
-//                        var arrayData = arrayResult["data"] as! Dictionary<String, Any>
-//                        var arrayUser = arrayData["user"] as! Dictionary<String, Any>
+            
                     alert.showSuccess(title: (arrayResult["message"] as! String),  buttonTitle: "OK", action: { (nil) in
                         self.dismiss(animated: true)
                     })
