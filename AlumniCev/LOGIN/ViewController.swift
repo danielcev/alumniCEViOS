@@ -147,29 +147,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         self.goToMain()
                     })
                     
-//                    // Setting up an alert with a title and message
-//                    let alertController = JHTAlertController(title: "", message: "Congratulations".localized(), preferredStyle: .alert)
-//
-//                    // Create an action with a completionl handler.
-//                    let okAction = JHTAlertAction(title: "OK", style: .default, bgColor: cevColor) { _ in
-//                        saveDataInUserDefaults(value: arrayUser["id"] as! String, key: "id")
-//                        saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")
-//                        saveDataInUserDefaults(value: arrayUser["password"] as! String, key: "password")
-//                        saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")
-//                        saveDataInUserDefaults(value: arrayData["token"] as! String, key: "token")
-//                        saveDataInUserDefaults(value: "true", key: "isLoged")
-//                        self.goToMain()
-//                    }
-//
-//                    alertController.addAction(okAction)
-//                    alertController.titleImage = UIImage(named: "Certificate")
-//                    alertController.titleViewBackgroundColor = UIColor.white
-//                    alertController.messageTextColor = cevColor
-//                    alertController.alertBackgroundColor = UIColor.white
-                    
-                    // Show the action
-//                    self.present(alertController, animated: true, completion: nil)
-                    
                 default:
                     SwiftSpinner.hide()
                     alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")

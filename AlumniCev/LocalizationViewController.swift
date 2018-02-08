@@ -9,8 +9,10 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CPAlertViewController
+import SwiftSpinner
 
-class LocalizationViewController: UIViewController, MKMapViewDelegate {
+class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var titleLocalizationLbl: UILabel!
     
@@ -20,14 +22,20 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
     
     var transportType: MKDirectionsTransportType?
     
+    let manager = CLLocationManager()
+    
+    var lon:Float = 0.0
+    var lat:Float = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        manager.delegate = self
+        mapRoute.delegate = self
         
         titleLocalizationLbl.text = "howToGo".localized()
         
         self.transportType = .walking
-        
-        mapRoute.delegate = self
         
     }
     
@@ -53,7 +61,9 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
                 
             case .authorizedAlways, .authorizedWhenInUse:
                 self.segmentedTransport.isHidden = false
-                setRoute()
+                SwiftSpinner.show("Accediendo a tu localización")
+                getLocation()
+                
             }
         } else {
             print("Location services are not enabled")
@@ -106,12 +116,13 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
     }
     
     func requestRoute(){
-        let coordenadasOrigen = CLLocationCoordinate2DMake(40.4283791, -3.6975719)
+        let coordenadasOrigen = CLLocationCoordinate2DMake(CLLocationDegrees(self.lat), CLLocationDegrees(self.lon))
         let coordenadasDestino = CLLocationCoordinate2DMake(40.437628,-3.715484)
         
         let origen = MKMapItem(placemark: MKPlacemark(coordinate: coordenadasOrigen))
         let destino = MKMapItem(placemark: MKPlacemark(coordinate: coordenadasDestino))
         
+        // 
         let peticion = MKDirectionsRequest()
         peticion.transportType = self.transportType!
         
@@ -120,13 +131,22 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
         let indicaciones = MKDirections(request: peticion)
         indicaciones.calculate { (respuesta, error) in
             if let error = error {
-                print(error.localizedDescription)
+                
+                let alert = CPAlertViewController()
+                
+                alert.showError(title: "Error", message: error.localizedDescription, buttonTitle: "OK", action: {(nil) in
+                    self.setMark()
+                })
+                // alert no se puede calcular la ruta
+                
             } else {
             self.mapRoute.add((respuesta?.routes[0].polyline)!)
+                
                 self.onlySetMark()
                 self.zoomToPolyLine(map: self.mapRoute, polyLine: (respuesta?.routes[0].polyline)!, animated: true)
                 
             }
+            SwiftSpinner.hide()
         }
     }
     
@@ -160,6 +180,7 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
             self.transportType = .walking
         }
         self.mapRoute.removeOverlays(self.mapRoute.overlays)
+        SwiftSpinner.show("Accediendo a tu localización")
         requestRoute()
     }
     
@@ -170,10 +191,30 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate {
         renderer.lineWidth = 3
         return renderer
     }
+    
+    func getLocation(){
+        
+        manager.requestAlwaysAuthorization()
+        manager.requestLocation()
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print("Found user's location: \(location)")
+            
+            self.manager.stopUpdatingLocation()
+            
+            self.lon = Float(location.coordinate.longitude)
+            self.lat = Float(location.coordinate.latitude)
+            
+            setRoute()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
+        self.manager.stopUpdatingLocation()
     }
 
 

@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class DetailEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DetailEventViewController: UIViewController{
     
     var idReceived: Int = 0
 
@@ -20,21 +20,24 @@ class DetailEventViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var imageViewEvent: UIImageView!
     
-    @IBOutlet weak var localizationbtn: UIButton!
+    @IBOutlet weak var webBtn: UIButton!
+    @IBOutlet weak var localizationBtn: UIButton!
+    @IBOutlet weak var photoUser: UIImageView!
     
-    @IBOutlet weak var urlBtn: UIButton!
+    @IBOutlet weak var commentTxF: UITextField!
+    @IBOutlet weak var usernameLbl: UILabel!
+    @IBOutlet weak var descriptionTxF: UITextView!
+    @IBOutlet weak var photoUserComment: UIImageView!
     
-    @IBOutlet weak var localizationImage: UIImageView!
-    @IBOutlet weak var webImage: UIImageView!
-    
+    @IBOutlet weak var dateComment: UILabel!
     
     var lat:Float?
     var lon:Float?
-    
-    @IBOutlet weak var tableComments: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        styleTxF(textfield: commentTxF)
         
         requestEvent(id:Int(events[idReceived]["id"] as! String)!, controller:self)
         
@@ -49,17 +52,17 @@ class DetailEventViewController: UIViewController, UITableViewDelegate, UITableV
             
             addressFromPosition(lat: lat!, lon: lon!, controller: self)
             
-            localizationImage.isHidden = false
+            localizationBtn.isHidden = false
         }else{
-            localizationbtn.isHidden = true
+            localizationBtn.isHidden = true
             
         }
         
         if events[idReceived]["url"] as? String == nil{
-            urlBtn.isHidden = true
+            webBtn.isHidden = true
             
         }else{
-            webImage.isHidden = false
+            webBtn.isHidden = false
         }
         
         if events[idReceived]["image"] as? String == nil{
@@ -99,16 +102,12 @@ class DetailEventViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func opendURL(_ sender: Any) {
         
-        if let url = URL(string: urlBtn.title(for: .normal)!) {
+        if let url = URL(string: (events[idReceived]["url"] as? String)!) {
             UIApplication.shared.open(url, options: [:])
         }
         
     }
     func setEvent(address:Address){
-    
-        localizationbtn.setTitle(address.formatted_address, for: .normal)
-        
-        urlBtn.setTitle(events[idReceived]["url"] as? String, for: .normal)
         setInfoEvent()
     }
     
@@ -152,44 +151,25 @@ class DetailEventViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    //TABLE COMMENTS
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    @IBAction func sendCommentAction(_ sender: Any) {
+        
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if comments != nil{
-            return comments!.count
-        }else{
-            return 0
-        }
- 
-    }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 169
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! DetailCommentsTableViewCell
+    func styleTxF(textfield:UITextField){
         
-        var comment:Dictionary<String,Any> = (comments![String(describing: indexPath.row + 1)]! as! Dictionary<String,Any>)
+        let border = CALayer()
+        let width = CGFloat(2.0)
         
-        if(comments != nil){
-            cell.titleComment.text = comment["title"] as? String
-            
-            cell.descriptionComment.text = comment["description"] as? String
-        }
+        border.borderColor = cevColor.cgColor
+        border.frame = CGRect(x: 0, y: 0, width:  textfield.frame.size.width, height: 1)
         
-        return cell
-    }
-    
-    func reloadTable(){
-        tableComments.reloadData()
+        border.borderWidth = width
+        textfield.layer.addSublayer(border)
+        textfield.layer.masksToBounds = true
+        
+        textfield.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
+        
     }
     
 }
-
-

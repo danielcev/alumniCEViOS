@@ -151,8 +151,6 @@ func requestEvent(id:Int, controller:UIViewController){
             case 200:
                 comments = (arrayResult["data"] as! Dictionary<String, Any>)["comments"] as? Dictionary<String, Any>
                 
-                (controller as! DetailEventViewController).reloadTable()
-                
             default:
                 //(controller as! EventsViewController).notResults()
                 print(arrayResult["message"] as! String)
