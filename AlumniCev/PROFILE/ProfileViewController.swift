@@ -27,10 +27,11 @@ class ProfileViewController: UIViewController {
         let phone = getDataInUserDefaults(key: "phone")
         phoneLB.text = phone
         
-        
-        getPhoto()
-        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        getPhoto()
     }
     
     func getPhoto(){
