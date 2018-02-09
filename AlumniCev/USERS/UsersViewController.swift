@@ -10,6 +10,8 @@ import UIKit
 
 class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var segmentedUsers: UISegmentedControl!
+    
     @IBOutlet weak var usersTable: UITableView!
     
     override func viewDidLoad() {
@@ -55,8 +57,28 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.present(vc, animated: true, completion: nil)
 
-        
     }
+    
+    @IBAction func segmentedChanged(_ sender: Any) {
+        switch segmentedUsers.selectedSegmentIndex{
+            
+        case 0:
+            requestAllUsers {
+                self.rechargeTable()
+            }
+            
+        case 2:
+            requestFriends {
+                self.rechargeTable()
+            }
+            
+        default:
+            requestAllUsers {
+                self.rechargeTable()
+            }
+        }
+    }
+    
     
     func rechargeTable(){
         usersTable.reloadData()

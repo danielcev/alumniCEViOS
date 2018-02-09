@@ -32,6 +32,8 @@ class DetailEventViewController: UIViewController{
     @IBOutlet weak var descriptionTxF: UITextView!
     @IBOutlet weak var photoUserComment: UIImageView!
     
+    @IBOutlet weak var seeCommentsBtn: UIButton!
+    
     @IBOutlet weak var dateComment: UILabel!
     
     var lat:Float?
@@ -43,6 +45,8 @@ class DetailEventViewController: UIViewController{
         self.dateComment.isHidden = true
         
         styleTxF(textfield: commentTxF)
+        
+        seeCommentsBtn.layer.cornerRadius = seeCommentsBtn.layer.frame.height / 2
         
         if(getDataInUserDefaults(key: "photo") != nil){
             let photo:Data = Data(base64Encoded: getDataInUserDefaults(key: "photo")!)!
@@ -57,11 +61,15 @@ class DetailEventViewController: UIViewController{
             if(comments!.count > 0){
                 self.setComment()
             }
-
         }
         
+        //Ajustar TextView a contenido
+        
+        descriptionText.sizeToFit()
+        descriptionText.isScrollEnabled = false
+        
         imageViewEvent.clipsToBounds = true
-        imageViewEvent.contentMode = .scaleAspectFit
+        imageViewEvent.contentMode = .scaleAspectFill
         
         //Solo se muestra la información de localización si el evento la tiene
         if((events[idReceived]["lat"] as? String) != nil && (events[idReceived]["lon"] as? String) != nil){
@@ -208,6 +216,12 @@ class DetailEventViewController: UIViewController{
         photoUserComment.layer.cornerRadius = photoUserComment.frame.size.width/2
         photoUserComment.layer.masksToBounds = true
         
+        if comments!.count > 1{
+            self.seeCommentsBtn.setTitle("Ver \(comments!.count) comentarios", for: .normal)
+        }else{
+            self.seeCommentsBtn.setTitle("Ver 1 comentario", for: .normal)
+        }
+
     }
     
     @IBAction func sendCommentAction(_ sender: Any) {
@@ -219,6 +233,8 @@ class DetailEventViewController: UIViewController{
             alert.showSuccess(title: "Éxito", message: "Comentario creado!", buttonTitle: "OK", action: { (nil) in
                 requestEvent(id: Int(events[self.idReceived]["id"] as! String)!) {
                     self.setComment()
+                    
+                    self.commentTxF.text = ""
                 }
             })
             
@@ -229,6 +245,8 @@ class DetailEventViewController: UIViewController{
     
     @IBAction func goToCommentsAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
+        
+        vc.id_event = Int(events[self.idReceived]["id"] as! String)!
         
         self.present(vc, animated: false, completion: nil)
     }

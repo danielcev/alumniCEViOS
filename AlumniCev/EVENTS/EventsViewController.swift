@@ -33,7 +33,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var menuView: UIView!
     
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -53,8 +52,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.titleLbl.text = events[indexPath.row]["title"] as? String
         cell.descriptionLbl.text = events[indexPath.row]["description"] as? String
         
-        
-        
         var typeEvent = ""
         var color:UIColor?
         
@@ -63,6 +60,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         case "1"?:
             typeEvent = "Evento"
             color = UIColor.red.withAlphaComponent(0.4)
+            
         case "2"?:
             typeEvent = "Oferta de trabajo"
             color = UIColor.purple.withAlphaComponent(0.4)
@@ -106,8 +104,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         
+        cell.imageEventView.contentMode = .scaleAspectFill
+        cell.imageEventView.layer.masksToBounds = true
+        
         cell.typeLbl.text = typeEvent
-        cell.typeLbl.backgroundColor = color
+        //cell.typeLbl.backgroundColor = color
+        cell.backgroundCell.backgroundColor = color
         cell.typeLbl.layer.cornerRadius = 15.0
         cell.typeLbl.layer.masksToBounds = true
         return cell

@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "c3398de5ac662c632bc4d070ae3c0a86.jpg",
       "scale" : "1x"
     },
     {
@@ -10,7 +11,6 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "Mesa de trabajo 1trabajo@3x.png",
       "scale" : "3x"
     }
   ],

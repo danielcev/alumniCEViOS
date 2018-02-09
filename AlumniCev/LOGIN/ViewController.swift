@@ -132,6 +132,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     var arrayData = arrayResult["data"] as! Dictionary<String,Any>
                     var arrayUser = arrayData["user"] as! Dictionary<String,Any>
                     
+                    print(arrayResult)
+                    
                     SwiftSpinner.hide()
                     
                     let alert = CPAlertViewController()
@@ -141,7 +143,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")
                         saveDataInUserDefaults(value: arrayUser["password"] as! String, key: "password")
                         saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")
+                        
+                        if arrayUser["phone"] as? String != nil{
+                            saveDataInUserDefaults(value: arrayUser["phone"] as! String, key: "phone")
+                        }
+                        
+                        if arrayUser["photo"] as? String != nil{
+
+                            let remoteImageURL = URL(string: (arrayUser["photo"] as? String)!)!
+                            
+                            // Use Alamofire to download the image
+                            Alamofire.request(remoteImageURL).responseData { (response) in
+                                if response.error == nil {
+                                    
+                                    if let data = response.data {
+                                        saveDataInUserDefaults(value: data.base64EncodedString(), key: "photo")
+                                    }
+                                }
+                            }
+                            
+                        }
+                        
+                        if arrayUser["lat"] as? String != nil && arrayUser["lon"] as? String != nil{
+                            saveDataInUserDefaults(value: arrayUser["lat"] as! String, key: "lat")
+                            saveDataInUserDefaults(value: arrayUser["lon"] as! String, key: "lon")
+                        }
+                        
                         saveDataInUserDefaults(value: arrayData["token"] as! String, key: "token")
+                        
                         saveDataInUserDefaults(value: "true", key: "isLoged")
                         
                         self.goToMain()

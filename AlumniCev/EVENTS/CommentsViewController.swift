@@ -8,8 +8,16 @@
 
 import UIKit
 import Alamofire
+import CPAlertViewController
 
 class CommentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var id_event:Int?
+    
+    @IBOutlet weak var commentsTable: UITableView!
+    
+    @IBOutlet weak var photoUser: UIImageView!
+    @IBOutlet weak var commentTxF: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +80,28 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     @IBAction func backAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func sendCommentAction(_ sender: Any) {
+        
+        requestCreateComment(title: "ComentarioTest", description: commentTxF.text!, id_event: self.id_event!){
+            
+            let alert = CPAlertViewController()
+            
+            alert.showSuccess(title: "Éxito", message: "Comentario creado!", buttonTitle: "OK", action: { (nil) in
+                requestEvent(id: self.id_event!) {
+                    requestEvent(id: self.id_event!) {
+                        self.commentsTable.reloadData()
+                        
+                        self.commentTxF.text = ""
+                    }
+                    
+                }
+            })
+            
+            
+        }
+        
     }
     
 }

@@ -25,6 +25,7 @@
 		65EDBBC3201E22100017515A /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EDBBC2201E22100017515A /* Address.swift */; };
 		7F1D33652004D38900D57F75 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33642004D38900D57F75 /* RegisterViewController.swift */; };
 		7F1D33672004D54600D57F75 /* myAppTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33662004D54600D57F75 /* myAppTools.swift */; };
+		7F4554DA202DBC44003255EC /* ProfileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4554D9202DBC44003255EC /* ProfileRequests.swift */; };
 		7F5A6FF6202B03310080E41A /* TipeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A6FF5202B03300080E41A /* TipeEventViewController.swift */; };
 		7F68D2292017322E005148D8 /* DetailEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68D2282017322E005148D8 /* DetailEventViewController.swift */; };
 		7F711B8A2008D73200BFF37D /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F711B892008D73200BFF37D /* Localize.swift */; };
@@ -94,6 +95,7 @@
 		77CA810BBEB389844D7C605A /* libPods-AlumniCevUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AlumniCevUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F1D33642004D38900D57F75 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7F1D33662004D54600D57F75 /* myAppTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAppTools.swift; sourceTree = "<group>"; };
+		7F4554D9202DBC44003255EC /* ProfileRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequests.swift; sourceTree = "<group>"; };
 		7F5A6FF5202B03300080E41A /* TipeEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipeEventViewController.swift; sourceTree = "<group>"; };
 		7F68D2282017322E005148D8 /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
 		7F711B892008D73200BFF37D /* Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				65EDBBC0201E1E620017515A /* MapsRequests.swift */,
 				7FE0849F2029D664007E5EEC /* UsersRequests.swift */,
 				657A81CE202CC83F00AF99A8 /* CommentsRequests.swift */,
+				7F4554D9202DBC44003255EC /* ProfileRequests.swift */,
 			);
 			path = REQUESTS;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FB1335620188590007B39E2 /* CreateEventPageViewController.swift in Sources */,
+				7F4554DA202DBC44003255EC /* ProfileRequests.swift in Sources */,
 				7F1D33652004D38900D57F75 /* RegisterViewController.swift in Sources */,
 				7F68D2292017322E005148D8 /* DetailEventViewController.swift in Sources */,
 				65EDBBC1201E1E620017515A /* MapsRequests.swift in Sources */,
