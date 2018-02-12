@@ -259,8 +259,8 @@ public class JHTAlertController: UIViewController, UIViewControllerTransitioning
          view.addSubview(iconImageView!)
          iconImageView!.translatesAutoresizingMaskIntoConstraints = false
 
-        let imageCenterX = NSLayoutConstraint(item: iconImageView!, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0)
-        let imageCenterY = NSLayoutConstraint(item: iconImageView!, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 5)
+         let imageCenterX = NSLayoutConstraint(item: iconImageView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0)
+         let imageCenterY = NSLayoutConstraint(item: iconImageView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 5)
          view.addConstraints([imageCenterX,
                               imageCenterY])
       }
@@ -554,7 +554,7 @@ public class JHTAlertController: UIViewController, UIViewControllerTransitioning
    ///
    /// - Parameter configurationHandler: the copletion of the textfield
    public func addTextFieldWithConfigurationHandler(configurationHandler: ((JHTTextField) -> Void)!) {
-    let textField = JHTTextField()
+      var textField = JHTTextField()
       textField.frame.size = CGSize(width: containerViewWidth, height: textFieldHeight)
       textField.borderStyle = textFieldBorderStyle
       textField.delegate = self

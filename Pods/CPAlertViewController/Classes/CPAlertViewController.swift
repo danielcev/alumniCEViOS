@@ -157,7 +157,7 @@ open class CPAlertViewController: UIViewController {
         case .warning:
             imageOption = CPAlertViewStyleKit.imageOfWarning
         case .info:
-            imageOption = UIImage(named: "welcomeicon")
+            imageOption = CPAlertViewStyleKit.imageOfInfo
         case let .customImage(imageName):
             imageOption = UIImage(named: imageName)
         default:

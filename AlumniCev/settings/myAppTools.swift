@@ -20,6 +20,8 @@ var groups:[Dictionary<String,String>] = []
 
 var types:[Dictionary<String,String>] = []
 
+var requests:[Dictionary<String,Any>]?
+
 var addressResponse:Dictionary<String,Any>?
 
 var comments:[Dictionary<String,Any>]?

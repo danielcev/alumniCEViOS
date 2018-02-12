@@ -41,7 +41,7 @@ func requestTypes(controller:UIViewController){
     }
 }
 
-func requestGroups(controller:UIViewController){
+func requestGroups(action: @escaping ()->()){
     let url = URL(string: URL_GENERAL + "groups/groups.json")
     
     let token = getDataInUserDefaults(key:"token")
@@ -61,7 +61,7 @@ func requestGroups(controller:UIViewController){
             case 200:
                 groups = arrayResult["data"] as! [Dictionary<String,String>]
                 
-                (controller as! GroupEventViewController).rechargeTable()
+                action()
                 
             default:
                 

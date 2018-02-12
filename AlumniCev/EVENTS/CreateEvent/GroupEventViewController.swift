@@ -39,7 +39,9 @@ class GroupEventViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requestGroups(controller: self)
+        requestGroups{
+            self.rechargeTable()
+        }
         
         groupsLbl.text = "whatGroups".localized()
         // Do any additional setup after loading the view.

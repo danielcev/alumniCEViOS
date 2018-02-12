@@ -75,6 +75,42 @@ func requestFriends(action: @escaping ()->()){
     }
 }
 
+func requestRequests(action: @escaping ()->()){
+    let url = URL(string: URL_GENERAL + "users/requests.json")
+    
+    let token = getDataInUserDefaults(key:"token")
+    
+    let headers: HTTPHeaders = [
+        "Authorization": token!,
+        "Accept": "application/json"
+    ]
+    
+    Alamofire.request(url!, method: .get, headers: headers).responseJSON{response in
+        
+        var arrayResult = response.result.value as! Dictionary<String, Any>
+        
+        switch response.result {
+        case .success:
+            switch arrayResult["code"] as! Int{
+            case 200:
+                
+                let arrayData = arrayResult["data"] as? [String:Any]
+                
+                requests = arrayData!["requests"] as? [Dictionary<String, Any>]
+                
+                action()
+            default:
+                
+                print(arrayResult["message"] as! String)
+            }
+        case .failure:
+            
+            print("Error :: \(String(describing: response.error))")
+            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+        }
+    }
+}
+
 func requestEditUser(id:Int,email:String?, phone:String?, birthday:String?, description:String?, photo:Data?, action: @escaping ()->()){
     let url = URL(string: URL_GENERAL + "users/update.json")
     
