@@ -151,39 +151,39 @@ func requestEditUser(id:Int,email:String?, phone:String?, birthday:String?, desc
         
     },
                      
-                     to: url!,
-                     headers:headers,
-                     
-                     encodingCompletion: { encodingResult in
+     to: url!,
+     headers:headers,
+     
+     encodingCompletion: { encodingResult in
+        
+        switch encodingResult {
+            
+        case .success(let upload, _, _):
+            upload.responseJSON { response in
+                
+                var arrayResult = response.result.value as! Dictionary<String, Any>
+                
+                if let result = response.result.value {
+                    
+                    let code = arrayResult["code"] as! Int
+                    
+                    switch code{
+                    case 200:
+                        action()
+                    case 400:
+                        print(arrayResult)
                         
-                        switch encodingResult {
-                            
-                        case .success(let upload, _, _):
-                            upload.responseJSON { response in
-                                
-                                var arrayResult = response.result.value as! Dictionary<String, Any>
-                                
-                                if let result = response.result.value {
-                                    
-                                    let code = arrayResult["code"] as! Int
-                                    
-                                    switch code{
-                                    case 200:
-                                        action()
-                                    case 400:
-                                        print(arrayResult)
-                                        
-                                    default:
-                                        print(arrayResult)
-                                        
-                                    }
-                                    
-                                }
-                                
-                            }
-                        case .failure(let encodingError):
-                            print(encodingError)
-                            // your implementation
-                        }
+                    default:
+                        print(arrayResult)
+                        
+                    }
+                    
+                }
+                
+            }
+        case .failure(let encodingError):
+            print(encodingError)
+            // your implementation
+        }
     })
 }

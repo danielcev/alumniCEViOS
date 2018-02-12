@@ -10,24 +10,67 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var emailLb: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
-    @IBOutlet weak var phoneLB: UILabel!
-
+    
+    @IBOutlet weak var nameTitleLbl: UILabel!
+    @IBOutlet weak var nameLbl: UILabel!
+    
+    @IBOutlet weak var usernameTitleLbl: UILabel!
+    @IBOutlet weak var usernameLbl: UILabel!
+    
+    @IBOutlet weak var emailTitleLbl: UILabel!
+    @IBOutlet weak var emailLbl: UILabel!
+    
+    @IBOutlet weak var phoneTitleLbl: UILabel!
+    @IBOutlet weak var phoneLbl: UILabel!
+    
+    @IBOutlet weak var localizationTitleLbl: UILabel!
+    @IBOutlet weak var localizationLbl: UILabel!
+    
+    @IBOutlet weak var descriptionTitleLbl: UILabel!
+    @IBOutlet weak var descriptionTxV: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        imgProfile.contentMode = .scaleAspectFill
+        imgProfile.layer.masksToBounds = true
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setTitles()
+        setValues()
+    }
+    
+    func setValues(){
+        
         let name = getDataInUserDefaults(key: "name")
         nameLbl.text = name
         
+        let username = getDataInUserDefaults(key: "username")
+        usernameLbl.text = username
+        
         let email = getDataInUserDefaults(key: "email")
-        emailLb.text = email
+        emailLbl.text = email
         
         let phone = getDataInUserDefaults(key: "phone")
-        phoneLB.text = phone
+        phoneLbl.text = phone
         
-        // Do any additional setup after loading the view.
+        if getDataInUserDefaults(key: "description") == nil{
+            descriptionTxV.text = "defaulDesc".localized()
+        }else{
+            descriptionTxV.text = getDataInUserDefaults(key: "description")
+        }
+    
+    }
+    
+    func setTitles(){
+        nameTitleLbl.text = "fullName".localized()
+        usernameTitleLbl.text = "username".localized()
+        emailTitleLbl.text = "emailSettings".localized()
+        phoneTitleLbl.text = "MyPhone".localized()
+        localizationTitleLbl.text = "localizationTitle".localized()
+        descriptionTitleLbl.text = "descriptSettings".localized()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,14 +85,10 @@ class ProfileViewController: UIViewController {
             
             imgProfile.image = #imageLiteral(resourceName: "userdefaulticon")
         }
+        
         imgProfile.layer.cornerRadius = imgProfile.frame.size.height/2
         imgProfile.layer.masksToBounds = true
     
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func goToSettings(_ sender: Any) {

@@ -143,6 +143,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")
                         saveDataInUserDefaults(value: arrayUser["password"] as! String, key: "password")
                         saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")
+                        saveDataInUserDefaults(value: arrayUser["username"] as! String, key: "username")
+                        
+                        if arrayUser["description"] as? String != nil{
+                            saveDataInUserDefaults(value: arrayUser["description"] as! String, key: "description")
+                        }
                         
                         if arrayUser["phone"] as? String != nil{
                             saveDataInUserDefaults(value: arrayUser["phone"] as! String, key: "phone")

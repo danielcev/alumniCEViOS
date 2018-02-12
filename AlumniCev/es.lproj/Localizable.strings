@@ -36,6 +36,7 @@
 "wrongRepeatPassword"="Las contraseñas no coinciden";
 "wrongFormat"="Formato de e-mail no válido";
 "emptyTlf"="Telefono Vacio";
+"wrongTlf"="Formato de teléfono no válido";
 "wrongEmail"="Email incorrecto, no se encuentra pre-registrado";
 "allFieldsRequired"="Todos los campos son necesarios";
 "lengthPassword"="La contraseña debe estar comprendida entre 5 y 12 caracteres";
@@ -87,5 +88,19 @@
 "changeButton" = "Cambiar foto";
 "notchangeBtn" = "Omitir este paso";
 "welcome" = "Bienvenido";
+
+//PROFILE
+"defaulDesc" = "Hola, soy un alumno de la escuela superior CEV, actualmente sigo cursando mi grado y aspiro a llegar a entrar en una empresa donde pueda mejorar como profesional.";
+"changePhoto" = "Cambiar foto";
+"fullName" = "Nombre";
+"username" = "Nombre de usuario";
+"passSettigns" = "Contraseña";
+"MyPhone" = "Número de teléfono";
+"privacitySettings" = "Privacidad";
+"emailSettings" = "Dirección de correo electrónico";
+"descriptSettings" = "Descripción";
+"localizSettings" = "Permitir mi localizacion";
+"phoneSettings"= "Compartir mi número de teléfono";
+
 
 

@@ -36,6 +36,7 @@
 "wrongRepeatPassword"="The passwords don't match";
 "wrongFormat"="Invalid e-mail format";
 "emptyTlf"="Empty phone";
+"wrongTlf"="Invalid phone format";
 "wrongEmail"="Incorrect e-mail. Not pre-registered";
 "allFieldsRequired"="All fields are required";
 "lengthPassword"="The password must be between 5 and 12 characters long.";
@@ -86,3 +87,17 @@
 "changeButton" = "Change photo";
 "notchangeBtn" = "Skip this step";
 "welcome" = "Welcome";
+
+//PROFILE
+"defaulDesc" =  "Hi, I am a student of the CEV high school, currently I am still studying my degree and aspire to enter a company where I can improve as a professional.";
+"changePhoto" = "Change photo";
+"fullName" = "Name";
+"username" = "Username";
+"passSettigns" = "Password";
+"MyPhone" = "Phone number";
+"privacitySettings" = "Privacity";
+"emailSettings" = "Email address";
+"descriptSettings" = "description";
+"localizSettings" = "I allowed my location.";
+"phoneSettings" = " I allowed my phone number ";
+

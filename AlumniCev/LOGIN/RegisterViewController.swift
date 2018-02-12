@@ -180,7 +180,10 @@
                         saveDataInUserDefaults(value: arrayUser["password"] as! String, key: "password")
                         saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")
                         saveDataInUserDefaults(value: arrayData["token"] as! String, key: "token")
-                        
+                        saveDataInUserDefaults(value: arrayUser["username"] as! String, key: "username")
+                        if arrayUser["description"] as? String != nil{
+                            saveDataInUserDefaults(value: arrayUser["description"] as! String, key: "description")
+                        }
                         saveDataInUserDefaults(value: "true", key: "isLoged")
                         self.goToMain()
                     }
