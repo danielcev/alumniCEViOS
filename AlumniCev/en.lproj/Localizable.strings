@@ -101,3 +101,6 @@
 "localizSettings" = "I allowed my location.";
 "phoneSettings" = " I allowed my phone number ";
 
+//USERS
+
+"notFriends"="You have no friends";

@@ -23,24 +23,27 @@ func requestCreateComment(title:String, description:String, id_event:Int, action
     
     Alamofire.request(url!, method: .post, parameters: parameters, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
+        if (response.result.value != nil){
         
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                
-                action()
-                print("comentario creado")
-                
-            default:
-                
-                print(arrayResult["message"] as! String)
-            }
-        case .failure:
+            var arrayResult = response.result.value as! Dictionary<String, Any>
             
-            print("Error :: \(String(describing: response.error))")
-            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    
+                    action()
+                    print("comentario creado")
+                    
+                default:
+                    
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            }
         }
     }
 }
@@ -59,21 +62,25 @@ func requestDeleteComment(id_comment:Int, action:@escaping ()->()){
     
     Alamofire.request(url!, method: .post, parameters: parameters, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
+        if (response.result.value != nil){
         
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                
-                action()
-                print("comentario borrado")
-                
-            default:
-                print(arrayResult["message"] as! String)
+            var arrayResult = response.result.value as! Dictionary<String, Any>
+            
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    
+                    action()
+                    print("comentario borrado")
+                    
+                default:
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                print("Error :: \(String(describing: response.error))")
             }
-        case .failure:
-            print("Error :: \(String(describing: response.error))")
+            
         }
     }
 }

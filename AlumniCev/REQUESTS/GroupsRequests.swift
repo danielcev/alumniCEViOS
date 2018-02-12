@@ -21,22 +21,25 @@ func requestTypes(controller:UIViewController){
     
     Alamofire.request(url!, method: .get, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
+        if (response.result.value != nil){
         
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                types = arrayResult["data"] as! [Dictionary<String,String>]
-                
-            default:
-                
-                print(arrayResult["message"] as! String)
-            }
-        case .failure:
+            var arrayResult = response.result.value as! Dictionary<String, Any>
             
-            print("Error :: \(String(describing: response.error))")
-            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    types = arrayResult["data"] as! [Dictionary<String,String>]
+                    
+                default:
+                    
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            }
         }
     }
 }
@@ -53,24 +56,27 @@ func requestGroups(action: @escaping ()->()){
     
     Alamofire.request(url!, method: .get, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
+        if (response.result.value != nil){
         
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                groups = arrayResult["data"] as! [Dictionary<String,String>]
-                
-                action()
-                
-            default:
-                
-                print(arrayResult["message"] as! String)
-            }
-        case .failure:
+            var arrayResult = response.result.value as! Dictionary<String, Any>
             
-            print("Error :: \(String(describing: response.error))")
-            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    groups = arrayResult["data"] as! [Dictionary<String,String>]
+                    
+                    action()
+                    
+                default:
+                    
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            }
         }
     }
 }

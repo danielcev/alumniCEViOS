@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    
+    @IBOutlet weak var notFriendsLbl: UILabel!
+    
+    @IBOutlet var completView: UIView!
+    @IBOutlet weak var spinner: NVActivityIndicatorView!
     @IBOutlet weak var segmentedUsers: UISegmentedControl!
     
     @IBOutlet weak var usersTable: UITableView!
@@ -18,6 +24,8 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        notFriendsLbl.text = "notFriends".localized()
         
         requestAllUsers {
             self.rechargeTable()
@@ -48,6 +56,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if users != nil{
                 return users!.count
             }else{
+                
                 return 0
             }
         case "requests":
@@ -134,43 +143,70 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func segmentedChanged(_ sender: Any) {
+        startSpinner()
         switch segmentedUsers.selectedSegmentIndex{
             
         case 0:
             listSelected = "users"
             requestAllUsers {
                 self.rechargeTable()
+                self.stopSpinner()
             }
             
         case 1:
             listSelected = "groups"
             requestGroups {
                 self.rechargeTable()
+                self.stopSpinner()
             }
             
         case 2:
             listSelected = "friends"
             requestFriends {
                 self.rechargeTable()
+                self.stopSpinner()
+                
+                if users?.count == 0{
+                    self.usersTable.isHidden = true
+                    self.notFriendsLbl.isHidden = false
+                }
             }
             
         case 3:
             listSelected = "requests"
             requestRequests {
                 self.rechargeTable()
+                self.stopSpinner()
             }
             
         default:
             listSelected = "users"
             requestAllUsers {
                 self.rechargeTable()
+                self.stopSpinner()
             }
         }
+        stopSpinner()
     }
     
     
     func rechargeTable(){
+        usersTable.isHidden = false
+        notFriendsLbl.isHidden = true
         usersTable.reloadData()
     }
+    
+    func startSpinner(){
+        completView.isUserInteractionEnabled = false
+        spinner.isHidden = false
+        spinner.startAnimating()
+    }
+    
+    func stopSpinner(){
+        completView.isUserInteractionEnabled = true
+        spinner.isHidden = true
+        spinner.stopAnimating()
+    }
+    
 
 }

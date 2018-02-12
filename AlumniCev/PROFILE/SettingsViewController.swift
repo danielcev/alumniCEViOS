@@ -9,8 +9,13 @@
 import UIKit
 import Photos
 import CPAlertViewController
+import NVActivityIndicatorView
 
 class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,UIPopoverControllerDelegate,UINavigationControllerDelegate {
+    
+    @IBOutlet var completView: UIView!
+    
+    @IBOutlet weak var spinner: NVActivityIndicatorView!
     
     @IBOutlet weak var imgProfile: UIImageView!
     
@@ -188,14 +193,17 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             
             let email = emailTxF.text!
             
-
             if isValidPhone(phone: phoneTxF.text!) || phoneTxF.text! == ""{
+                
+                self.startSpinner()
                 
                 let phone = phoneTxF.text!
                 let description = descriptionTxV.text
                 let name = nameTxF.text
                 
                 requestEditUser(id: id!, email: email, phone: phone, birthday: nil, description: description, photo: photo) {
+                    
+                    self.stopSpinner()
                     
                     alert.showSuccess(title: "Éxito", message: "Cambios guardados", buttonTitle: "OK", action: { (nil) in
                         
@@ -207,8 +215,6 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                         saveDataInUserDefaults(value: phone, key: "phone")
                         saveDataInUserDefaults(value: description!, key: "description")
                         saveDataInUserDefaults(value: name!, key: "name")
-                        
-                        print(name)
                         
                         self.dismiss(animated: true, completion: nil)
                     })
@@ -223,6 +229,18 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             alert.showError(title: "wrongEmail".localized(), buttonTitle: "OK")
         }
 
+    }
+    
+    func startSpinner(){
+        completView.isUserInteractionEnabled = false
+        spinner.isHidden = false
+        spinner.startAnimating()
+    }
+    
+    func stopSpinner(){
+        completView.isUserInteractionEnabled = true
+        spinner.isHidden = true
+        spinner.stopAnimating()
     }
     
 }

@@ -58,28 +58,31 @@ func createEventRequest(title:String, description:String, idType:Int, idGroup:[I
                             
                         case .success(let upload, _, _):
                             upload.responseJSON { response in
-
-                                var arrayResult = response.result.value as! Dictionary<String, Any>
                                 
-                                if let result = response.result.value {
-                                    
-                                    print(result)
-                                    
-                                    let code = arrayResult["code"] as! Int
-                                    
-                                    switch code{
-                                    case 200:
-                                        events = arrayResult["data"] as! [[String:Any]]
-                                        
-                                        (controller as! LocalizationCreateEventViewController).createAlert(type:"success", title:"eventCreated".localized(), message: "eventCreatedSuccess".localized())
-                                    case 400:
-                                        print(arrayResult)
-                                        
-                                    default:
-                                        print(arrayResult)
-                                        
-                                    }
+                                if (response.result.value != nil){
 
+                                    var arrayResult = response.result.value as! Dictionary<String, Any>
+                                    
+                                    if let result = response.result.value {
+                                        
+                                        print(result)
+                                        
+                                        let code = arrayResult["code"] as! Int
+                                        
+                                        switch code{
+                                        case 200:
+                                            events = arrayResult["data"] as! [[String:Any]]
+                                            
+                                            (controller as! LocalizationCreateEventViewController).createAlert(type:"success", title:"eventCreated".localized(), message: "eventCreatedSuccess".localized())
+                                        case 400:
+                                            print(arrayResult)
+                                            
+                                        default:
+                                            print(arrayResult)
+                                            
+                                        }
+
+                                    }
                                 }
                             
                             }
@@ -105,24 +108,27 @@ func requestEvents(type:Int, controller:UIViewController){
     
     Alamofire.request(url!, method: .get, parameters: parameters, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
+        if (response.result.value != nil){
         
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                events = arrayResult["data"] as! [[String:Any]]
-                
-                (controller as! EventsViewController).reloadTable()
-
-            default:
-         (controller as! EventsViewController).notResults()
-                print(arrayResult["message"] as! String)
-            }
-        case .failure:
+            var arrayResult = response.result.value as! Dictionary<String, Any>
             
-            print("Error :: \(String(describing: response.error))")
-            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    events = arrayResult["data"] as! [[String:Any]]
+                    
+                    (controller as! EventsViewController).reloadTable()
+
+                default:
+             (controller as! EventsViewController).notResults()
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            }
         }
     }
 }
@@ -141,24 +147,27 @@ func requestEvent(id:Int, action: @escaping () -> ()){
     
     Alamofire.request(url!, method: .get, parameters: parameters, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
+        if (response.result.value != nil){
         
-        print(response)
-        
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                comments = (arrayResult["data"] as! Dictionary<String, Any>)["comments"] as? [Dictionary<String, Any>]
-                action()
-            default:
-                //(controller as! EventsViewController).notResults()
-                print(arrayResult["message"] as! String)
-            }
-        case .failure:
+            var arrayResult = response.result.value as! Dictionary<String, Any>
             
-            print("Error :: \(String(describing: response.error))")
-            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            print(response)
+            
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    comments = (arrayResult["data"] as! Dictionary<String, Any>)["comments"] as? [Dictionary<String, Any>]
+                    action()
+                default:
+                    //(controller as! EventsViewController).notResults()
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            }
         }
     }
 }
@@ -177,24 +186,27 @@ func requestFindEvents(search:String, type:Int, controller:UIViewController){
     
     Alamofire.request(url!, method: .get, parameters: parameters, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
+        if (response.result.value != nil){
         
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                events = arrayResult["data"] as! [[String : Any]]
-                
-                (controller as! EventsViewController).reloadTable()
-                
-            default:
-                (controller as! EventsViewController).notResults()
-                print(arrayResult["message"] as! String)
-            }
-        case .failure:
+            var arrayResult = response.result.value as! Dictionary<String, Any>
             
-            print("Error :: \(String(describing: response.error))")
-            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    events = arrayResult["data"] as! [[String : Any]]
+                    
+                    (controller as! EventsViewController).reloadTable()
+                    
+                default:
+                    (controller as! EventsViewController).notResults()
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+               
+            }
         }
     }
     

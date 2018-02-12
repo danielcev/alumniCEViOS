@@ -23,23 +23,28 @@ func requestProfile(){
     
     Alamofire.request(user!, method: .get, parameters: parameters, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
+        if (response.result.value != nil){
         
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                print(arrayResult)
+            var arrayResult = response.result.value as! Dictionary<String, Any>
+            
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    print(arrayResult)
+                    
+                    break
+                default:
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
                 
-                break
-            default:
-                print(arrayResult["message"] as! String)
+                print("Error :: \(String(describing: response.error))")
+                
             }
-        case .failure:
             
-            print("Error :: \(String(describing: response.error))")
+        } 
             
-        }
     }
 }
 

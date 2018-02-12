@@ -24,35 +24,38 @@ func requestAddress(address:String, controller:UIViewController){
     
     Alamofire.request(url!, method: .get, parameters: parameters, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
+        if (response.result.value != nil){
         
-        switch response.result {
-        case .success:
-            switch arrayResult["status"] as! String{
-            case "OK":
-                addressResponse = (arrayResult["results"] as! [Any])[0] as? Dictionary<String, Any>
-                
-                let newAddress = Address()
-                newAddress.formatted_address = addressResponse!["formatted_address"] as? String
-                newAddress.lat =
-                    ((addressResponse!["geometry"] as! Dictionary<String, Any>)["location"] as! Dictionary<String, Any>)["lat"] as? Float
-                
-                newAddress.lon =
-                    ((addressResponse!["geometry"] as! Dictionary<String, Any>)["location"] as! Dictionary<String, Any>)["lng"] as? Float
-                
-                (controller as! LocalizationCreateEventViewController).receiveAddress(addressReceived: newAddress)
-                
-            case "ZERO_RESULTS":
-                print("No hay resultados")
-                
-            default:
-                
-                print(arrayResult["message"] as! String)
-            }
-        case .failure:
+            var arrayResult = response.result.value as! Dictionary<String, Any>
             
-            print("Error :: \(String(describing: response.error))")
-            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            switch response.result {
+            case .success:
+                switch arrayResult["status"] as! String{
+                case "OK":
+                    addressResponse = (arrayResult["results"] as! [Any])[0] as? Dictionary<String, Any>
+                    
+                    let newAddress = Address()
+                    newAddress.formatted_address = addressResponse!["formatted_address"] as? String
+                    newAddress.lat =
+                        ((addressResponse!["geometry"] as! Dictionary<String, Any>)["location"] as! Dictionary<String, Any>)["lat"] as? Float
+                    
+                    newAddress.lon =
+                        ((addressResponse!["geometry"] as! Dictionary<String, Any>)["location"] as! Dictionary<String, Any>)["lng"] as? Float
+                    
+                    (controller as! LocalizationCreateEventViewController).receiveAddress(addressReceived: newAddress)
+                    
+                case "ZERO_RESULTS":
+                    print("No hay resultados")
+                    
+                default:
+                    
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            }
         }
     }
 }
@@ -71,35 +74,38 @@ func requestAddress(address:String, controller:UIViewController){
         
         Alamofire.request(url!, method: .get, parameters: parameters, headers: headers).responseJSON{response in
             
-            var arrayResult = response.result.value as! Dictionary<String, Any>
+            if (response.result.value != nil){
             
-            switch response.result {
-            case .success:
-                switch arrayResult["status"] as! String{
-                case "OK":
-                    addressResponse = (arrayResult["results"] as! [Any])[0] as? Dictionary<String, Any>
-                    
-                    let newAddress = Address()
-                    newAddress.formatted_address = addressResponse!["formatted_address"] as? String
-                    newAddress.lat =
-                        ((addressResponse!["geometry"] as! Dictionary<String, Any>)["location"] as! Dictionary<String, Any>)["lat"] as? Float
-                    
-                    newAddress.lon =
-                        ((addressResponse!["geometry"] as! Dictionary<String, Any>)["location"] as! Dictionary<String, Any>)["lng"] as? Float
-
-                    (controller as! DetailEventViewController).setEvent(address: newAddress)
-                    
-                case "ZERO_RESULTS":
-                    print("No hay resultados")
-                    
-                default:
-                    
-                    print(arrayResult["message"] as! String)
-                }
-            case .failure:
+                var arrayResult = response.result.value as! Dictionary<String, Any>
                 
-                print("Error :: \(String(describing: response.error))")
-                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+                switch response.result {
+                case .success:
+                    switch arrayResult["status"] as! String{
+                    case "OK":
+                        addressResponse = (arrayResult["results"] as! [Any])[0] as? Dictionary<String, Any>
+                        
+                        let newAddress = Address()
+                        newAddress.formatted_address = addressResponse!["formatted_address"] as? String
+                        newAddress.lat =
+                            ((addressResponse!["geometry"] as! Dictionary<String, Any>)["location"] as! Dictionary<String, Any>)["lat"] as? Float
+                        
+                        newAddress.lon =
+                            ((addressResponse!["geometry"] as! Dictionary<String, Any>)["location"] as! Dictionary<String, Any>)["lng"] as? Float
+
+                        (controller as! DetailEventViewController).setEvent(address: newAddress)
+                        
+                    case "ZERO_RESULTS":
+                        print("No hay resultados")
+                        
+                    default:
+                        
+                        print(arrayResult["message"] as! String)
+                    }
+                case .failure:
+                    
+                    print("Error :: \(String(describing: response.error))")
+                    //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+                }
             }
         }
     

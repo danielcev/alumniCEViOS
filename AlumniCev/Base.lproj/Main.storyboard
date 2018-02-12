@@ -422,13 +422,34 @@
                                     <action selector="segmentedChanged:" destination="Xrd-2c-ihi" eventType="valueChanged" id="KwD-Ya-ect"/>
                                 </connections>
                             </segmentedControl>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sUX-Tf-RWh" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="150" y="296" width="74" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballClipRotateMultiple"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="1" green="0.42453399590000002" blue="0.2328419189" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Not friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5z-v0-Stx">
+                                <rect key="frame" x="35" y="190" width="304" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="LVG-Sp-qEa"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Users" image="users" selectedImage="users_selected" id="XGz-PC-GHs"/>
                     <connections>
+                        <outlet property="completView" destination="IxQ-PO-uII" id="89E-AB-5hj"/>
+                        <outlet property="notFriendsLbl" destination="F5z-v0-Stx" id="7p5-Qm-seT"/>
                         <outlet property="segmentedUsers" destination="WU5-Hp-T7p" id="Qre-Cg-v9I"/>
+                        <outlet property="spinner" destination="sUX-Tf-RWh" id="FQ0-DY-7My"/>
                         <outlet property="usersTable" destination="5cD-dk-b6U" id="T2F-LI-drz"/>
                     </connections>
                 </viewController>
@@ -499,6 +520,11 @@
                                     <action selector="uploadImageAction:" destination="T7Q-Mk-N7j" eventType="touchUpInside" id="vOD-Lm-N2w"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GZp-vM-Lnc">
+                                <rect key="frame" x="312" y="530" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" red="0.012759816829999999" green="0.49411326649999998" blue="0.5452492833" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </switch>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ew-6W-ht7">
                                 <rect key="frame" x="13" y="251" width="346" height="3"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -620,11 +646,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GZp-vM-Lnc">
-                                <rect key="frame" x="312" y="530" width="49" height="31"/>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kJR-rz-oSq" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="150" y="296" width="74" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="onTintColor" red="0.012759816829999999" green="0.49411326649999998" blue="0.5452492833" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </switch>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballClipRotateMultiple"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="1" green="0.42453399590000002" blue="0.2328419189" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="pdp-lk-CPd"/>
@@ -632,6 +664,7 @@
                     <connections>
                         <outlet property="allowPhoneLbl" destination="rJn-Li-yJ9" id="dKg-oS-3VT"/>
                         <outlet property="changePhotoBtn" destination="IbS-GJ-3Zy" id="5B2-ob-e2S"/>
+                        <outlet property="completView" destination="6kK-2L-bDD" id="yGH-um-YNe"/>
                         <outlet property="descriptionTitleLbl" destination="ECS-8C-iq5" id="ZIa-6C-AmF"/>
                         <outlet property="descriptionTxV" destination="09g-AD-foJ" id="SEb-Ez-RJp"/>
                         <outlet property="emailTitleLbl" destination="0Go-kb-pJZ" id="SLf-aE-zA6"/>
@@ -645,6 +678,7 @@
                         <outlet property="phoneTitleLbl" destination="7ff-eZ-0k7" id="AVm-gL-fVk"/>
                         <outlet property="phoneTxF" destination="dHe-f3-1Qm" id="16T-6T-7bg"/>
                         <outlet property="privacityTitleLbl" destination="Dth-r2-psv" id="AQZ-2s-xxJ"/>
+                        <outlet property="spinner" destination="kJR-rz-oSq" id="kKc-cV-nGY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nW2-Se-9I6" userLabel="First Responder" sceneMemberID="firstResponder"/>

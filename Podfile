@@ -9,6 +9,7 @@ target 'AlumniCev' do
   pod 'SimpleAnimation', '~> 0.4'
   pod 'JHTAlertController', '~> 0.2'
   pod 'IQKeyboardManagerSwift'
+  pod 'NVActivityIndicatorView', '~> 4.1'
   end
 
  

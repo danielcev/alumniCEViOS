@@ -21,23 +21,26 @@ func requestAllUsers(action: @escaping ()->()){
     
     Alamofire.request(url!, method: .get, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
-        
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                users = arrayResult["data"] as? [[String:Any]]
-                
-                action()
-            default:
-                
-                print(arrayResult["message"] as! String)
-            }
-        case .failure:
+        if (response.result.value != nil){
             
-            print("Error :: \(String(describing: response.error))")
-            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            var arrayResult = response.result.value as! Dictionary<String, Any>
+            
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    users = arrayResult["data"] as? [[String:Any]]
+                    
+                    action()
+                default:
+                    
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            }
         }
     }
 }
@@ -54,24 +57,27 @@ func requestFriends(action: @escaping ()->()){
     
     Alamofire.request(url!, method: .get, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
-        
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                users = arrayResult["data"] as? [[String:Any]]
-                
-                action()
-            default:
-                
-                print(arrayResult["message"] as! String)
-            }
-        case .failure:
+        if (response.result.value != nil){
+            var arrayResult = response.result.value as! Dictionary<String, Any>
             
-            print("Error :: \(String(describing: response.error))")
-            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    users = arrayResult["data"] as? [[String:Any]]
+                    
+                    action()
+                default:
+                    
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+                
+            }
         }
+
     }
 }
 
@@ -87,26 +93,29 @@ func requestRequests(action: @escaping ()->()){
     
     Alamofire.request(url!, method: .get, headers: headers).responseJSON{response in
         
-        var arrayResult = response.result.value as! Dictionary<String, Any>
+        if (response.result.value != nil){
         
-        switch response.result {
-        case .success:
-            switch arrayResult["code"] as! Int{
-            case 200:
-                
-                let arrayData = arrayResult["data"] as? [String:Any]
-                
-                requests = arrayData!["requests"] as? [Dictionary<String, Any>]
-                
-                action()
-            default:
-                
-                print(arrayResult["message"] as! String)
-            }
-        case .failure:
+            var arrayResult = response.result.value as! Dictionary<String, Any>
             
-            print("Error :: \(String(describing: response.error))")
-            //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    
+                    let arrayData = arrayResult["data"] as? [String:Any]
+                    
+                    requests = arrayData!["requests"] as? [Dictionary<String, Any>]
+                    
+                    action()
+                default:
+                    
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
+            }
         }
     }
 }
@@ -161,23 +170,26 @@ func requestEditUser(id:Int,email:String?, phone:String?, birthday:String?, desc
         case .success(let upload, _, _):
             upload.responseJSON { response in
                 
-                var arrayResult = response.result.value as! Dictionary<String, Any>
+                if (response.result.value != nil){
                 
-                if let result = response.result.value {
+                    var arrayResult = response.result.value as! Dictionary<String, Any>
                     
-                    let code = arrayResult["code"] as! Int
-                    
-                    switch code{
-                    case 200:
-                        action()
-                    case 400:
-                        print(arrayResult)
+                    if response.result.value != nil {
                         
-                    default:
-                        print(arrayResult)
+                        let code = arrayResult["code"] as! Int
+                        
+                        switch code{
+                        case 200:
+                            action()
+                        case 400:
+                            print(arrayResult)
+                            
+                        default:
+                            print(arrayResult)
+                            
+                        }
                         
                     }
-                    
                 }
                 
             }

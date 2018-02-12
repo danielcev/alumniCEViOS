@@ -102,4 +102,6 @@
 "localizSettings" = "Vaig permetre meu localització";
 "phoneSettings" = "Vaig permetre el meu número de telèfon";
 
+//USERS
 
+"notFriends"="No tens amics";
