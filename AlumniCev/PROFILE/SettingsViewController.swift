@@ -22,8 +22,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var nameTitleLbl: UILabel!
     @IBOutlet weak var nameTxF: UITextField!
     
-    @IBOutlet weak var passwordTitleLbl: UILabel!
-    @IBOutlet weak var passwordTxF: UITextField!
+
+    @IBOutlet weak var changePasswordBtn: UIButton!
     
     @IBOutlet weak var phoneTitleLbl: UILabel!
     @IBOutlet weak var phoneTxF: UITextField!
@@ -35,18 +35,35 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var descriptionTxV: UITextView!
     
     @IBOutlet weak var privacityTitleLbl: UILabel!
+    
     @IBOutlet weak var localizationTitleLbl: UILabel!
-
+    @IBOutlet weak var switchLocalization: UISwitch!
+    
     @IBOutlet weak var allowPhoneLbl: UILabel!
+    @IBOutlet weak var switchPhone: UISwitch!
     
     @IBOutlet weak var changePhotoBtn: UIButton!
     
     var photo:Data?
     
     var picker:UIImagePickerController?
+    
+    var cpalert:CPAlertViewController? = nil
+    
+    var lastPassword:String?
+    var password:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cpalert = CPAlertViewController()
+        
+        let phonePrivacity = getDataInUserDefaults(key: "phoneprivacity") == "1" ? true : false
+        
+        let localizationPrivacity = getDataInUserDefaults(key: "localizationprivacity") == "1" ? true : false
+        
+        switchPhone.setOn(phonePrivacity, animated: false)
+        switchLocalization.setOn(localizationPrivacity, animated: false)
         
         imgProfile.contentMode = .scaleAspectFill
         imgProfile.layer.masksToBounds = true
@@ -65,8 +82,6 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     func setValues(){
         let name = getDataInUserDefaults(key: "name")
         nameTxF.text = name
-   
-        passwordTxF.text = "*******"
         
         if getDataInUserDefaults(key: "phone") != nil{
             let phone = getDataInUserDefaults(key: "phone")
@@ -91,7 +106,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     func setTitles(){
         changePhotoBtn.setTitle("changePhoto".localized(), for: .normal)
         nameTitleLbl.text = "fullName".localized()
-        passwordTitleLbl.text = "password".localized()
+        changePasswordBtn.setTitle("password".localized(), for: .normal)
         phoneTitleLbl.text = "MyPhone".localized()
         emailTitleLbl.text = "emailSettings".localized()
         descriptionTitleLbl.text = "descriptSettings".localized()
@@ -101,15 +116,85 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func setStyleTxF(){
         nameTxF.layer.borderColor = cevColor.cgColor
-        passwordTxF.layer.borderColor = cevColor.cgColor
         phoneTxF.layer.borderColor = cevColor.cgColor
         emailTxF.layer.borderColor = cevColor.cgColor
         
         nameTxF.layer.borderWidth = 0.5
-        passwordTxF.layer.borderWidth = 0.5
         phoneTxF.layer.borderWidth = 0.5
         emailTxF.layer.borderWidth = 0.5
     }
+    
+    @IBAction func changePasswordAction(_ sender: Any) {
+        
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Cambiar contraseña", message: "Cambia tu contraseña por una nueva", preferredStyle: .alert)
+        
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.placeholder = "Contraseña antigua"
+        }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Contraseña nueva"
+        }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Repetir contraseña nueva"
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .destructive, handler: nil))
+        
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textFieldAntigua = alert?.textFields![0]
+            let textFieldNueva = alert?.textFields![1]
+            let textFieldRepetirNueva = alert?.textFields![2]
+            
+            if textFieldAntigua!.text != "" && textFieldNueva!.text != "" && textFieldRepetirNueva!.text != ""{
+                
+                if textFieldNueva!.text != textFieldRepetirNueva!.text{
+                    self.present(alert!, animated: true, completion: nil)
+                    alert?.message = "No coinciden las contraseñas"
+                    alert?.setValue(NSAttributedString(string: (alert?.message)!, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), NSAttributedStringKey.foregroundColor : UIColor.red]), forKey: "attributedMessage")
+                }else{
+                    if (textFieldNueva!.text?.count)! < 5 || (textFieldNueva!.text?.count)! > 12{
+                        self.present(alert!, animated: true, completion: nil)
+                        alert?.message = "La longitud de la contraseña debe estar comprendida entre 5 y 12 caracteres"
+                        alert?.setValue(NSAttributedString(string: (alert?.message)!, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), NSAttributedStringKey.foregroundColor : UIColor.red]), forKey: "attributedMessage")
+                    }else{
+                    
+                        self.lastPassword = (textFieldAntigua!.text)!
+                        self.password = (textFieldNueva?.text)!
+                        
+                        self.changePassword(alert: alert!)
+                    }
+                }
+                
+            }else{
+                self.present(alert!, animated: true, completion: nil)
+                alert?.message = "Todos los campos son necesarios"
+                alert?.setValue(NSAttributedString(string: (alert?.message)!, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), NSAttributedStringKey.foregroundColor : UIColor.red]), forKey: "attributedMessage")
+            }
+
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func changePassword(alert:UIAlertController){
+        requestChangePassword(lastPassword: self.lastPassword!, password: self.password!, action: {
+            
+            self.cpalert?.showSuccess(title: "Éxito", message: "Contraseña cambiada", buttonTitle: "OK", action: nil)
+            
+        }, fail: {
+            self.present(alert, animated: true, completion: nil)
+            alert.message = "La contraseña antigua no es válida"
+            alert.setValue(NSAttributedString(string: (alert.message)!, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), NSAttributedStringKey.foregroundColor : UIColor.red]), forKey: "attributedMessage")
+        })
+    }
+
     
     @IBAction func uploadImageAction(_ sender: UIButton) {
         checkPermission()
@@ -201,7 +286,10 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                 let description = descriptionTxV.text
                 let name = nameTxF.text
                 
-                requestEditUser(id: id!, email: email, phone: phone, birthday: nil, description: description, photo: photo) {
+                let localizationprivacity = switchLocalization.isOn ? 1 : 0
+                let phoneprivacity = switchPhone.isOn ? 1 : 0
+                
+                requestEditUser(id: id!, email: email, phone: phone, birthday: nil, description: description, photo: photo, phoneprivacity: phoneprivacity, localizationprivacity: localizationprivacity ) {
                     
                     self.stopSpinner()
                     
@@ -215,6 +303,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                         saveDataInUserDefaults(value: phone, key: "phone")
                         saveDataInUserDefaults(value: description!, key: "description")
                         saveDataInUserDefaults(value: name!, key: "name")
+                        saveDataInUserDefaults(value: localizationprivacity.description, key: "localizationprivacity")
+                        saveDataInUserDefaults(value: phoneprivacity.description, key: "phoneprivacity")
                         
                         self.dismiss(animated: true, completion: nil)
                     })

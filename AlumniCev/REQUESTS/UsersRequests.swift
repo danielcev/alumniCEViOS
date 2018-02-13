@@ -120,7 +120,46 @@ func requestRequests(action: @escaping ()->()){
     }
 }
 
-func requestEditUser(id:Int,email:String?, phone:String?, birthday:String?, description:String?, photo:Data?, action: @escaping ()->()){
+func requestChangePassword(lastPassword:String, password:String, action: @escaping ()->(), fail: @escaping ()->()){
+    
+    let url = URL(string: URL_GENERAL + "users/changepassword.json")
+    
+    let token = getDataInUserDefaults(key:"token")
+    
+    let headers: HTTPHeaders = [
+        "Authorization": token!,
+        "Accept": "application/json"
+    ]
+    
+    let parameters: Parameters = ["lastpassword": lastPassword,
+                                  "password":password]
+    
+    Alamofire.request(url!, method: .post, parameters: parameters, headers: headers).responseJSON{response in
+
+        if (response.result.value != nil){
+            
+            var arrayResult = response.result.value as! Dictionary<String, Any>
+
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    action()
+                default:
+                    
+                    fail()
+
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+            
+            }
+        }
+    }
+}
+
+func requestEditUser(id:Int,email:String?, phone:String?, birthday:String?, description:String?, photo:Data?, phoneprivacity:Int?, localizationprivacity:Int?, action: @escaping ()->()){
     let url = URL(string: URL_GENERAL + "users/update.json")
     
     var parameters: Parameters = ["id": id]
@@ -139,6 +178,14 @@ func requestEditUser(id:Int,email:String?, phone:String?, birthday:String?, desc
     
     if description != nil{
         parameters["description"] = description
+    }
+    
+    if phoneprivacity != nil{
+        parameters["phoneprivacity"] = phoneprivacity
+    }
+    
+    if localizationprivacity != nil{
+        parameters["localizationprivacity"] = localizationprivacity
     }
 
     let token = getDataInUserDefaults(key:"token")
@@ -181,6 +228,7 @@ func requestEditUser(id:Int,email:String?, phone:String?, birthday:String?, desc
                         switch code{
                         case 200:
                             action()
+                            print("Usuario editado")
                         case 400:
                             print(arrayResult)
                             

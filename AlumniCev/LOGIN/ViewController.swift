@@ -131,8 +131,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 case 200:
                     var arrayData = arrayResult["data"] as! Dictionary<String,Any>
                     var arrayUser = arrayData["user"] as! Dictionary<String,Any>
-                    
-                    print(arrayResult)
+                    var arrayPrivacity = arrayData["privacity"] as! Dictionary<String,String>
                     
                     SwiftSpinner.hide()
                     
@@ -144,6 +143,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         saveDataInUserDefaults(value: arrayUser["password"] as! String, key: "password")
                         saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")
                         saveDataInUserDefaults(value: arrayUser["username"] as! String, key: "username")
+                        saveDataInUserDefaults(value: arrayPrivacity["phone"] as! String, key: "phoneprivacity")
+                        saveDataInUserDefaults(value: arrayPrivacity["localization"] as! String, key: "localizationprivacity")
                         
                         if arrayUser["description"] as? String != nil{
                             saveDataInUserDefaults(value: arrayUser["description"] as! String, key: "description")

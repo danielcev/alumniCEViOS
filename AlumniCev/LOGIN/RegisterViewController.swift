@@ -167,6 +167,7 @@
                 case 200:
                     var arrayData = arrayResult["data"] as! Dictionary<String,Any>
                     var arrayUser = arrayData["user"] as! Dictionary<String,Any>
+                    var arrayPrivacity = arrayData["privacity"] as! Dictionary<String,String>
                     
                     SwiftSpinner.hide()
                     
@@ -181,6 +182,8 @@
                         saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")
                         saveDataInUserDefaults(value: arrayData["token"] as! String, key: "token")
                         saveDataInUserDefaults(value: arrayUser["username"] as! String, key: "username")
+                        saveDataInUserDefaults(value: arrayPrivacity["phone"] as! String, key: "phoneprivacity")
+                        saveDataInUserDefaults(value: arrayPrivacity["localization"] as! String, key: "localizationprivacity")
                         if arrayUser["description"] as? String != nil{
                             saveDataInUserDefaults(value: arrayUser["description"] as! String, key: "description")
                         }
@@ -204,7 +207,6 @@
             case .failure:
                 SwiftSpinner.hide()
                 print("Error :: \(String(describing: response.error))")
-                //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
             }
             SwiftSpinner.hide()
         }
@@ -239,12 +241,9 @@
     
     func goToMain(){
         
-        //        let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
         let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
         
-        
         self.present(tabbarVC, animated: false, completion: nil)
-        
         
     }
     

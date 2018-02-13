@@ -24,16 +24,17 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var phoneTitleLbl: UILabel!
     @IBOutlet weak var phoneLbl: UILabel!
     
-    @IBOutlet weak var localizationTitleLbl: UILabel!
-    @IBOutlet weak var localizationLbl: UILabel!
-    
     @IBOutlet weak var descriptionTitleLbl: UILabel!
     @IBOutlet weak var descriptionTxV: UITextView!
+    
+    @IBOutlet weak var logoutBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imgProfile.contentMode = .scaleAspectFill
         imgProfile.layer.masksToBounds = true
+
+        logoutBtn.layer.cornerRadius = logoutBtn.layer.frame.height / 2
 
     }
     
@@ -69,7 +70,6 @@ class ProfileViewController: UIViewController {
         usernameTitleLbl.text = "username".localized()
         emailTitleLbl.text = "emailSettings".localized()
         phoneTitleLbl.text = "MyPhone".localized()
-        localizationTitleLbl.text = "localizationTitle".localized()
         descriptionTitleLbl.text = "descriptSettings".localized()
     }
     
