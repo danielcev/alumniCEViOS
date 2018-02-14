@@ -135,7 +135,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             break
         default:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
-            vc.username = users![indexPath.row]["username"] as? String
+            vc.user = (users![indexPath.row] as Dictionary<String,Any>?)! as! Dictionary<String, Any>
             
             self.present(vc, animated: true, completion: nil)
         }

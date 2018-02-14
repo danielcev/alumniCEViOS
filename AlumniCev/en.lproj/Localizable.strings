@@ -104,3 +104,12 @@
 //USERS
 
 "notFriends"="You have no friends";
+
+//DETAIL USER
+"myName" = "Name";
+"myDescrip" = "Description";
+"myMail" = "Email address";
+"myNum" = "Phone number";
+"myLoc" = "Location";
+"myUserName" = "Username";
+"addFriend" = "Add to my friends";

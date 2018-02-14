@@ -107,4 +107,12 @@
 
 "notFriends"="No tienes amigos";
 
+//DETAIL USER
+"myName" = "Nombre";
+"myDescrip" = "Descripción";
+"myMail" = "Dirección de correo electrónico";
+"myNum" = "Numero de telefono";
+"myLoc" = "Localizacion";
+"myUserName" = "Nombre de usario";
+"addFriend" = "Añadir a mis amigos";
 

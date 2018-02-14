@@ -159,6 +159,43 @@ func requestChangePassword(lastPassword:String, password:String, action: @escapi
     }
 }
 
+func sendRequestFriend(id_user:Int, action: @escaping ()->()){
+    let url = URL(string: URL_GENERAL + "users/sendRequest.json")
+    
+    let token = getDataInUserDefaults(key:"token")
+    
+    let parameters:Parameters = ["id_user":id_user]
+    
+    let headers: HTTPHeaders = [
+        "Authorization": token!,
+        "Accept": "application/json"
+    ]
+    
+    Alamofire.request(url!, method: .post, parameters:parameters, headers: headers).responseJSON{response in
+        
+        if (response.result.value != nil){
+            
+            var arrayResult = response.result.value as! Dictionary<String, Any>
+            
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    
+                    action()
+                default:
+                    
+                    print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+            
+            }
+        }
+    }
+}
+
 func requestEditUser(id:Int,email:String?, phone:String?, birthday:String?, description:String?, photo:Data?, phoneprivacity:Int?, localizationprivacity:Int?, action: @escaping ()->()){
     let url = URL(string: URL_GENERAL + "users/update.json")
     

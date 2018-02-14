@@ -105,3 +105,12 @@
 //USERS
 
 "notFriends"="No tens amics";
+
+//DETAIL USER
+"myName" = "Nom";
+"myDescrip" = "Descripció";
+"myMail" = "adreça de correu electrònic";
+"myNum" = "Número de telèfon";
+"myLoc" = "Ubicació";
+"myUserName" = "Nom d'usuari";
+"addFriend" = "Afegir als meus amics";
