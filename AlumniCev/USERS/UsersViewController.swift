@@ -8,6 +8,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import Alamofire
 
 class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -56,7 +57,6 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if users != nil{
                 return users!.count
             }else{
-                
                 return 0
             }
         case "requests":
@@ -84,22 +84,62 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         switch listSelected {
         case "users":
-            cell.nameLbl.text = users![indexPath.row]["username"] as? String
+            
+            cell.usernameLbl.isHidden = false
+            cell.nameLbl.font = cell.nameLbl.font.withSize(14)
+            
+            cell.nameLbl.text = users![indexPath.row]["name"] as? String
+            
+            cell.usernameLbl.text = users![indexPath.row]["username"] as? String
+            
+            if users![indexPath.row]["photo"] as? String != nil{
+                //Añadir imagen
+                let remoteImageURL = URL(string: (users![indexPath.row]["photo"] as? String)!)!
+                
+                Alamofire.request(remoteImageURL).responseData { (response) in
+                    if response.error == nil {
+                        print(response.result)
+                        
+                        if let data = response.data {
+                            cell.photoImag.image = UIImage(data: data)
+                        }
+                    }
+                }
+            }else{
+                cell.photoImag.image = #imageLiteral(resourceName: "userdefaulticon")
+            }
+
+            
+            cell.photoImag.contentMode = .scaleAspectFill
+            cell.photoImag.layer.cornerRadius = cell.photoImag.bounds.height/2
+            cell.photoImag.layer.masksToBounds = true
+            
             break
         case "groups":
+            cell.usernameLbl.isHidden = true
             cell.nameLbl.text = groups[indexPath.row]["name"]
+            cell.nameLbl.font = cell.nameLbl.font.withSize(20)
+            
             break
+            
         case "friends":
+            
+            cell.usernameLbl.isHidden = false
+            cell.nameLbl.font = cell.nameLbl.font.withSize(14)
+            
             cell.nameLbl.text = users![indexPath.row]["username"] as? String
             break
         case "requests":
             
+            cell.usernameLbl.isHidden = true
+            cell.nameLbl.font = cell.nameLbl.font.withSize(14)
+            
             let id = getDataInUserDefaults(key: "id")!
             
             let sendUser = requests![indexPath.row]["username"] as! String
+        
             
             if requests![indexPath.row]["state"] as! String == "1"{
-                
                 
                 if requests![indexPath.row]["id_user_receive"] as? String == id{
                     cell.nameLbl.text = "\(sendUser) te ha enviado una petición de amistad"
@@ -117,6 +157,23 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
             }
             
+            if requests![indexPath.row]["photo"] as? String != nil{
+                //Añadir imagen
+                let remoteImageURL = URL(string: (requests![indexPath.row]["photo"] as? String)!)!
+                
+                Alamofire.request(remoteImageURL).responseData { (response) in
+                    if response.error == nil {
+                        print(response.result)
+                        
+                        if let data = response.data {
+                            cell.photoImag.image = UIImage(data: data)
+                        }
+                    }
+                }
+            }else{
+                cell.photoImag.image = #imageLiteral(resourceName: "userdefaulticon")
+            }
+            
             break
         default:
             cell.nameLbl.text = users![indexPath.row]["username"] as? String
@@ -132,10 +189,16 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         case "groups":
             break
         case "requests":
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
+            vc.user = (requests![indexPath.row] as Dictionary<String,Any>?)!
+            
+            self.present(vc, animated: true, completion: nil)
+            
             break
         default:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
-            vc.user = (users![indexPath.row] as Dictionary<String,Any>?)! as! Dictionary<String, Any>
+            vc.user = (users![indexPath.row] as Dictionary<String,Any>?)!
             
             self.present(vc, animated: true, completion: nil)
         }
@@ -169,6 +232,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if users?.count == 0{
                     self.usersTable.isHidden = true
                     self.notFriendsLbl.isHidden = false
+                    self.notFriendsLbl.text = "Not friends"
                 }
             }
             
@@ -177,6 +241,12 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             requestRequests {
                 self.rechargeTable()
                 self.stopSpinner()
+                
+                if requests?.count == 0{
+                    self.usersTable.isHidden = true
+                    self.notFriendsLbl.isHidden = false
+                    self.notFriendsLbl.text = "No hay peticiones"
+                }
             }
             
         default:

@@ -28,6 +28,8 @@ var comments:[Dictionary<String,Any>]?
 
 var users:[Dictionary<String,Any>]?
 
+var friend:Dictionary<String,Any>?
+
 var events:[[String:Any]] = [
     
     ["title":"Evento 1",

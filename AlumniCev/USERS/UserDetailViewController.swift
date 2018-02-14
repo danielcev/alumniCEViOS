@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class UserDetailViewController: UIViewController {
     
@@ -36,6 +37,10 @@ class UserDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        requestUserById(id: Int(user?["id"] as! String)!) {
+            self.setBtn()
+        }
+        
         addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
         nameTitle.text = "myName".localized()
         DescripTitlfe.text = "myDescrip".localized()
@@ -44,13 +49,31 @@ class UserDetailViewController: UIViewController {
         localTitle.text = "myLoc".localized()
         userTitle.text = "myUserName".localized()
         
-        
-        print("Este es el diccionario de usuarios: \(String(describing: user))")
-        
-        usernameLbl.text = user?["username"] as? String
-        nameLB.text = user?["username"] as? String
+        usernameLbl.text = user?["name"] as? String
+        nameLB.text = user?["name"] as? String
         direcLB.text = user?["email"] as? String
         userLB.text = user?["username"] as? String
+        
+        if user!["photo"] as? String != nil{
+            //Añadir imagen
+            let remoteImageURL = URL(string: (user!["photo"] as? String)!)!
+            
+            Alamofire.request(remoteImageURL).responseData { (response) in
+                if response.error == nil {
+                    print(response.result)
+                    
+                    if let data = response.data {
+                        self.imgUser.image = UIImage(data: data)
+                    }
+                }
+            }
+        }else{
+            imgUser.image = #imageLiteral(resourceName: "userdefaulticon")
+        }
+        
+        imgUser.contentMode = .scaleAspectFill
+        imgUser.layer.cornerRadius = imgUser.bounds.height/2
+        imgUser.layer.masksToBounds = true
         
         if user?["phone"] as? String != nil{
             phoneLB.text = user?["phone"] as? String
@@ -68,10 +91,32 @@ class UserDetailViewController: UIViewController {
             
         }
         
+    }
+    
+    func setBtn(){
+        
+        if friend != nil{
+            if friend!["state"] as! String == "2" {
+                
+                addFriendsBtn.setTitle("Eliminar amistad", for: .normal)
+                
+            }else{
+                
+                if friend!["id_user_send"] as? Int == Int((user?["id"] as? String)!){
+                    addFriendsBtn.setTitle("Aceptar petición", for: .normal)
+                }else{
+                    addFriendsBtn.setTitle("Cancelar petición enviada", for: .normal)
+                }
+                
+            }
+        }else{
+            addFriendsBtn.setTitle("Enviar petición de amistad", for: .normal)
+        }
         
     }
     
     @IBAction func backAction(_ sender: Any) {
+        friend = nil
         self.dismiss(animated: true, completion: nil)
     }
     
