@@ -35,8 +35,6 @@ class ProfileViewController: UIViewController {
         imgProfile.layer.masksToBounds = true
 
         logoutBtn.layer.cornerRadius = logoutBtn.layer.frame.height / 2
-        
-        
 
     }
     
@@ -56,12 +54,17 @@ class ProfileViewController: UIViewController {
         let email = getDataInUserDefaults(key: "email")
         emailLbl.text = email
         
-        let phone = getDataInUserDefaults(key: "phone")
-        phoneLbl.text = phone
-        
+        if getDataInUserDefaults(key: "phone") == nil{
+            phoneLbl.text = "Without phone number"
+        }else{
+            phoneLbl.text = getDataInUserDefaults(key: "phone")
+        }
+
         if getDataInUserDefaults(key: "description") == nil{
+            print("Description nula")
             descriptionTxV.text = "defaulDesc".localized()
         }else{
+            print("Description no nula")
             descriptionTxV.text = getDataInUserDefaults(key: "description")
         }
     
@@ -84,7 +87,6 @@ class ProfileViewController: UIViewController {
         if getDataInUserDefaults(key: "photo") != nil{
             imgProfile.image = UIImage(data: Data(base64Encoded: getDataInUserDefaults(key: "photo")!)!)
         }else{
-            
             imgProfile.image = #imageLiteral(resourceName: "userdefaulticon")
         }
         

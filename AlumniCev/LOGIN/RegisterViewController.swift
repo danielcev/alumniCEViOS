@@ -182,13 +182,21 @@
                         saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")
                         saveDataInUserDefaults(value: arrayData["token"] as! String, key: "token")
                         saveDataInUserDefaults(value: arrayUser["username"] as! String, key: "username")
-                        saveDataInUserDefaults(value: arrayPrivacity["localization"]! , key: "localizationprivacity")
+                        saveDataInUserDefaults(value: arrayPrivacity["localization"] as! String,key: "localizationprivacity")
+                        
                         if !(arrayUser["description"] is NSNull)  {
                             saveDataInUserDefaults(value: arrayUser["description"]! as! String, key: "description")
+                        }else{
+                            clearDataInUserDefaults(key: "description")
                         }
+                        
                         if !(arrayUser["phone"] is NSNull)  {
+                            
                             saveDataInUserDefaults(value: arrayUser["phone"]! as! String, key: "phone")
+                        }else{
+                            clearDataInUserDefaults(key: "phone")
                         }
+                        
                         saveDataInUserDefaults(value: "true", key: "isLoged")
                         self.goToMain()
                     }

@@ -33,10 +33,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         manager.delegate = self
         updateElements()
-    
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        print(defaults.object(forKey: "userRegistered"))
+     
         if getDataInUserDefaults(key: "isLoged") != nil{
             if(getDataInUserDefaults(key: "isLoged")! == "true"){
                 
@@ -133,8 +136,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     var arrayUser = arrayData["user"] as! Dictionary<String,Any>
                     var arrayPrivacity = arrayData["privacity"] as! Dictionary<String,String>
                     
-                    print(arrayUser)
-                    
                     SwiftSpinner.hide()
                     
                     let alert = CPAlertViewController()
@@ -150,10 +151,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         
                         if !(arrayUser["description"] is NSNull)  {
                             saveDataInUserDefaults(value: arrayUser["description"]! as! String, key: "description")
+                        }else{
+                            clearDataInUserDefaults(key: "description")
                         }
                         
                         if !(arrayUser["phone"] is NSNull)  {
+
                             saveDataInUserDefaults(value: arrayUser["phone"]! as! String, key: "phone")
+                        }else{
+                            clearDataInUserDefaults(key: "phone")
                         }
                         
                         if arrayUser["photo"] as? String != nil{
@@ -163,7 +169,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                             // Use Alamofire to download the image
                             Alamofire.request(remoteImageURL).responseData { (response) in
                                 if response.error == nil {
-                                    
                                     if let data = response.data {
                                         saveDataInUserDefaults(value: data.base64EncodedString(), key: "photo")
                                     }
