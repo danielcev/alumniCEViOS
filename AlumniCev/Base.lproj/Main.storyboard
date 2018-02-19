@@ -1498,24 +1498,25 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ugv-lN-4JG">
-                                <rect key="frame" x="295" y="427" width="37" height="37"/>
+                                <rect key="frame" x="299" y="431" width="29" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="user"/>
+                                <state key="normal" image="whatsappicon"/>
+                                <connections>
+                                    <action selector="OpendWhatsappAction:" destination="QZ9-BN-lTy" eventType="touchUpInside" id="OtA-Fm-xuJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnG-WP-5Ek">
-                                <rect key="frame" x="295" y="375" width="37" height="37"/>
+                                <rect key="frame" x="300" y="382" width="29" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="user"/>
+                                <state key="normal" image="mailicon"/>
+                                <connections>
+                                    <action selector="mailSender:" destination="QZ9-BN-lTy" eventType="touchUpInside" id="NWk-sI-Z0K"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aye-pp-hiy">
-                                <rect key="frame" x="295" y="481" width="37" height="37"/>
+                                <rect key="frame" x="299" y="481" width="30" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="user"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qx-uy-J0L">
-                                <rect key="frame" x="295" y="530" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="user"/>
+                                <state key="normal" image="localizationusericon"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Descripcion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ll-V5-0C5">
                                 <rect key="frame" x="33" y="240" width="293" height="21"/>
@@ -1534,6 +1535,11 @@
                                 <connections>
                                     <action selector="addFriend:" destination="QZ9-BN-lTy" eventType="touchUpInside" id="qCe-7u-jvL"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qx-uy-J0L">
+                                <rect key="frame" x="296" y="535" width="33" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="chaticon"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2605,6 +2611,7 @@
     <resources>
         <image name="cancelicon" width="86" height="86"/>
         <image name="caricon" width="38" height="33"/>
+        <image name="chaticon" width="70" height="55"/>
         <image name="crearicon" width="101" height="101"/>
         <image name="eventosicon" width="249" height="274"/>
         <image name="events" width="29" height="27"/>
@@ -2615,7 +2622,9 @@
         <image name="localization" width="16" height="24"/>
         <image name="localization_selected" width="16" height="24"/>
         <image name="localizationicon" width="17" height="24"/>
+        <image name="localizationusericon" width="45" height="67"/>
         <image name="logo" width="314" height="104"/>
+        <image name="mailicon" width="56" height="38"/>
         <image name="newsicon" width="210" height="263"/>
         <image name="notificacionesicon" width="249" height="280"/>
         <image name="ofertaicon" width="205" height="333"/>
@@ -2629,5 +2638,6 @@
         <image name="users_selected" width="27" height="25"/>
         <image name="walkingicon" width="19" height="37"/>
         <image name="webicon" width="20" height="20"/>
+        <image name="whatsappicon" width="55" height="55"/>
     </resources>
 </document>
