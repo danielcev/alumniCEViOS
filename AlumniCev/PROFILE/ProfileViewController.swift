@@ -35,6 +35,8 @@ class ProfileViewController: UIViewController {
         imgProfile.layer.masksToBounds = true
 
         logoutBtn.layer.cornerRadius = logoutBtn.layer.frame.height / 2
+        
+        
 
     }
     

@@ -406,6 +406,26 @@
                                             <outlet property="usernameLbl" destination="8er-bp-vhv" id="CSV-jK-4qh"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" rowHeight="88" id="Nnf-eG-O8x" customClass="GroupTableViewCell" customModule="AlumniCev" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="116" width="375" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nnf-eG-O8x" id="Njs-nQ-Niq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZn-fi-LP1">
+                                                    <rect key="frame" x="36" y="24" width="251" height="38"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.55294117649999996" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameGroupLbl" destination="HZn-fi-LP1" id="RQ0-wb-zWM"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Xrd-2c-ihi" id="slm-yh-tBg"/>
@@ -1157,7 +1177,7 @@
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0x-rx-MTE">
-                                        <rect key="frame" x="34" y="246" width="307" height="229"/>
+                                        <rect key="frame" x="16" y="246" width="344" height="229"/>
                                         <color key="backgroundColor" red="0.92146831750000002" green="0.92162626979999995" blue="0.92145836349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="229" id="XoK-YG-15N"/>
@@ -1238,9 +1258,9 @@
                                     <constraint firstItem="NEj-iG-wkl" firstAttribute="top" secondItem="WlB-9y-uDp" secondAttribute="top" id="1Sq-5f-w4n"/>
                                     <constraint firstItem="246-IP-m5a" firstAttribute="leading" secondItem="Igf-le-p9T" secondAttribute="leading" id="21J-7K-GVS"/>
                                     <constraint firstItem="gby-K7-XW6" firstAttribute="top" secondItem="246-IP-m5a" secondAttribute="bottom" constant="21" id="2zR-We-QQv"/>
-                                    <constraint firstItem="Vpr-52-gc8" firstAttribute="leading" secondItem="w0x-rx-MTE" secondAttribute="leading" id="7Ti-QV-XHd"/>
+                                    <constraint firstItem="Vpr-52-gc8" firstAttribute="leading" secondItem="w0x-rx-MTE" secondAttribute="leading" constant="18" id="7Ti-QV-XHd"/>
                                     <constraint firstItem="WlB-9y-uDp" firstAttribute="leading" secondItem="dzv-Fh-tSP" secondAttribute="leading" constant="241" id="9Gi-Uz-CF7"/>
-                                    <constraint firstItem="Igf-le-p9T" firstAttribute="centerX" secondItem="w0x-rx-MTE" secondAttribute="centerX" id="DtR-YE-PTv"/>
+                                    <constraint firstItem="Igf-le-p9T" firstAttribute="centerX" secondItem="w0x-rx-MTE" secondAttribute="centerX" constant="-1" id="DtR-YE-PTv"/>
                                     <constraint firstItem="w0x-rx-MTE" firstAttribute="top" secondItem="T4B-wY-ISV" secondAttribute="bottom" constant="27" id="Efb-77-pXj"/>
                                     <constraint firstItem="T4B-wY-ISV" firstAttribute="leading" secondItem="dzv-Fh-tSP" secondAttribute="leading" constant="16" id="HIH-P4-1zs"/>
                                     <constraint firstItem="NEj-iG-wkl" firstAttribute="leading" secondItem="dzv-Fh-tSP" secondAttribute="leading" constant="88" id="Izp-eS-GyP"/>
@@ -1251,7 +1271,7 @@
                                     <constraint firstItem="gby-K7-XW6" firstAttribute="leading" secondItem="246-IP-m5a" secondAttribute="leading" id="QYE-0x-jXE"/>
                                     <constraint firstItem="NEj-iG-wkl" firstAttribute="bottom" secondItem="WlB-9y-uDp" secondAttribute="bottom" id="aZq-dZ-8r9"/>
                                     <constraint firstItem="Igf-le-p9T" firstAttribute="centerX" secondItem="dzv-Fh-tSP" secondAttribute="centerX" id="ezw-uN-Ykr"/>
-                                    <constraint firstItem="w0x-rx-MTE" firstAttribute="leading" secondItem="dzv-Fh-tSP" secondAttribute="leading" constant="34" id="koU-sW-F4o"/>
+                                    <constraint firstItem="w0x-rx-MTE" firstAttribute="leading" secondItem="dzv-Fh-tSP" secondAttribute="leading" constant="16" id="koU-sW-F4o"/>
                                     <constraint firstAttribute="trailing" secondItem="T4B-wY-ISV" secondAttribute="trailing" constant="309" id="mn8-xH-5B4"/>
                                     <constraint firstAttribute="trailing" secondItem="Vpr-52-gc8" secondAttribute="trailing" constant="37" id="qTo-q0-drd"/>
                                     <constraint firstItem="Igf-le-p9T" firstAttribute="leading" secondItem="dzv-Fh-tSP" secondAttribute="leading" id="t1m-6x-6oU"/>

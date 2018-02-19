@@ -80,10 +80,12 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
         
+    
         switch listSelected {
         case "users":
+            
+            var cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
             
             cell.usernameLbl.isHidden = false
             cell.nameLbl.font = cell.nameLbl.font.withSize(14)
@@ -114,22 +116,27 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.photoImag.layer.cornerRadius = cell.photoImag.bounds.height/2
             cell.photoImag.layer.masksToBounds = true
             
-            break
+            return cell
         case "groups":
-            cell.usernameLbl.isHidden = true
-            cell.nameLbl.text = groups[indexPath.row]["name"]
-            cell.nameLbl.font = cell.nameLbl.font.withSize(20)
             
-            break
+            let cellGroup = tableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath) as! GroupTableViewCell
+            
+            cellGroup.nameGroupLbl.text = groups[indexPath.row]["name"]
+        
+            return cellGroup
             
         case "friends":
+            
+            var cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
             
             cell.usernameLbl.isHidden = false
             cell.nameLbl.font = cell.nameLbl.font.withSize(14)
             
             cell.nameLbl.text = users![indexPath.row]["username"] as? String
-            break
+            return cell
         case "requests":
+            
+            var cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
             
             cell.usernameLbl.isHidden = true
             cell.nameLbl.font = cell.nameLbl.font.withSize(14)
@@ -174,13 +181,14 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.photoImag.image = #imageLiteral(resourceName: "userdefaulticon")
             }
             
-            break
+            return cell
         default:
+            var cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
             cell.nameLbl.text = users![indexPath.row]["username"] as? String
-            break
+            return cell
         }
         
-        return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
