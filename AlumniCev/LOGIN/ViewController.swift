@@ -175,6 +175,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                 }
                             }
                             
+                        }else{
+                            clearDataInUserDefaults(key: "photo")
                         }
                         
                         if arrayUser["lat"] as? String != nil && arrayUser["lon"] as? String != nil{

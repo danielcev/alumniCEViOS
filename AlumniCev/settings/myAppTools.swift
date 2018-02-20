@@ -30,6 +30,8 @@ var users:[Dictionary<String,Any>]?
 
 var friend:Dictionary<String,Any>?
 
+var privacityUser:Dictionary<String,String>?
+
 var events:[[String:Any]] = [
     
     ["title":"Evento 1",

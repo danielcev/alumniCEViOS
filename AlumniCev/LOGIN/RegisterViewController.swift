@@ -197,6 +197,9 @@
                             clearDataInUserDefaults(key: "phone")
                         }
                         
+                        
+                        clearDataInUserDefaults(key: "photo")
+                        
                         saveDataInUserDefaults(value: "true", key: "isLoged")
                         self.goToMain()
                     }

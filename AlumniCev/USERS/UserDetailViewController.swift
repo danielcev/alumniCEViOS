@@ -10,7 +10,6 @@ import UIKit
 import Alamofire
 import MessageUI
 
-
 class UserDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var usernameLbl: UILabel!
@@ -35,14 +34,36 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
     
     var user:Dictionary<String,Any>?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         requestUserById(id: Int(user?["id"] as! String)!) {
             self.setBtn()
+            
+            if self.user!["photo"] as? String != nil{
+                //Añadir imagen
+                let remoteImageURL = URL(string: (self.user!["photo"] as? String)!)!
+                
+                Alamofire.request(remoteImageURL).responseData { (response) in
+                    if response.error == nil {
+                        print(response.result)
+                        
+                        if let data = response.data {
+                            self.imgUser.image = UIImage(data: data)
+                            self.setInfo()
+                        }
+                    }
+                }
+            }else{
+                self.imgUser.image = #imageLiteral(resourceName: "userdefaulticon")
+                self.setInfo()
+            }
+            
         }
-        
+
+    }
+    
+    func setInfo(){
         addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
         nameTitle.text = "myName".localized()
         DescripTitlfe.text = "myDescrip".localized()
@@ -56,22 +77,7 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         direcLB.text = user?["email"] as? String
         userLB.text = user?["username"] as? String
         
-        if user!["photo"] as? String != nil{
-            //Añadir imagen
-            let remoteImageURL = URL(string: (user!["photo"] as? String)!)!
-            
-            Alamofire.request(remoteImageURL).responseData { (response) in
-                if response.error == nil {
-                    print(response.result)
-                    
-                    if let data = response.data {
-                        self.imgUser.image = UIImage(data: data)
-                    }
-                }
-            }
-        }else{
-            imgUser.image = #imageLiteral(resourceName: "userdefaulticon")
-        }
+        
         
         imgUser.contentMode = .scaleAspectFill
         imgUser.layer.cornerRadius = imgUser.bounds.height/2
@@ -87,12 +93,9 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
             descripTxt.text = user?["description"] as! String
         }
         
-        
         if user?["lat"] as? String != nil && user?["lon"] as? String != nil {
             
-            
         }
-        
     }
     
     func setBtn(){
@@ -117,6 +120,45 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         
     }
     
+    @IBAction func addFriend(_ sender: Any) {
+        
+        let newFriend = user?["id"] as! String
+        
+        if friend == nil{
+            
+            sendRequestFriend(id_user: Int(newFriend)!) {
+                self.addFriendsBtn.setTitle("Petición enviada", for: .normal)
+            }
+            
+        }else{
+            
+            if friend!["state"] as! String == "2" {
+        
+                //Eliminar amistad
+                
+                requestDeleteFriend(id_user: Int(newFriend)!, action: {
+                    self.viewDidLoad()
+                })
+               
+            }else{
+                
+                if friend!["id_user_send"] as? Int == Int((user?["id"] as? String)!){
+                    //Aceptar petición
+                    requestResponseFriend(id_user: Int(newFriend)!, type: 2, action: {
+                        self.viewDidLoad()
+                    })
+                }else{
+                    
+                    //Cancelar petición enviada
+                    
+                }
+                
+            }
+            
+        }
+    
+    }
+    
     @IBAction func mailSender(_ sender: Any) {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
@@ -131,8 +173,7 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         mailComposerVC.mailComposeDelegate = self as? MFMailComposeViewControllerDelegate // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         
         mailComposerVC.setToRecipients([direcLB.text!])
-        print("**********************************************************")
-        print("email -- \(direcLB.text)")
+
         mailComposerVC.setSubject("IOS test")
         mailComposerVC.setMessageBody("Hello word!", isHTML: false)
         
@@ -145,15 +186,14 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         self.dismiss(animated: true, completion: nil)
     }
     
-    func mailComposeController(_ controller: MFMailComposeViewController!, didFinishWith result: MFMailComposeResult, error: Error!) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
         
     }
     
     @IBAction func OpendWhatsappAction(_ sender: Any) {
-        var thePhone =  phoneLB.text
-        print("***************************")
-        print(thePhone)
+        let thePhone =  phoneLB.text
+
         if  phoneLB.text != ""{
             UIApplication.shared.openURL(URL(string:"https://api.whatsapp.com/send?phone=+34\(thePhone!)")!)
         }else{
@@ -167,16 +207,6 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func addFriend(_ sender: Any) {
-        
-        
-        let newFriend = user?["id"] as! String
-        
-        sendRequestFriend(id_user: Int(newFriend)!) {
-            self.addFriendsBtn.setTitle("Petición enviada", for: .normal)
-        }
-        
-        
-    }
+    
 
 }

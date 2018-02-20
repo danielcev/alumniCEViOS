@@ -14,6 +14,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
     @IBOutlet weak var notFriendsLbl: UILabel!
+    @IBOutlet weak var notUsersLbl: UILabel!
     
     @IBOutlet var completView: UIView!
     @IBOutlet weak var spinner: NVActivityIndicatorView!
@@ -41,7 +42,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch listSelected {
-        case "users":
+        case "users", "findUsers":
             if users != nil{
                 return users!.count
             }else{
@@ -81,10 +82,8 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-    
         switch listSelected {
-        case "users":
-            
+        case "users", "findUsers":
             var cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
             
             cell.usernameLbl.isHidden = false
@@ -111,7 +110,6 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.photoImag.image = #imageLiteral(resourceName: "userdefaulticon")
             }
 
-            
             cell.photoImag.contentMode = .scaleAspectFill
             cell.photoImag.layer.cornerRadius = cell.photoImag.bounds.height/2
             cell.photoImag.layer.masksToBounds = true
@@ -136,50 +134,37 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             return cell
         case "requests":
             
-            var cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
-            
-            cell.usernameLbl.isHidden = true
-            cell.nameLbl.font = cell.nameLbl.font.withSize(14)
+            var cell = tableView.dequeueReusableCell(withIdentifier: "requestCell", for: indexPath) as! RequestsTableViewCell
             
             let id = getDataInUserDefaults(key: "id")!
             
             let sendUser = requests![indexPath.row]["username"] as! String
-        
             
             if requests![indexPath.row]["state"] as! String == "1"{
                 
                 if requests![indexPath.row]["id_user_receive"] as? String == id{
-                    cell.nameLbl.text = "\(sendUser) te ha enviado una petición de amistad"
+                    cell.titleLbl.text = "\(sendUser) te ha enviado una petición de amistad"
                 }else{
-                    cell.nameLbl.text = "Has enviado una petición a \(sendUser)"
+                    cell.titleLbl.text = "Has enviado una petición a \(sendUser)"
+                    cell.acceptBtn.isHidden = true
+                    cell.declineBtn.isHidden = true
                 }
                 
             }else{
                 
                 if requests![indexPath.row]["id_user_receive"] as? String == id{
-                    cell.nameLbl.text = "Has aceptado la petición de \(sendUser). Ya sois amigos!"
+                    cell.titleLbl.text = "Has aceptado la petición de \(sendUser). Ya sois amigos!"
+                    cell.acceptBtn.isHidden = true
+                    cell.declineBtn.isHidden = true
                 }else{
-                    cell.nameLbl.text = "\(sendUser) ha aceptado tu petición. Ya sois amigos!"
+                    cell.titleLbl.text = "\(sendUser) ha aceptado tu petición. Ya sois amigos!"
+                    cell.acceptBtn.isHidden = true
+                    cell.declineBtn.isHidden = true
                 }
                 
             }
             
-            if requests![indexPath.row]["photo"] as? String != nil{
-                //Añadir imagen
-                let remoteImageURL = URL(string: (requests![indexPath.row]["photo"] as? String)!)!
-                
-                Alamofire.request(remoteImageURL).responseData { (response) in
-                    if response.error == nil {
-                        print(response.result)
-                        
-                        if let data = response.data {
-                            cell.photoImag.image = UIImage(data: data)
-                        }
-                    }
-                }
-            }else{
-                cell.photoImag.image = #imageLiteral(resourceName: "userdefaulticon")
-            }
+            cell.id_user = Int(requests![indexPath.row]["id"] as! String)
             
             return cell
         default:
@@ -187,8 +172,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.nameLbl.text = users![indexPath.row]["username"] as? String
             return cell
         }
-        
-        
+
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -215,6 +199,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func segmentedChanged(_ sender: Any) {
         startSpinner()
+        self.notUsersLbl.isHidden = true
         switch segmentedUsers.selectedSegmentIndex{
             
         case 0:
@@ -246,16 +231,15 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
         case 3:
             listSelected = "requests"
-            requestRequests {
+            
+            requestRequests(action: {
                 self.rechargeTable()
                 self.stopSpinner()
-                
-                if requests?.count == 0{
-                    self.usersTable.isHidden = true
-                    self.notFriendsLbl.isHidden = false
-                    self.notFriendsLbl.text = "No hay peticiones"
-                }
-            }
+            }, notRequests: {
+                self.usersTable.isHidden = true
+                self.notFriendsLbl.isHidden = false
+                self.notFriendsLbl.text = "No hay peticiones"
+            })
             
         default:
             listSelected = "users"
@@ -266,7 +250,72 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         stopSpinner()
     }
-    
+
+    @IBAction func searchChanged(_ sender: UITextField) {
+        
+        if sender.text != ""{
+            listSelected = "findUsers"
+            
+            requestFindUser(search: sender.text!, action: {
+                self.notUsersLbl.isHidden = true
+                self.rechargeTable()
+            }, notusers: {
+                self.notUsersLbl.isHidden = false
+                self.usersTable.isHidden = true
+            })
+
+        }else{
+            switch segmentedUsers.selectedSegmentIndex{
+                
+            case 0:
+                listSelected = "users"
+                requestAllUsers {
+                    self.rechargeTable()
+                    self.stopSpinner()
+                }
+                
+            case 1:
+                listSelected = "groups"
+                requestGroups {
+                    self.rechargeTable()
+                    self.stopSpinner()
+                }
+                
+            case 2:
+                listSelected = "friends"
+                requestFriends {
+                    self.rechargeTable()
+                    self.stopSpinner()
+                    
+                    if users?.count == 0{
+                        self.usersTable.isHidden = true
+                        self.notFriendsLbl.isHidden = false
+                        self.notFriendsLbl.text = "Not friends"
+                    }
+                }
+                
+            case 3:
+                listSelected = "requests"
+                requestRequests(action: {
+                    self.rechargeTable()
+                    self.stopSpinner()
+                }, notRequests: {
+                    self.usersTable.isHidden = true
+                    self.notFriendsLbl.isHidden = false
+                    self.notFriendsLbl.text = "No hay peticiones"
+                })
+                
+            default:
+                listSelected = "users"
+                requestAllUsers {
+                    self.rechargeTable()
+                    self.stopSpinner()
+                }
+            }
+            rechargeTable()
+        }
+        
+    }
     
     func rechargeTable(){
         usersTable.isHidden = false

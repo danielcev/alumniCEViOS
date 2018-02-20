@@ -25,6 +25,7 @@
 		65EDBBC3201E22100017515A /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EDBBC2201E22100017515A /* Address.swift */; };
 		7F1D33652004D38900D57F75 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33642004D38900D57F75 /* RegisterViewController.swift */; };
 		7F1D33672004D54600D57F75 /* myAppTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33662004D54600D57F75 /* myAppTools.swift */; };
+		7F436378203C119E000108F3 /* RequestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F436377203C119E000108F3 /* RequestsTableViewCell.swift */; };
 		7F4554DA202DBC44003255EC /* ProfileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4554D9202DBC44003255EC /* ProfileRequests.swift */; };
 		7F58DD53203AE23C001A555D /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58DD52203AE23C001A555D /* GroupTableViewCell.swift */; };
 		7F5A6FF6202B03310080E41A /* TipeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A6FF5202B03300080E41A /* TipeEventViewController.swift */; };
@@ -96,6 +97,7 @@
 		77CA810BBEB389844D7C605A /* libPods-AlumniCevUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AlumniCevUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F1D33642004D38900D57F75 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7F1D33662004D54600D57F75 /* myAppTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAppTools.swift; sourceTree = "<group>"; };
+		7F436377203C119E000108F3 /* RequestsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsTableViewCell.swift; sourceTree = "<group>"; };
 		7F4554D9202DBC44003255EC /* ProfileRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequests.swift; sourceTree = "<group>"; };
 		7F58DD52203AE23C001A555D /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		7F5A6FF5202B03300080E41A /* TipeEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipeEventViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				65C2AC72202B61EA00BF9755 /* UsersTableViewCell.swift */,
 				65C2AC75202B6C4C00BF9755 /* UserDetailViewController.swift */,
 				7F58DD52203AE23C001A555D /* GroupTableViewCell.swift */,
+				7F436377203C119E000108F3 /* RequestsTableViewCell.swift */,
 			);
 			path = USERS;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				65D1643A202CC2B90011476D /* CommentsViewController.swift in Sources */,
 				7F89B1A92018C094007BA234 /* ImageEventViewController.swift in Sources */,
 				7FA0CE54202C40A1002326A9 /* WelcomeViewController.swift in Sources */,
+				7F436378203C119E000108F3 /* RequestsTableViewCell.swift in Sources */,
 				7F82C088201B36F300259E06 /* GroupsRequests.swift in Sources */,
 				A67EFA722003A7990051853B /* AppDelegate.swift in Sources */,
 				65BADD5E201648F000C6D03F /* UsersViewController.swift in Sources */,
