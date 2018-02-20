@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import MessageUI
+import CoreLocation
+
 
 class UserDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
@@ -61,6 +63,9 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
             }
             
             self.setBtn()
+            
+            self.DistanceFriend()
+            
             
         }
 
@@ -207,6 +212,44 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func OpendTheChat(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+        self.present(vc, animated: true)
+    }
+    
+    func DistanceFriend(){
+        if user?["privacity"] as? String != "" {
+            
+            let Friendcoordinate = CLLocation(latitude: (user?["lat"] as! NSString).doubleValue , longitude: (user?["lon"] as! NSString).doubleValue)
+            let Mycoordinate = CLLocation(latitude: (getDataInUserDefaults(key: "lat") as! NSString).doubleValue , longitude: (getDataInUserDefaults(key: "lon")as! NSString).doubleValue)
+            var distanceInMeters = Friendcoordinate.distance(from: Mycoordinate) // result is in meters≤
+            
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            formatter.maximumFractionDigits = 2
+            formatter.roundingMode = .up
+            
+            if distanceInMeters > 1000{
+                var distanceKilom = distanceInMeters / 1000
+                let distance = formatter.string(from: (distanceKilom as? NSNumber)!)
+                print("\(user?["name"]) a \(distance) km de distancia de ti")
+                localLB.text = String(describing: distance!) + " km de distancia de ti"
+            }else{
+                let distance = formatter.string(from: (distanceInMeters as? NSNumber)!)
+                print("\(user?["name"]) a \(distance) m de distancia de ti")
+                localLB.text = String(describing: distance!) + " m de distancia de ti"
+            }
+        }
+    }
+    @IBAction func localizationAction(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EventLocalizationViewController") as! EventLocalizationViewController
+        
+        vc.lat = Float(user?["lat"] as! String)!
+        vc.lon = Float(user?["lon"] as! String)!
+        
+        self.present(vc, animated: true, completion: nil)
+    }
+
     
 
 }

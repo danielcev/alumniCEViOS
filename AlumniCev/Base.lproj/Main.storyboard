@@ -1557,7 +1557,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="whatsappicon"/>
                                 <connections>
-                                    <action selector="OpendWhatsappAction:" destination="QZ9-BN-lTy" eventType="touchUpInside" id="OtA-Fm-xuJ"/>
+                                    <action selector="OpendWhatsappAction:" destination="QZ9-BN-lTy" eventType="touchUpInside" id="Agc-MP-dlR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnG-WP-5Ek">
@@ -1572,6 +1572,9 @@
                                 <rect key="frame" x="299" y="481" width="30" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="localizationusericon"/>
+                                <connections>
+                                    <action selector="localizationAction:" destination="QZ9-BN-lTy" eventType="touchUpInside" id="mwJ-1S-viV"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Descripcion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ll-V5-0C5">
                                 <rect key="frame" x="33" y="240" width="293" height="21"/>
@@ -1595,6 +1598,9 @@
                                 <rect key="frame" x="296" y="535" width="33" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="chaticon"/>
+                                <connections>
+                                    <action selector="OpendTheChat:" destination="QZ9-BN-lTy" eventType="touchUpInside" id="Eq4-vU-K7y"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2661,6 +2667,107 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iiM-oh-08c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2548" y="1834"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="Tqq-4k-xqr">
+            <objects>
+                <viewController restorationIdentifier="ChatViewController" storyboardIdentifier="ChatViewController" id="j1j-qE-oKq" customClass="ChatViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e7x-lx-VPf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9w-ep-GXh">
+                                <rect key="frame" x="59" y="561" width="257" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.00067401403789999999" green="0.61966812609999999" blue="0.67943602800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="BackAction:" destination="j1j-qE-oKq" eventType="touchUpInside" id="AsS-2T-xbP"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaS-l1-Lzu">
+                                <rect key="frame" x="16" y="221" width="343" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="O9c-x0-3eY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MY7-W7-1SN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3047" y="2577"/>
+        </scene>
+        <!--Detail Localization View Controller-->
+        <scene sceneID="Ml0-2P-A59">
+            <objects>
+                <viewController restorationIdentifier="DetailLocalizationViewController" storyboardIdentifier="DetailLocalizationViewController" id="gC1-Sw-TTv" customClass="DetailLocalizationViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pPk-Zb-Hlb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNr-7b-W8l">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGX-eZ-q49">
+                                        <rect key="frame" x="21" y="23" width="82" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="&lt; Back">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backAction:" destination="gC1-Sw-TTv" eventType="touchUpInside" id="yux-Dz-6Pe"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymd-Pl-14u">
+                                        <rect key="frame" x="143" y="33" width="89" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.00067401403789999999" green="0.61966812609999999" blue="0.67943602800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="6WS-8H-Sw7"/>
+                                    <constraint firstAttribute="height" constant="87" id="fA1-Kl-oKl"/>
+                                </constraints>
+                            </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="85G-Nn-QcJ">
+                                <rect key="frame" x="16" y="95" width="343" height="552"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="552" id="8IP-bV-ZKB"/>
+                                    <constraint firstAttribute="width" constant="343" id="mwn-i5-V4G"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="gC1-Sw-TTv" id="asY-mS-DN8"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KNr-7b-W8l" firstAttribute="top" secondItem="pPk-Zb-Hlb" secondAttribute="top" id="9D7-15-ygz"/>
+                            <constraint firstItem="85G-Nn-QcJ" firstAttribute="centerX" secondItem="KNr-7b-W8l" secondAttribute="centerX" id="Cas-DI-yUu"/>
+                            <constraint firstItem="85G-Nn-QcJ" firstAttribute="top" secondItem="KNr-7b-W8l" secondAttribute="bottom" constant="8" id="FHj-dA-BM0"/>
+                            <constraint firstItem="KNr-7b-W8l" firstAttribute="leading" secondItem="Hb9-BT-joo" secondAttribute="leading" id="j7X-Sm-T5Y"/>
+                            <constraint firstItem="KNr-7b-W8l" firstAttribute="trailing" secondItem="Hb9-BT-joo" secondAttribute="trailing" id="jrD-y9-9hO"/>
+                            <constraint firstItem="Hb9-BT-joo" firstAttribute="bottom" secondItem="85G-Nn-QcJ" secondAttribute="bottom" constant="20" id="wzO-Xv-Jcn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Hb9-BT-joo"/>
+                    </view>
+                    <connections>
+                        <outlet property="map" destination="85G-Nn-QcJ" id="jMK-gp-kha"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="01S-al-Lhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2197.5999999999999" y="2581.2593703148427"/>
         </scene>
     </scenes>
     <resources>
