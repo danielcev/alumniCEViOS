@@ -37,8 +37,9 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
+        
         requestUserById(id: Int(user?["id"] as! String)!) {
-            self.setBtn()
             
             if self.user!["photo"] as? String != nil{
                 //Añadir imagen
@@ -59,12 +60,14 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
                 self.setInfo()
             }
             
+            self.setBtn()
+            
         }
 
     }
     
     func setInfo(){
-        addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
+        
         nameTitle.text = "myName".localized()
         DescripTitlfe.text = "myDescrip".localized()
         direcTitle.text = "myMail".localized()
@@ -76,7 +79,6 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         nameLB.text = user?["name"] as? String
         direcLB.text = user?["email"] as? String
         userLB.text = user?["username"] as? String
-        
         
         
         imgUser.contentMode = .scaleAspectFill
@@ -101,7 +103,7 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
     func setBtn(){
         
         if friend != nil{
-            if friend!["state"] as! String == "2" {
+            if Int(friend!["state"] as! String) == 2 {
                 
                 addFriendsBtn.setTitle("Eliminar amistad", for: .normal)
                 
@@ -127,7 +129,7 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         if friend == nil{
             
             sendRequestFriend(id_user: Int(newFriend)!) {
-                self.addFriendsBtn.setTitle("Petición enviada", for: .normal)
+                self.addFriendsBtn.setTitle("Eliminar petición enviada", for: .normal)
             }
             
         }else{
@@ -135,7 +137,6 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
             if friend!["state"] as! String == "2" {
         
                 //Eliminar amistad
-                
                 requestDeleteFriend(id_user: Int(newFriend)!, action: {
                     self.viewDidLoad()
                 })
@@ -148,7 +149,6 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
                         self.viewDidLoad()
                     })
                 }else{
-                    
                     //Cancelar petición enviada
                     
                 }
