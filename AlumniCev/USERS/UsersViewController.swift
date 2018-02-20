@@ -127,10 +127,31 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             var cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
             
+            cell.nameLbl.text = users![indexPath.row]["name"] as? String
             cell.usernameLbl.isHidden = false
-            cell.nameLbl.font = cell.nameLbl.font.withSize(14)
+            cell.usernameLbl.text = users![indexPath.row]["username"] as? String
             
-            cell.nameLbl.text = users![indexPath.row]["username"] as? String
+            if users![indexPath.row]["photo"] as? String != nil{
+                //Añadir imagen
+                let remoteImageURL = URL(string: (users![indexPath.row]["photo"] as? String)!)!
+                
+                Alamofire.request(remoteImageURL).responseData { (response) in
+                    if response.error == nil {
+                        print(response.result)
+                        
+                        if let data = response.data {
+                            cell.photoImag.image = UIImage(data: data)
+                        }
+                    }
+                }
+            }else{
+                cell.photoImag.image = #imageLiteral(resourceName: "userdefaulticon")
+            }
+            
+            cell.photoImag.contentMode = .scaleAspectFill
+            cell.photoImag.layer.cornerRadius = cell.photoImag.bounds.height/2
+            cell.photoImag.layer.masksToBounds = true
+            
             return cell
         case "requests":
             
@@ -144,6 +165,9 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 if requests![indexPath.row]["id_user_receive"] as? String == id{
                     cell.titleLbl.text = "\(sendUser) te ha enviado una petición de amistad"
+                    
+                    cell.controllerTable = self
+                    
                 }else{
                     cell.titleLbl.text = "Has enviado una petición a \(sendUser)"
                     cell.acceptBtn.isHidden = true
@@ -221,6 +245,8 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             requestFriends {
                 self.rechargeTable()
                 self.stopSpinner()
+                
+                print(users)
                 
                 if users?.count == 0{
                     self.usersTable.isHidden = true
@@ -317,7 +343,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    func rechargeTable(){
+    @objc func rechargeTable(){
         usersTable.isHidden = false
         notFriendsLbl.isHidden = true
         usersTable.reloadData()

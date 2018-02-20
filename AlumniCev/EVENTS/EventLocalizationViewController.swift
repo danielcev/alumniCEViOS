@@ -19,7 +19,6 @@ class EventLocalizationViewController: UIViewController, MKMapViewDelegate {
     
     var titleEvent:String = ""
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -119,7 +119,7 @@ class WelcomeViewController: UIViewController, UIImagePickerControllerDelegate,U
         
         let id = Int(getDataInUserDefaults(key: "id")!)
         
-        requestEditUser(id: id!, email: nil, phone: nil, birthday: nil, description: nil, photo: photo, phoneprivacity: nil, localizationprivacity: nil) {
+        requestEditUser(id: id!, email: nil, phone: nil, birthday: nil, description: nil, photo: photo, phoneprivacity: 0, localizationprivacity: 0) {
             self.goToMain()
         }
         

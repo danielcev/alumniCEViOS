@@ -14,6 +14,7 @@ class RequestsTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var acceptBtn: UIButton!
     @IBOutlet weak var declineBtn: UIButton!
+    weak var controllerTable : UsersViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,11 +29,24 @@ class RequestsTableViewCell: UITableViewCell {
 
     @IBAction func acceptAction(_ sender: Any) {
         requestResponseFriend(id_user: id_user!, type: 2) {
+            requestRequests(action: {
+                self.controllerTable!.rechargeTable()
+            }, notRequests: {
+                self.controllerTable!.rechargeTable()
+                
+            })
+            
         }
     }
     
     @IBAction func declineAction(_ sender: Any) {
         requestResponseFriend(id_user: id_user!, type: 3) {
+            requestRequests(action: {
+                self.controllerTable!.rechargeTable()
+            }, notRequests: {
+                self.controllerTable!.rechargeTable()
+                
+            })
         }
     }
     

@@ -360,13 +360,17 @@ func requestDeleteFriend(id_user:Int, action: @escaping ()->()){
     }
 }
 
-func requestEditUser(id:Int,email:String?, phone:String?, birthday:String?, description:String?, photo:Data?, phoneprivacity:Int?, localizationprivacity:Int?, action: @escaping ()->()){
+func requestEditUser(id:Int,email:String?, name:String?, phone:String?, birthday:String?, description:String?, photo:Data?, phoneprivacity:Int?, localizationprivacity:Int?, action: @escaping ()->()){
     let url = URL(string: URL_GENERAL + "users/update.json")
     
     var parameters: Parameters = ["id": id]
     
     if email != nil{
         parameters["email"] = email
+    }
+    
+    if name != nil{
+        parameters["name"] = email
     }
     
     if phone != nil{

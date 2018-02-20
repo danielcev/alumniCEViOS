@@ -393,8 +393,8 @@
                                                     <color key="textColor" red="0.0" green="0.55294117649999996" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="otY-1Q-egQ">
-                                                    <rect key="frame" x="332" y="24" width="39" height="39"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="infoicon" translatesAutoresizingMaskIntoConstraints="NO" id="otY-1Q-egQ">
+                                                    <rect key="frame" x="337" y="32" width="23" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -434,28 +434,28 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFd-RU-Oz0">
-                                                    <rect key="frame" x="37" y="11" width="234" height="66"/>
+                                                    <rect key="frame" x="37" y="11" width="254" height="66"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.55294117649999996" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u03-sh-vnc">
-                                                    <rect key="frame" x="330" y="29" width="30" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u03-sh-vnc">
+                                                    <rect key="frame" x="336" y="29" width="29" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.9952794894366197" green="0.36552958508191558" blue="0.32825801933042398" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="x">
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="declineicon">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="declineAction:" destination="jpt-Ef-vZW" eventType="touchUpInside" id="W26-Uq-dHf"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ab-XM-Uwn">
-                                                    <rect key="frame" x="292" y="29" width="30" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ab-XM-Uwn">
+                                                    <rect key="frame" x="299" y="29" width="29" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.13765965172243305" green="0.7361025528169014" blue="0.41123210813078437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="+">
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="accepticon">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
@@ -1248,7 +1248,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4B-wY-ISV">
-                                        <rect key="frame" x="16" y="193" width="50" height="26"/>
+                                        <rect key="frame" x="16" y="193" width="344" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="dCL-wj-ASm"/>
                                         </constraints>
@@ -1327,7 +1327,7 @@
                                     <constraint firstItem="NEj-iG-wkl" firstAttribute="bottom" secondItem="WlB-9y-uDp" secondAttribute="bottom" id="aZq-dZ-8r9"/>
                                     <constraint firstItem="Igf-le-p9T" firstAttribute="centerX" secondItem="dzv-Fh-tSP" secondAttribute="centerX" id="ezw-uN-Ykr"/>
                                     <constraint firstItem="w0x-rx-MTE" firstAttribute="leading" secondItem="dzv-Fh-tSP" secondAttribute="leading" constant="16" id="koU-sW-F4o"/>
-                                    <constraint firstAttribute="trailing" secondItem="T4B-wY-ISV" secondAttribute="trailing" constant="309" id="mn8-xH-5B4"/>
+                                    <constraint firstAttribute="trailing" secondItem="T4B-wY-ISV" secondAttribute="trailing" constant="15" id="mn8-xH-5B4"/>
                                     <constraint firstAttribute="trailing" secondItem="Vpr-52-gc8" secondAttribute="trailing" constant="37" id="qTo-q0-drd"/>
                                     <constraint firstItem="Igf-le-p9T" firstAttribute="leading" secondItem="dzv-Fh-tSP" secondAttribute="leading" id="t1m-6x-6oU"/>
                                     <constraint firstItem="246-IP-m5a" firstAttribute="top" secondItem="WlB-9y-uDp" secondAttribute="bottom" constant="19" id="ySO-zO-R2Q"/>
@@ -2664,16 +2664,19 @@
         </scene>
     </scenes>
     <resources>
+        <image name="accepticon" width="39" height="39"/>
         <image name="cancelicon" width="86" height="86"/>
         <image name="caricon" width="38" height="33"/>
         <image name="chaticon" width="70" height="55"/>
         <image name="crearicon" width="101" height="101"/>
+        <image name="declineicon" width="40" height="40"/>
         <image name="eventosicon" width="249" height="274"/>
         <image name="events" width="29" height="27"/>
         <image name="events_selected" width="29" height="27"/>
         <image name="filtericon" width="36" height="38"/>
         <image name="fondo_azul" width="750" height="1334"/>
         <image name="imagen_prueba" width="754" height="359"/>
+        <image name="infoicon" width="53" height="53"/>
         <image name="localization" width="16" height="24"/>
         <image name="localization_selected" width="16" height="24"/>
         <image name="localizationicon" width="17" height="24"/>
