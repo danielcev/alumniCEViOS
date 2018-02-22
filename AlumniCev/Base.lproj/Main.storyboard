@@ -990,8 +990,8 @@
                             <view hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YII-nv-VQh">
                                 <rect key="frame" x="16" y="140" width="343" height="387"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzf-f0-4CL">
-                                        <rect key="frame" x="24" y="13" width="212" height="33"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzf-f0-4CL">
+                                        <rect key="frame" x="64" y="13" width="212" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="212" id="lQF-4d-ycu"/>
                                             <constraint firstAttribute="height" constant="33" id="xh4-Tm-OSQ"/>
@@ -1070,7 +1070,7 @@
                                     <constraint firstItem="xTh-DZ-mvd" firstAttribute="leading" secondItem="d6r-Om-dQn" secondAttribute="leading" id="8dA-3g-z52"/>
                                     <constraint firstItem="gP6-YE-KHt" firstAttribute="leading" secondItem="YII-nv-VQh" secondAttribute="leading" id="A7X-56-Ajc"/>
                                     <constraint firstItem="sR5-7l-ldE" firstAttribute="leading" secondItem="YII-nv-VQh" secondAttribute="leading" constant="94" id="Ad6-tz-Yf1"/>
-                                    <constraint firstItem="xzf-f0-4CL" firstAttribute="leading" secondItem="YII-nv-VQh" secondAttribute="leading" constant="24" id="Ehm-8u-gKy"/>
+                                    <constraint firstItem="xzf-f0-4CL" firstAttribute="leading" secondItem="YII-nv-VQh" secondAttribute="leading" constant="64" id="Ehm-8u-gKy"/>
                                     <constraint firstItem="d6r-Om-dQn" firstAttribute="centerX" secondItem="sR5-7l-ldE" secondAttribute="centerX" id="J0I-EE-uPo"/>
                                     <constraint firstAttribute="bottom" secondItem="sR5-7l-ldE" secondAttribute="bottom" constant="40" id="JsR-W2-tKE"/>
                                     <constraint firstItem="L0V-1a-d3T" firstAttribute="top" secondItem="gP6-YE-KHt" secondAttribute="bottom" constant="6" id="NzO-yu-qOt"/>

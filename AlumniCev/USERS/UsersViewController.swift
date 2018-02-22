@@ -12,7 +12,6 @@ import Alamofire
 
 class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
     @IBOutlet weak var notFriendsLbl: UILabel!
     @IBOutlet weak var notUsersLbl: UILabel!
     
@@ -28,6 +27,8 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         notFriendsLbl.text = "notFriends".localized()
+        
+        self.startSpinner()
         
         requestAllUsers {
             self.rechargeTable()
@@ -208,8 +209,6 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         switch listSelected {
         case "groups":
             
-            
-            
             break
         case "requests":
             
@@ -284,8 +283,8 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBAction func searchChanged(_ sender: UITextField) {
         
+        self.startSpinner()
         
-
         if sender.text != ""{
             
             if segmentedUsers.selectedSegmentIndex == 0{
@@ -368,6 +367,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         usersTable.isHidden = false
         notFriendsLbl.isHidden = true
         usersTable.reloadData()
+        self.stopSpinner()
     }
     
     func startSpinner(){
