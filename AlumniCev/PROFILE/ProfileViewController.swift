@@ -11,23 +11,17 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var imgProfile: UIImageView!
-    
-    @IBOutlet weak var nameTitleLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
-    
-    @IBOutlet weak var usernameTitleLbl: UILabel!
+
     @IBOutlet weak var usernameLbl: UILabel!
-    
-    @IBOutlet weak var emailTitleLbl: UILabel!
-    @IBOutlet weak var emailLbl: UILabel!
-    
-    @IBOutlet weak var phoneTitleLbl: UILabel!
-    @IBOutlet weak var phoneLbl: UILabel!
-    
-    @IBOutlet weak var descriptionTitleLbl: UILabel!
+
     @IBOutlet weak var descriptionTxV: UITextView!
     
     @IBOutlet weak var logoutBtn: UIButton!
+    
+    @IBOutlet weak var phonePrivacityLbl: UILabel!
+    @IBOutlet weak var localizationPrivacityLbl: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +33,21 @@ class ProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setTitles()
         setValues()
+        cheeckPrivacity()
     }
+    
+    func cheeckPrivacity(){
+        let phonePrivacity = getDataInUserDefaults(key: "phoneprivacity") == "1" ? true : false
+        phonePrivacityLbl.text = String(phonePrivacity)
+        print("**************** Phone \(phonePrivacity)")
+        
+        let localizationPrivacity = getDataInUserDefaults(key: "localizationprivacity") == "1" ? true : false
+        localizationPrivacityLbl.text = String(localizationPrivacity)
+        print("***************** Local \(localizationPrivacity)")
+        
+    }
+
     
     func setValues(){
         
@@ -50,15 +56,6 @@ class ProfileViewController: UIViewController {
         
         let username = getDataInUserDefaults(key: "username")
         usernameLbl.text = username
-        
-        let email = getDataInUserDefaults(key: "email")
-        emailLbl.text = email
-        
-        if getDataInUserDefaults(key: "phone") == nil{
-            phoneLbl.text = "Without phone number"
-        }else{
-            phoneLbl.text = getDataInUserDefaults(key: "phone")
-        }
 
         if getDataInUserDefaults(key: "description") == nil{
             print("Description nula")
@@ -68,14 +65,6 @@ class ProfileViewController: UIViewController {
             descriptionTxV.text = getDataInUserDefaults(key: "description")
         }
     
-    }
-    
-    func setTitles(){
-        nameTitleLbl.text = "fullName".localized()
-        usernameTitleLbl.text = "username".localized()
-        emailTitleLbl.text = "emailSettings".localized()
-        phoneTitleLbl.text = "MyPhone".localized()
-        descriptionTitleLbl.text = "descriptSettings".localized()
     }
     
     override func viewDidAppear(_ animated: Bool) {
