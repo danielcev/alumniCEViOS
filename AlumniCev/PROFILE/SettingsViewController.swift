@@ -278,7 +278,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                 let localizationprivacity = switchLocalization.isOn ? 1 : 0
                 let phoneprivacity = switchPhone.isOn ? 1 : 0
                 
-                requestEditUser(id: id!, email: email, name: name, phone: phone, birthday: nil, description: description, photo: photo, phoneprivacity: phoneprivacity, localizationprivacity: localizationprivacity ) {
+                requestEditUser(id: id!, email: email, name: name, phone: phone, birthday: nil, description: description, photo: photo, phoneprivacity: phoneprivacity, localizationprivacity: localizationprivacity, action: {
                     
                     self.stopSpinner()
                     
@@ -298,8 +298,13 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                         self.dismiss(animated: true, completion: nil)
                     })
                     
-                }
-              
+                }, fail: {
+                    
+                    alert.showError(title: "Error", message: "No se ha podido modificar el perfil", buttonTitle: "Ok", action: nil)
+                    
+                })
+
+ 
             }else{
                 alert.showError(title: "wrongTlf".localized(), buttonTitle: "OK")
             }

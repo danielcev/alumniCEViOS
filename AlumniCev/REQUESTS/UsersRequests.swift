@@ -438,7 +438,7 @@ func requestCancelRequest(id_user:Int, action: @escaping ()->()){
     }
 }
 
-func requestEditUser(id:Int,email:String?, name:String?, phone:String?, birthday:String?, description:String?, photo:Data?, phoneprivacity:Int?, localizationprivacity:Int?, action: @escaping ()->()){
+func requestEditUser(id:Int,email:String?, name:String?, phone:String?, birthday:String?, description:String?, photo:Data?, phoneprivacity:Int?, localizationprivacity:Int?, action: @escaping ()->(), fail: @escaping ()->()){
     let url = URL(string: URL_GENERAL + "users/update.json")
     
     var parameters: Parameters = ["id": id]
@@ -513,9 +513,13 @@ func requestEditUser(id:Int,email:String?, name:String?, phone:String?, birthday
                             action()
                             print("Usuario editado")
                         case 400:
+                            
+                            fail()
                             print(arrayResult)
                             
                         default:
+                            
+                            fail()
                             print(arrayResult)
                             
                         }
@@ -525,6 +529,7 @@ func requestEditUser(id:Int,email:String?, name:String?, phone:String?, birthday
                 
             }
         case .failure(let encodingError):
+            fail()
             print(encodingError)
             // your implementation
         }
