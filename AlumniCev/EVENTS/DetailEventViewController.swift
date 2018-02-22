@@ -37,9 +37,11 @@ class DetailEventViewController: UIViewController{
     
     @IBOutlet weak var dateComment: UILabel!
     
+    @IBOutlet weak var dateLbl: UILabel!
+    
     var lat:Float?
     var lon:Float?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -161,6 +163,12 @@ class DetailEventViewController: UIViewController{
     func setInfoEvent(){
         secondTitleLbl.text = events[idReceived]["title"] as? String
         descriptionText.text = events[idReceived]["description"] as? String
+        
+        if !(events[idReceived]["date"]! is NSNull){
+            dateLbl.text = "Creado: \(String(describing: events[idReceived]["date"]! as! String))"
+        }
+    
+        
     }
     
     @IBAction func goToLocalization(_ sender: Any) {

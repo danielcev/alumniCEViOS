@@ -21,6 +21,8 @@
 "enter"="ENTER";
 "notAccount"="Don't you have an account?";
 "register"="REGISTER";
+"correctLogin"="Correct Login";
+"succesLogin"="You have logged in correctly";
 
 //REGISTER
 "repeatPassword"="Repeat password";
@@ -62,22 +64,36 @@
 "tooLocalization"="You can also add a location";
 "createEvent"="Create event";
 "delete"="Delete";
-
 "add"="Add";
 "uploadImage"="Upload image";
-
 "eventCreated"="Event created";
 "eventCreatedSuccess"="The event has been successfully created";
 "infoTitle" = "Tell us the title and description of your event.";
 "cancel" = "cancel";
 "optional" = "*Optional";
+"all" = "All";
+"events"= "Events";
+"jobOffert" = "Job offer";
+"notifi" = "Notifications";
+"news"= "News";
+"cancel"= "Cancel";
+
 //MENU
 
 "menu"="Menu";
 
-//LOCALIZACIÓN
+//ALERT CONTRASEÑA
+"changePass"="Change password";
+"change"="Change your password to a new one.";
+"lessPass"="Old password";
+"newPass"="new password";
+"repitPass"="Repeat new password";
+"cancel"="Cancel";
+
+//LOCATION
 "localizationTitle" = "Location";
 "howToGo" = "How to go to CEV";
+"accessLocal" = "Accessing your location";
 
 //WELCOME
 "Congratulations" = "Congratulations, you've registered!";
@@ -100,10 +116,20 @@
 "descriptSettings" = "description";
 "localizSettings" = "I allowed my location.";
 "phoneSettings" = " I allowed my phone number ";
+"doneBt" = "Done";
+"alertExit"="Success";
+"saveChangeAlert"="Saved changes";
 
 //USERS
 
 "notFriends"="You have no friends";
+
+//LIST USERS
+"all"="All";
+"groups"="Groups";
+"friend"="Friends";
+"send"="Requests";
+"users"="Users";
 
 //DETAIL USER
 "myName" = "Name";
@@ -113,3 +139,4 @@
 "myLoc" = "Location";
 "myUserName" = "Username";
 "addFriend" = "Add to my friends";
+

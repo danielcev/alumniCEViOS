@@ -21,6 +21,8 @@
 "enter"="ENTRAR";
 "notAccount"="¿No tienes cuenta?";
 "register"="REGÍSTRATE";
+"correctLogin"="Login correcto";
+"succesLogin"="Te has logueado correctamente";
 
 //REGISTER
 "repeatPassword"="Repetir contraseña";
@@ -62,23 +64,29 @@
 "addWeb"="¿Quieres añadir una web?";
 "createEvent"="Crear evento";
 "delete"="Eliminar";
-
 "eventCreated"="Evento creado";
 "eventCreatedSuccess"="El evento ha sido creado con éxito";
-
 "add"="Añadir";
 "uploadImage"="Subir imagen";
 "infoTitle" = "Indicanos el titulo y descripción de tu evento.";
 "cancel" = "cancelar";
 "optional" = "*Opcional";
+"all" = "Todos";
+"events"="Eventos";
+"jobOffert" = "Ofertas de trabajo";
+"notifi" = "Notificaciones";
+"news"="Noticias";
+"cancel"="Cancelar";
+
+
 //MENU
 
 "menu"="Menu";
 
 //LOCALIZACIÓN
 "localizationTitle" = "Localización";
-
 "howToGo" = "Cómo llegar al CEV";
+"accessLocal" = "Accediendo a tu localización";
 
 //WELCOME
 "Congratulations" = "¡Enhorabuena, te has registrado! Ahora formas parte de Alumni";
@@ -101,11 +109,31 @@
 "descriptSettings" = "Descripción";
 "localizSettings" = "Permitir mi localizacion";
 "phoneSettings"= "Compartir mi número de teléfono";
-
+"localSettings"= "Compartir mi loaclización";
+"doneBt" = "Hecho";
+"alertExit"="éxito";
+"saveChangeAlert"="Cambios guardados";
 
 //USERS
 
 "notFriends"="No tienes amigos";
+
+
+//ALERT CONTRASEÑA
+"changePass"="Cambiar contraseña";
+"change"="Cambia tu contraseña por una nueva";
+"lessPass"="Contraseña antigua";
+"newPass"="Contraseña nueva";
+"repitPass"="Repetir contraseña nueva";
+"cancel"="Cancelar";
+
+//LIST USERS
+"all"="Todos";
+"groups"="Grupos";
+"friend"="Amigos";
+"send"="Solicitudes";
+"users"="Usuarios";
+
 
 //DETAIL USER
 "myName" = "Nombre";
@@ -115,4 +143,3 @@
 "myLoc" = "Localizacion";
 "myUserName" = "Nombre de usario";
 "addFriend" = "Añadir a mis amigos";
-

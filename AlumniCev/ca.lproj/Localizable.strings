@@ -21,6 +21,8 @@
 "enter"="ENTRAR";
 "notAccount"="No tens un compte?";
 "register"="Registre";
+"correctLogin"="Login correcte";
+"succesLogin"="T'has loguejat correctament";
 
 //REGISTER
 "repeatPassword"="Repeteix la contrassenya";
@@ -66,12 +68,18 @@
 "descriptionInfo"="Doneu-nos més informació del teu esdeveniment, tria un títol i una descripció del teu esdeveniment";
 "add"="Afegeix";
 "uploadImage"="Penja la imatge";
-
 "eventCreated"="Esdeveniment creat";
 "eventCreatedSuccess"="L'esdeveniment s'ha creat correctament";
 "infoTitle" = "Indica'ns el títol i descripció del teu esdeveniment.";
 "cancel" = "cancel · lar";
 "optional" = "*Opcional";
+"all" = "Tots";
+"events"= "Esdeveniments";
+"jobOffert" = "Ofertes de treball";
+"notifi" = "Notificacions";
+"news"= "Notícies";
+"cancel"= "Cancel";
+
 //MENU
 
 "menu"="Menú";
@@ -79,6 +87,7 @@
 //LOCALIZACIÓN
 "localizationTitle" = "Ubicació";
 "howToGo" = "Com arribar al CEV";
+"accessLocal" = "Accedint al teu localització";
 
 //WELCOME
 "Congratulations" = "Enhorabona, t'has registrat!";
@@ -101,16 +110,39 @@
 "descriptSettings" = "Descripció";
 "localizSettings" = "Vaig permetre meu localització";
 "phoneSettings" = "Vaig permetre el meu número de telèfon";
+"localSettings"= "Comparteix la meva deslocalització";
+"doneBt" = "Fet";
+"alertExit"="Éxit";
+"saveChangeAlert"="Canvis guardats";
+
 
 //USERS
 
 "notFriends"="No tens amics";
 
+
+//ALERT CONTRASEÑA
+"changePass"="Canviar contrasenya";
+"change"="Canvia la contrasenya per una nova";
+"lessPass"="Contrasenya antiga";
+"newPass"="Contrasenya nova";
+"repitPass"="Repetir contrasenya nova";
+"cancel"="Cancel";
+
+//LIST USERS
+"all"="Tots";
+"groups"="Grups";
+"friend"="Amics";
+"send"="Sol·licituds";
+"users"="Usuaris";
+
 //DETAIL USER
 "myName" = "Nom";
 "myDescrip" = "Descripció";
-"myMail" = "adreça de correu electrònic";
+"myMail" = "Adreça de correu electrònic";
 "myNum" = "Número de telèfon";
 "myLoc" = "Ubicació";
 "myUserName" = "Nom d'usuari";
 "addFriend" = "Afegir als meus amics";
+
+
