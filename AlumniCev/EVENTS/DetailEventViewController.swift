@@ -275,6 +275,7 @@ class DetailEventViewController: UIViewController{
         let vc = storyboard?.instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
         
         vc.id_event = Int(events[self.idReceived]["id"] as! String)!
+        vc.id_user_event = Int(events[self.idReceived]["id_user"] as! String)!
         
         self.present(vc, animated: false, completion: nil)
     }

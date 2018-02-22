@@ -16,6 +16,9 @@ class CommentsTableViewCell: UITableViewCell {
     
     var controller:CommentsViewController?
     var idComment:Int?
+    
+    @IBOutlet weak var deleteBtn: UIButton!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

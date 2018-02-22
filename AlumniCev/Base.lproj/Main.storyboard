@@ -1234,7 +1234,7 @@
                                                     <rect key="frame" x="15" y="2" width="39" height="39"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NiC-z2-M5e">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NiC-z2-M5e">
                                                     <rect key="frame" x="322" y="3" width="37" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="trashicon"/>
@@ -1245,6 +1245,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="deleteBtn" destination="NiC-z2-M5e" id="waI-4n-sf0"/>
                                             <outlet property="descriptionTxV" destination="FLa-FW-S3a" id="Dox-ZK-msp"/>
                                             <outlet property="imageUser" destination="LgP-iH-VKv" id="4YD-E1-RUQ"/>
                                             <outlet property="usernameLbl" destination="OhU-0B-4zR" id="Eph-sM-UVP"/>

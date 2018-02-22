@@ -101,6 +101,7 @@
 		7F1D33662004D54600D57F75 /* myAppTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAppTools.swift; sourceTree = "<group>"; };
 		7F436377203C119E000108F3 /* RequestsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsTableViewCell.swift; sourceTree = "<group>"; };
 		7F4554D9202DBC44003255EC /* ProfileRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequests.swift; sourceTree = "<group>"; };
+		7F464761203EFE8A00A64205 /* SimpleAnimation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleAnimation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F58DD52203AE23C001A555D /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		7F5A6FF5202B03300080E41A /* TipeEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipeEventViewController.swift; sourceTree = "<group>"; };
 		7F68D2282017322E005148D8 /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +341,7 @@
 		FF776C1E505F02F356DDA3B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F464761203EFE8A00A64205 /* SimpleAnimation.framework */,
 				7FC72B74200E2DAF00A73C3B /* CoreLocation.framework */,
 				38BAC41C412736550E1C2B0A /* Pods_AlumniCev.framework */,
 				D41F6472158DB16013BF8CBC /* libPods-AlumniCevTests.a */,
@@ -525,7 +527,7 @@
 		};
 		502442A567A63971FD812E81 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (

@@ -13,6 +13,7 @@ import CPAlertViewController
 class CommentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var id_event:Int?
+    var id_user_event:Int?
     
     @IBOutlet weak var commentsTable: UITableView!
     
@@ -87,6 +88,15 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.idComment = Int(comment["id"] as! String)
         cell.controller = self
+        
+        let id_user = Int((comment["id_user"] as? String)!)
+        let id = Int(getDataInUserDefaults(key: "id")!)
+        let id_rol = Int(getDataInUserDefaults(key: "id_rol")!)
+        
+        if id_rol == 1 || id_user == id  || id == id_user_event{
+            cell.deleteBtn.isHidden = false
+            
+        }
         
         if comment["photo"] as? String != nil{
             requestImageComment(url: (comment["photo"] as? String)!, image: cell.imageUser)
