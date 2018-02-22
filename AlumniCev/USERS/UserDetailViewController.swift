@@ -70,8 +70,6 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         direcLB.text = user?["email"] as? String
         userLB.text = user?["username"] as? String
         
-        
-        
         if user!["photo"] as? String != nil{
             //Añadir imagen
             let remoteImageURL = URL(string: (user!["photo"] as? String)!)!
@@ -101,41 +99,7 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         }
 
     }
-//
-//    func setInfo(){
-//
-//        nameTitle.text = "myName".localized()
-//        DescripTitlfe.text = "myDescrip".localized()
-//        direcTitle.text = "myMail".localized()
-//        phoneTitle.text = "myNum".localized()
-//        localTitle.text = "myLoc".localized()
-//        userTitle.text = "myUserName".localized()
-//
-//        usernameLbl.text = user?["name"] as? String
-//        nameLB.text = user?["name"] as? String
-//        direcLB.text = user?["email"] as? String
-//        userLB.text = user?["username"] as? String
-//
-//
-//        imgUser.contentMode = .scaleAspectFill
-//        imgUser.layer.cornerRadius = imgUser.bounds.height/2
-//        imgUser.layer.masksToBounds = true
-//
-//        if user?["phone"] as? String != nil{
-//            phoneLB.text = user?["phone"] as? String
-//        }
-//
-//        if user?["description"] as? String == nil{
-//            descripTxt.text =  "defaulDesc".localized()
-//        }else{
-//            descripTxt.text = user?["description"] as! String
-//        }
-//
-//        if user?["lat"] as? String != nil && user?["lon"] as? String != nil {
-//
-//        }
-//    }
-    
+
     func setBtn(){
         
         if friend != nil{
@@ -186,6 +150,9 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
                     })
                 }else{
                     //Cancelar petición enviada
+                    requestCancelRequest(id_user: Int(newFriend)!, action: {
+                        self.viewDidLoad()
+                    })
                     
                 }
                 

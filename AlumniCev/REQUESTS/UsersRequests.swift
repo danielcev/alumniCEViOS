@@ -108,6 +108,8 @@ func requestUserById(id:Int, action: @escaping ()->()){
                    
                     friend = arrayData["friend"] as? Dictionary<String,Any>
                     
+                    user = arrayData["user"] as? Dictionary<String,Any>
+                    
                     privacityUser = arrayData["privacity"] as? Dictionary<String,String>
 
                     action()
@@ -322,6 +324,45 @@ func requestFindUser(search:String, action: @escaping ()->(), notusers:@escaping
     }
 }
 
+func requestFindFriends(search:String, action: @escaping ()->(), notusers:@escaping ()->()){
+    let url = URL(string: URL_GENERAL + "users/find_friend.json")
+    
+    let token = getDataInUserDefaults(key:"token")
+    
+    let parameters:Parameters = ["search":search]
+    
+    let headers: HTTPHeaders = [
+        "Authorization": token!,
+        "Accept": "application/json"
+    ]
+    
+    Alamofire.request(url!, method: .get, parameters:parameters, headers: headers).responseJSON{response in
+        
+        if (response.result.value != nil){
+            
+            var arrayResult = response.result.value as! Dictionary<String, Any>
+            
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    
+                    users = arrayResult["data"] as! [[String:Any]]
+                    
+                    action()
+                default:
+                    users = nil
+                    notusers()
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+                
+            }
+        }
+    }
+}
+
 func requestDeleteFriend(id_user:Int, action: @escaping ()->()){
     let url = URL(string: URL_GENERAL + "users/deleteFriend.json")
     
@@ -350,6 +391,43 @@ func requestDeleteFriend(id_user:Int, action: @escaping ()->()){
                     users = nil
                     
                     print(arrayResult["message"] as! String)
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+                
+            }
+        }
+    }
+}
+
+func requestCancelRequest(id_user:Int, action: @escaping ()->()){
+    let url = URL(string: URL_GENERAL + "users/cancelRequest.json")
+    
+    let token = getDataInUserDefaults(key:"token")
+    
+    let parameters:Parameters = ["id_user":id_user]
+    
+    let headers: HTTPHeaders = [
+        "Authorization": token!,
+        "Accept": "application/json"
+    ]
+    
+    Alamofire.request(url!, method: .post, parameters:parameters, headers: headers).responseJSON{response in
+        
+        if (response.result.value != nil){
+            
+            var arrayResult = response.result.value as! Dictionary<String, Any>
+            
+            switch response.result {
+            case .success:
+                switch arrayResult["code"] as! Int{
+                case 200:
+                    
+                    action()
+                default:
+                    break
+                    
                 }
             case .failure:
                 

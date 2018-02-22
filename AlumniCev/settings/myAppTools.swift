@@ -28,6 +28,8 @@ var comments:[Dictionary<String,Any>]?
 
 var users:[Dictionary<String,Any>]?
 
+var user:Dictionary<String,Any>?
+
 var friend:Dictionary<String,Any>?
 
 var privacityUser:Dictionary<String,String>?

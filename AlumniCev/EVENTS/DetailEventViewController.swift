@@ -28,7 +28,9 @@ class DetailEventViewController: UIViewController{
     @IBOutlet weak var photoUser: UIImageView!
     
     @IBOutlet weak var commentTxF: UITextField!
-    @IBOutlet weak var usernameLbl: UILabel!
+
+    @IBOutlet weak var usernameBtn: UIButton!
+    
     @IBOutlet weak var descriptionTxF: UITextView!
     @IBOutlet weak var photoUserComment: UIImageView!
     
@@ -51,6 +53,9 @@ class DetailEventViewController: UIViewController{
         self.dateComment.isHidden = true
         
         styleTxF(textfield: commentTxF)
+        
+        descriptionTxF.layer.cornerRadius = 15.0
+        descriptionText.layer.cornerRadius = 15.0
         
         seeCommentsBtn.layer.cornerRadius = seeCommentsBtn.layer.frame.height / 2
         
@@ -227,7 +232,7 @@ class DetailEventViewController: UIViewController{
         
         var lastComment = comments![(comments?.count)! - 1]
         
-        self.usernameLbl.text = lastComment["username"] as? String
+        self.usernameBtn.setTitle(lastComment["username"] as? String, for: .normal)
         self.descriptionTxF.text = lastComment["description"] as! String
         
         if lastComment["date"] as? String != nil{
@@ -270,6 +275,18 @@ class DetailEventViewController: UIViewController{
         }
     
     }
+    
+    @IBAction func goToUser(_ sender: Any) {
+        var lastComment = comments![(comments?.count)! - 1]
+        
+        requestUserById(id: Int(lastComment["id_user"] as! String)!) {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
+            vc.user = user
+            
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     
     @IBAction func goToCommentsAction(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController

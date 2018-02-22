@@ -11,11 +11,14 @@ import UIKit
 class CommentsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imageUser: UIImageView!
-    @IBOutlet weak var usernameLbl: UILabel!
+    @IBOutlet weak var usernameBtn: UIButton!
+    
     @IBOutlet weak var descriptionTxV: UITextView!
     
     var controller:CommentsViewController?
     var idComment:Int?
+    
+    var id_user:Int?
     
     @IBOutlet weak var deleteBtn: UIButton!
     
@@ -23,6 +26,7 @@ class CommentsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        descriptionTxV.layer.cornerRadius = 15.0
     }
 
     @IBAction func deleteCommentAction(_ sender: Any) {
@@ -32,7 +36,6 @@ class CommentsTableViewCell: UITableViewCell {
         alert.addAction(UIAlertAction(title: "Borrar", style: .destructive, handler: { (nil) in
             
             requestDeleteComment(id_comment: self.idComment!, action: {
-                
                 
                 self.controller?.reloadTable()
                 //self.controller?.dismiss(animated: true, completion: nil)
@@ -44,6 +47,16 @@ class CommentsTableViewCell: UITableViewCell {
 
     }
     
+    @IBAction func goToUserAction(_ sender: Any) {
+        
+        requestUserById(id: id_user!) {
+            let vc = self.controller?.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
+            vc.user = user
+                
+            self.controller?.present(vc, animated: true, completion: nil)
+        }
+
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

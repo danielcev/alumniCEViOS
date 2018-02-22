@@ -83,13 +83,15 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         
         let comment = comments![indexPath.row]
         
-        cell.usernameLbl.text = comment["username"] as? String
+        cell.usernameBtn.setTitle(comment["username"] as? String, for: .normal) 
         cell.descriptionTxV.text = comment["description"] as? String
         
         cell.idComment = Int(comment["id"] as! String)
         cell.controller = self
         
         let id_user = Int((comment["id_user"] as? String)!)
+        
+        cell.id_user = id_user
         let id = Int(getDataInUserDefaults(key: "id")!)
         let id_rol = Int(getDataInUserDefaults(key: "id_rol")!)
         

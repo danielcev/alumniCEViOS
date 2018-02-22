@@ -35,6 +35,10 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        segmentedChanged((Any).self)
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -42,7 +46,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch listSelected {
-        case "users", "findUsers":
+        case "users", "findUsers", "findFriends":
             if users != nil{
                 return users!.count
             }else{
@@ -83,7 +87,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch listSelected {
-        case "users", "findUsers":
+        case "users", "findUsers", "findFriends":
             var cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
             
             cell.usernameLbl.isHidden = false
@@ -203,6 +207,9 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         switch listSelected {
         case "groups":
+            
+            
+            
             break
         case "requests":
             
@@ -246,8 +253,6 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.rechargeTable()
                 self.stopSpinner()
                 
-                print(users)
-                
                 if users?.count == 0{
                     self.usersTable.isHidden = true
                     self.notFriendsLbl.isHidden = false
@@ -279,18 +284,34 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBAction func searchChanged(_ sender: UITextField) {
         
+        
+
         if sender.text != ""{
-            listSelected = "findUsers"
             
-            requestFindUser(search: sender.text!, action: {
-                self.notUsersLbl.isHidden = true
-                self.rechargeTable()
-            }, notusers: {
-                self.notUsersLbl.isHidden = false
-                self.usersTable.isHidden = true
-            })
+            if segmentedUsers.selectedSegmentIndex == 0{
+                listSelected = "findUsers"
+                
+                requestFindUser(search: sender.text!, action: {
+                    self.notUsersLbl.isHidden = true
+                    self.rechargeTable()
+                }, notusers: {
+                    self.notUsersLbl.isHidden = false
+                    self.usersTable.isHidden = true
+                })
+            }else if segmentedUsers.selectedSegmentIndex == 2{
+                listSelected = "findFriends"
+                
+                requestFindFriends(search: sender.text!, action: {
+                    self.notUsersLbl.isHidden = true
+                    self.rechargeTable()
+                }, notusers: {
+                    self.notUsersLbl.isHidden = false
+                    self.usersTable.isHidden = true
+                })
+            }
 
         }else{
+            notUsersLbl.isHidden = true
             switch segmentedUsers.selectedSegmentIndex{
                 
             case 0:
