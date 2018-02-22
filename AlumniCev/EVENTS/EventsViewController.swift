@@ -140,7 +140,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func changeTextAction(_ sender: Any) {
         
         if (sender as! UITextField).text! == ""{
-            requestEvents(type: idType, controller: self)
+            requestEvents(type: idType, action: {
+                self.reloadTable()
+            }, notResults: {
+                self.notResults()
+            })
         }else{
             requestFindEvents(search: (sender as! UITextField).text!,type: idType, controller: self)
         }
@@ -176,7 +180,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableEvents.rowHeight = UITableViewAutomaticDimension
         tableEvents.estimatedRowHeight = 209
         
-        requestEvents(type: idType, controller: self)
+        requestEvents(type: idType, action: {
+            self.reloadTable()
+        }, notResults: {
+            self.notResults()
+        })
         
         tableEvents.separatorStyle = .none
 
@@ -185,7 +193,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     
     override func viewWillAppear(_ animated: Bool) {
-        requestEvents(type: idType, controller: self)
+        requestEvents(type: idType, action: {
+            self.reloadTable()
+        }, notResults: {
+            self.notResults()
+        })
     }
     @IBAction func filterAction(_ sender: Any) {
         menuView.isHidden = false
@@ -210,7 +222,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         sender.setTitleColor(UIColor.white, for: .normal)
         
         if searchTxF.text == ""{
-            requestEvents(type: idType, controller: self)
+            requestEvents(type: idType, action: {
+                self.reloadTable()
+            }, notResults: {
+                self.notResults()
+            })
         }else{
             requestFindEvents(search: searchTxF.text!, type: idType, controller: self)
         }

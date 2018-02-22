@@ -43,6 +43,9 @@ class DetailEventViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let id = Int(getDataInUserDefaults(key: "id")!)
+        let id_rol = Int(getDataInUserDefaults(key: "id_rol")!)
+        
         self.dateComment.isHidden = true
         
         styleTxF(textfield: commentTxF)
@@ -62,6 +65,11 @@ class DetailEventViewController: UIViewController{
             if(comments!.count > 0){
                 self.setComment()
             }
+            
+            if Int(events[self.idReceived]["id_user"] as! String) == id || id_rol == 1{
+                self.deleteEventBtn.isHidden = false
+            }
+            
         }
         
         //Ajustar TextView a contenido
@@ -126,6 +134,17 @@ class DetailEventViewController: UIViewController{
         setInfoEvent()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        requestEvent(id: Int(events[idReceived]["id"] as! String)!) {
+            if(comments!.count > 0){
+                self.setComment()
+            }else{
+                self.commentView.isHidden = true
+            }
+            
+        }
     }
     
     @IBAction func opendURL(_ sender: Any) {
@@ -273,7 +292,9 @@ class DetailEventViewController: UIViewController{
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Borrar", style: .destructive, handler: { (nil) in
             print("borrar evento")
-            requestDeleteEvent(id: Int(events[self.idReceived]["id"] as! String)!)
+            requestDeleteEvent(id: Int(events[self.idReceived]["id"] as! String)!){
+                self.dismiss(animated: true, completion: nil)
+            }
 
             }))
         self.present(alert, animated: true)

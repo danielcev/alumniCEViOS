@@ -40,6 +40,8 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         // Do any additional setup after loading the view.
     }
     
+    
+    
     func styleTxF(textfield:UITextField){
         
         let border = CALayer()
@@ -82,6 +84,9 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.usernameLbl.text = comment["username"] as? String
         cell.descriptionTxV.text = comment["description"] as? String
+        
+        cell.idComment = Int(comment["id"] as! String)
+        cell.controller = self
         
         if comment["photo"] as? String != nil{
             requestImageComment(url: (comment["photo"] as? String)!, image: cell.imageUser)
@@ -129,10 +134,16 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
                     
                 }
             })
-            
-            
+ 
         }
         
     }
+    
+    func reloadTable(){
+        requestEvent(id: self.id_event!) {
+            self.commentsTable.reloadData()
+        }
+    }
+
     
 }

@@ -74,7 +74,6 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         setTitles()
         setValues()
-        setStyleTxF()
 
         // Do any additional setup after loading the view.
     }
@@ -113,17 +112,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         localizationTitleLbl.text = "localizSettings".localized()
         allowPhoneLbl.text = "phoneSettings".localized()
     }
-    
-    func setStyleTxF(){
-        nameTxF.layer.borderColor = cevColor.cgColor
-        phoneTxF.layer.borderColor = cevColor.cgColor
-        emailTxF.layer.borderColor = cevColor.cgColor
-        
-        nameTxF.layer.borderWidth = 0.5
-        phoneTxF.layer.borderWidth = 0.5
-        emailTxF.layer.borderWidth = 0.5
-    }
-    
+   
     @IBAction func changePasswordAction(_ sender: Any) {
         
         //1. Create the alert controller.

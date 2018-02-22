@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import CPAlertViewController
 
-func requestDeleteEvent(id:Int){
+func requestDeleteEvent(id:Int, action: @escaping ()->()){
     
     let url = URL(string: URL_GENERAL + "events/delete.json")
     let parameters: Parameters = ["id":id]
@@ -32,7 +32,9 @@ func requestDeleteEvent(id:Int){
                     
                 case 200:
                     let alert = CPAlertViewController()
-                    alert.showSuccess(title: arrayResult["message"] as? String, buttonTitle: "OK")
+                    alert.showSuccess(title: arrayResult["message"] as? String, buttonTitle: "OK", action: { (nil) in
+                        action()
+                    })
                     break
                 default:
                     let alert = CPAlertViewController()
@@ -131,7 +133,7 @@ func createEventRequest(title:String, description:String, idType:Int, idGroup:[I
     
 }
 
-func requestEvents(type:Int, controller:UIViewController){
+func requestEvents(type:Int, action: @escaping ()->(), notResults: @escaping ()->()){
     let url = URL(string: URL_GENERAL + "events/events.json")
     
     let parameters: Parameters = ["type":type]
@@ -155,10 +157,10 @@ func requestEvents(type:Int, controller:UIViewController){
                 case 200:
                     events = arrayResult["data"] as! [[String:Any]]
                     
-                    (controller as! EventsViewController).reloadTable()
+                    action()
                     
                 default:
-                    (controller as! EventsViewController).notResults()
+                    notResults()
                     print(arrayResult["message"] as! String)
                 }
             case .failure:

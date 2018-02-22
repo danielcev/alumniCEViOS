@@ -142,6 +142,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     
                     alert.showSuccess(title: "Login correcto", message: "Te has logueado correctamente", buttonTitle: "OK", action: { (nil) in
                         saveDataInUserDefaults(value: arrayUser["id"] as! String, key: "id")
+                        saveDataInUserDefaults(value: arrayUser["id_rol"] as! String, key: "id_rol")
                         saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")
                         saveDataInUserDefaults(value: arrayUser["password"] as! String, key: "password")
                         saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")

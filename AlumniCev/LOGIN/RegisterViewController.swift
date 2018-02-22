@@ -177,6 +177,7 @@
                     // Create an action with a completionl handler.
                     let okAction = JHTAlertAction(title: "OK", style: .default, bgColor: cevColor) { _ in
                         saveDataInUserDefaults(value: arrayUser["id"] as! String, key: "id")
+                        saveDataInUserDefaults(value: arrayUser["id_rol"] as! String, key: "id_rol")
                         saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")
                         saveDataInUserDefaults(value: arrayUser["password"] as! String, key: "password")
                         saveDataInUserDefaults(value: arrayUser["name"] as! String, key: "name")
