@@ -40,34 +40,62 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         super.viewDidLoad()
         
         addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
-        
         requestUserById(id: Int(user?["id"] as! String)!) {
+            self.setBtn()
+        }
+        
+        addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
+        nameTitle.text = "myName".localized()
+        DescripTitlfe.text = "myDescrip".localized()
+        direcTitle.text = "myMail".localized()
+        phoneTitle.text = "myNum".localized()
+        localTitle.text = "myLoc".localized()
+        userTitle.text = "myUserName".localized()
+        
+        usernameLbl.text = user?["name"] as? String
+        nameLB.text = user?["name"] as? String
+        direcLB.text = user?["email"] as? String
+        userLB.text = user?["username"] as? String
+        
+        DistanceFriend()
+        
+        if user!["photo"] as? String != nil{
+            //Añadir imagen
+            let remoteImageURL = URL(string: (user!["photo"] as? String)!)!
             
-            if self.user!["photo"] as? String != nil{
-                //Añadir imagen
-                let remoteImageURL = URL(string: (self.user!["photo"] as? String)!)!
-                
-                Alamofire.request(remoteImageURL).responseData { (response) in
-                    if response.error == nil {
-                        print(response.result)
-                        
-                        if let data = response.data {
-                            self.imgUser.image = UIImage(data: data)
-                            self.setInfo()
-                        }
+            Alamofire.request(remoteImageURL).responseData { (response) in
+                if response.error == nil {
+                    print(response.result)
+                    
+                    if let data = response.data {
+                        self.imgUser.image = UIImage(data: data)
                     }
                 }
-            }else{
-                self.imgUser.image = #imageLiteral(resourceName: "userdefaulticon")
-                self.setInfo()
             }
-            
-            self.setBtn()
-            
-            self.DistanceFriend()
+        }else{
+            imgUser.image = #imageLiteral(resourceName: "userdefaulticon")
+        }
+        
+        imgUser.contentMode = .scaleAspectFill
+        imgUser.layer.cornerRadius = imgUser.bounds.height/2
+        imgUser.layer.masksToBounds = true
+        
+        if user?["phone"] as? String != nil{
+            phoneLB.text = user?["phone"] as? String
+        }
+        
+        if user?["description"] as? String == nil{
+            descripTxt.text =  "defaulDesc".localized()
+        }else{
+            descripTxt.text = user?["description"] as! String
+        }
+        
+        
+        if user?["lat"] as? String != nil && user?["lon"] as? String != nil {
             
             
         }
+        
 
     }
     
@@ -197,10 +225,11 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
     }
     
     @IBAction func OpendWhatsappAction(_ sender: Any) {
-        let thePhone =  phoneLB.text
-
+        var thePhone =  phoneLB.text
+        print("***************************")
+        print(thePhone)
         if  phoneLB.text != ""{
-            UIApplication.shared.openURL(URL(string:"https://api.whatsapp.com/send?phone=+34\(thePhone!)")!)
+            UIApplication.shared.openURL(URL(string:"https://api.whatsapp.com/send?phone=34\(thePhone!)")!)
         }else{
             print("Este usuario no tiene numero de telefono")
         }

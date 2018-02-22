@@ -31,6 +31,8 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
         super.viewDidLoad()
         
         manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestLocation()
         mapRoute.delegate = self
         
         titleLocalizationLbl.text = "howToGo".localized()

@@ -24,7 +24,7 @@ func requestCreateComment(title:String, description:String, id_event:Int, action
     Alamofire.request(url!, method: .post, parameters: parameters, headers: headers).responseJSON{response in
         
         if (response.result.value != nil){
-        
+            
             var arrayResult = response.result.value as! Dictionary<String, Any>
             
             switch response.result {
@@ -63,7 +63,7 @@ func requestDeleteComment(id_comment:Int, action:@escaping ()->()){
     Alamofire.request(url!, method: .post, parameters: parameters, headers: headers).responseJSON{response in
         
         if (response.result.value != nil){
-        
+            
             var arrayResult = response.result.value as! Dictionary<String, Any>
             
             switch response.result {

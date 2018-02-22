@@ -33,6 +33,7 @@ class DetailEventViewController: UIViewController{
     @IBOutlet weak var photoUserComment: UIImageView!
     
     @IBOutlet weak var seeCommentsBtn: UIButton!
+    @IBOutlet weak var deleteEventBtn: UIButton!
     
     @IBOutlet weak var dateComment: UILabel!
     
@@ -265,6 +266,19 @@ class DetailEventViewController: UIViewController{
         
         textfield.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
         
+    }
+    @IBAction func deleteEventAction(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Borrar evento", message: "Seguro que quieres borrar el evento?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Borrar", style: .destructive, handler: { (nil) in
+            print("borrar evento")
+            requestDeleteEvent(id: Int(events[self.idReceived]["id"] as! String)!)
+
+            }))
+        self.present(alert, animated: true)
+        
+
     }
     
 }
