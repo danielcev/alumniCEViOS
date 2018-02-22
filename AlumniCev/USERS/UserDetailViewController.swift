@@ -42,6 +42,19 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
         requestUserById(id: Int(user?["id"] as! String)!) {
             self.setBtn()
+            
+            if self.user?["phone"] as? String != nil && privacityUser!["phone"] == "1"{
+                self.phoneLB.text = self.user?["phone"] as? String
+            }else{
+                self.PhoneBtn.isEnabled = false
+            }
+            
+            if self.user?["lat"] as? String != nil && self.user?["lon"] as? String != nil && privacityUser!["localization"] == "1"{
+                self.DistanceFriend()
+            }else{
+                self.localBtn.isEnabled = false
+            }
+            
         }
         
         addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
@@ -57,7 +70,7 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         direcLB.text = user?["email"] as? String
         userLB.text = user?["username"] as? String
         
-        DistanceFriend()
+        
         
         if user!["photo"] as? String != nil{
             //Añadir imagen
@@ -80,58 +93,48 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         imgUser.layer.cornerRadius = imgUser.bounds.height/2
         imgUser.layer.masksToBounds = true
         
-        if user?["phone"] as? String != nil{
-            phoneLB.text = user?["phone"] as? String
-        }
-        
+    
         if user?["description"] as? String == nil{
             descripTxt.text =  "defaulDesc".localized()
         }else{
             descripTxt.text = user?["description"] as! String
         }
-        
-        
-        if user?["lat"] as? String != nil && user?["lon"] as? String != nil {
-            
-            
-        }
-        
 
     }
-    
-    func setInfo(){
-        
-        nameTitle.text = "myName".localized()
-        DescripTitlfe.text = "myDescrip".localized()
-        direcTitle.text = "myMail".localized()
-        phoneTitle.text = "myNum".localized()
-        localTitle.text = "myLoc".localized()
-        userTitle.text = "myUserName".localized()
-        
-        usernameLbl.text = user?["name"] as? String
-        nameLB.text = user?["name"] as? String
-        direcLB.text = user?["email"] as? String
-        userLB.text = user?["username"] as? String
-        
-        
-        imgUser.contentMode = .scaleAspectFill
-        imgUser.layer.cornerRadius = imgUser.bounds.height/2
-        imgUser.layer.masksToBounds = true
-        
-        if user?["phone"] as? String != nil{
-            phoneLB.text = user?["phone"] as? String
-        }
-        
-        if user?["description"] as? String == nil{
-            descripTxt.text =  "defaulDesc".localized()
-        }else{
-            descripTxt.text = user?["description"] as! String
-        }
-        
-        if user?["lat"] as? String != nil && user?["lon"] as? String != nil {
-            
-        }
-    }
+//
+//    func setInfo(){
+//
+//        nameTitle.text = "myName".localized()
+//        DescripTitlfe.text = "myDescrip".localized()
+//        direcTitle.text = "myMail".localized()
+//        phoneTitle.text = "myNum".localized()
+//        localTitle.text = "myLoc".localized()
+//        userTitle.text = "myUserName".localized()
+//
+//        usernameLbl.text = user?["name"] as? String
+//        nameLB.text = user?["name"] as? String
+//        direcLB.text = user?["email"] as? String
+//        userLB.text = user?["username"] as? String
+//
+//
+//        imgUser.contentMode = .scaleAspectFill
+//        imgUser.layer.cornerRadius = imgUser.bounds.height/2
+//        imgUser.layer.masksToBounds = true
+//
+//        if user?["phone"] as? String != nil{
+//            phoneLB.text = user?["phone"] as? String
+//        }
+//
+//        if user?["description"] as? String == nil{
+//            descripTxt.text =  "defaulDesc".localized()
+//        }else{
+//            descripTxt.text = user?["description"] as! String
+//        }
+//
+//        if user?["lat"] as? String != nil && user?["lon"] as? String != nil {
+//
+//        }
+//    }
     
     func setBtn(){
         

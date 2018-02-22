@@ -59,20 +59,25 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         case "1"?:
             typeEvent = "Evento"
-            color = UIColor.red.withAlphaComponent(0.4)
+            color = hexStringToUIColor(hex: "5E797A")
+            cell.imageTypeEvent.image = #imageLiteral(resourceName: "eventsiconlist")
             
         case "2"?:
             typeEvent = "Oferta de trabajo"
-            color = UIColor.purple.withAlphaComponent(0.4)
+            color = hexStringToUIColor(hex: "40C0C6")
+            cell.imageTypeEvent.image = #imageLiteral(resourceName: "joboffericonlist")
         case "3"?:
             typeEvent = "Notificación"
-            color = UIColor.blue.withAlphaComponent(0.4)
+            color = hexStringToUIColor(hex: "4F5E74")
+            cell.imageTypeEvent.image = #imageLiteral(resourceName: "notificationsiconlist")
         case "4"?:
             typeEvent = "Noticia"
-            color = UIColor.yellow.withAlphaComponent(0.4)
+            color = hexStringToUIColor(hex: "62BD91")
+            cell.imageTypeEvent.image = #imageLiteral(resourceName: "newsiconlist")
         default:
             typeEvent = ""
             color = UIColor.red.withAlphaComponent(0.4)
+            cell.imageTypeEvent.image = #imageLiteral(resourceName: "eventsiconlist")
         }
         
         if events[indexPath.row]["image"] as? String != nil{

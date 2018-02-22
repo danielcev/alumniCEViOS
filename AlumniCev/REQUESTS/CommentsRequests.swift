@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import CPAlertViewController
 
 func requestCreateComment(title:String, description:String, id_event:Int, action:@escaping ()->()){
     let url = URL(string: URL_GENERAL + "comments/create.json")
@@ -26,7 +27,6 @@ func requestCreateComment(title:String, description:String, id_event:Int, action
         if (response.result.value != nil){
             
             var arrayResult = response.result.value as! Dictionary<String, Any>
-            
             switch response.result {
             case .success:
                 switch arrayResult["code"] as! Int{
@@ -65,17 +65,20 @@ func requestDeleteComment(id_comment:Int, action:@escaping ()->()){
         if (response.result.value != nil){
             
             var arrayResult = response.result.value as! Dictionary<String, Any>
-            
+            let alert = CPAlertViewController()
             switch response.result {
             case .success:
                 switch arrayResult["code"] as! Int{
                 case 200:
+                    
+                    alert.showSuccess(title: arrayResult["message"] as? String, buttonTitle: "ok" )
                     
                     action()
                     print("comentario borrado")
                     
                 default:
                     print(arrayResult["message"] as! String)
+                    alert.showError(title: arrayResult["message"] as? String, buttonTitle: "ok" )
                 }
             case .failure:
                 print("Error :: \(String(describing: response.error))")

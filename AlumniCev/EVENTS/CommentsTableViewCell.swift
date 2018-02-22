@@ -29,8 +29,10 @@ class CommentsTableViewCell: UITableViewCell {
         alert.addAction(UIAlertAction(title: "Borrar", style: .destructive, handler: { (nil) in
             
             requestDeleteComment(id_comment: self.idComment!, action: {
+                
+                
                 self.controller?.reloadTable()
-                self.controller?.dismiss(animated: true, completion: nil)
+                //self.controller?.dismiss(animated: true, completion: nil)
             })
         }))
         

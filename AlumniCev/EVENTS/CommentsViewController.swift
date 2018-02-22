@@ -36,7 +36,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         photoUser.layer.masksToBounds = true
         
         styleTxF(textfield: commentTxF)
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -57,13 +57,13 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         textfield.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -96,7 +96,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.imageUser.layer.cornerRadius = cell.imageUser.frame.size.width/2
         cell.imageUser.layer.masksToBounds = true
-
+        
         return cell
     }
     
@@ -123,18 +123,15 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         requestCreateComment(title: "ComentarioTest", description: commentTxF.text!, id_event: self.id_event!){
             
             let alert = CPAlertViewController()
-            
+            self.reloadTable()
             alert.showSuccess(title: "Éxito", message: "Comentario creado!", buttonTitle: "OK", action: { (nil) in
                 requestEvent(id: self.id_event!) {
-                    requestEvent(id: self.id_event!) {
-                        self.commentsTable.reloadData()
-                        
-                        self.commentTxF.text = ""
-                    }
-                    
+
+                    self.commentTxF.text = ""
+	
                 }
             })
- 
+            
         }
         
     }
@@ -144,6 +141,6 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             self.commentsTable.reloadData()
         }
     }
-
+    
     
 }
