@@ -18,11 +18,42 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var photoUser: UIImageView!
     @IBOutlet weak var commentTxF: UITextField!
-
+    
+    @IBOutlet weak var commentsLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        commentsLbl.text = "Comments"
+        
+        if(getDataInUserDefaults(key: "photo") != nil){
+            let photo:Data = Data(base64Encoded: getDataInUserDefaults(key: "photo")!)!
+            photoUser.image = UIImage(data: photo)
+            
+        }
+        
+        photoUser.layer.cornerRadius = photoUser.frame.size.height/2
+        photoUser.layer.masksToBounds = true
+        
+        styleTxF(textfield: commentTxF)
 
         // Do any additional setup after loading the view.
+    }
+    
+    func styleTxF(textfield:UITextField){
+        
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        
+        border.borderColor = cevColor.cgColor
+        border.frame = CGRect(x: 0, y: 0, width:  textfield.frame.size.width, height: 1)
+        
+        border.borderWidth = width
+        textfield.layer.addSublayer(border)
+        textfield.layer.masksToBounds = true
+        
+        textfield.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
+        
     }
 
     override func didReceiveMemoryWarning() {

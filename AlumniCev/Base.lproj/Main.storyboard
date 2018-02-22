@@ -1249,6 +1249,7 @@
                     </view>
                     <connections>
                         <outlet property="commentTxF" destination="gaN-wh-NJa" id="8L3-QJ-7eR"/>
+                        <outlet property="commentsLbl" destination="1hB-fa-VqL" id="efa-pl-bR8"/>
                         <outlet property="commentsTable" destination="M7K-5B-eqI" id="KyD-m2-Upb"/>
                         <outlet property="photoUser" destination="yzI-nl-Dn6" id="28s-3n-Adv"/>
                     </connections>
@@ -1362,9 +1363,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Añade un comentario..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vpr-52-gc8">
-                                        <rect key="frame" x="34" y="866" width="304" height="39"/>
+                                        <rect key="frame" x="43" y="866" width="295" height="39"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="304" id="35i-Ga-sVq"/>
+                                            <constraint firstAttribute="width" constant="295" id="35i-Ga-sVq"/>
                                         </constraints>
                                         <color key="textColor" red="0.0" green="0.55294117649999996" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1418,7 +1419,7 @@
                                     <constraint firstItem="NEj-iG-wkl" firstAttribute="top" secondItem="WlB-9y-uDp" secondAttribute="top" id="1Sq-5f-w4n"/>
                                     <constraint firstItem="246-IP-m5a" firstAttribute="leading" secondItem="Igf-le-p9T" secondAttribute="leading" id="21J-7K-GVS"/>
                                     <constraint firstItem="gby-K7-XW6" firstAttribute="top" secondItem="246-IP-m5a" secondAttribute="bottom" constant="21" id="2zR-We-QQv"/>
-                                    <constraint firstItem="Vpr-52-gc8" firstAttribute="leading" secondItem="w0x-rx-MTE" secondAttribute="leading" constant="18" id="7Ti-QV-XHd"/>
+                                    <constraint firstItem="Vpr-52-gc8" firstAttribute="leading" secondItem="w0x-rx-MTE" secondAttribute="leading" constant="27" id="7Ti-QV-XHd"/>
                                     <constraint firstItem="WlB-9y-uDp" firstAttribute="leading" secondItem="dzv-Fh-tSP" secondAttribute="leading" constant="241" id="9Gi-Uz-CF7"/>
                                     <constraint firstItem="Igf-le-p9T" firstAttribute="centerX" secondItem="w0x-rx-MTE" secondAttribute="centerX" constant="-1" id="DtR-YE-PTv"/>
                                     <constraint firstItem="w0x-rx-MTE" firstAttribute="top" secondItem="T4B-wY-ISV" secondAttribute="bottom" constant="27" id="Efb-77-pXj"/>
@@ -1475,7 +1476,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZL-S2-ik1" userLabel="Delete button">
-                                <rect key="frame" x="257" y="72" width="102" height="48"/>
+                                <rect key="frame" x="298" y="72" width="61" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="trashicon"/>
                                 <connections>

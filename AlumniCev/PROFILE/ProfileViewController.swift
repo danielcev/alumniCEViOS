@@ -38,13 +38,11 @@ class ProfileViewController: UIViewController {
     }
     
     func cheeckPrivacity(){
-        let phonePrivacity = getDataInUserDefaults(key: "phoneprivacity") == "1" ? true : false
-        phonePrivacityLbl.text = String(phonePrivacity)
-        print("**************** Phone \(phonePrivacity)")
+        let phonePrivacity = getDataInUserDefaults(key: "phoneprivacity") == "1" ? "Sí" : "No"
+        phonePrivacityLbl.text = phonePrivacity
         
-        let localizationPrivacity = getDataInUserDefaults(key: "localizationprivacity") == "1" ? true : false
-        localizationPrivacityLbl.text = String(localizationPrivacity)
-        print("***************** Local \(localizationPrivacity)")
+        let localizationPrivacity = getDataInUserDefaults(key: "localizationprivacity") == "1" ? "Sí" : "No"
+        localizationPrivacityLbl.text = localizationPrivacity
         
     }
 

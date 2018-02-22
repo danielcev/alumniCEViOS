@@ -55,7 +55,7 @@ class DetailEventViewController: UIViewController{
             
         }
         
-        photoUser.layer.cornerRadius = photoUser.frame.size.width/2
+        photoUser.layer.cornerRadius = photoUser.frame.size.height/2
         photoUser.layer.masksToBounds = true
 
         requestEvent(id: Int(events[idReceived]["id"] as! String)!) {
@@ -214,9 +214,9 @@ class DetailEventViewController: UIViewController{
             photoUserComment.image = UIImage(named: "userdefaulticon")
         }
         
-        photoUserComment.layer.cornerRadius = photoUserComment.frame.size.width/2
+        photoUserComment.layer.cornerRadius = photoUserComment.frame.size.height/2
         photoUserComment.layer.masksToBounds = true
-        
+
         if comments!.count > 1{
             self.seeCommentsBtn.setTitle("Ver \(comments!.count) comentarios", for: .normal)
         }else{
