@@ -129,7 +129,8 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         if friend == nil{
             
             sendRequestFriend(id_user: Int(newFriend)!) {
-                self.addFriendsBtn.setTitle("Eliminar petición enviada", for: .normal)
+                //self.addFriendsBtn.setTitle("Eliminar petición enviada", for: .normal)
+                self.viewDidLoad()
             }
             
         }else{
@@ -159,6 +160,8 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
             }
             
         }
+        
+        
     
     }
     

@@ -37,12 +37,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        print(defaults.object(forKey: "userRegistered"))
      
         if getDataInUserDefaults(key: "isLoged") != nil{
             if(getDataInUserDefaults(key: "isLoged")! == "true"){
-                
                 self.goToMain()
             }
         }
@@ -140,7 +137,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     
                     let alert = CPAlertViewController()
                     
-                    alert.showSuccess(title: "Login correcto", message: "Te has logueado correctamente", buttonTitle: "OK", action: { (nil) in
+                    alert.showSuccess(title: "correctLogin".localized(), message: "succesLogin".localized(), buttonTitle: "OK", action: { (nil) in
                         saveDataInUserDefaults(value: arrayUser["id"] as! String, key: "id")
                         saveDataInUserDefaults(value: arrayUser["id_rol"] as! String, key: "id_rol")
                         saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")

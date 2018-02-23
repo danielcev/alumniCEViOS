@@ -44,6 +44,8 @@
 "lengthPassword"="La contraseña debe estar comprendida entre 5 y 12 caracteres";
 "correctLogin"="Login correcto";
 
+"permissionSettings" = "Es necesario aceptar los permisos desde ajustes";
+
 //EVENTS
 
 "events"="Eventos";
@@ -68,8 +70,8 @@
 "eventCreatedSuccess"="El evento ha sido creado con éxito";
 "add"="Añadir";
 "uploadImage"="Subir imagen";
-"infoTitle" = "Indicanos el titulo y descripción de tu evento.";
-"cancel" = "cancelar";
+"infoTitle" = "Indícanos el título y descripción de tu evento.";
+"cancel" = "Cancelar";
 "optional" = "*Opcional";
 "all" = "Todos";
 "events"="Eventos";
@@ -77,7 +79,9 @@
 "notifi" = "Notificaciones";
 "news"="Noticias";
 "cancel"="Cancelar";
-
+"deleteEvent"="Borrar evento";
+"sureDeleteEvent"="¿Seguro que quieres borrar el evento?";
+"delete"="Borrar";
 
 //MENU
 
@@ -113,6 +117,10 @@
 "doneBt" = "Hecho";
 "alertExit"="éxito";
 "saveChangeAlert"="Cambios guardados";
+"yes" = "Sí";
+"no" = "No";
+"notChangesDone" = "No se han podido realizar los cambios";
+"edit"="Editar";
 
 //USERS
 
@@ -126,6 +134,7 @@
 "newPass"="Contraseña nueva";
 "repitPass"="Repetir contraseña nueva";
 "cancel"="Cancelar";
+"oldPass" = "La contraseña antigua no es válida";
 
 //LIST USERS
 "all"="Todos";
@@ -143,3 +152,6 @@
 "myLoc" = "Localizacion";
 "myUserName" = "Nombre de usario";
 "addFriend" = "Añadir a mis amigos";
+
+//COMENTARIOS
+"createdComment" = "Comentario creado!";

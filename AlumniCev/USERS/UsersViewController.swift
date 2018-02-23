@@ -283,8 +283,6 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBAction func searchChanged(_ sender: UITextField) {
         
-        self.startSpinner()
-        
         if sender.text != ""{
             
             if segmentedUsers.selectedSegmentIndex == 0{

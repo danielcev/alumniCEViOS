@@ -748,6 +748,7 @@
                         <outlet property="completView" destination="6kK-2L-bDD" id="yGH-um-YNe"/>
                         <outlet property="descriptionTitleLbl" destination="ECS-8C-iq5" id="ZIa-6C-AmF"/>
                         <outlet property="descriptionTxV" destination="09g-AD-foJ" id="SEb-Ez-RJp"/>
+                        <outlet property="doneBtn" destination="uPN-Bn-4dc" id="pgD-QV-Fvb"/>
                         <outlet property="emailTitleLbl" destination="0Go-kb-pJZ" id="SLf-aE-zA6"/>
                         <outlet property="emailTxF" destination="bmS-1S-rRV" id="Yyd-3j-eAi"/>
                         <outlet property="imgProfile" destination="lE3-OR-Dvl" id="LOe-4R-5iu"/>
@@ -2688,14 +2689,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VT5-qm-U53">
-                                        <rect key="frame" x="319" y="36" width="25" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="settingsicon"/>
-                                        <connections>
-                                            <action selector="goToSettings:" destination="NpO-xe-hrh" eventType="touchUpInside" id="L8J-wG-zhh"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwC-VJ-z6x">
                                         <rect key="frame" x="128" y="36" width="119" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2703,6 +2696,15 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VT5-qm-U53">
+                                        <rect key="frame" x="280" y="39" width="95" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="Edit"/>
+                                        <connections>
+                                            <action selector="goToSettings:" destination="NpO-xe-hrh" eventType="touchUpInside" id="L8J-wG-zhh"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.55294117649999996" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -2723,7 +2725,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name_apps1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdz-rL-AMb">
-                                <rect key="frame" x="16" y="246" width="343" height="21"/>
+                                <rect key="frame" x="17" y="246" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
@@ -2745,13 +2747,6 @@
                                     <action selector="logoutAction:" destination="NpO-xe-hrh" eventType="touchUpInside" id="jSB-Xw-Gnj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Compartir localizacion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpl-tM-fxG">
-                                <rect key="frame" x="17" y="469" width="241" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="no" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lc-Uw-oIp">
                                 <rect key="frame" x="301" y="469" width="53" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2760,7 +2755,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Compartir telefono" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scC-ud-veT">
-                                <rect key="frame" x="17" y="512" width="240" height="21"/>
+                                <rect key="frame" x="16" y="511" width="240" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -2773,6 +2768,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Compartir localizacion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpl-tM-fxG">
+                                <rect key="frame" x="21" y="468" width="241" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="WWC-Hw-6XS"/>
@@ -2780,11 +2782,14 @@
                     <tabBarItem key="tabBarItem" title="Profile" image="user" selectedImage="user" id="Bqp-JO-kry"/>
                     <connections>
                         <outlet property="descriptionTxV" destination="Jcu-6O-hdk" id="DyP-wt-GfR"/>
+                        <outlet property="editBtn" destination="VT5-qm-U53" id="MFc-ov-qey"/>
                         <outlet property="imgProfile" destination="2Cu-Sz-iZ1" id="Hhb-V8-N95"/>
                         <outlet property="localizationPrivacityLbl" destination="8Lc-Uw-oIp" id="aio-T0-3Re"/>
                         <outlet property="logoutBtn" destination="g1m-ND-C5t" id="B0B-xD-p4Q"/>
                         <outlet property="nameLbl" destination="FOf-Lt-NSX" id="HTU-qO-Sf5"/>
                         <outlet property="phonePrivacityLbl" destination="6Ng-4S-IMU" id="Ju6-6X-Wai"/>
+                        <outlet property="shareLocalizationLbl" destination="bpl-tM-fxG" id="9dc-CN-nrG"/>
+                        <outlet property="sharePhoneLbl" destination="scC-ud-veT" id="ZDO-xo-VFl"/>
                         <outlet property="usernameLbl" destination="rdz-rL-AMb" id="50R-Vi-pRQ"/>
                     </connections>
                 </viewController>
@@ -2920,7 +2925,6 @@
         <image name="notificacionesicon" width="249" height="280"/>
         <image name="ofertaicon" width="205" height="333"/>
         <image name="sendicon" width="102" height="102"/>
-        <image name="settingsicon" width="47" height="47"/>
         <image name="sombreado" width="753" height="357"/>
         <image name="trashicon" width="48" height="48"/>
         <image name="uploadimage" width="505" height="446"/>

@@ -263,7 +263,7 @@ class DetailEventViewController: UIViewController{
             
             let alert = CPAlertViewController()
             
-            alert.showSuccess(title: "Éxito", message: "Comentario creado!", buttonTitle: "OK", action: { (nil) in
+            alert.showSuccess(title: "alertExit".localized(), message: "createdComment".localized(), buttonTitle: "OK", action: { (nil) in
                 requestEvent(id: Int(events[self.idReceived]["id"] as! String)!) {
                     self.setComment()
                     
@@ -314,10 +314,9 @@ class DetailEventViewController: UIViewController{
     }
     @IBAction func deleteEventAction(_ sender: Any) {
         
-        let alert = UIAlertController(title: "Borrar evento", message: "Seguro que quieres borrar el evento?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "deleteEvent".localized(), message: "sureDeleteEvent".localized(), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Borrar", style: .destructive, handler: { (nil) in
-            print("borrar evento")
+        alert.addAction(UIAlertAction(title: "delete".localized(), style: .destructive, handler: { (nil) in
             requestDeleteEvent(id: Int(events[self.idReceived]["id"] as! String)!){
                 self.dismiss(animated: true, completion: nil)
             }

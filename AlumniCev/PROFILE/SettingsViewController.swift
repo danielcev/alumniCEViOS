@@ -44,6 +44,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBOutlet weak var changePhotoBtn: UIButton!
     
+    @IBOutlet weak var doneBtn: UIButton!
+    
     var photo:Data?
     
     var picker:UIImagePickerController?
@@ -111,27 +113,28 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         descriptionTitleLbl.text = "descriptSettings".localized()
         localizationTitleLbl.text = "localizSettings".localized()
         allowPhoneLbl.text = "phoneSettings".localized()
+        doneBtn.setTitle("doneBt".localized(), for: .normal)
     }
    
     @IBAction func changePasswordAction(_ sender: Any) {
         
         //1. Create the alert controller.
-        let alert = UIAlertController(title: "Cambiar contraseña", message: "Cambia tu contraseña por una nueva", preferredStyle: .alert)
+        let alert = UIAlertController(title: "changePass".localized(), message: "change".localized(), preferredStyle: .alert)
         
         //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
-            textField.placeholder = "Contraseña antigua"
+            textField.placeholder = "lessPass".localized()
         }
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Contraseña nueva"
+            textField.placeholder = "newPass".localized()
         }
         
         alert.addTextField { (textField) in
-            textField.placeholder = "Repetir contraseña nueva"
+            textField.placeholder = "repitPass".localized()
         }
         
-        alert.addAction(UIAlertAction(title: "Cancelar", style: .destructive, handler: nil))
+        alert.addAction(UIAlertAction(title: "cancel".localized(), style: .destructive, handler: nil))
         
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
@@ -143,12 +146,12 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                 
                 if textFieldNueva!.text != textFieldRepetirNueva!.text{
                     self.present(alert!, animated: true, completion: nil)
-                    alert?.message = "No coinciden las contraseñas"
+                    alert?.message = "wrongRepeatPassword".localized()
                     alert?.setValue(NSAttributedString(string: (alert?.message)!, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), NSAttributedStringKey.foregroundColor : UIColor.red]), forKey: "attributedMessage")
                 }else{
                     if (textFieldNueva!.text?.count)! < 5 || (textFieldNueva!.text?.count)! > 12{
                         self.present(alert!, animated: true, completion: nil)
-                        alert?.message = "La longitud de la contraseña debe estar comprendida entre 5 y 12 caracteres"
+                        alert?.message = "lengthPassword".localized()
                         alert?.setValue(NSAttributedString(string: (alert?.message)!, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), NSAttributedStringKey.foregroundColor : UIColor.red]), forKey: "attributedMessage")
                     }else{
                     
@@ -161,7 +164,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                 
             }else{
                 self.present(alert!, animated: true, completion: nil)
-                alert?.message = "Todos los campos son necesarios"
+                alert?.message = "allFieldsRequired".localized()
                 alert?.setValue(NSAttributedString(string: (alert?.message)!, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), NSAttributedStringKey.foregroundColor : UIColor.red]), forKey: "attributedMessage")
             }
 
@@ -175,11 +178,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     func changePassword(alert:UIAlertController){
         requestChangePassword(lastPassword: self.lastPassword!, password: self.password!, action: {
             
-            self.cpalert?.showSuccess(title: "Éxito", message: "Contraseña cambiada", buttonTitle: "OK", action: nil)
+            self.cpalert?.showSuccess(title: "alertExit".localized(), message: "passwordChanged".localized(), buttonTitle: "OK", action: nil)
             
         }, fail: {
             self.present(alert, animated: true, completion: nil)
-            alert.message = "La contraseña antigua no es válida"
+            alert.message = "oldPass".localized()
             alert.setValue(NSAttributedString(string: (alert.message)!, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium), NSAttributedStringKey.foregroundColor : UIColor.red]), forKey: "attributedMessage")
         })
     }
@@ -239,7 +242,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func needAcceptPermission(){
         let alert = CPAlertViewController()
-        alert.showError(title: "Es necesario aceptar los permisos desde ajustes", buttonTitle: "OK")
+        alert.showError(title: "permissionSettings".localized(), buttonTitle: "OK")
     }
     
     @IBAction func backAction(_ sender: Any) {
@@ -282,7 +285,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                     
                     self.stopSpinner()
                     
-                    alert.showSuccess(title: "Éxito", message: "Cambios guardados", buttonTitle: "OK", action: { (nil) in
+                    alert.showSuccess(title: "alertExit".localized(), message: "saveChangeAlert".localized(), buttonTitle: "OK", action: { (nil) in
                         
                         if self.photo != nil{
                             saveDataInUserDefaults(value: (self.photo?.base64EncodedString())!, key: "photo")
@@ -300,7 +303,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                     
                 }, fail: {
                     
-                    alert.showError(title: "Error", message: "No se ha podido modificar el perfil", buttonTitle: "Ok", action: nil)
+                    alert.showError(title: "Error", message: "notChangesDone".localized(), buttonTitle: "Ok", action: nil)
                     
                 })
 

@@ -22,6 +22,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var phonePrivacityLbl: UILabel!
     @IBOutlet weak var localizationPrivacityLbl: UILabel!
     
+    @IBOutlet weak var shareLocalizationLbl: UILabel!
+    @IBOutlet weak var sharePhoneLbl: UILabel!
+    
+    @IBOutlet weak var editBtn: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +34,10 @@ class ProfileViewController: UIViewController {
         imgProfile.layer.masksToBounds = true
 
         logoutBtn.layer.cornerRadius = logoutBtn.layer.frame.height / 2
+        
+        shareLocalizationLbl.text = "localizSettings".localized()
+        sharePhoneLbl.text = "phoneSettings".localized()
+        editBtn.setTitle("edit".localized(), for: .normal)
 
     }
     
@@ -38,10 +47,10 @@ class ProfileViewController: UIViewController {
     }
     
     func cheeckPrivacity(){
-        let phonePrivacity = getDataInUserDefaults(key: "phoneprivacity") == "1" ? "Sí" : "No"
+        let phonePrivacity = getDataInUserDefaults(key: "phoneprivacity") == "1" ? "yes".localized() : "no".localized()
         phonePrivacityLbl.text = phonePrivacity
         
-        let localizationPrivacity = getDataInUserDefaults(key: "localizationprivacity") == "1" ? "Sí" : "No"
+        let localizationPrivacity = getDataInUserDefaults(key: "localizationprivacity") == "1" ? "yes".localized() : "no".localized()
         localizationPrivacityLbl.text = localizationPrivacity
         
     }
@@ -56,10 +65,8 @@ class ProfileViewController: UIViewController {
         usernameLbl.text = username
 
         if getDataInUserDefaults(key: "description") == nil{
-            print("Description nula")
             descriptionTxV.text = "defaulDesc".localized()
         }else{
-            print("Description no nula")
             descriptionTxV.text = getDataInUserDefaults(key: "description")
         }
     

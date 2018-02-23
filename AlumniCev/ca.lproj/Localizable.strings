@@ -45,6 +45,8 @@
 "lengthPassword"="La contrasenya ha de tenir entre 5 i 12 caràcters.";
 "correctLogin"="Corregeix l'inici de sessió";
 
+"permissionSettings" = "Cal acceptar els permisos des ajustos";
+
 //EVENTS
 
 "events"="Esdeveniments";
@@ -79,6 +81,9 @@
 "notifi" = "Notificacions";
 "news"= "Notícies";
 "cancel"= "Cancel";
+"deleteEvent"="Delete event";
+"sureDeleteEvent"="¿Segur que vols eliminar l'esdeveniment?";
+"delete"="Esborrar";
 
 //MENU
 
@@ -115,6 +120,11 @@
 "alertExit"="Éxit";
 "saveChangeAlert"="Canvis guardats";
 
+"yes" = "Sí";
+"no" = "No";
+
+"notChangesDone" = "No s'han pogut realitzar els canvis";
+"edit"="Editar";
 
 //USERS
 
@@ -128,6 +138,7 @@
 "newPass"="Contrasenya nova";
 "repitPass"="Repetir contrasenya nova";
 "cancel"="Cancel";
+"oldPass" = "La contrasenya antiga no és vàlida";
 
 //LIST USERS
 "all"="Tots";
@@ -144,5 +155,8 @@
 "myLoc" = "Ubicació";
 "myUserName" = "Nom d'usuari";
 "addFriend" = "Afegir als meus amics";
+
+//COMENTARIOS
+"createdComment" = "Comentari creat!";
 
 

@@ -44,6 +44,8 @@
 "lengthPassword"="The password must be between 5 and 12 characters long.";
 "correctLogin"="Correct login";
 
+"permissionSettings" = "Permissions must be accepted from settings";
+
 //EVENTS
 
 "events"="Events";
@@ -77,6 +79,9 @@
 "notifi" = "Notifications";
 "news"= "News";
 "cancel"= "Cancel";
+"deleteEvent"="Delete event";
+"sureDeleteEvent"="Are you sure you want to delete the event?";
+"delete"="Delete";
 
 //MENU
 
@@ -89,6 +94,7 @@
 "newPass"="new password";
 "repitPass"="Repeat new password";
 "cancel"="Cancel";
+"oldPass" = "Old password is invalid";
 
 //LOCATION
 "localizationTitle" = "Location";
@@ -120,6 +126,12 @@
 "alertExit"="Success";
 "saveChangeAlert"="Saved changes";
 
+"yes" = "Yes";
+"no" = "No";
+
+"notChangesDone" = "Unable to make changes";
+"edit"="Edit";
+
 //USERS
 
 "notFriends"="You have no friends";
@@ -139,4 +151,9 @@
 "myLoc" = "Location";
 "myUserName" = "Username";
 "addFriend" = "Add to my friends";
+
+//COMENTARIOS
+"createdComment" = "Comment created!";
+
+
 

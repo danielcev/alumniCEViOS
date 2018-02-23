@@ -136,7 +136,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             
             let alert = CPAlertViewController()
             self.reloadTable()
-            alert.showSuccess(title: "Éxito", message: "Comentario creado!", buttonTitle: "OK", action: { (nil) in
+            alert.showSuccess(title: "alertExit".localized(), message: "createdComment".localized(), buttonTitle: "OK", action: { (nil) in
                 requestEvent(id: self.id_event!) {
 
                     self.commentTxF.text = ""
