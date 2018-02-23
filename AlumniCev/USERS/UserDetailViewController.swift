@@ -33,6 +33,8 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
     @IBOutlet weak var userLB: UILabel!
     @IBOutlet weak var userBtn: UIButton!
     @IBOutlet weak var addFriendsBtn: UIButton!
+    @IBOutlet weak var imageViewer: UIView!
+    @IBOutlet weak var imageFromIMGVW: UIImageView!
     
     var user:Dictionary<String,Any>?
     
@@ -80,16 +82,21 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
                     
                     if let data = response.data {
                         self.imgUser.image = UIImage(data: data)
+                        self.imageFromIMGVW.image = UIImage(data: data)
                     }
                 }
             }
         }else{
             imgUser.image = #imageLiteral(resourceName: "userdefaulticon")
+            self.imageFromIMGVW.image = #imageLiteral(resourceName: "userdefaulticon")
         }
         
         imgUser.contentMode = .scaleAspectFill
         imgUser.layer.cornerRadius = imgUser.bounds.height/2
         imgUser.layer.masksToBounds = true
+        
+        imageFromIMGVW.contentMode = .scaleAspectFit
+        imageFromIMGVW.layer.masksToBounds = true
         
     
         if user?["description"] as? String == nil{
@@ -251,7 +258,14 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         
         self.present(vc, animated: true, completion: nil)
     }
-
+    @IBAction func dismisImageViewer(_ sender: Any) {
+        imageViewer.isHidden = true
+    }
+    
+    @IBAction func showImageViewer(_ sender: Any) {
+        imageViewer.isHidden = false
+        
+    }
     
 
 }

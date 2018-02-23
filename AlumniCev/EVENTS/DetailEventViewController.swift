@@ -40,9 +40,20 @@ class DetailEventViewController: UIViewController{
     @IBOutlet weak var dateComment: UILabel!
     
     @IBOutlet weak var dateLbl: UILabel!
+    @IBOutlet weak var imageFromIMGViewer: UIImageView!
+    @IBOutlet weak var imageViewer: UIView!
     
     var lat:Float?
     var lon:Float?
+    
+    @IBAction func dismissImageViewer(_ sender: Any) {
+        imageViewer.isHidden = true
+        
+    }
+    @IBAction func showImageViewer(_ sender: Any) {
+        imageViewer.isHidden = false
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -206,6 +217,10 @@ class DetailEventViewController: UIViewController{
                 
                 if let data = response.data {
                     self.imageViewEvent.image = UIImage(data: data)
+                    self.imageFromIMGViewer.image = UIImage(data: data)
+                    self.imageFromIMGViewer.contentMode = .scaleAspectFit
+                    self.imageFromIMGViewer.layer.masksToBounds = true
+                    
                 }
             }
         }
