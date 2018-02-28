@@ -33,58 +33,92 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
-    func checkPermission() {
-        
-        requestAuth()
-        
-        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
-        
-        print(photoAuthorizationStatus)
-        
-        switch photoAuthorizationStatus {
-        
-        case .authorized:
-            print("Access is granted by user")
-            self.openGallary()
-        case .notDetermined:
-            print("Access is not determined")
-            
-        case .restricted:
-            print("Access is restricted")
-            
-        case .denied:
-            print("Access is denied")
-          
-        }
-    }
-    
-    func requestAuth(){
-        PHPhotoLibrary.requestAuthorization({
-            (newStatus) in print("new status is \(newStatus)")
-            
-            if newStatus == PHAuthorizationStatus.authorized {
-                
-                self.openGallary()
-                
-                print("success")
-                
-            }else{
-                self.needAcceptPermission()
-            }
-        })
-    }
+
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
-    
-    @IBAction func OpenGallery(_ sender: Any) {
+    @IBAction func uploadImageAction(_ sender: UIButton) {
+        // alert para camara o galeria
         
-        checkPermission()
+        let alert = UIAlertController(title: "Usar camara o galeria", message: "¿Quieres subir una foto desde la camara o desde la galeria?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Camara", style: .default, handler: { (nil) in
+            self.checkPermissionCamera()
+        }))
+        alert.addAction(UIAlertAction(title: "Galeria", style: .default, handler: { (nil) in
+            self.checkPermissionGallery()
+        }))
+        present(alert, animated: true, completion: nil)
+        
         
     }
     
+    func checkPermissionCamera() {
+        
+        // permisos para galeria
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .notDetermined:
+            // pedir permisos
+            DispatchQueue.main.async {
+                AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (granted)  in
+                    if granted {
+                        self.openCamera()
+                    }
+                })
+            }
+        case .denied,.restricted:
+            // alert para ir a ajustes
+            let alert = UIAlertController(title: "Se necesitan permisos", message: "Se necesitan permisos para acceder a la galeria", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ir a ajustes", style: .default, handler: { (nil) in
+                UIApplication.shared.open(NSURL(string:UIApplicationOpenSettingsURLString)! as URL, options: [:], completionHandler: nil)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+            
+            present(alert, animated: true)
+            
+        case .authorized:
+            // abrir galeria
+            openCamera()
+        }
+    }
+    func checkPermissionGallery() {
+        
+        // permisos para galeria
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .notDetermined:
+            // pedir permisos
+            DispatchQueue.main.async {
+                PHPhotoLibrary.requestAuthorization({(newStatus) in
+                    print(newStatus)
+                    if newStatus == PHAuthorizationStatus.authorized {
+                        self.openGallary()
+                    }
+                    
+                })
+            }
+        case .denied,.restricted:
+            // alert para ir a ajustes
+            let alert = UIAlertController(title: "Se necesitan permisos", message: "Se necesitan permisos para acceder a la galeria", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Ir a ajustes", style: .destructive, handler: { (nil) in
+                UIApplication.shared.open(NSURL(string:UIApplicationOpenSettingsURLString)! as URL, options: [:], completionHandler: nil)
+            }))
+            present(alert, animated: true)
+            
+        case .authorized:
+            // abrir galeria
+            openGallary()
+        }
+        
+        
+    }
+    func openCamera(){
+        picker!.allowsEditing = false
+        picker!.sourceType = UIImagePickerControllerSourceType.camera
+        present(picker!, animated: true, completion: nil)
+    }
     func openGallary()
     {
         picker!.allowsEditing = false
@@ -92,10 +126,10 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         present(picker!, animated: true, completion: nil)
     }
     
-    func needAcceptPermission(){
-        let alert = CPAlertViewController()
-        alert.showError(title: "Es necesario aceptar los permisos desde ajustes", buttonTitle: "OK")
-    }
+    
+    
+    
+    
     
     @IBAction func cancelAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
