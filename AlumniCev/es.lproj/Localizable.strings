@@ -147,9 +147,9 @@
 //DETAIL USER
 "myName" = "Nombre";
 "myDescrip" = "Descripción";
-"myMail" = "Dirección de correo electrónico";
+"myMail" = "Email";
 "myNum" = "Numero de telefono";
-"myLoc" = "Localizacion";
+"myLoc" = "Ubicación";
 "myUserName" = "Nombre de usario";
 "addFriend" = "Añadir a mis amigos";
 

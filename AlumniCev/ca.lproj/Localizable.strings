@@ -150,9 +150,9 @@
 //DETAIL USER
 "myName" = "Nom";
 "myDescrip" = "Descripció";
-"myMail" = "Adreça de correu electrònic";
+"myMail" = "Email";
 "myNum" = "Número de telèfon";
-"myLoc" = "Ubicació";
+"myLoc" = "ubicació";
 "myUserName" = "Nom d'usuari";
 "addFriend" = "Afegir als meus amics";
 

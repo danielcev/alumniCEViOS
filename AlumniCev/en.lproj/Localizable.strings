@@ -146,7 +146,7 @@
 //DETAIL USER
 "myName" = "Name";
 "myDescrip" = "Description";
-"myMail" = "Email address";
+"myMail" = "Email";
 "myNum" = "Phone number";
 "myLoc" = "Location";
 "myUserName" = "Username";

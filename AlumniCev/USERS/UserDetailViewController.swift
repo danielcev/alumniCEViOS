@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import MessageUI
 import CoreLocation
+import SwiftSpinner
 
 
 class UserDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
@@ -71,20 +72,23 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         nameLB.text = user?["name"] as? String
         direcLB.text = user?["email"] as? String
         userLB.text = user?["username"] as? String
-        
+        self.imageFromIMGVW.image = #imageLiteral(resourceName: "userdefaulticon")
         if user!["photo"] as? String != nil{
             //Añadir imagen
+            SwiftSpinner.show("...")
             let remoteImageURL = URL(string: (user!["photo"] as? String)!)!
-            
-            Alamofire.request(remoteImageURL).responseData { (response) in
+        
+        Alamofire.request(remoteImageURL).responseData { (response) in
                 if response.error == nil {
                     print(response.result)
                     
                     if let data = response.data {
                         self.imgUser.image = UIImage(data: data)
                         self.imageFromIMGVW.image = UIImage(data: data)
+                        SwiftSpinner.hide()
                     }
                 }
+            
             }
         }else{
             imgUser.image = #imageLiteral(resourceName: "userdefaulticon")
