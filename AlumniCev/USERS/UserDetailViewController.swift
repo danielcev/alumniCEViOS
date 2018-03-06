@@ -11,10 +11,15 @@ import Alamofire
 import MessageUI
 import CoreLocation
 import SwiftSpinner
+import CPAlertViewController
+
+
+
 
 
 class UserDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
+    var alert = CPAlertViewController()
     @IBOutlet weak var usernameLbl: UILabel!
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var nameTitle: UILabel!
@@ -41,26 +46,42 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
+        // cambiar titulo boton de amistad
+        self.addFriendsBtn.layer.cornerRadius = addFriendsBtn.bounds.size.height/2
+        self.setBtn()
+    // sacar usuario por id
         requestUserById(id: Int(user?["id"] as! String)!) {
-            self.setBtn()
-            
+            // privacidad
             if self.user?["phone"] as? String != nil && privacityUser!["phone"] == "1"{
                 self.phoneLB.text = self.user?["phone"] as? String
             }else{
                 self.PhoneBtn.isEnabled = false
             }
-            
+            // localizacion
             if self.user?["lat"] as? String != nil && self.user?["lon"] as? String != nil && privacityUser!["localization"] == "1"{
                 self.DistanceFriend()
             }else{
                 self.localBtn.isEnabled = false
             }
-            
+            // descripcion
+            if self.user?["description"] as? String == nil{
+                self.descripTxt.text =  "defaulDesc".localized()
+            }else{
+                self.descripTxt.text = self.user?["description"] as! String
+            }
+            // otros campos
+            self.usernameLbl.text = self.user?["name"] as? String
+            self.nameLB.text = self.user?["name"] as? String
+            self.direcLB.text = self.user?["email"] as? String
+            self.userLB.text = self.user?["username"] as? String
         }
         
-        addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
+    
+        
+        //addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
+        //addFriendsBtn.setTitle("addFriend".localized(), for: .normal)
+        
+    // actualizar textos
         nameTitle.text = "myName".localized()
         DescripTitlfe.text = "myDescrip".localized()
         direcTitle.text = "myMail".localized()
@@ -68,33 +89,12 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         localTitle.text = "myLoc".localized()
         userTitle.text = "myUserName".localized()
         
-        usernameLbl.text = user?["name"] as? String
-        nameLB.text = user?["name"] as? String
-        direcLB.text = user?["email"] as? String
-        userLB.text = user?["username"] as? String
+        
+    
+    // imagen de perfil
         self.imageFromIMGVW.image = #imageLiteral(resourceName: "userdefaulticon")
-        if user!["photo"] as? String != nil{
-            //Añadir imagen
-            SwiftSpinner.show("...")
-            let remoteImageURL = URL(string: (user!["photo"] as? String)!)!
-        
-        Alamofire.request(remoteImageURL).responseData { (response) in
-                if response.error == nil {
-                    print(response.result)
-                    
-                    if let data = response.data {
-                        self.imgUser.image = UIImage(data: data)
-                        self.imageFromIMGVW.image = UIImage(data: data)
-                        SwiftSpinner.hide()
-                    }
-                }
-            
-            }
-        }else{
-            imgUser.image = #imageLiteral(resourceName: "userdefaulticon")
-            self.imageFromIMGVW.image = #imageLiteral(resourceName: "userdefaulticon")
-        }
-        
+        self.imgUser.image = #imageLiteral(resourceName: "userdefaulticon")
+    // configuracion fotos (escalado posicion etc)
         imgUser.contentMode = .scaleAspectFill
         imgUser.layer.cornerRadius = imgUser.bounds.height/2
         imgUser.layer.masksToBounds = true
@@ -102,78 +102,120 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         imageFromIMGVW.contentMode = .scaleAspectFit
         imageFromIMGVW.layer.masksToBounds = true
         
-    
-        if user?["description"] as? String == nil{
-            descripTxt.text =  "defaulDesc".localized()
-        }else{
-            descripTxt.text = user?["description"] as! String
+        if user!["photo"] as? String != nil
+        {
+            let remoteImageURL = URL(string: (user!["photo"] as? String)!)!
+            Alamofire.request(remoteImageURL).responseData
+                { (response) in
+                if response.error == nil {
+                    print(response.result)
+                    if let data = response.data {
+                        self.imgUser.image = UIImage(data: data)
+                        self.imageFromIMGVW.image = UIImage(data: data)
+                    }
+                }
+            }
         }
 
     }
-
+    
     func setBtn(){
-        
-        if friend != nil{
-            if Int(friend!["state"] as! String) == 2 {
-                
-                addFriendsBtn.setTitle("Eliminar amistad", for: .normal)
-                
-            }else{
-                
-                if friend!["id_user_send"] as? Int == Int((user?["id"] as? String)!){
-                    addFriendsBtn.setTitle("Aceptar petición", for: .normal)
-                }else{
-                    addFriendsBtn.setTitle("Cancelar petición enviada", for: .normal)
+        requestUserById(id: Int(user?["id"] as! String)!){
+            if friend != nil
+            {
+                if Int(friend!["state"] as! String) == 2
+                {
+                    self.addFriendsBtn.setTitle("Eliminar amistad", for: .normal)
+                    self.addFriendsBtn.backgroundColor = UIColor(named: "Orange")
+                    //addFriendsBtn.backgroundColor = UIColor(displayP3Red: 241, green: 90, blue: 36, alpha: 1)
+                }else
+                {
+                    if friend!["id_user_send"] as? Int == Int((self.user?["id"] as? String)!)
+                    {
+                        self.addFriendsBtn.setTitle("Aceptar petición", for: .normal)
+                        self.addFriendsBtn.backgroundColor = UIColor(named: "Turques")
+                    }else
+                    {
+                        self.addFriendsBtn.setTitle("Cancelar petición enviada", for: .normal)
+                        self.addFriendsBtn.backgroundColor = UIColor(named: "Orange")
+                    }
                 }
-                
+            }else
+            {
+                self.addFriendsBtn.setTitle("Enviar petición de amistad", for: .normal)
+                self.addFriendsBtn.backgroundColor = UIColor(named: "Turques")
             }
-        }else{
-            addFriendsBtn.setTitle("Enviar petición de amistad", for: .normal)
+            // activar boton
+            self.addFriendsBtn.isEnabled = true
         }
         
     }
     
     @IBAction func addFriend(_ sender: Any) {
         
-        let newFriend = user?["id"] as! String
-        
-        if friend == nil{
-            
-            sendRequestFriend(id_user: Int(newFriend)!) {
-                //self.addFriendsBtn.setTitle("Eliminar petición enviada", for: .normal)
-                self.viewDidLoad()
+        //addFriendsBtn.isEnabled = false
+        let idNewFriend = user?["id"] as! String
+        if friend == nil
+        {
+            // si no hay peticion creada se crea una nueva
+            sendRequestFriend(id_user: Int(idNewFriend)!) {message,code in
+                // actualizar boton
+                self.setBtn()
+                self.showAlert(message: message)
             }
-            
-        }else{
-            
+        }else
+        {
+            // si hay peticion y esta en 2 (amigo) se borra de amigo (borrar peticion)
             if friend!["state"] as! String == "2" {
-        
                 //Eliminar amistad
-                requestDeleteFriend(id_user: Int(newFriend)!, action: {
-                    self.viewDidLoad()
-                })
-               
-            }else{
+                print(idNewFriend)
+                let alert = UIAlertController(title: "Borrar amigo", message: "¿Seguro que quieres dejar de ser amigo?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Borrar", style: .destructive, handler: { (nil) in
+                    requestDeleteFriend(id_user: Int(idNewFriend)!)
+                    {message,code in
+                        self.setBtn()
+                        self.showAlert(message: message)
+                        if code == 200{
+                            // borrar amistad de local
+                            friend = nil
+                        }
+                    }
+                }))
+                self.present(alert, animated: true)
                 
-                if friend!["id_user_send"] as? Int == Int((user?["id"] as? String)!){
-                    //Aceptar petición
-                    requestResponseFriend(id_user: Int(newFriend)!, type: 2, action: {
-                        self.viewDidLoad()
-                    })
-                }else{
-                    //Cancelar petición enviada
-                    requestCancelRequest(id_user: Int(newFriend)!, action: {
-                        self.viewDidLoad()
-                    })
+                
+            }else{
+                // si esta en 1 (peticion pendiente)
+                
+                //Aceptar petición si el que la envia es el usuario del detalle
+                if friend!["id_user_send"] as? Int == Int((user?["id"] as? String)!)
+                {
+                    requestResponseFriend(id_user: Int(idNewFriend)!, type: 2){message,code in
+                        self.setBtn()
+                        self.showAlert(message: message)
+                    }
+                }else
+                {
+                    //Cancelar petición enviada, porque la ha enviado el usuario logeado
+                    requestCancelRequest(id_user: Int(idNewFriend)!){message,code in
+                        // actualizar boton
+                        self.setBtn()
+                        self.showAlert(message: message)
+                    }
                     
                 }
-                
             }
-            
         }
         
         
+    }
     
+    func showAlert(message:String){
+        
+        let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
     @IBAction func mailSender(_ sender: Any) {
@@ -185,12 +227,13 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         }
         
     }
+    
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self as? MFMailComposeViewControllerDelegate // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         
         mailComposerVC.setToRecipients([direcLB.text!])
-
+        
         mailComposerVC.setSubject("IOS test")
         mailComposerVC.setMessageBody("Hello word!", isHTML: false)
         
@@ -210,8 +253,7 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
     
     @IBAction func OpendWhatsappAction(_ sender: Any) {
         var thePhone =  phoneLB.text
-        print("***************************")
-        print(thePhone)
+        
         if  phoneLB.text != ""{
             UIApplication.shared.openURL(URL(string:"https://api.whatsapp.com/send?phone=34\(thePhone!)")!)
         }else{
@@ -245,11 +287,9 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
             if distanceInMeters > 1000{
                 var distanceKilom = distanceInMeters / 1000
                 let distance = formatter.string(from: (distanceKilom as? NSNumber)!)
-                print("\(user?["name"]) a \(distance) km de distancia de ti")
                 localLB.text = String(describing: distance!) + " km de distancia de ti"
             }else{
                 let distance = formatter.string(from: (distanceInMeters as? NSNumber)!)
-                print("\(user?["name"]) a \(distance) m de distancia de ti")
                 localLB.text = String(describing: distance!) + " m de distancia de ti"
             }
         }
@@ -271,5 +311,5 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         
     }
     
-
+    
 }

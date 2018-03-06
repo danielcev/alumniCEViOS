@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fondo_azul" translatesAutoresizingMaskIntoConstraints="NO" id="dJ3-c7-53t">
-                                <rect key="frame" x="0.0" y="4" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="671"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vc5-ba-kby">
                                 <rect key="frame" x="46" y="300" width="282" height="30"/>
@@ -31,7 +31,7 @@
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -84,7 +84,7 @@
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿No tienes cuenta?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofD-m9-lms">
                                 <rect key="frame" x="114" y="519" width="146" height="21"/>
@@ -109,7 +109,7 @@
                         <color key="backgroundColor" red="0.0" green="0.55294117647058827" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="xCh-cL-cxI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="61" id="1Xd-mO-PRX"/>
-                            <constraint firstItem="dJ3-c7-53t" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="4" id="3Zh-Kt-y3W"/>
+                            <constraint firstItem="dJ3-c7-53t" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="3Zh-Kt-y3W"/>
                             <constraint firstItem="dJ3-c7-53t" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="4LB-uX-qMV"/>
                             <constraint firstItem="f19-dA-gSe" firstAttribute="top" secondItem="ofD-m9-lms" secondAttribute="bottom" constant="23" id="5eh-US-T7O"/>
                             <constraint firstItem="dJ3-c7-53t" firstAttribute="centerX" secondItem="Vc5-ba-kby" secondAttribute="centerX" id="5iP-dS-blb"/>
@@ -118,7 +118,7 @@
                             <constraint firstItem="YwX-5E-ADU" firstAttribute="top" secondItem="F5m-Cy-psy" secondAttribute="bottom" constant="40" id="FD2-ua-9t0"/>
                             <constraint firstItem="dJ3-c7-53t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gld-gh-nZm"/>
                             <constraint firstItem="ofD-m9-lms" firstAttribute="top" secondItem="YwX-5E-ADU" secondAttribute="bottom" constant="13" id="Ptd-XN-Nsl"/>
-                            <constraint firstItem="dJ3-c7-53t" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="4" id="RFe-mP-L3Q"/>
+                            <constraint firstItem="dJ3-c7-53t" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RFe-mP-L3Q"/>
                             <constraint firstItem="dJ3-c7-53t" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="X6q-uU-lLx"/>
                             <constraint firstItem="Vc5-ba-kby" firstAttribute="leading" secondItem="YwX-5E-ADU" secondAttribute="leading" id="ZF7-2B-JHP"/>
                             <constraint firstItem="dJ3-c7-53t" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="4" id="aY2-Jz-t42"/>
@@ -1562,7 +1562,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="jXw-gV-HZc" firstAttribute="leading" secondItem="OT0-nq-gNS" secondAttribute="leading" id="2Fd-bf-pNN"/>
                                     <constraint firstItem="jXw-gV-HZc" firstAttribute="top" secondItem="OT0-nq-gNS" secondAttribute="top" id="4Cg-uU-mzx"/>
@@ -1799,7 +1799,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86g-zX-QWd">
-                                <rect key="frame" x="58" y="598" width="266" height="49"/>
+                                <rect key="frame" x="58" y="598" width="266" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.00067401403789999999" green="0.61966812609999999" blue="0.67943602800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="AÑADIR AMIGOS">
@@ -3001,7 +3001,7 @@
         <image name="notificacionesicon" width="249" height="280"/>
         <image name="ofertaicon" width="205" height="333"/>
         <image name="sendicon" width="102" height="102"/>
-        <image name="sombreado" width="753" height="357"/>
+        <image name="sombreado" width="423" height="255"/>
         <image name="trashicon" width="48" height="48"/>
         <image name="uploadimage" width="505" height="446"/>
         <image name="user" width="26" height="26"/>

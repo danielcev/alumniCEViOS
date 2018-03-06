@@ -48,6 +48,7 @@ func requestDeleteEvent(id:Int, action: @escaping ()->()){
         }
     }
 }
+
 func createEventRequest(title:String, description:String, idType:Int, idGroup:[Int], controller:UIViewController, lat:Float?, lon:Float?, image:Data?, urlEvent:String?){
     let url = URL(string: URL_GENERAL + "events/create.json")
     

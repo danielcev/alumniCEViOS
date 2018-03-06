@@ -28,7 +28,7 @@ class RequestsTableViewCell: UITableViewCell {
     }
 
     @IBAction func acceptAction(_ sender: Any) {
-        requestResponseFriend(id_user: id_user!, type: 2) {
+        requestResponseFriend(id_user: id_user!, type: 2) {_,_ in
             requestRequests(action: {
                 self.controllerTable!.rechargeTable()
             }, notRequests: {
@@ -40,7 +40,7 @@ class RequestsTableViewCell: UITableViewCell {
     }
     
     @IBAction func declineAction(_ sender: Any) {
-        requestResponseFriend(id_user: id_user!, type: 3) {
+        requestResponseFriend(id_user: id_user!, type: 3) {_,_ in
             requestRequests(action: {
                 self.controllerTable!.rechargeTable()
             }, notRequests: {

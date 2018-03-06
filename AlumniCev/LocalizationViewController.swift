@@ -31,20 +31,30 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
         super.viewDidLoad()
         
         manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-//        manager.requestLocation()
+        manager.desiredAccuracy = kCLLocationAccuracyKilometer
         mapRoute.delegate = self
-        
         titleLocalizationLbl.text = "howToGo".localized()
-        
         self.transportType = .walking
+        // chincheta cev
+        let annotation = MKPointAnnotation()
+        let latitude:CLLocationDegrees = CLLocationDegrees(40.437628)
+        let longitude:CLLocationDegrees = CLLocationDegrees(-3.715484)
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        annotation.coordinate = location
+        annotation.title = "CEV"
+        annotation.subtitle = "Calle Gaztambide 65, 28015 Madrid"
+        mapRoute.addAnnotation(annotation)
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
-            case .notDetermined, .restricted, .denied:
+                
+            case .notDetermined:
+                manager.requestAlwaysAuthorization()
+                
+            case .restricted, .denied:
                 
                 let alert = UIAlertController(title: "Localización necesaria", message: "Es necesario acceder a la localización", preferredStyle: .alert)
                 
@@ -63,12 +73,26 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
                 
             case .authorizedAlways, .authorizedWhenInUse:
                 self.segmentedTransport.isHidden = false
-                SwiftSpinner.show("Accediendo a tu localización")
-                getLocation()
+                manager.startUpdatingLocation()
+                //getLocation()
                 
             }
         } else {
-            print("Location services are not enabled")
+            
+            let alert = UIAlertController(title: "Localización necesaria", message: "Es necesario acceder a la localización", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK, ir a ajustes", style: .default, handler: { (alert) in
+                UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, completionHandler: nil
+                )
+            }))
+            
+            alert.addAction(UIAlertAction(title: "No quiero permitir localización", style: .cancel, handler: {(alert) in
+                self.mapRoute.removeOverlays(self.mapRoute.overlays)
+                self.setMark()
+                self.segmentedTransport.isHidden = true
+            }))
+            
+            self.present(alert, animated: true)
         }
     }
     
@@ -81,41 +105,19 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
         
         let latitude:CLLocationDegrees = CLLocationDegrees(40.437628)
         let longitude:CLLocationDegrees = CLLocationDegrees(-3.715484)
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         
         let latDelta:CLLocationDegrees = 0.01
         let longDelta:CLLocationDegrees = 0.01
         
         let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        
         
         let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        annotation.title = "CEV"
-        annotation.subtitle = "Calle Gaztambide 65, 28015 Madrid"
-        
-        mapRoute.addAnnotation(annotation)
-
         mapRoute.setRegion(region, animated: true)
     }
     
-    func onlySetMark(){
-        let latitude:CLLocationDegrees = CLLocationDegrees(40.437628)
-        let longitude:CLLocationDegrees = CLLocationDegrees(-3.715484)
-        
-        let latDelta:CLLocationDegrees = 0.01
-        let longDelta:CLLocationDegrees = 0.01
-        
-        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        annotation.title = "CEV"
-        annotation.subtitle = "Calle Gaztambide 65, 28015 Madrid"
-        
-        mapRoute.addAnnotation(annotation)
-    }
     
     func requestRoute(){
         let coordenadasOrigen = CLLocationCoordinate2DMake(CLLocationDegrees(self.lat), CLLocationDegrees(self.lon))
@@ -131,21 +133,21 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
         peticion.source = origen
         peticion.destination = destino
         let indicaciones = MKDirections(request: peticion)
-        indicaciones.calculate { (respuesta, error) in
+        let alert = CPAlertViewController()
+        indicaciones.calculate { (response, error) in
+            self.mapRoute.removeOverlays(self.mapRoute.overlays)
             if let error = error {
-                
-                let alert = CPAlertViewController()
+                // dejar de actualizar la posicion si no puede calcular la ruta
+                self.manager.stopUpdatingLocation()
+                // alert no se puede calcular la ruta
                 
                 alert.showError(title: "Error", message: error.localizedDescription, buttonTitle: "OK", action: {(nil) in
                     self.setMark()
                 })
-                // alert no se puede calcular la ruta
-                
             } else {
-            self.mapRoute.add((respuesta?.routes[0].polyline)!)
                 
-                self.onlySetMark()
-                self.zoomToPolyLine(map: self.mapRoute, polyLine: (respuesta?.routes[0].polyline)!, animated: true)
+                self.mapRoute.add((response?.routes[0].polyline)!)
+                self.zoomToPolyLine(map: self.mapRoute, polyLine: (response?.routes[0].polyline)!, animated: true)
                 
             }
             SwiftSpinner.hide()
@@ -173,6 +175,7 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
     }
     
     @IBAction func changeTransport(_ sender: UISegmentedControl) {
+        manager.stopUpdatingLocation()
         switch sender.selectedSegmentIndex {
         case 0:
             self.transportType = .walking
@@ -181,9 +184,10 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
         default:
             self.transportType = .walking
         }
-        self.mapRoute.removeOverlays(self.mapRoute.overlays)
-        SwiftSpinner.show("Accediendo a tu localización")
-        requestRoute()
+        manager.startUpdatingLocation()
+        //SwiftSpinner.show("Accediendo a tu localización")
+        //manager.startUpdatingLocation()
+        
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay:
@@ -194,18 +198,13 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
         return renderer
     }
     
-    func getLocation(){
-        
-        manager.requestAlwaysAuthorization()
-        manager.requestLocation()
-
-    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            print("Found user's location: \(location)")
+        if let location = locations.last {
+            //print("Found user's location: \(location)")
+            print("------- localizacion actualiza**************")
             
-            self.manager.stopUpdatingLocation()
+            //self.manager.stopUpdatingLocation()
             
             self.lon = Float(location.coordinate.longitude)
             self.lat = Float(location.coordinate.latitude)
@@ -216,8 +215,16 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to find user's location: \(error.localizedDescription)")
+        
         self.manager.stopUpdatingLocation()
+        self.mapRoute.removeOverlays(self.mapRoute.overlays)
+        let alert = CPAlertViewController()
+        alert.showError(title: "Error", message: "No se puede obtener tu localizacion, intentalo mas tarde", buttonTitle: "OK", action: {(nil) in
+            self.setMark()
+        })
+        SwiftSpinner.hide()
+        
     }
-
-
+    
+    
 }

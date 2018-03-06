@@ -59,12 +59,13 @@ func requestGroups(action: @escaping ()->()){
         if (response.result.value != nil){
         
             var arrayResult = response.result.value as! Dictionary<String, Any>
+            var arrayData = arrayResult["data"]! as! Dictionary<String,Any>
             
             switch response.result {
             case .success:
                 switch arrayResult["code"] as! Int{
                 case 200:
-                    groups = arrayResult["data"] as! [Dictionary<String,String>]
+                    groups = arrayData["groups"] as! [Dictionary<String,String>]
                     
                     action()
                     
