@@ -34,6 +34,8 @@ var friend:Dictionary<String,Any>?
 
 var privacityUser:Dictionary<String,String>?
 
+var globalidReceived:Int?
+
 var events:[[String:Any]] = [
     
     ["title":"Evento 1",

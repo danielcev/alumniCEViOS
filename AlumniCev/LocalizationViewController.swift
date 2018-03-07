@@ -26,20 +26,27 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
     
     var lon:Float = 0.0
     var lat:Float = 0.0
+    let userAnnotation = MKPointAnnotation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyKilometer
+
         mapRoute.delegate = self
+        
         titleLocalizationLbl.text = "howToGo".localized()
+        userAnnotation.title = "Tú ubicación"
         self.transportType = .walking
         // chincheta cev
-        let annotation = MKPointAnnotation()
+        
         let latitude:CLLocationDegrees = CLLocationDegrees(40.437628)
         let longitude:CLLocationDegrees = CLLocationDegrees(-3.715484)
         let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        let annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = "CEV"
         annotation.subtitle = "Calle Gaztambide 65, 28015 Madrid"
@@ -48,6 +55,7 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        SwiftSpinner.show("Accediendo a tu localización")
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
                 
@@ -96,11 +104,7 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
         }
     }
     
-    func setRoute(){
-        
-        requestRoute()
-    }
-    
+
     func setMark(){
         
         let latitude:CLLocationDegrees = CLLocationDegrees(40.437628)
@@ -126,7 +130,6 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
         let origen = MKMapItem(placemark: MKPlacemark(coordinate: coordenadasOrigen))
         let destino = MKMapItem(placemark: MKPlacemark(coordinate: coordenadasDestino))
         
-        // 
         let peticion = MKDirectionsRequest()
         peticion.transportType = self.transportType!
         
@@ -135,22 +138,30 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
         let indicaciones = MKDirections(request: peticion)
         let alert = CPAlertViewController()
         indicaciones.calculate { (response, error) in
+            SwiftSpinner.hide()
+            // quitar ruta anterior
             self.mapRoute.removeOverlays(self.mapRoute.overlays)
             if let error = error {
                 // dejar de actualizar la posicion si no puede calcular la ruta
                 self.manager.stopUpdatingLocation()
                 // alert no se puede calcular la ruta
-                
                 alert.showError(title: "Error", message: error.localizedDescription, buttonTitle: "OK", action: {(nil) in
                     self.setMark()
                 })
             } else {
                 
+                //print((response?.routes[0].expectedTravelTime)!/60/60)
+                
+                self.mapRoute.removeAnnotation(self.userAnnotation)
+                // ubicacion usuario
+                self.userAnnotation.coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(self.lat), CLLocationDegrees(self.lon))
+                self.mapRoute.addAnnotation(self.userAnnotation)
+                
+                // ruta
                 self.mapRoute.add((response?.routes[0].polyline)!)
                 self.zoomToPolyLine(map: self.mapRoute, polyLine: (response?.routes[0].polyline)!, animated: true)
                 
             }
-            SwiftSpinner.hide()
         }
     }
     
@@ -176,18 +187,18 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
     
     @IBAction func changeTransport(_ sender: UISegmentedControl) {
         manager.stopUpdatingLocation()
+        SwiftSpinner.show("Accediendo a tu localización")
         switch sender.selectedSegmentIndex {
         case 0:
             self.transportType = .walking
         case 1:
             self.transportType = .automobile
+        case 2:
+            self.transportType = .transit
         default:
             self.transportType = .walking
         }
         manager.startUpdatingLocation()
-        //SwiftSpinner.show("Accediendo a tu localización")
-        //manager.startUpdatingLocation()
-        
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay:
@@ -198,18 +209,14 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
         return renderer
     }
     
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            //print("Found user's location: \(location)")
-            print("------- localizacion actualiza**************")
-            
-            //self.manager.stopUpdatingLocation()
-            
+            SwiftSpinner.hide()
             self.lon = Float(location.coordinate.longitude)
             self.lat = Float(location.coordinate.latitude)
-            
-            setRoute()
+            // calcular ruta
+            SwiftSpinner.show("Calculando ruta")
+            requestRoute()
         }
     }
     

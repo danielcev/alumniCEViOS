@@ -25,7 +25,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        commentsLbl.text = "Comments"
+        //commentsLbl.text = "Comments"
         
         if(getDataInUserDefaults(key: "photo") != nil){
             let photo:Data = Data(base64Encoded: getDataInUserDefaults(key: "photo")!)!
@@ -153,6 +153,6 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             self.commentsTable.reloadData()
         }
     }
-    
+
     
 }

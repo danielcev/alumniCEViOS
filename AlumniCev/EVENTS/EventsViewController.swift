@@ -23,6 +23,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var ocultView: UIView!
     @IBOutlet weak var cancelBtn: UIButton!
     
+    @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var filterBtn: UIButton!
     var selectedtypebtn:UIButton?
     
@@ -124,9 +125,10 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print("He pulsado la celda \(indexPath.row)")
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailEventViewController") as! DetailEventViewController
-        vc.idReceived = indexPath.row
+        globalidReceived = indexPath.row
         
-        self.present(vc, animated: true, completion: nil)
+        //self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func goToCreate(_ sender: Any) {
@@ -171,7 +173,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         typeEventLbl.text = "Todos"
         
         menuView.isHidden = true
-        ocultView.isHidden = true
+        //ocultView.isHidden = true
         
         menuView.layer.cornerRadius = 15.0
         menuView.layer.masksToBounds = true
@@ -193,11 +195,25 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableEvents.separatorStyle = .none
 
+        //foto de perfil en la esquina
+        if(getDataInUserDefaults(key: "photo") != nil){
+            let photo:Data = Data(base64Encoded: getDataInUserDefaults(key: "photo")!)!
+            userImage.image = UIImage(data: photo)
+            
+        }else{
+            userImage.image = #imageLiteral(resourceName: "userdefaulticon")
+        }
+        
+        userImage.layer.cornerRadius = userImage.frame.size.height/2
+        userImage.layer.masksToBounds = true
+        userImage.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        userImage.layer.borderWidth = 1
         // Do any additional setup after loading the view.
     }
 
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
         requestEvents(type: idType, action: {
             self.reloadTable()
         }, notResults: {
@@ -208,7 +224,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         menuView.isHidden = false
         menuView.bounceIn(from: .top)
         
-        ocultView.isHidden = false
+        //ocultView.isHidden = false
         
     }
     
@@ -262,7 +278,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func closeMenu(_ sender: Any) {
         menuView.bounceOut(to: .top)
         //menuView.isHidden = true
-        ocultView.isHidden = true
+        //ocultView.isHidden = true
     }
 
     //función para ocultar el teclado cuando pulsas fuera de él

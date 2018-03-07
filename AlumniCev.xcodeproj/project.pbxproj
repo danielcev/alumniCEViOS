@@ -28,6 +28,8 @@
 		7F1D33672004D54600D57F75 /* myAppTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33662004D54600D57F75 /* myAppTools.swift */; };
 		7F436378203C119E000108F3 /* RequestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F436377203C119E000108F3 /* RequestsTableViewCell.swift */; };
 		7F4554DA202DBC44003255EC /* ProfileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4554D9202DBC44003255EC /* ProfileRequests.swift */; };
+		7F51CC59204FEB8200968E15 /* DetailEventNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51CC58204FEB8200968E15 /* DetailEventNavigationViewController.swift */; };
+		7F51CC5B2050247300968E15 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51CC5A2050247300968E15 /* TabBarViewController.swift */; };
 		7F58DD53203AE23C001A555D /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58DD52203AE23C001A555D /* GroupTableViewCell.swift */; };
 		7F5A6FF6202B03310080E41A /* TipeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A6FF5202B03300080E41A /* TipeEventViewController.swift */; };
 		7F68D2292017322E005148D8 /* DetailEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68D2282017322E005148D8 /* DetailEventViewController.swift */; };
@@ -103,6 +105,8 @@
 		7F436377203C119E000108F3 /* RequestsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsTableViewCell.swift; sourceTree = "<group>"; };
 		7F4554D9202DBC44003255EC /* ProfileRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequests.swift; sourceTree = "<group>"; };
 		7F464761203EFE8A00A64205 /* SimpleAnimation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleAnimation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F51CC58204FEB8200968E15 /* DetailEventNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventNavigationViewController.swift; sourceTree = "<group>"; };
+		7F51CC5A2050247300968E15 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		7F58DD52203AE23C001A555D /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		7F5A6FF5202B03300080E41A /* TipeEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipeEventViewController.swift; sourceTree = "<group>"; };
 		7F68D2282017322E005148D8 /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +228,7 @@
 				65BADD5B2016408000C6D03F /* EventsViewController.swift */,
 				7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */,
 				7F68D2282017322E005148D8 /* DetailEventViewController.swift */,
+				7F51CC58204FEB8200968E15 /* DetailEventNavigationViewController.swift */,
 				65832A0B2023AD9800C2B8AF /* DetailCommentsTableViewCell.swift */,
 				652642262017B254004ACA83 /* EventLocalizationViewController.swift */,
 				65D16439202CC2B90011476D /* CommentsViewController.swift */,
@@ -311,6 +316,7 @@
 				6507FBAA201909E900FB799A /* EVENTS */,
 				65C2AC74202B61F300BF9755 /* USERS */,
 				65BADD5F201648FD00C6D03F /* LocalizationViewController.swift */,
+				7F51CC5A2050247300968E15 /* TabBarViewController.swift */,
 				65D16437202CA88B0011476D /* PROFILE */,
 				7FAE1B25200F4AED00F17E11 /* MainViewController.swift */,
 				A67EFA752003A7990051853B /* Main.storyboard */,
@@ -690,8 +696,10 @@
 				7FAE1B28200F804E00F17E11 /* ForgotViewController.swift in Sources */,
 				65C2AC73202B61EA00BF9755 /* UsersTableViewCell.swift in Sources */,
 				7F82C08A201B537000259E06 /* Event.swift in Sources */,
+				7F51CC59204FEB8200968E15 /* DetailEventNavigationViewController.swift in Sources */,
 				7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */,
 				65BADD622016498400C6D03F /* ProfileViewController.swift in Sources */,
+				7F51CC5B2050247300968E15 /* TabBarViewController.swift in Sources */,
 				7F7ADBB22019FE6A00489C95 /* GroupsTableViewCell.swift in Sources */,
 				7F58DD53203AE23C001A555D /* GroupTableViewCell.swift in Sources */,
 				7F89B1AB2018C0B6007BA234 /* LocalizationCreateEventViewController.swift in Sources */,

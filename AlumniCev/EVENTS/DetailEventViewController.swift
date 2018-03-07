@@ -58,6 +58,8 @@ class DetailEventViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        idReceived = globalidReceived!
         let id = Int(getDataInUserDefaults(key: "id")!)
         let id_rol = Int(getDataInUserDefaults(key: "id_rol")!)
         
@@ -136,17 +138,18 @@ class DetailEventViewController: UIViewController{
             requestImage(url: (events[idReceived]["image"] as? String)!)
         }
         
+        self.navigationController?.navigationBar.backItem?.title = "Back"
         switch events[idReceived]["id_type"] as! String {
         case "1":
-            titleLbl.text = "Event"
+            self.navigationController?.navigationBar.topItem?.title = "Event"
         case "2":
-            titleLbl.text = "Job offer"
+            self.navigationController?.navigationBar.topItem?.title = "Job offer"
         case "3":
-            titleLbl.text = "Notification"
+            self.navigationController?.navigationBar.topItem?.title = "Notification"
         case "4":
-            titleLbl.text = "Notice"
+            self.navigationController?.navigationBar.topItem?.title = "Notice"
         default:
-            titleLbl.text = "Event"
+            self.navigationController?.navigationBar.topItem?.title = "Event"
         }
         
         setInfoEvent()
@@ -155,6 +158,8 @@ class DetailEventViewController: UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // quitar tab bar
+        self.tabBarController?.tabBar.isHidden = true
         requestEvent(id: Int(events[idReceived]["id"] as! String)!) {
             if(comments!.count > 0){
                 self.setComment()
@@ -193,15 +198,10 @@ class DetailEventViewController: UIViewController{
         vc.lat = self.lat!
         vc.lon = self.lon!
         vc.titleEvent = (events[idReceived]["title"] as? String)!
-        
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+        //self.present(vc, animated: true, completion: nil)
     }
-    
-    @IBAction func backAction(_ sender: Any) {
-        
-        self.dismiss(animated: true, completion: nil)
-    }
-    
+ 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -297,8 +297,8 @@ class DetailEventViewController: UIViewController{
         requestUserById(id: Int(lastComment["id_user"] as! String)!) {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
             vc.user = user
-            
-            self.present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+            //self.present(vc, animated: true, completion: nil)
         }
     }
     
@@ -309,7 +309,8 @@ class DetailEventViewController: UIViewController{
         vc.id_event = Int(events[self.idReceived]["id"] as! String)!
         vc.id_user_event = Int(events[self.idReceived]["id_user"] as! String)!
         
-        self.present(vc, animated: false, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+        //self.present(vc, animated: false, completion: nil)
     }
     
     func styleTxF(textfield:UITextField){
@@ -341,5 +342,5 @@ class DetailEventViewController: UIViewController{
         
 
     }
-    
+
 }
