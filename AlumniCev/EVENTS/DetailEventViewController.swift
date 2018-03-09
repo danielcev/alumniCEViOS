@@ -65,7 +65,7 @@ class DetailEventViewController: UIViewController{
         
         self.dateComment.isHidden = true
         
-        styleTxF(textfield: commentTxF)
+        //styleTxF(textfield: commentTxF)
         
         descriptionTxF.layer.cornerRadius = 15.0
         descriptionText.layer.cornerRadius = 15.0
@@ -136,20 +136,6 @@ class DetailEventViewController: UIViewController{
             }
         }else{
             requestImage(url: (events[idReceived]["image"] as? String)!)
-        }
-        
-        self.navigationController?.navigationBar.backItem?.title = "Back"
-        switch events[idReceived]["id_type"] as! String {
-        case "1":
-            self.navigationController?.navigationBar.topItem?.title = "Event"
-        case "2":
-            self.navigationController?.navigationBar.topItem?.title = "Job offer"
-        case "3":
-            self.navigationController?.navigationBar.topItem?.title = "Notification"
-        case "4":
-            self.navigationController?.navigationBar.topItem?.title = "Notice"
-        default:
-            self.navigationController?.navigationBar.topItem?.title = "Event"
         }
         
         setInfoEvent()

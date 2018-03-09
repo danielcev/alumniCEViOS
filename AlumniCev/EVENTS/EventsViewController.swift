@@ -20,7 +20,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var withoutResults: UILabel!
     
-    @IBOutlet weak var ocultView: UIView!
+
     @IBOutlet weak var cancelBtn: UIButton!
     
     @IBOutlet weak var userImage: UIImageView!
@@ -29,7 +29,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var allTypesBtn: UIButton!
     
-    @IBOutlet weak var typeEventLbl: UILabel!
     var idType:Int = 0
     
     @IBOutlet weak var menuView: UIView!
@@ -170,7 +169,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         allTypesBtn.backgroundColor = cevColor
         allTypesBtn.setTitleColor(UIColor.white, for: .normal)
-        typeEventLbl.text = "Todos"
+        
         
         menuView.isHidden = true
         //ocultView.isHidden = true
@@ -179,8 +178,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         menuView.layer.masksToBounds = true
         cancelBtn.layer.cornerRadius = 15.0
         cancelBtn.layer.masksToBounds = true
-        filterBtn.layer.cornerRadius = 15.0
-        filterBtn.layer.masksToBounds = true
+//        filterBtn.layer.cornerRadius = 15.0
+//        filterBtn.layer.masksToBounds = true
         
         withoutResults.isHidden = true
         
@@ -219,6 +218,20 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }, notResults: {
             self.notResults()
         })
+        switch(idType){
+        case 0:
+            self.navigationController?.navigationBar.topItem?.title = "Tablon"
+        case 1:
+            self.navigationController?.navigationBar.topItem?.title = "Eventos"
+        case 2:
+            self.navigationController?.navigationBar.topItem?.title = "Ofertas de trabajo"
+        case 3:
+            self.navigationController?.navigationBar.topItem?.title = "Notificaciones"
+        case 4:
+            self.navigationController?.navigationBar.topItem?.title = "Noticias"
+        default:
+            break;
+        }
     }
     @IBAction func filterAction(_ sender: Any) {
         menuView.isHidden = false
@@ -257,19 +270,22 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch(idType){
         case 0:
             textTypeEvent = "Todos"
+            self.navigationController?.navigationBar.topItem?.title = "Tablon"
         case 1:
             textTypeEvent = "Eventos"
+            self.navigationController?.navigationBar.topItem?.title = "Eventos"
         case 2:
             textTypeEvent = "Ofertas de trabajo"
+            self.navigationController?.navigationBar.topItem?.title = "Ofertas de trabajo"
         case 3:
             textTypeEvent = "Notificaciones"
+            self.navigationController?.navigationBar.topItem?.title = "Notificaciones"
         case 4:
             textTypeEvent = "Noticias"
+            self.navigationController?.navigationBar.topItem?.title = "Noticias"
         default:
-            textTypeEvent = ""
+            break
         }
-        
-        typeEventLbl.text = textTypeEvent
         
         closeMenu(sender)
         

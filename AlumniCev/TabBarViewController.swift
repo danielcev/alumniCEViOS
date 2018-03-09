@@ -8,11 +8,12 @@
 
 import UIKit
 
-class TabBarViewController: UINavigationController {
+class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tabBar.isTranslucent = false 
+        self.tabBar.backgroundColor = .white
         // Do any additional setup after loading the view.
     }
 

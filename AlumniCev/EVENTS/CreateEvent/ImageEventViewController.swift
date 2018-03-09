@@ -139,16 +139,16 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
         imageView.contentMode = .scaleAspectFit
         imageView.image = chosenImage
         
         eventCreated?.imageEvent = UIImageJPEGRepresentation(chosenImage, 0.1)
-
+        UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil);
         dismiss(animated: true, completion: nil)
-        
-        
+
     }
 }
