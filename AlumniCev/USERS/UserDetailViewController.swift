@@ -70,7 +70,7 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
                 self.descripTxt.text = self.user?["description"] as! String
             }
             // otros campos
-            self.usernameLbl.text = self.user?["name"] as? String
+            //self.usernameLbl.text = self.user?["name"] as? String
             self.nameLB.text = self.user?["name"] as? String
             self.direcLB.text = self.user?["email"] as? String
             self.userLB.text = self.user?["username"] as? String
@@ -300,7 +300,8 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
         vc.lat = Float(user?["lat"] as! String)!
         vc.lon = Float(user?["lon"] as! String)!
         
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+        //self.present(vc, animated: true, completion: nil)
     }
     @IBAction func dismisImageViewer(_ sender: Any) {
         imageViewer.isHidden = true

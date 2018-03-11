@@ -83,10 +83,11 @@ class ForgotViewController: UIViewController {
                             SwiftSpinner.hide()
                             
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecoverViewController") as! RecoverViewController
-                            vc.modalTransitionStyle = .flipHorizontal
+                            //vc.modalTransitionStyle = .flipHorizontal
                             var arrayData = arrayResult["data"] as! Dictionary<String,Any>
                             vc.id =  Int( arrayData["id"] as! String)
-                            self.present(vc, animated: true)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                            //self.present(vc, animated: true)
                             
                         default:
                             SwiftSpinner.hide()

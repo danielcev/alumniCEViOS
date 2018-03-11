@@ -12,7 +12,11 @@ class DetailEventNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationBar.isTranslucent = false
+        //self.navigationBar.backgroundColor = .red
+        self.navigationBar.barTintColor = UIColor(named: "Turques")
+        self.navigationBar.tintColor = .white
         // Do any additional setup after loading the view.
     }
 

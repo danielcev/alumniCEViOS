@@ -25,7 +25,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.topItem?.title = "Usuarios"
         notFriendsLbl.text = "notFriends".localized()
         
         self.startSpinner()
@@ -215,14 +215,15 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
             vc.user = (requests![indexPath.row] as Dictionary<String,Any>?)!
             
-            self.present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+            //self.present(vc, animated: true, completion: nil)
             
             break
         default:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
             vc.user = (users![indexPath.row] as Dictionary<String,Any>?)!
-            
-            self.present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+            //self.present(vc, animated: true, completion: nil)
         }
 
     }
@@ -233,6 +234,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         switch segmentedUsers.selectedSegmentIndex{
             
         case 0:
+            self.navigationController?.navigationBar.topItem?.title = "Usuarios"
             listSelected = "users"
             requestAllUsers {
                 self.rechargeTable()
@@ -240,6 +242,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
         case 1:
+            self.navigationController?.navigationBar.topItem?.title = "Grupos"
             listSelected = "groups"
             requestGroups {
                 self.rechargeTable()
@@ -247,6 +250,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
         case 2:
+            self.navigationController?.navigationBar.topItem?.title = "Amigos"
             listSelected = "friends"
             requestFriends {
                 self.rechargeTable()
@@ -260,6 +264,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
         case 3:
+            self.navigationController?.navigationBar.topItem?.title = "Solicitudes"
             listSelected = "requests"
             
             requestRequests(action: {
@@ -272,6 +277,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             })
             
         default:
+            self.navigationController?.navigationBar.topItem?.title = "Usuarios"
             listSelected = "users"
             requestAllUsers {
                 self.rechargeTable()

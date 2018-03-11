@@ -24,8 +24,8 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var shareLocalizationLbl: UILabel!
     @IBOutlet weak var sharePhoneLbl: UILabel!
+    @IBOutlet weak var editNavBarBtn: UINavigationItem!
     
-    @IBOutlet weak var editBtn: UIButton!
     
     
     override func viewDidLoad() {
@@ -37,7 +37,9 @@ class ProfileViewController: UIViewController {
         
         shareLocalizationLbl.text = "localizSettings".localized()
         sharePhoneLbl.text = "phoneSettings".localized()
-        editBtn.setTitle("edit".localized(), for: .normal)
+        
+        
+        //editBtn.setTitle("edit".localized(), for: .normal)
 
     }
     
@@ -89,7 +91,7 @@ class ProfileViewController: UIViewController {
     
     }
     
-    @IBAction func goToSettings(_ sender: Any) {
+    @objc func goToSettings() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
         vc.modalTransitionStyle = .flipHorizontal
         self.present(vc, animated: true)

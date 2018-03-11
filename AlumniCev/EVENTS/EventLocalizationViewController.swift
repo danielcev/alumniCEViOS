@@ -21,7 +21,6 @@ class EventLocalizationViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let latitude:CLLocationDegrees = CLLocationDegrees(lat)
         let longitude:CLLocationDegrees = CLLocationDegrees(lon)
         

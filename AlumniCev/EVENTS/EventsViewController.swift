@@ -174,8 +174,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         menuView.isHidden = true
         //ocultView.isHidden = true
         
-        menuView.layer.cornerRadius = 15.0
-        menuView.layer.masksToBounds = true
+        //menuView.layer.cornerRadius = 15.0
+        //menuView.layer.masksToBounds = true
         cancelBtn.layer.cornerRadius = 15.0
         cancelBtn.layer.masksToBounds = true
 //        filterBtn.layer.cornerRadius = 15.0
@@ -265,23 +265,23 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             requestFindEvents(search: searchTxF.text!, type: idType, controller: self)
         }
 
-        var textTypeEvent = ""
+
         
         switch(idType){
         case 0:
-            textTypeEvent = "Todos"
+
             self.navigationController?.navigationBar.topItem?.title = "Tablon"
         case 1:
-            textTypeEvent = "Eventos"
+
             self.navigationController?.navigationBar.topItem?.title = "Eventos"
         case 2:
-            textTypeEvent = "Ofertas de trabajo"
+
             self.navigationController?.navigationBar.topItem?.title = "Ofertas de trabajo"
         case 3:
-            textTypeEvent = "Notificaciones"
+
             self.navigationController?.navigationBar.topItem?.title = "Notificaciones"
         case 4:
-            textTypeEvent = "Noticias"
+
             self.navigationController?.navigationBar.topItem?.title = "Noticias"
         default:
             break

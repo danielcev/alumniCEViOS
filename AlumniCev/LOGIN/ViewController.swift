@@ -84,14 +84,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     @IBAction func changeScreen(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-        vc.modalTransitionStyle = .flipHorizontal
-        self.present(vc, animated: true)
+        //vc.modalTransitionStyle = .flipHorizontal
+        self.navigationController?.pushViewController(vc, animated: true)
+        //self.present(vc, animated: true)
     }
     
     @IBAction func goToForgot(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ForgotViewController") as! ForgotViewController
-        vc.modalTransitionStyle = .flipHorizontal
-        self.present(vc, animated: true)
+        //vc.modalTransitionStyle = .flipHorizontal
+        self.navigationController?.pushViewController(vc, animated: true)
+        //self.present(vc, animated: true)
     }
     
     
