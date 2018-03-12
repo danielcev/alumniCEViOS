@@ -22,6 +22,8 @@ class RecoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateTexts()
+        self.title = "Nueva contraseña".localized()
+        self.navigationController?.navigationBar.backItem?.title = "Atras"
         // Do any additional setup after loading the view.
     }
     

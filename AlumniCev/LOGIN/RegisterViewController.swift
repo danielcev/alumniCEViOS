@@ -28,7 +28,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "Registro"
         manager.delegate = self
         
         // Do any additional setup after loading the view.
@@ -54,10 +54,7 @@
         emailTextField.setValue(UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5), forKeyPath: "_placeholderLabel.textColor")
         
     }
-    @IBAction func backBtn(_ sender: Any) {
 
-        self.dismiss(animated: true, completion: nil)
-    }
     
     func styleTxF(textfield:UITextField){
         

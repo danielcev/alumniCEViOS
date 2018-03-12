@@ -24,7 +24,6 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var shareLocalizationLbl: UILabel!
     @IBOutlet weak var sharePhoneLbl: UILabel!
-    @IBOutlet weak var editNavBarBtn: UINavigationItem!
     
     
     
@@ -47,6 +46,7 @@ class ProfileViewController: UIViewController {
         setValues()
         cheeckPrivacity()
     }
+    
     
     func cheeckPrivacity(){
         let phonePrivacity = getDataInUserDefaults(key: "phoneprivacity") == "1" ? "yes".localized() : "no".localized()
@@ -91,11 +91,11 @@ class ProfileViewController: UIViewController {
     
     }
     
-    @objc func goToSettings() {
+    @IBAction func goToSettings(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
-        vc.modalTransitionStyle = .flipHorizontal
-        self.present(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
+
 
     @IBAction func logoutAction(_ sender: UIButton) {
         clearUserDefaults()

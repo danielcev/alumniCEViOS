@@ -15,11 +15,12 @@ class ForgotViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
-    @IBOutlet weak var changePasswordLbl: UILabel!
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Confirmar email".localized()
         updateTexts()
         // Do any additional setup after loading the view.
     }
@@ -33,7 +34,7 @@ class ForgotViewController: UIViewController {
        
         sendButton.setTitle("ok".localized(), for: .normal)
         emailTextField.placeholder = "email".localized()
-        changePasswordLbl.text = "changePassword".localized()
+        
     }
     
     func styleTxF(textfield:UITextField){
@@ -112,9 +113,7 @@ class ForgotViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    @IBAction func backAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+
     
     
     //función para ocultar el teclado cuando pulsas fuera de él

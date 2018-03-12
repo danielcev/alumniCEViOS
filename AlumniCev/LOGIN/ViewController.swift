@@ -29,7 +29,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "Login"
         // Do any additional setup after loading the view, typically from a nib.
         manager.delegate = self
         updateElements()
@@ -104,9 +104,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if passwordLoginTextField.text != "" && emailLoginTextField.text != ""{
             
             if isValidEmail(YourEMailAddress: emailLoginTextField.text!) {
-                
-                self.getLocation()
-
+                SwiftSpinner.show("...")
+                manager.requestWhenInUseAuthorization()
+                self.createLoginRequest(email: emailLoginTextField.text!, password: passwordLoginTextField.text!)
             }else{
                 alert.showError(title: "wrongEmail".localized(), buttonTitle: "OK")
             }
@@ -197,38 +197,39 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 }
             case .failure:
                 SwiftSpinner.hide()
+                alert.showError(title: String(describing: response.error), buttonTitle: "OK")
                 print("Error :: \(String(describing: response.error))")
             }
             SwiftSpinner.hide()
         }
     }
     
-    func getLocation(){
-        
-        manager.requestAlwaysAuthorization()
-        manager.requestLocation()
-        
-        SwiftSpinner.show("...")
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            print("Found user's location: \(location)")
-            
-            self.manager.stopUpdatingLocation()
-            
-            self.lon = Float(location.coordinate.longitude)
-            self.lat = Float(location.coordinate.latitude)
-            
-            self.createLoginRequest(email: emailLoginTextField.text!, password: passwordLoginTextField.text!)
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Failed to find user's location: \(error.localizedDescription)")
-        self.manager.stopUpdatingLocation()
-        self.createLoginRequest(email: emailLoginTextField.text!, password: passwordLoginTextField.text!)
-    }
+//    func getLocation(){
+//
+//
+//        manager.requestLocation()
+//
+//        SwiftSpinner.show("...")
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        if let location = locations.first {
+//            print("Found user's location: \(location)")
+//
+//            self.manager.stopUpdatingLocation()
+//
+//            self.lon = Float(location.coordinate.longitude)
+//            self.lat = Float(location.coordinate.latitude)
+//
+//
+//        }
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        print("Failed to find user's location: \(error.localizedDescription)")
+//        self.manager.stopUpdatingLocation()
+//        self.createLoginRequest(email: emailLoginTextField.text!, password: passwordLoginTextField.text!)
+//    }
 
     func goToMain(){
 

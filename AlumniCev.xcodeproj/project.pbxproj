@@ -48,6 +48,7 @@
 		7FAE1B2A200F827100F17E11 /* RecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAE1B29200F827100F17E11 /* RecoverViewController.swift */; };
 		7FB1335620188590007B39E2 /* CreateEventPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB1335520188590007B39E2 /* CreateEventPageViewController.swift */; };
 		7FB1335A201889E0007B39E2 /* TitleEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB13359201889E0007B39E2 /* TitleEventViewController.swift */; };
+		7FBBA5792056A06000E3C756 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBBA5782056A06000E3C756 /* ChatsViewController.swift */; };
 		7FC72B75200E2DB000A73C3B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FC72B74200E2DAF00A73C3B /* CoreLocation.framework */; };
 		7FD078982008CA570014FB8E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FD0789A2008CA570014FB8E /* Localizable.strings */; };
 		7FD2256C2017701E00B64D00 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2256B2017701E00B64D00 /* EventTableViewCell.swift */; };
@@ -125,6 +126,7 @@
 		7FAE1B29200F827100F17E11 /* RecoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverViewController.swift; sourceTree = "<group>"; };
 		7FB1335520188590007B39E2 /* CreateEventPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventPageViewController.swift; sourceTree = "<group>"; };
 		7FB13359201889E0007B39E2 /* TitleEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleEventViewController.swift; sourceTree = "<group>"; };
+		7FBBA5782056A06000E3C756 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		7FC72B74200E2DAF00A73C3B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7FD078992008CA570014FB8E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7FD0789C2008CA870014FB8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -285,6 +287,14 @@
 			path = settings;
 			sourceTree = "<group>";
 		};
+		7FBBA5772056A01D00E3C756 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				7FBBA5782056A06000E3C756 /* ChatsViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		A67EFA652003A7990051853B = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +329,7 @@
 				7F51CC5A2050247300968E15 /* TabBarViewController.swift */,
 				65D16437202CA88B0011476D /* PROFILE */,
 				7FAE1B25200F4AED00F17E11 /* MainViewController.swift */,
+				7FBBA5772056A01D00E3C756 /* Chat */,
 				A67EFA752003A7990051853B /* Main.storyboard */,
 				A67EFA782003A7990051853B /* Assets.xcassets */,
 				A67EFA7A2003A7990051853B /* LaunchScreen.storyboard */,
@@ -682,6 +693,7 @@
 				65EDBBC1201E1E620017515A /* MapsRequests.swift in Sources */,
 				7FDEB18220233FD700431293 /* WebUrlViewController.swift in Sources */,
 				7F7ADBB02019FDA700489C95 /* GroupEventViewController.swift in Sources */,
+				7FBBA5792056A06000E3C756 /* ChatsViewController.swift in Sources */,
 				65EDBBC3201E22100017515A /* Address.swift in Sources */,
 				657A81CD202CC54600AF99A8 /* CommentsTableViewCell.swift in Sources */,
 				65832A0C2023AD9800C2B8AF /* DetailCommentsTableViewCell.swift in Sources */,

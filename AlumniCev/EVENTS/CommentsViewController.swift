@@ -20,13 +20,13 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var photoUser: UIImageView!
     @IBOutlet weak var commentTxF: UITextField!
     
-    @IBOutlet weak var commentsLbl: UILabel!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //commentsLbl.text = "Comments"
-        
+        //self.tabBarController?.tabBar.isHidden = true
         if(getDataInUserDefaults(key: "photo") != nil){
             let photo:Data = Data(base64Encoded: getDataInUserDefaults(key: "photo")!)!
             photoUser.image = UIImage(data: photo)
@@ -126,9 +126,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-    @IBAction func backAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+
     
     @IBAction func sendCommentAction(_ sender: Any) {
         

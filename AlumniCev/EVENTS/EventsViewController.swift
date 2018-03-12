@@ -207,9 +207,14 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         userImage.layer.masksToBounds = true
         userImage.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         userImage.layer.borderWidth = 1
+        
+        
         // Do any additional setup after loading the view.
     }
-
+    @IBAction func goToProfile(_ sender: Any) {
+        self.tabBarController?.selectedIndex = 3
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false

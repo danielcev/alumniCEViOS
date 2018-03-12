@@ -146,6 +146,7 @@ class DetailEventViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         // quitar tab bar
         self.tabBarController?.tabBar.isHidden = true
+        
         requestEvent(id: Int(events[idReceived]["id"] as! String)!) {
             if(comments!.count > 0){
                 self.setComment()
