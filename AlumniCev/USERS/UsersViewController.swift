@@ -40,7 +40,21 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         segmentedChanged((Any).self)
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        // return de los nombres de los grupos
+        if listSelected == "groups"{
+            return groups[section]["name"] as? String
+        }
+        return nil
+    }
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
+        // si es grupo devuelvo los grpos del json
+        if listSelected == "groups"{
+            return groups.count
+        }
         return 1
     }
     
@@ -55,7 +69,8 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         case "groups":
             if groups != nil{
-                return groups.count
+                let users:[Dictionary<String,Any>] = groups[section]["users"] as! [Dictionary<String, Any>]
+                return users.count
             }else{
                 return 0
             }
@@ -89,7 +104,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         switch listSelected {
         case "users", "findUsers", "findFriends":
-            var cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
             
             cell.usernameLbl.isHidden = false
             cell.nameLbl.font = cell.nameLbl.font.withSize(14)
@@ -121,16 +136,45 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             return cell
         case "groups":
-            
-            let cellGroup = tableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath) as! GroupTableViewCell
-            
-            cellGroup.nameGroupLbl.text = groups[indexPath.row]["name"]
-        
-            return cellGroup
-            
+
+            let users = groups[indexPath.section]["users"] as! [Dictionary<String,Any>]
+
+
+            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
+
+            cell.usernameLbl.isHidden = false
+            cell.nameLbl.font = cell.nameLbl.font.withSize(14)
+
+            cell.nameLbl.text = users[indexPath.row]["name"] as? String
+
+            cell.usernameLbl.text = users[indexPath.row]["username"] as? String
+
+            if users[indexPath.row]["photo"] as? String != nil{
+                //Añadir imagen
+                let remoteImageURL = URL(string: (users[indexPath.row]["photo"] as? String)!)!
+
+                Alamofire.request(remoteImageURL).responseData { (response) in
+                    if response.error == nil {
+                        print(response.result)
+
+                        if let data = response.data {
+                            cell.photoImag.image = UIImage(data: data)
+                        }
+                    }
+                }
+            }else{
+                cell.photoImag.image = #imageLiteral(resourceName: "userdefaulticon")
+            }
+
+            cell.photoImag.contentMode = .scaleAspectFill
+            cell.photoImag.layer.cornerRadius = cell.photoImag.bounds.height/2
+            cell.photoImag.layer.masksToBounds = true
+
+            return cell
+
         case "friends":
             
-            var cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
             
             cell.nameLbl.text = users![indexPath.row]["name"] as? String
             cell.usernameLbl.isHidden = false
@@ -160,7 +204,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             return cell
         case "requests":
             
-            var cell = tableView.dequeueReusableCell(withIdentifier: "requestCell", for: indexPath) as! RequestsTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "requestCell", for: indexPath) as! RequestsTableViewCell
             
             let id = getDataInUserDefaults(key: "id")!
             
@@ -197,7 +241,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             return cell
         default:
-            var cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UsersTableViewCell
             cell.nameLbl.text = users![indexPath.row]["username"] as? String
             return cell
         }
@@ -207,9 +251,6 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch listSelected {
-        case "groups":
-            
-            break
         case "requests":
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
@@ -228,6 +269,14 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        <#code#>
+//    }
+    
     @IBAction func segmentedChanged(_ sender: Any) {
         startSpinner()
         self.notUsersLbl.isHidden = true
@@ -244,7 +293,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         case 1:
             self.navigationController?.navigationBar.topItem?.title = "Grupos"
             listSelected = "groups"
-            requestGroups {
+            requestGroupsbyUser {
                 self.rechargeTable()
                 self.stopSpinner()
             }

@@ -233,5 +233,8 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        manager.stopUpdatingLocation()
+    }
     
 }

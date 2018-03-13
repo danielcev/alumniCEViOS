@@ -52,8 +52,8 @@ class CommentsTableViewCell: UITableViewCell {
         requestUserById(id: id_user!) {
             let vc = self.controller?.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
             vc.user = user
-                
-            self.controller?.present(vc, animated: true, completion: nil)
+            self.controller?.navigationController?.pushViewController(vc, animated: true)
+            //self.controller?.present(vc, animated: true, completion: nil)
         }
 
     }

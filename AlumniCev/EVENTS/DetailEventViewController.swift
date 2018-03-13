@@ -108,17 +108,17 @@ class DetailEventViewController: UIViewController{
             
             addressFromPosition(lat: lat!, lon: lon!, controller: self)
             
-            localizationBtn.isHidden = false
+            //localizationBtn.isHidden = false
         }else{
-            localizationBtn.isHidden = true
+            localizationBtn.isEnabled = false
             
         }
         
         if events[idReceived]["url"] as? String == nil{
-            webBtn.isHidden = true
+            webBtn.isEnabled = false
             
         }else{
-            webBtn.isHidden = false
+            webBtn.isEnabled = true
         }
         
         if events[idReceived]["image"] as? String == nil{
@@ -232,7 +232,7 @@ class DetailEventViewController: UIViewController{
         
         commentView.isHidden = false
         
-        var lastComment = comments![(comments?.count)! - 1]
+        var lastComment = comments![0]
         
         self.usernameBtn.setTitle(lastComment["username"] as? String, for: .normal)
         self.descriptionTxF.text = lastComment["description"] as! String
@@ -279,7 +279,7 @@ class DetailEventViewController: UIViewController{
     }
     
     @IBAction func goToUser(_ sender: Any) {
-        var lastComment = comments![(comments?.count)! - 1]
+        var lastComment = comments![0]
         
         requestUserById(id: Int(lastComment["id_user"] as! String)!) {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController

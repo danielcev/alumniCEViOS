@@ -243,7 +243,7 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
     func showSendMailErrorAlert() {
         let sendMailErrorAlert = UIAlertView(title: "Unable to Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
         sendMailErrorAlert.show()
-        self.dismiss(animated: true, completion: nil)
+        //self.navigationController?.popViewController(animated: true)
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
@@ -262,10 +262,7 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
     }
     
     
-    @IBAction func backAction(_ sender: Any) {
-        friend = nil
-        self.dismiss(animated: true, completion: nil)
-    }
+
     
     @IBAction func OpendTheChat(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController

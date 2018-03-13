@@ -44,7 +44,6 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBOutlet weak var changePhotoBtn: UIButton!
     
-    @IBOutlet weak var doneBtn: UIButton!
     
     var photo:Data?
     
@@ -71,8 +70,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         imgProfile.layer.masksToBounds = true
         imgProfile.layer.cornerRadius = imgProfile.frame.size.height/2
         
-        picker = UIImagePickerController()
-        picker?.delegate = self
+
         
         setTitles()
         setValues()
@@ -113,7 +111,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         descriptionTitleLbl.text = "descriptSettings".localized()
         localizationTitleLbl.text = "localizSettings".localized()
         allowPhoneLbl.text = "phoneSettings".localized()
-        doneBtn.setTitle("doneBt".localized(), for: .normal)
+
     }
     
     @IBAction func changePasswordAction(_ sender: Any) {
@@ -190,13 +188,17 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func uploadImageAction(_ sender: UIButton) {
         // alert para camara o galeria
-        
+        picker = UIImagePickerController()
+        picker?.delegate = self
         let alert = UIAlertController(title: "Usar camara o galeria", message: "¿Quieres subir una foto desde la camara o desde la galeria?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Camara", style: .default, handler: { (nil) in
             self.checkPermissionCamera()
         }))
         alert.addAction(UIAlertAction(title: "Galeria", style: .default, handler: { (nil) in
             self.checkPermissionGallery()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: { (nil) in
+            alert.dismiss(animated: true, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
         
@@ -231,134 +233,130 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             openCamera()
         }
     }
-        func checkPermissionGallery() {
+    func checkPermissionGallery() {
+        
+        // permisos para galeria
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .notDetermined:
+            // pedir permisos
+            DispatchQueue.main.async {
+                PHPhotoLibrary.requestAuthorization({(newStatus) in
+                    print(newStatus)
+                    if newStatus == PHAuthorizationStatus.authorized {
+                        self.openGallary()
+                    }
+                    
+                })
+            }
+        case .denied,.restricted:
+            // alert para ir a ajustes
+            let alert = UIAlertController(title: "Se necesitan permisos", message: "Se necesitan permisos para acceder a la galeria", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Ir a ajustes", style: .destructive, handler: { (nil) in
+                UIApplication.shared.open(NSURL(string:UIApplicationOpenSettingsURLString)! as URL, options: [:], completionHandler: nil)
+            }))
+            present(alert, animated: true)
             
-            // permisos para galeria
-            switch PHPhotoLibrary.authorizationStatus() {
-            case .notDetermined:
-                // pedir permisos
-                DispatchQueue.main.async {
-                    PHPhotoLibrary.requestAuthorization({(newStatus) in
-                        print(newStatus)
-                        if newStatus == PHAuthorizationStatus.authorized {
-                            self.openGallary()
+        case .authorized:
+            // abrir galeria
+            openGallary()
+        }
+        
+        
+    }
+    func openCamera(){
+        picker!.allowsEditing = false
+        picker!.sourceType = UIImagePickerControllerSourceType.camera
+        present(picker!, animated: true, completion: nil)
+    }
+    func openGallary()
+    {
+        picker!.allowsEditing = false
+        picker!.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        present(picker!, animated: true, completion: nil)
+    }
+    
+    
+    
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imgProfile.contentMode = .scaleAspectFit
+        imgProfile.image = chosenImage
+        
+        photo = UIImageJPEGRepresentation(chosenImage, 0.1)!
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func saveChanges(_ sender: Any) {
+        
+        let alert = CPAlertViewController()
+        
+        let id = Int(getDataInUserDefaults(key: "id")!)
+        
+        if isValidEmail(YourEMailAddress: emailTxF.text!) {
+            
+            let email = emailTxF.text!
+            
+            if isValidPhone(phone: phoneTxF.text!) || phoneTxF.text! == ""{
+                
+                self.startSpinner()
+                
+                let phone = phoneTxF.text!
+                let description = descriptionTxV.text
+                let name = nameTxF.text
+                
+                let localizationprivacity = switchLocalization.isOn ? 1 : 0
+                let phoneprivacity = switchPhone.isOn ? 1 : 0
+                
+                requestEditUser(id: id!, email: email, name: name, phone: phone, birthday: nil, description: description, photo: photo, phoneprivacity: phoneprivacity, localizationprivacity: localizationprivacity, action: {
+                    
+                    self.stopSpinner()
+                    
+                    alert.showSuccess(title: "alertExit".localized(), message: "saveChangeAlert".localized(), buttonTitle: "OK", action: { (nil) in
+                        
+                        if self.photo != nil{
+                            saveDataInUserDefaults(value: (self.photo?.base64EncodedString())!, key: "photo")
                         }
                         
-                    })
-                }
-            case .denied,.restricted:
-                // alert para ir a ajustes
-                let alert = UIAlertController(title: "Se necesitan permisos", message: "Se necesitan permisos para acceder a la galeria", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
-                alert.addAction(UIAlertAction(title: "Ir a ajustes", style: .destructive, handler: { (nil) in
-                    UIApplication.shared.open(NSURL(string:UIApplicationOpenSettingsURLString)! as URL, options: [:], completionHandler: nil)
-                }))
-                present(alert, animated: true)
-                
-            case .authorized:
-                // abrir galeria
-                openGallary()
-            }
-            
-            
-        }
-        func openCamera(){
-            picker!.allowsEditing = false
-            picker!.sourceType = UIImagePickerControllerSourceType.camera
-            present(picker!, animated: true, completion: nil)
-        }
-        func openGallary()
-        {
-            picker!.allowsEditing = false
-            picker!.sourceType = UIImagePickerControllerSourceType.photoLibrary
-            present(picker!, animated: true, completion: nil)
-        }
-        
-        
-    
-        @IBAction func backAction(_ sender: Any) {
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-        @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-            
-            let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-            imgProfile.contentMode = .scaleAspectFit
-            imgProfile.image = chosenImage
-            
-            photo = UIImageJPEGRepresentation(chosenImage, 0.1)!
-            
-            dismiss(animated: true, completion: nil)
-        }
-        
-        @IBAction func saveChanges(_ sender: UIButton) {
-            
-            let alert = CPAlertViewController()
-            
-            let id = Int(getDataInUserDefaults(key: "id")!)
-            
-            if isValidEmail(YourEMailAddress: emailTxF.text!) {
-                
-                let email = emailTxF.text!
-                
-                if isValidPhone(phone: phoneTxF.text!) || phoneTxF.text! == ""{
-                    
-                    self.startSpinner()
-                    
-                    let phone = phoneTxF.text!
-                    let description = descriptionTxV.text
-                    let name = nameTxF.text
-                    
-                    let localizationprivacity = switchLocalization.isOn ? 1 : 0
-                    let phoneprivacity = switchPhone.isOn ? 1 : 0
-                    
-                    requestEditUser(id: id!, email: email, name: name, phone: phone, birthday: nil, description: description, photo: photo, phoneprivacity: phoneprivacity, localizationprivacity: localizationprivacity, action: {
+                        saveDataInUserDefaults(value: email, key: "email")
+                        saveDataInUserDefaults(value: phone, key: "phone")
+                        saveDataInUserDefaults(value: description!, key: "description")
+                        saveDataInUserDefaults(value: name!, key: "name")
+                        saveDataInUserDefaults(value: localizationprivacity.description, key: "localizationprivacity")
+                        saveDataInUserDefaults(value: phoneprivacity.description, key: "phoneprivacity")
                         
-                        self.stopSpinner()
-                        
-                        alert.showSuccess(title: "alertExit".localized(), message: "saveChangeAlert".localized(), buttonTitle: "OK", action: { (nil) in
-                            
-                            if self.photo != nil{
-                                saveDataInUserDefaults(value: (self.photo?.base64EncodedString())!, key: "photo")
-                            }
-                            
-                            saveDataInUserDefaults(value: email, key: "email")
-                            saveDataInUserDefaults(value: phone, key: "phone")
-                            saveDataInUserDefaults(value: description!, key: "description")
-                            saveDataInUserDefaults(value: name!, key: "name")
-                            saveDataInUserDefaults(value: localizationprivacity.description, key: "localizationprivacity")
-                            saveDataInUserDefaults(value: phoneprivacity.description, key: "phoneprivacity")
-                            
-                            self.dismiss(animated: true, completion: nil)
-                        })
-                        
-                    }, fail: {
-                        
-                        alert.showError(title: "Error", message: "notChangesDone".localized(), buttonTitle: "Ok", action: nil)
-                        
+                        self.navigationController?.popViewController(animated: true)
                     })
                     
+                }, fail: {
                     
-                }else{
-                    alert.showError(title: "wrongTlf".localized(), buttonTitle: "OK")
-                }
+                    alert.showError(title: "Error", message: "notChangesDone".localized(), buttonTitle: "Ok", action: nil)
+                    
+                })
+                
                 
             }else{
-                alert.showError(title: "wrongEmail".localized(), buttonTitle: "OK")
+                alert.showError(title: "wrongTlf".localized(), buttonTitle: "OK")
             }
             
+        }else{
+            alert.showError(title: "wrongEmail".localized(), buttonTitle: "OK")
         }
         
-        func startSpinner(){
-            completView.isUserInteractionEnabled = false
-            spinner.isHidden = false
-            spinner.startAnimating()
-        }
-        
-        func stopSpinner(){
-            completView.isUserInteractionEnabled = true
-            spinner.isHidden = true
-            spinner.stopAnimating()
-        }
-        
+    }
+    
+    func startSpinner(){
+        completView.isUserInteractionEnabled = false
+        spinner.isHidden = false
+        spinner.startAnimating()
+    }
+    
+    func stopSpinner(){
+        completView.isUserInteractionEnabled = true
+        spinner.isHidden = true
+        spinner.stopAnimating()
+    }
+    
 }

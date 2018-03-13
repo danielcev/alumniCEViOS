@@ -38,11 +38,13 @@ func requestDeleteEvent(id:Int, action: @escaping ()->()){
                     break
                 default:
                     let alert = CPAlertViewController()
-                    alert.showError(title: arrayResult["message"] as! String, buttonTitle: "OK")
+                    alert.showError(title: arrayResult["message"] as? String, buttonTitle: "OK")
                     print(arrayResult["message"] as! String)
                     
                 }
             case .failure:
+                let alert = CPAlertViewController()
+                alert.showError(title: String(describing: response.error), buttonTitle: "OK")
                 print("Error :: \(String(describing: response.error))")
             }
         }
@@ -162,13 +164,19 @@ func requestEvents(type:Int, action: @escaping ()->(), notResults: @escaping ()-
                     
                 default:
                     notResults()
+                    let alert = CPAlertViewController()
+                    alert.showError(title: arrayResult["message"] as? String, buttonTitle: "OK")
                     print(arrayResult["message"] as! String)
                 }
             case .failure:
-                
+                let alert = CPAlertViewController()
+                alert.showError(title: String(describing: response.error), buttonTitle: "OK")
                 print("Error :: \(String(describing: response.error))")
                 //alert.showError(title: (String(describing: response.error), buttonTitle: "OK")
             }
+        }else{
+            let alert = CPAlertViewController()
+            alert.showError(title: "No se puede conectar al servidor", buttonTitle: "OK")
         }
     }
 }

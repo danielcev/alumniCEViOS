@@ -37,10 +37,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-     
+        
         if getDataInUserDefaults(key: "isLoged") != nil{
             if(getDataInUserDefaults(key: "isLoged")! == "true"){
-                self.goToMain()
+                //self.goToMain()
+                self.createLoginRequest(email: getDataInUserDefaults(key: "email")!, password: getDataInUserDefaults(key: "password")!)
             }
         }
         
@@ -98,7 +99,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     
     @IBAction func enterLoginButtom(_ sender: UIButton) {
-    
+        
         let alert = CPAlertViewController()
         
         if passwordLoginTextField.text != "" && emailLoginTextField.text != ""{
@@ -124,22 +125,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         Alamofire.request(url!, method: .post, parameters: parameters).responseJSON{response in
             
-            var arrayResult = response.result.value as! Dictionary<String, Any>
-            let alert = CPAlertViewController()
-            
-            switch response.result {
-            case .success:
-                switch arrayResult["code"] as! Int{
-                case 200:
-                    var arrayData = arrayResult["data"] as! Dictionary<String,Any>
-                    var arrayUser = arrayData["user"] as! Dictionary<String,Any>
-                    var arrayPrivacity = arrayData["privacity"] as! Dictionary<String,String>
-                    
-                    SwiftSpinner.hide()
-                    
-                    let alert = CPAlertViewController()
-                    
-                    alert.showSuccess(title: "correctLogin".localized(), message: "succesLogin".localized(), buttonTitle: "OK", action: { (nil) in
+            if (response.result.value != nil)
+            {
+                
+                var arrayResult = response.result.value as! Dictionary<String, Any>
+                let alert = CPAlertViewController()
+                
+                switch response.result {
+                case .success:
+                    switch arrayResult["code"] as! Int{
+                    case 200:
+                        var arrayData = arrayResult["data"] as! Dictionary<String,Any>
+                        var arrayUser = arrayData["user"] as! Dictionary<String,Any>
+                        var arrayPrivacity = arrayData["privacity"] as! Dictionary<String,String>
+                        
+                        SwiftSpinner.hide()
+                        
+                        let alert = CPAlertViewController()
+                        // si es logeo no mostrar alert
+                        alert.showSuccess(title: "correctLogin".localized(), message: "succesLogin".localized(), buttonTitle: "OK", action: nil)
+                        
                         saveDataInUserDefaults(value: arrayUser["id"] as! String, key: "id")
                         saveDataInUserDefaults(value: arrayUser["id_rol"] as! String, key: "id_rol")
                         saveDataInUserDefaults(value: arrayUser["email"] as! String, key: "email")
@@ -156,14 +161,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         }
                         
                         if !(arrayUser["phone"] is NSNull)  {
-
+                            
                             saveDataInUserDefaults(value: arrayUser["phone"]! as! String, key: "phone")
                         }else{
                             clearDataInUserDefaults(key: "phone")
                         }
                         
                         if arrayUser["photo"] as? String != nil{
-
+                            
                             let remoteImageURL = URL(string: (arrayUser["photo"] as? String)!)!
                             
                             // Use Alamofire to download the image
@@ -187,54 +192,47 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         saveDataInUserDefaults(value: arrayData["token"] as! String, key: "token")
                         
                         saveDataInUserDefaults(value: "true", key: "isLoged")
-                        
                         self.goToMain()
-                    })
-                    
-                default:
+                    case 500:
+                        // error del servidor
+                        SwiftSpinner.hide()
+                        if getDataInUserDefaults(key: "email") != nil {
+                            self.emailLoginTextField.text = getDataInUserDefaults(key: "email")
+                        }
+                        alert.showError(title: ("Error al conectar con el servidor" ), buttonTitle: "OK")
+                        
+                    default:
+                        // cualquier error
+                        SwiftSpinner.hide()
+                        if getDataInUserDefaults(key: "email") != nil {
+                            self.emailLoginTextField.text = getDataInUserDefaults(key: "email")
+                        }
+                        alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
+                    }
+                case .failure:
                     SwiftSpinner.hide()
-                    alert.showError(title: (arrayResult["message"] as! String), buttonTitle: "OK")
+                    if getDataInUserDefaults(key: "email") != nil {
+                        self.emailLoginTextField.text = getDataInUserDefaults(key: "email")
+                    }
+                    alert.showError(title: String(describing: response.error), buttonTitle: "OK")
+                    print("Error :: \(String(describing: response.error))")
                 }
-            case .failure:
                 SwiftSpinner.hide()
-                alert.showError(title: String(describing: response.error), buttonTitle: "OK")
-                print("Error :: \(String(describing: response.error))")
+            }else{
+                let alert = CPAlertViewController()
+                if getDataInUserDefaults(key: "email") != nil {
+                    self.emailLoginTextField.text = getDataInUserDefaults(key: "email")
+                }
+                
+                alert.showError(title: "No se puede conectar al servidor", buttonTitle: "OK")
             }
-            SwiftSpinner.hide()
         }
     }
     
-//    func getLocation(){
-//
-//
-//        manager.requestLocation()
-//
-//        SwiftSpinner.show("...")
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        if let location = locations.first {
-//            print("Found user's location: \(location)")
-//
-//            self.manager.stopUpdatingLocation()
-//
-//            self.lon = Float(location.coordinate.longitude)
-//            self.lat = Float(location.coordinate.latitude)
-//
-//
-//        }
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        print("Failed to find user's location: \(error.localizedDescription)")
-//        self.manager.stopUpdatingLocation()
-//        self.createLoginRequest(email: emailLoginTextField.text!, password: passwordLoginTextField.text!)
-//    }
-
     func goToMain(){
-
+        
         let tabbarVC = storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-
+        
         self.present(tabbarVC, animated: false, completion: nil)
     }
     
@@ -242,6 +240,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
 }
 

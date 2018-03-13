@@ -44,11 +44,17 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         // alert para camara o galeria
         
         let alert = UIAlertController(title: "Usar camara o galeria", message: "¿Quieres subir una foto desde la camara o desde la galeria?", preferredStyle: .alert)
+        
         alert.addAction(UIAlertAction(title: "Camara", style: .default, handler: { (nil) in
             self.checkPermissionCamera()
         }))
+        
         alert.addAction(UIAlertAction(title: "Galeria", style: .default, handler: { (nil) in
             self.checkPermissionGallery()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: { (nil) in
+            alert.dismiss(animated: true, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
         
@@ -139,7 +145,7 @@ class ImageEventViewController: UIViewController, UIImagePickerControllerDelegat
         dismiss(animated: true, completion: nil)
     }
     
-    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         

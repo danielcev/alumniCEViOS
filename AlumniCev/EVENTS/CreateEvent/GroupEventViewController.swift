@@ -30,8 +30,9 @@ class GroupEventViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventsCell", for: indexPath) as! GroupsTableViewCell
         
-        cell.groupLbl.text = groups[indexPath.row]["name"]
-        cell.idGroup = Int(groups[indexPath.row]["id"]!)
+        cell.groupLbl.text = groups[indexPath.row]["name"] as? String
+        cell.idGroup = Int((groups[indexPath.row]["id"] as? String)!)
+        
         
         return cell
     }
