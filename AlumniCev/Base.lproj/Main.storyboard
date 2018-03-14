@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1245,7 +1246,7 @@
         <!--Detail Event View Controller-->
         <scene sceneID="g4m-1c-o6X">
             <objects>
-                <viewController storyboardIdentifier="DetailEventViewController" id="O7c-xv-iXr" customClass="DetailEventViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailEventViewController" hidesBottomBarWhenPushed="YES" id="O7c-xv-iXr" customClass="DetailEventViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pmd-y3-nCo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2803,7 +2804,7 @@
         <scene sceneID="yGG-Qe-Zxm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Y8-PQ-tu2" customClass="DetailEventNavigationViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Events" image="events" selectedImage="events_selected" id="dFh-dy-j3J"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="events_selected" selectedImage="events_selected" id="dFh-dy-j3J"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ek9-dr-R6r">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -2855,7 +2856,7 @@
             </objects>
             <point key="canvasLocation" x="-497" y="134"/>
         </scene>
-        <!--Chat-->
+        <!--Chats-->
         <scene sceneID="tEB-rF-17R">
             <objects>
                 <viewController id="9cj-cl-w3j" customClass="ChatsViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController">
@@ -2899,7 +2900,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="lYn-cM-Ti3"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Chat" id="c9c-YC-QPS"/>
+                    <navigationItem key="navigationItem" title="Chats" id="c9c-YC-QPS"/>
                     <connections>
                         <outlet property="userImage" destination="rsX-fV-aTi" id="EIe-E1-Lf0"/>
                         <outlet property="userName" destination="rsX-fV-aTi" id="iL9-20-eao"/>
@@ -2908,6 +2909,128 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPe-ub-wQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2901.5999999999999" y="888.30584707646187"/>
+        </scene>
+        <!--Usuario-->
+        <scene sceneID="ROh-RP-j3k">
+            <objects>
+                <viewController restorationIdentifier="MessagesViewController" storyboardIdentifier="MessagesViewController" hidesBottomBarWhenPushed="YES" id="qpK-Ow-8gk" customClass="MessagesViewController" customModule="AlumniCev" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y4f-qE-nvo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PjA-mD-Vgk">
+                                <rect key="frame" x="0.0" y="64" width="375" height="549"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myMessage" rowHeight="90" id="Ds5-Y3-ZC3" customClass="myMessagesTableViewCell" customModule="AlumniCev" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ds5-Y3-ZC3" id="hgP-vS-V3z">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAm-11-eot">
+                                                    <rect key="frame" x="99" y="11" width="262" height="68"/>
+                                                    <color key="backgroundColor" name="Turques"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="aAm-11-eot" firstAttribute="bottom" secondItem="hgP-vS-V3z" secondAttribute="bottomMargin" id="6w9-O8-JhE"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="aAm-11-eot" secondAttribute="trailing" constant="-1" id="C00-sD-nCZ"/>
+                                                <constraint firstItem="aAm-11-eot" firstAttribute="leading" secondItem="hgP-vS-V3z" secondAttribute="leadingMargin" constant="84" id="FM4-ek-8bC"/>
+                                                <constraint firstItem="aAm-11-eot" firstAttribute="centerY" secondItem="hgP-vS-V3z" secondAttribute="centerY" id="RZx-Ez-zd4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="MessageTextLabel" destination="aAm-11-eot" id="ApQ-TV-mor"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="otherMessage" rowHeight="90" id="2UU-yt-iGW" customClass="otherMessageTableViewCell" customModule="AlumniCev" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="118" width="375" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2UU-yt-iGW" id="cKg-c0-zaj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKV-px-257">
+                                                    <rect key="frame" x="14" y="11" width="262" height="68"/>
+                                                    <color key="backgroundColor" red="0.92149782179999995" green="0.92160838840000003" blue="0.92146027090000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="HKV-px-257" firstAttribute="leading" secondItem="cKg-c0-zaj" secondAttribute="leadingMargin" constant="-1" id="8Df-yK-24p"/>
+                                                <constraint firstItem="HKV-px-257" firstAttribute="bottom" secondItem="cKg-c0-zaj" secondAttribute="bottomMargin" id="AvV-b2-6fh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="HKV-px-257" secondAttribute="trailing" constant="84" id="a5k-ZK-Rmg"/>
+                                                <constraint firstItem="HKV-px-257" firstAttribute="top" secondItem="cKg-c0-zaj" secondAttribute="topMargin" id="nGc-NZ-AhP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageTextLabel" destination="HKV-px-257" id="BjH-XL-Qp8"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qpK-Ow-8gk" id="5Ip-ON-mX4"/>
+                                    <outlet property="delegate" destination="qpK-Ow-8gk" id="4mV-0G-4Rg"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4i0-LC-zyI">
+                                <rect key="frame" x="0.0" y="621" width="375" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j70-8Q-K8O">
+                                        <rect key="frame" x="329" y="0.0" width="46" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" name="Turques"/>
+                                        <state key="normal" image="sendicon"/>
+                                        <connections>
+                                            <action selector="sendMessageAction:" destination="qpK-Ow-8gk" eventType="touchUpInside" id="jG7-Mu-Qcs"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Escribir mensaje" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ybr-ny-xv5">
+                                        <rect key="frame" x="8" y="8" width="313" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PjA-mD-Vgk" firstAttribute="top" secondItem="nDo-PJ-U4p" secondAttribute="top" id="UcK-oH-jgK"/>
+                            <constraint firstItem="PjA-mD-Vgk" firstAttribute="leading" secondItem="y4f-qE-nvo" secondAttribute="leading" id="WKN-b6-kGU"/>
+                            <constraint firstItem="PjA-mD-Vgk" firstAttribute="bottom" secondItem="nDo-PJ-U4p" secondAttribute="bottom" constant="-54" id="qdG-Yb-Os1"/>
+                            <constraint firstAttribute="trailing" secondItem="PjA-mD-Vgk" secondAttribute="trailing" id="yRH-sl-Jew"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nDo-PJ-U4p"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Usuario" id="23N-hW-4rx">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="SUe-lk-hsi">
+                            <connections>
+                                <action selector="reloadMessages:" destination="qpK-Ow-8gk" id="BLP-ya-mLr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="sendMessaggeTextField" destination="Ybr-ny-xv5" id="tNn-4t-PdI"/>
+                        <outlet property="tableView" destination="PjA-mD-Vgk" id="bjn-DB-kKc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="soI-Js-QRn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3668" y="887.40629685157433"/>
         </scene>
         <!--Item-->
         <scene sceneID="SPq-ls-hhA">
@@ -2919,7 +3042,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="9cj-cl-w3j" kind="relationship" relationship="rootViewController" id="WXC-vc-7Ds"/>
+                        <segue destination="9cj-cl-w3j" kind="relationship" relationship="rootViewController" id="gSN-6x-SFd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EHD-VI-GW2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2956,8 +3079,7 @@
         <image name="declineicon" width="40" height="40"/>
         <image name="editicon" width="512" height="512"/>
         <image name="eventosicon" width="249" height="274"/>
-        <image name="events" width="29" height="27"/>
-        <image name="events_selected" width="29" height="27"/>
+        <image name="events_selected" width="72" height="69"/>
         <image name="filtericon" width="36" height="38"/>
         <image name="fondo_azul" width="750" height="1334"/>
         <image name="imagen_prueba" width="754" height="359"/>
@@ -2982,5 +3104,11 @@
         <image name="walkingicon" width="10" height="18"/>
         <image name="webicon" width="20" height="20"/>
         <image name="whatsappicon" width="55" height="55"/>
+        <namedColor name="Turques">
+            <color red="0.0" green="0.55294117647058827" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Turques">
+            <color red="0.0" green="0.55294117647058827" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

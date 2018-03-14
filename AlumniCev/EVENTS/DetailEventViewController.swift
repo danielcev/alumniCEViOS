@@ -16,7 +16,6 @@ class DetailEventViewController: UIViewController{
 
     @IBOutlet weak var commentView: UIView!
     
-    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var secondTitleLbl: UILabel!
     
     @IBOutlet weak var descriptionText: UITextView!
@@ -57,6 +56,7 @@ class DetailEventViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         
         idReceived = globalidReceived!

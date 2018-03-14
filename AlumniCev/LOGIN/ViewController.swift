@@ -41,6 +41,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if getDataInUserDefaults(key: "isLoged") != nil{
             if(getDataInUserDefaults(key: "isLoged")! == "true"){
                 //self.goToMain()
+                SwiftSpinner.show("...")
                 self.createLoginRequest(email: getDataInUserDefaults(key: "email")!, password: getDataInUserDefaults(key: "password")!)
             }
         }
@@ -142,8 +143,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         SwiftSpinner.hide()
                         
                         let alert = CPAlertViewController()
-                        // si es logeo no mostrar alert
-                        alert.showSuccess(title: "correctLogin".localized(), message: "succesLogin".localized(), buttonTitle: "OK", action: nil)
+                        // no se ha logeado ninguna vez
+                        if getDataInUserDefaults(key: "isLoged") == nil{
+                            alert.showSuccess(title: "correctLogin".localized(), message: "succesLogin".localized(), buttonTitle: "OK", action: nil)
+                        }
+                        
                         
                         saveDataInUserDefaults(value: arrayUser["id"] as! String, key: "id")
                         saveDataInUserDefaults(value: arrayUser["id_rol"] as! String, key: "id_rol")

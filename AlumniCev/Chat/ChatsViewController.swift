@@ -31,11 +31,14 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return 1
     }
 
-    
+    func goToMessages(){
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessagesViewController") as! MessagesViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         // Do any additional setup after loading the view.
     }
@@ -80,5 +83,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
 
-
+    override func viewWillAppear(_ animated: Bool) {
+        goToMessages()
+    }
 }

@@ -61,6 +61,10 @@
 		A67EFA7C2003A7990051853B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A67EFA7A2003A7990051853B /* LaunchScreen.storyboard */; };
 		A67EFA872003A7990051853B /* AlumniCevTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA862003A7990051853B /* AlumniCevTests.swift */; };
 		A67EFA922003A7990051853B /* AlumniCevUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA912003A7990051853B /* AlumniCevUITests.swift */; };
+		C4DBC80E205860CE0021AA72 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBC80D205860CE0021AA72 /* MessagesViewController.swift */; };
+		C4DBC810205862400021AA72 /* chatRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBC80F205862400021AA72 /* chatRequests.swift */; };
+		C4DBC813205871C70021AA72 /* myMessagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBC812205871C70021AA72 /* myMessagesTableViewCell.swift */; };
+		C4DBC8152058742E0021AA72 /* otherMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBC8142058742E0021AA72 /* otherMessageTableViewCell.swift */; };
 		C75819B27734180340DD2F8C /* libPods-AlumniCevTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D41F6472158DB16013BF8CBC /* libPods-AlumniCevTests.a */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +155,10 @@
 		AF6E0D36C62217C813FDBF3B /* Pods-AlumniCev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCev.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCev/Pods-AlumniCev.release.xcconfig"; sourceTree = "<group>"; };
 		B7AE9FFBB5889DC3F0CAAE43 /* Pods-AlumniCevUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCevUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCevUITests/Pods-AlumniCevUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B8D9FCC095A0ADD3940F8D83 /* Pods-AlumniCev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCev/Pods-AlumniCev.debug.xcconfig"; sourceTree = "<group>"; };
+		C4DBC80D205860CE0021AA72 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		C4DBC80F205862400021AA72 /* chatRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatRequests.swift; sourceTree = "<group>"; };
+		C4DBC812205871C70021AA72 /* myMessagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myMessagesTableViewCell.swift; sourceTree = "<group>"; };
+		C4DBC8142058742E0021AA72 /* otherMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = otherMessageTableViewCell.swift; sourceTree = "<group>"; };
 		D41F6472158DB16013BF8CBC /* libPods-AlumniCevTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AlumniCevTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E60F600E2F06F78C291311A3 /* Pods-AlumniCevUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCevUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCevUITests/Pods-AlumniCevUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -290,7 +298,10 @@
 		7FBBA5772056A01D00E3C756 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				C4DBC811205871AE0021AA72 /* messages */,
 				7FBBA5782056A06000E3C756 /* ChatsViewController.swift */,
+				C4DBC80D205860CE0021AA72 /* MessagesViewController.swift */,
+				C4DBC80F205862400021AA72 /* chatRequests.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -356,6 +367,15 @@
 				A67EFA932003A7990051853B /* Info.plist */,
 			);
 			path = AlumniCevUITests;
+			sourceTree = "<group>";
+		};
+		C4DBC811205871AE0021AA72 /* messages */ = {
+			isa = PBXGroup;
+			children = (
+				C4DBC812205871C70021AA72 /* myMessagesTableViewCell.swift */,
+				C4DBC8142058742E0021AA72 /* otherMessageTableViewCell.swift */,
+			);
+			path = messages;
 			sourceTree = "<group>";
 		};
 		FF776C1E505F02F356DDA3B5 /* Frameworks */ = {
@@ -696,6 +716,8 @@
 				7FBBA5792056A06000E3C756 /* ChatsViewController.swift in Sources */,
 				65EDBBC3201E22100017515A /* Address.swift in Sources */,
 				657A81CD202CC54600AF99A8 /* CommentsTableViewCell.swift in Sources */,
+				C4DBC8152058742E0021AA72 /* otherMessageTableViewCell.swift in Sources */,
+				C4DBC810205862400021AA72 /* chatRequests.swift in Sources */,
 				65832A0C2023AD9800C2B8AF /* DetailCommentsTableViewCell.swift in Sources */,
 				A67EFA742003A7990051853B /* ViewController.swift in Sources */,
 				7F711B8A2008D73200BFF37D /* Localize.swift in Sources */,
@@ -708,7 +730,9 @@
 				7FAE1B28200F804E00F17E11 /* ForgotViewController.swift in Sources */,
 				65C2AC73202B61EA00BF9755 /* UsersTableViewCell.swift in Sources */,
 				7F82C08A201B537000259E06 /* Event.swift in Sources */,
+				C4DBC80E205860CE0021AA72 /* MessagesViewController.swift in Sources */,
 				7F51CC59204FEB8200968E15 /* DetailEventNavigationViewController.swift in Sources */,
+				C4DBC813205871C70021AA72 /* myMessagesTableViewCell.swift in Sources */,
 				7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */,
 				65BADD622016498400C6D03F /* ProfileViewController.swift in Sources */,
 				7F51CC5B2050247300968E15 /* TabBarViewController.swift in Sources */,

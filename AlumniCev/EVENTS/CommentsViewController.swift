@@ -36,7 +36,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         photoUser.layer.cornerRadius = photoUser.frame.size.height/2
         photoUser.layer.masksToBounds = true
         
-        styleTxF(textfield: commentTxF)
+        //styleTxF(textfield: commentTxF)
         
         // Do any additional setup after loading the view.
     }
