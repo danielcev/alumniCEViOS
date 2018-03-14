@@ -26,12 +26,16 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return UITableViewCell()
     }
     
+    @IBAction func goToCreateChat(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CreateChatViewController") as! CreateChatViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    func goToMessages(){
+    @IBAction func goToMessages(){
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessagesViewController") as! MessagesViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -84,6 +88,6 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        goToMessages()
+        //goToMessages()
     }
 }

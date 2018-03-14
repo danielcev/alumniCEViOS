@@ -28,6 +28,8 @@
 		7F1D33672004D54600D57F75 /* myAppTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D33662004D54600D57F75 /* myAppTools.swift */; };
 		7F436378203C119E000108F3 /* RequestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F436377203C119E000108F3 /* RequestsTableViewCell.swift */; };
 		7F4554DA202DBC44003255EC /* ProfileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4554D9202DBC44003255EC /* ProfileRequests.swift */; };
+		7F4A27AA20591B3800F1FE5C /* CreateChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4A27A920591B3800F1FE5C /* CreateChatViewController.swift */; };
+		7F4A27AC2059207000F1FE5C /* CellUserToChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4A27AB2059207000F1FE5C /* CellUserToChatViewController.swift */; };
 		7F51CC59204FEB8200968E15 /* DetailEventNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51CC58204FEB8200968E15 /* DetailEventNavigationViewController.swift */; };
 		7F51CC5B2050247300968E15 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51CC5A2050247300968E15 /* TabBarViewController.swift */; };
 		7F58DD53203AE23C001A555D /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58DD52203AE23C001A555D /* GroupTableViewCell.swift */; };
@@ -110,6 +112,8 @@
 		7F436377203C119E000108F3 /* RequestsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsTableViewCell.swift; sourceTree = "<group>"; };
 		7F4554D9202DBC44003255EC /* ProfileRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequests.swift; sourceTree = "<group>"; };
 		7F464761203EFE8A00A64205 /* SimpleAnimation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimpleAnimation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F4A27A920591B3800F1FE5C /* CreateChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatViewController.swift; sourceTree = "<group>"; };
+		7F4A27AB2059207000F1FE5C /* CellUserToChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellUserToChatViewController.swift; sourceTree = "<group>"; };
 		7F51CC58204FEB8200968E15 /* DetailEventNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventNavigationViewController.swift; sourceTree = "<group>"; };
 		7F51CC5A2050247300968E15 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		7F58DD52203AE23C001A555D /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 				7FBBA5782056A06000E3C756 /* ChatsViewController.swift */,
 				C4DBC80D205860CE0021AA72 /* MessagesViewController.swift */,
 				C4DBC80F205862400021AA72 /* chatRequests.swift */,
+				7F4A27A920591B3800F1FE5C /* CreateChatViewController.swift */,
+				7F4A27AB2059207000F1FE5C /* CellUserToChatViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -735,11 +741,13 @@
 				C4DBC813205871C70021AA72 /* myMessagesTableViewCell.swift in Sources */,
 				7FAE1B26200F4AED00F17E11 /* MainViewController.swift in Sources */,
 				65BADD622016498400C6D03F /* ProfileViewController.swift in Sources */,
+				7F4A27AC2059207000F1FE5C /* CellUserToChatViewController.swift in Sources */,
 				7F51CC5B2050247300968E15 /* TabBarViewController.swift in Sources */,
 				7F7ADBB22019FE6A00489C95 /* GroupsTableViewCell.swift in Sources */,
 				7F58DD53203AE23C001A555D /* GroupTableViewCell.swift in Sources */,
 				7F89B1AB2018C0B6007BA234 /* LocalizationCreateEventViewController.swift in Sources */,
 				65D1643A202CC2B90011476D /* CommentsViewController.swift in Sources */,
+				7F4A27AA20591B3800F1FE5C /* CreateChatViewController.swift in Sources */,
 				7F89B1A92018C094007BA234 /* ImageEventViewController.swift in Sources */,
 				7FA0CE54202C40A1002326A9 /* WelcomeViewController.swift in Sources */,
 				7F436378203C119E000108F3 /* RequestsTableViewCell.swift in Sources */,

@@ -33,7 +33,9 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         requestAllUsers {
             self.rechargeTable()
         }
-
+        
+        usersTable.estimatedRowHeight = 88
+        usersTable.rowHeight = UITableViewAutomaticDimension
         // Do any additional setup after loading the view.
     }
     
@@ -276,6 +278,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        <#code#>
 //    }
+    
     
     @IBAction func segmentedChanged(_ sender: Any) {
         startSpinner()
