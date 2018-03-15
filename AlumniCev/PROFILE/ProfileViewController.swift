@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var shareLocalizationLbl: UILabel!
     @IBOutlet weak var sharePhoneLbl: UILabel!
+
     
     
     
@@ -88,6 +89,8 @@ class ProfileViewController: UIViewController {
         
         imgProfile.layer.cornerRadius = imgProfile.frame.size.height/2
         imgProfile.layer.masksToBounds = true
+        imgProfile.layer.borderColor = UIColor( red: 1, green: 1, blue:1, alpha: 1.0 ).cgColor
+        imgProfile.layer.borderWidth = 2
     
     }
     

@@ -111,8 +111,8 @@
 "privacitySettings" = "Privacidad";
 "emailSettings" = "Dirección de correo electrónico";
 "descriptSettings" = "Descripción";
-"localizSettings" = "Permitir mi localizacion";
-"phoneSettings"= "Compartir mi número de teléfono";
+"localizSettings" = "Compartir localización";
+"phoneSettings"= "Compartir teléfono";
 "localSettings"= "Compartir mi loaclización";
 "doneBt" = "Hecho";
 "alertExit"="éxito";
