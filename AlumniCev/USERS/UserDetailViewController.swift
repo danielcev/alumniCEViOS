@@ -265,8 +265,10 @@ class UserDetailViewController: UIViewController, MFMailComposeViewControllerDel
 
     
     @IBAction func OpendTheChat(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-        self.present(vc, animated: true)
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+//        self.present(vc, animated: true)
+        // 4 = chat
+        self.tabBarController?.selectedIndex = 4
     }
     
     func DistanceFriend(){

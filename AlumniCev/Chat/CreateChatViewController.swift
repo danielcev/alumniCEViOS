@@ -23,6 +23,7 @@ class CreateChatViewController: UIViewController, UITableViewDelegate, UITableVi
         
         cell.userName.text = userstochat[indexPath.row]["username"] as? String
         cell.id_user = userstochat[indexPath.row]["id"] as? Int
+        cell.userImage.image = UIImage(named: "userdefaulticon")
         if userstochat[indexPath.row]["photo"] as? String != nil{
             //Añadir imagen
             let remoteImageURL = URL(string: (userstochat[indexPath.row]["photo"] as? String)!)!
@@ -37,6 +38,12 @@ class CreateChatViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
+
+
+        cell.userImage.layer.cornerRadius = cell.userImage.frame.size.height/2
+        cell.userImage.layer.masksToBounds = true
+        cell.userImage.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.userImage.layer.borderWidth = 1
         return cell
     }
     
@@ -44,21 +51,32 @@ class CreateChatViewController: UIViewController, UITableViewDelegate, UITableVi
         let alert = UIAlertController(title: "Iniciar nuevo chat", message: "", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (nil) in
             //peticion crear chat con id user
-            let id_user = self.userstochat[indexPath.row]["id"] as? Int
+            let id_user = self.userstochat[indexPath.row]["id"] as? String
             createChatRequesst(id_user: id_user!, action: { (chat) in
                 // ir a la pestaña de mesajes con el id del chat en la respuesta
+                if chat != nil{
+                    
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessagesViewController") as! MessagesViewController
+                    vc.id_chat = chat["id"] as? String
+                    print(vc.id_chat)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             })
         }))
         alert.addAction(UIAlertAction(title: "cancelar", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -66,11 +84,20 @@ class CreateChatViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         getUsersToChat { (users) in
-            self.userstochat = users!
-            self.tableView.reloadData()
+            if users != nil {
+                self.userstochat = users!
+                self.tableView.reloadData()
+            }else{
+                let alertController = UIAlertController(title: "No hay amigos con los que iniciar un chat nuevo", message: "", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title:"Volver", style: .default, handler: { (nil) in
+                    self.navigationController?.popViewController(animated: true)
+                })
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)                    }
         }
     }
-
-   
-
 }
+
+
+
+

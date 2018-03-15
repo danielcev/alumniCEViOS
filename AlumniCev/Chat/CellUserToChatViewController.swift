@@ -16,7 +16,9 @@ class CellUserToChatViewController: UITableViewCell {
     var id_user:Int?
     
 
-    
+    override func awakeFromNib() {
+        
+    }
 
     /*
     // MARK: - Navigation

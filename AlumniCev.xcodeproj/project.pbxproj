@@ -63,6 +63,7 @@
 		A67EFA7C2003A7990051853B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A67EFA7A2003A7990051853B /* LaunchScreen.storyboard */; };
 		A67EFA872003A7990051853B /* AlumniCevTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA862003A7990051853B /* AlumniCevTests.swift */; };
 		A67EFA922003A7990051853B /* AlumniCevUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67EFA912003A7990051853B /* AlumniCevUITests.swift */; };
+		C469DB8F2059E182000748DE /* CellChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C469DB8E2059E182000748DE /* CellChatsTableViewCell.swift */; };
 		C4DBC80E205860CE0021AA72 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBC80D205860CE0021AA72 /* MessagesViewController.swift */; };
 		C4DBC810205862400021AA72 /* chatRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBC80F205862400021AA72 /* chatRequests.swift */; };
 		C4DBC813205871C70021AA72 /* myMessagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBC812205871C70021AA72 /* myMessagesTableViewCell.swift */; };
@@ -159,6 +160,7 @@
 		AF6E0D36C62217C813FDBF3B /* Pods-AlumniCev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCev.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCev/Pods-AlumniCev.release.xcconfig"; sourceTree = "<group>"; };
 		B7AE9FFBB5889DC3F0CAAE43 /* Pods-AlumniCevUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCevUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCevUITests/Pods-AlumniCevUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B8D9FCC095A0ADD3940F8D83 /* Pods-AlumniCev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlumniCev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlumniCev/Pods-AlumniCev.debug.xcconfig"; sourceTree = "<group>"; };
+		C469DB8E2059E182000748DE /* CellChatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellChatsTableViewCell.swift; sourceTree = "<group>"; };
 		C4DBC80D205860CE0021AA72 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		C4DBC80F205862400021AA72 /* chatRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatRequests.swift; sourceTree = "<group>"; };
 		C4DBC812205871C70021AA72 /* myMessagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myMessagesTableViewCell.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				C4DBC80F205862400021AA72 /* chatRequests.swift */,
 				7F4A27A920591B3800F1FE5C /* CreateChatViewController.swift */,
 				7F4A27AB2059207000F1FE5C /* CellUserToChatViewController.swift */,
+				C469DB8E2059E182000748DE /* CellChatsTableViewCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -757,6 +760,7 @@
 				65BADD60201648FD00C6D03F /* LocalizationViewController.swift in Sources */,
 				7F7FD0B52046AE420023A402 /* permisions.swift in Sources */,
 				65D16436202CA87D0011476D /* SettingsViewController.swift in Sources */,
+				C469DB8F2059E182000748DE /* CellChatsTableViewCell.swift in Sources */,
 				657A81CF202CC83F00AF99A8 /* CommentsRequests.swift in Sources */,
 				7FE084A02029D664007E5EEC /* UsersRequests.swift in Sources */,
 				65EE9EE8203CC9A00050C363 /* ChatViewController.swift in Sources */,

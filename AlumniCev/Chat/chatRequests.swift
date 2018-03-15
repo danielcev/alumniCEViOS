@@ -9,10 +9,10 @@
 import Foundation
 import Alamofire
 
-func messagesRequest(id_chat:Int, action: @escaping (_ messages:[Dictionary<String,Any>]?)->()){
+func messagesRequest(id_chat:String?, action: @escaping (_ messages:[Dictionary<String,Any>]?)->()){
     
     let url = URL(string: URL_GENERAL + "chat/messages.json")
-    let parameters: Parameters = ["id_chat":id_chat]
+    let parameters: Parameters = ["id_chat":id_chat!]
     let token = getDataInUserDefaults(key:"token")
     let headers: HTTPHeaders = [
         "Authorization": token!,
@@ -20,7 +20,6 @@ func messagesRequest(id_chat:Int, action: @escaping (_ messages:[Dictionary<Stri
     ]
     
     Alamofire.request(url!, method: .get, parameters: parameters, headers: headers).responseJSON{response in
-        
         if (response.result.value != nil){
             var arrayResult = response.result.value as! Dictionary<String, Any>
             switch response.result {
@@ -29,7 +28,6 @@ func messagesRequest(id_chat:Int, action: @escaping (_ messages:[Dictionary<Stri
                 switch arrayResult["code"] as! Int{
                     
                 case 200:
-                    
                     let arrayData = arrayResult["data"]! as? Dictionary<String,Any>
                     action(arrayData?["messages"] as! [Dictionary<String, Any>])
                 default:
@@ -45,7 +43,7 @@ func messagesRequest(id_chat:Int, action: @escaping (_ messages:[Dictionary<Stri
     }
 }
 
-func sendMessageRequest(id_chat:Int,description:String, action: @escaping (_ message:String)->()){
+func sendMessageRequest(id_chat:String,description:String, action: @escaping (_ message:String)->()){
     
     let url = URL(string: URL_GENERAL + "chat/sendMessage.json")
     let parameters: Parameters = ["id_chat":id_chat,"description":description]
@@ -93,7 +91,14 @@ func getUsersToChat(action: @escaping (_ messages:[Dictionary<String,Any>]?)->()
                 case 200:
                     
                     let arrayData = arrayResult["data"]! as? Dictionary<String,Any>
-                    action(arrayData?["users"] as! [Dictionary<String, Any>])
+
+                    if arrayData != nil {
+                        action(arrayData?["users"] as? [Dictionary<String, Any>])
+                    }else{
+                        action(nil)
+                    }
+                    // alert no hay amigos con los que iniciar un chat nuevo
+                    
                 default:
                     
                     break
@@ -107,7 +112,7 @@ func getUsersToChat(action: @escaping (_ messages:[Dictionary<String,Any>]?)->()
     }
 }
 
-func createChatRequesst(id_user:Int, action: @escaping (_ message:Dictionary<String,Any>)->()){
+func createChatRequesst(id_user:String, action: @escaping (_ message:Dictionary<String,Any>)->()){
     
     let url = URL(string: URL_GENERAL + "chat/create.json")
     let parameters: Parameters = ["id_user":id_user]
@@ -123,13 +128,58 @@ func createChatRequesst(id_user:Int, action: @escaping (_ message:Dictionary<Str
             var arrayResult = response.result.value as! Dictionary<String, Any>
             switch response.result {
             case .success:
+
                 let arrayData = arrayResult["data"]! as? Dictionary<String,Any>
+
                 action(arrayData?["chat"] as! Dictionary<String, Any>)
             case .failure:
                 break
             }
             
             
+        }
+    }
+}
+
+func getChatsRequest(action: @escaping (_ messages:[Dictionary<String,Any>]?)->()){
+    
+    let url = URL(string: URL_GENERAL + "chat/chats.json")
+    let token = getDataInUserDefaults(key:"token")
+    let headers: HTTPHeaders = [
+        "Authorization": token!,
+        "Accept": "application/json"
+    ]
+    
+    Alamofire.request(url!, method: .get, headers: headers).responseJSON{response in
+        
+        if (response.result.value != nil){
+            var arrayResult = response.result.value as! Dictionary<String, Any>
+            switch response.result {
+            case .success:
+                
+                switch arrayResult["code"] as! Int{
+                    
+                case 200:
+                    
+                    let arrayData = arrayResult["data"]! as? Dictionary<String,Any>
+                    //print(arrayData)
+                    if arrayData != nil {
+                        print(arrayData)
+                        action(arrayData?["chats"] as? [Dictionary<String, Any>])
+                    }else{
+                        action(nil)
+                    }
+
+                    
+                default:
+                    
+                    break
+                    
+                }
+            case .failure:
+                
+                print("Error :: \(String(describing: response.error))")
+            }
         }
     }
 }

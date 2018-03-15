@@ -12,18 +12,55 @@ import Alamofire
 class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     
-    @IBOutlet weak var userImage: UITableView!
-    @IBOutlet weak var userName: UITableView!
     
-    var chats = [Dictionary<String,Any>()]
+    @IBOutlet weak var tableView: UITableView!
+    
+    var chatsToShow = [Dictionary<String,Any>]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chats.count
+        return chatsToShow.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //if chatsToShow != nil{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as! CellChatsTableViewCell
+        var user = chatsToShow[indexPath.row]["user"] as! Dictionary<String,Any>
+        cell.userNameLabel.text = user["username"] as? String
+        // cargar foto por defecto
+        cell.userImage.image = UIImage(named: "userdefaulticon")
+        // foto
+        if user["photo"] as? String != nil{
+            //Añadir imagen
+            let remoteImageURL = URL(string: (user["photo"] as? String)!)!
+            
+            Alamofire.request(remoteImageURL).responseData { (response) in
+                if response.error == nil {
+                    print(response.result)
+                    
+                    if let data = response.data {
+                        cell.userImage.image = UIImage(data: data)
+                    }
+                }
+            }
+            
+        }
+        cell.userImage.layer.cornerRadius = cell.userImage.frame.size.height/2
+        cell.userImage.layer.masksToBounds = true
+        cell.userImage.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.userImage.layer.borderWidth = 1
+        // ultimo mensaje
+        let chat = chatsToShow[indexPath.row]
         
-        return UITableViewCell()
+        if chat["message"] as? Dictionary<String,Any> != nil{
+            let message = chat["message"] as! Dictionary<String,Any>
+            cell.lastMessageLabel.text = message["description"] as? String
+            // fecha
+            cell.dateLabel.text = message["date"] as? String
+        }
+        
+        return cell
+        //}
+        
     }
     
     @IBAction func goToCreateChat(_ sender: Any) {
@@ -34,11 +71,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
-    @IBAction func goToMessages(){
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessagesViewController") as! MessagesViewController
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,48 +79,34 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func getChatsRequest(){
-        let url = URL(string: URL_GENERAL + "chats/chats")
-        
-        let token = getDataInUserDefaults(key:"token")
-        
-        let headers: HTTPHeaders = [
-            "Authorization": token!,
-            "Accept": "application/json"
-        ]
-        
-        Alamofire.request(url!, method: .get, headers: headers).responseJSON{response in
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 111
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MessagesViewController") as! MessagesViewController
+        let chat = chatsToShow[indexPath.row]
+        // el id llega mal al listado con los mensajes
+        let id_chat:String = String(describing: chat["id"]!)
+        vc.id_chat = id_chat
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func reloadData(_ sender: Any) {
+        // peticion get chats
+        getChatsRequest { (chats) in
             
-            if (response.result.value != nil){
-                
-                var arrayResult = response.result.value as! Dictionary<String, Any>
-                var arrayData = arrayResult["data"]! as! Dictionary<String,Any>
-                
-                switch response.result {
-                case .success:
-                    switch arrayResult["code"] as! Int{
-                    case 200:
-                        //chats = arrayData
-                        break
-                    default:
-                        break
-
-                    }
-                case .failure:
-                    print("Error :: \(String(describing: response.error))")
-
-                }
-            }
+            self.chatsToShow = chats!
+            self.tableView.reloadData()
+            
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
-        //goToMessages()
+        reloadData((Any).self)
     }
 }

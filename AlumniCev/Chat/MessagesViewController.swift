@@ -13,7 +13,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var sendMessaggeTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    let id_chat:Int = 1
+    var id_chat:String?
     var messages = [Dictionary<String,Any>]()
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,7 +38,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func reloadMessages(_ sender: Any) {
-        messagesRequest(id_chat: id_chat) {messages in
+        messagesRequest(id_chat: id_chat!) {messages in
             
             if messages != nil {
                 self.messages = messages!
@@ -57,7 +57,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         
-        messagesRequest(id_chat: id_chat) {messages in
+        messagesRequest(id_chat: id_chat!) {messages in
             if messages != nil {
                 self.messages = messages!
                 // recargar la tabla
@@ -76,7 +76,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func sendMessageAction(_ sender: Any) {
         if sendMessaggeTextField.text != "" {
             let message = sendMessaggeTextField.text
-            sendMessageRequest(id_chat: id_chat, description: message!, action: { (messageresponse) in
+            sendMessageRequest(id_chat: id_chat!, description: message!, action: { (messageresponse) in
                 self.sendMessaggeTextField.text! = ""
                 let alert = UIAlertController(title: messageresponse, message: "", preferredStyle: .alert)
                 

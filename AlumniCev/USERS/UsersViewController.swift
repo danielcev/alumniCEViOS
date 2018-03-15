@@ -262,6 +262,18 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
             //self.present(vc, animated: true, completion: nil)
             
             break
+        case "groups":
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
+            
+            //print(groups)
+            let myGroup = groups[indexPath.section]
+            //print(myGroup)
+            let myUsers = myGroup["users"] as! [Dictionary<String,Any>]
+            //print(myUsers)
+            vc.user = myUsers[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+            
         default:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
             vc.user = (users![indexPath.row] as Dictionary<String,Any>?)!
