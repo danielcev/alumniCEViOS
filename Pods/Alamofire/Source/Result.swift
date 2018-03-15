@@ -134,7 +134,7 @@ extension Result {
     ///
     ///     let possibleString: Result<String> = .success("success")
     ///     try print(possibleString.unwrap())
-    ///     // prints "success"
+    ///     // Prints "success"
     ///
     ///     let noString: Result<String> = .failure(error)
     ///     try print(noString.unwrap())
@@ -155,7 +155,7 @@ extension Result {
     ///     let possibleData: Result<Data> = .success(Data())
     ///     let possibleInt = possibleData.map { $0.count }
     ///     try print(possibleInt.unwrap())
-    ///     // prints "0"
+    ///     // Prints "0"
     ///
     ///     let noData: Result<Data> = .failure(error)
     ///     let noInt = noData.map { $0.count }

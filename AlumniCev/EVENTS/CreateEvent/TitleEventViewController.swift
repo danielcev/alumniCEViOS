@@ -10,8 +10,6 @@ import UIKit
 
 class TitleEventViewController: UIViewController, UITextViewDelegate {
     
-    @IBOutlet weak var addTitleLbl: UILabel!
-    @IBOutlet weak var addDescriptionLbl: UILabel!
     @IBOutlet weak var titleTxtView: UITextView!
     
     @IBOutlet weak var descriptionTxF: UITextView!
@@ -24,12 +22,15 @@ class TitleEventViewController: UIViewController, UITextViewDelegate {
         descriptionTxF.delegate = self
         titleTxtView.delegate = self
         
-        addTitleLbl.text = "addTitle".localized()
-        addDescriptionLbl.text = "addDescription".localized()
+//        addTitleLbl.text = "addTitle".localized()
+//        addDescriptionLbl.text = "addDescription".localized()
+        
+        descriptionTxF.toolbarPlaceholder = "Añade la descripción..."
+        descriptionTxF.placeholderText = "Añade la descripción..."
+        titleTxtView.toolbarPlaceholder = "Añade el título..."
+        titleTxtView.placeholderText = "Añade el título..."
         
         setStyle()
-
-        
     }
     
     func textViewDidChange(_ textView: UITextView){
@@ -51,15 +52,30 @@ class TitleEventViewController: UIViewController, UITextViewDelegate {
         
     }
     
+    func styleTxF(textfield:UITextView){
+        
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = cevColor.cgColor
+        border.frame = CGRect(x: 0, y: textfield.frame.size.height - width, width:  textfield.frame.size.width, height: textfield.frame.size.height)
+        
+        border.borderWidth = width
+        textfield.layer.addSublayer(border)
+        textfield.layer.masksToBounds = true
+        
+    }
+    
     func setStyle(){
         titleTxtView.layer.borderColor = cevColor.cgColor
-        descriptionTxF.layer.borderColor = cevColor.cgColor
+        descriptionTxF.layer.borderColor = hexStringToUIColor(hex: "B3B3B3").cgColor
         
-        titleTxtView.layer.borderWidth = 1.0
+        //titleTxtView.layer.borderWidth = 1.0
         descriptionTxF.layer.borderWidth = 1.0
         
-        titleTxtView.layer.cornerRadius = 15.0
-        descriptionTxF.layer.cornerRadius = 15.0
+        //titleTxtView.layer.cornerRadius = 10
+        descriptionTxF.layer.cornerRadius = 10
+        
+        styleTxF(textfield: titleTxtView)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

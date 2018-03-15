@@ -182,6 +182,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                         saveDataInUserDefaults(value: data.base64EncodedString(), key: "photo")
                                     }
                                 }
+                                
                             }
                             
                         }else{

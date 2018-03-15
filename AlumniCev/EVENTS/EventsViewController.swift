@@ -218,6 +218,18 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        
+        //foto de perfil en la esquina
+        if(getDataInUserDefaults(key: "photo") != nil){
+            let photo:Data = Data(base64Encoded: getDataInUserDefaults(key: "photo")!)!
+            userImage.image = UIImage(data: photo)
+            
+        }else{
+            userImage.image = #imageLiteral(resourceName: "userdefaulticon")
+        }
+        
+        
+        
         requestEvents(type: idType, action: {
             self.reloadTable()
         }, notResults: {
