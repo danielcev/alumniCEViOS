@@ -215,7 +215,7 @@ class LocalizationViewController: UIViewController, MKMapViewDelegate, CLLocatio
             self.lon = Float(location.coordinate.longitude)
             self.lat = Float(location.coordinate.latitude)
             // calcular ruta
-            SwiftSpinner.show("Calculando ruta")
+            //SwiftSpinner.show("Calculando ruta")
             requestRoute()
         }
     }

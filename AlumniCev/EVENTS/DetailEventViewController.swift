@@ -321,7 +321,8 @@ class DetailEventViewController: UIViewController{
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "delete".localized(), style: .destructive, handler: { (nil) in
             requestDeleteEvent(id: Int(events[self.idReceived]["id"] as! String)!){
-                self.dismiss(animated: true, completion: nil)
+                //self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
             }
 
             }))

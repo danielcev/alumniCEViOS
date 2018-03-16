@@ -950,7 +950,7 @@
 				DEVELOPMENT_TEAM = 3W5BCJCPKT;
 				INFOPLIST_FILE = AlumniCev/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = alyumnigroup.alumnicev.cev;
+				PRODUCT_BUNDLE_IDENTIFIER = alumnigroup.alumnicev.cev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -966,7 +966,7 @@
 				DEVELOPMENT_TEAM = 3W5BCJCPKT;
 				INFOPLIST_FILE = AlumniCev/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = alyumnigroup.alumnicev.cev;
+				PRODUCT_BUNDLE_IDENTIFIER = alumnigroup.alumnicev.cev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
